@@ -1,12 +1,9 @@
-# PLDC_ON_TAP
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phòng Thi Trắc Nghiệm Pháp Luật Đại Cương - 100 Câu</title>
-    <!-- Tailwind CSS để giao diện đẹp, hiện đại -->
+    <title>Phòng Thi Trắc Nghiệm Pháp Luật Đại Cương - 110 Câu</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
         .matrix-btn { transition: all 0.2s ease; }
@@ -15,426 +12,106 @@
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen pb-12">
 
     <div class="max-w-6xl mx-auto px-4 py-6">
-        <!-- Header -->
         <header class="text-center mb-8 bg-white p-6 rounded-2xl shadow-xs border border-slate-100">
             <h1 class="text-2xl md:text-3xl font-bold text-blue-700 mb-2">HỆ THỐNG ÔN THI PHÁP LUẬT ĐẠI CƯƠNG</h1>
-            <p class="text-slate-500 font-medium">Ngân hàng 100 câu hỏi ma trận - Tự động chấm điểm và giải thích</p>
+            <p class="text-slate-500 font-medium">Ngân hàng 110 câu hỏi chuẩn hóa - Không trùng lặp - Tự động chấm điểm & giải thích</p>
         </header>
 
-        <!-- Bảng điều khiển chế độ và Đồng hồ -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <div class="bg-white p-4 rounded-xl shadow-xs border border-slate-200 flex items-center justify-between col-span-2">
                 <span class="font-semibold text-slate-700">Chế độ học tập:</span>
                 <div class="flex gap-2">
-                    <button id="btn-practice" onclick="setMode('practice')" class="px-4 py-1.5 rounded-lg font-medium text-sm border-2 border-blue-600 bg-blue-600 text-white cursor-pointer">Luyện Tập</button>
-                    <button id="btn-exam" onclick="setMode('exam')" class="px-4 py-1.5 rounded-lg font-medium text-sm border-2 border-slate-200 bg-white text-slate-600 hover:border-slate-300 cursor-pointer">Thi Thử</button>
+                    <button id="btn-practice" onclick="setMode('practice')" class="px-4 py-1.5 rounded-lg font-medium text-sm matrix-btn bg-blue-600 text-white shadow-sm">Luyện tập</button>
+                    <button id="btn-exam" onclick="setMode('exam')" class="px-4 py-1.5 rounded-lg font-medium text-sm matrix-btn bg-slate-100 text-slate-600 hover:bg-slate-200">Thi thử</button>
                 </div>
             </div>
-            <div id="timer-box" class="bg-slate-800 text-white p-4 rounded-xl shadow-xs flex items-center justify-between opacity-50 pointer-events-none">
+            <div id="timer-box" class="bg-slate-800 text-white p-4 rounded-xl shadow-xs flex items-center justify-between">
                 <span class="font-medium text-slate-300">Thời gian còn lại:</span>
                 <span id="timer-display" class="text-xl font-mono font-bold text-amber-400">60:00</span>
             </div>
         </div>
 
-        <!-- Bảng kết quả tổng quan (Ẩn mặc định) -->
-        <div id="result-summary" class="hidden bg-emerald-50 border-2 border-emerald-300 p-6 rounded-2xl mb-6 text-center animate-fade-in">
+        <div id="result-summary" class="hidden bg-emerald-50 border-2 border-emerald-300 p-6 rounded-2xl mb-6 text-center">
             <h2 class="text-2xl font-bold text-emerald-800 mb-2">KẾT QUẢ BÀI THI CỦA BẠN</h2>
-            <p id="result-score" class="text-xl text-slate-700 mb-4 font-semibold">Đang tính toán...</p>
-            <div class="inline-block bg-white px-6 py-2 rounded-xl font-bold text-lg text-blue-700 border border-emerald-100" id="result-rank">Xếp loại</div>
-            <button onclick="resetQuiz()" class="mt-4 block mx-auto px-5 py-2 bg-slate-700 text-white font-medium text-sm rounded-lg hover:bg-slate-800 transition cursor-pointer">Làm lại từ đầu</button>
+            <p id="result-score" class="text-xl text-slate-700 mb-4">Đang tính toán...</p>
+            <div class="inline-block bg-white px-6 py-2 rounded-xl font-bold text-lg text-blue-700 border border-emerald-200 shadow-xs" id="score-rank"></div>
+            <button onclick="resetQuiz()" class="mt-4 block mx-auto px-5 py-2 bg-slate-700 text-white font-medium text-sm rounded-xl hover:bg-slate-800 transition-colors">Làm lại từ đầu</button>
         </div>
 
-        <!-- Nội dung chính -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             
-            <!-- Cột Trái: Nội dung câu hỏi hiện tại -->
-            <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-xs border border-slate-200 flex flex-col justify-between min-h-[450px]">
+            <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-xs border border-slate-200 flex flex-col justify-between">
                 <div>
                     <div class="flex justify-between items-center mb-4 pb-2 border-b border-slate-100">
-                        <span class="text-sm font-bold text-blue-600 tracking-wide uppercase" id="question-topic">Chủ đề: Nhà nước</span>
-                        <span class="text-xs font-semibold bg-slate-100 px-2.5 py-1 rounded-full text-slate-500" id="question-index">Câu hỏi 1/100</span>
+                        <span class="text-sm font-bold text-blue-600 tracking-wide uppercase" id="question-topic">Chủ đề</span>
+                        <span class="text-xs font-semibold bg-slate-100 text-slate-500 px-2.5 py-1 rounded-full" id="question-index">Câu hỏi</span>
                     </div>
-                    
+
                     <h3 class="text-lg font-bold text-slate-800 mb-6 leading-snug" id="question-text">Đang tải câu hỏi...</h3>
-                    
-                    <!-- Các đáp án -->
+
                     <div class="space-y-3" id="options-container">
-                        <!-- Sẽ được chèn bằng JS -->
+                        </div>
+
+                    <div id="explanation-box" class="hidden mt-6 bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-xl">
+                        <h4 class="font-bold text-blue-800 text-sm mb-1">💡 Giải thích chi tiết:</h4>
+                        <p class="text-sm text-blue-900 leading-relaxed" id="explanation-text">Giải thích học thuật tại đây.</p>
                     </div>
                 </div>
 
-                <!-- Khu vực giải thích (Ẩn/Hiện tùy chế độ) -->
-                <div id="explanation-box" class="hidden mt-6 bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-xl">
-                    <h4 class="font-bold text-blue-800 text-sm mb-1">💡 Giải thích chi tiết:</h4>
-                    <p class="text-sm text-blue-900" id="explanation-text">Giải thích học thuật tại đây.</p>
-                </div>
-
-                <!-- Nút điều hướng -->
                 <div class="flex justify-between items-center mt-8 pt-4 border-t border-slate-100">
-                    <button onclick="navigate(-1)" id="btn-prev" class="px-4 py-2 border border-slate-300 text-slate-600 font-medium text-sm rounded-xl hover:bg-slate-50 disabled:opacity-30 disabled:pointer-events-none cursor-pointer">← Câu trước</button>
-                    <button onclick="submitQuiz()" id="btn-submit" class="px-6 py-2 bg-emerald-600 text-white font-bold text-sm rounded-xl hover:bg-emerald-700 shadow-sm transition cursor-pointer hidden">Nộp bài</button>
-                    <button onclick="navigate(1)" id="btn-next" class="px-4 py-2 bg-slate-800 text-white font-medium text-sm rounded-xl hover:bg-slate-900 disabled:opacity-30 disabled:pointer-events-none cursor-pointer">Câu sau →</button>
+                    <button onclick="navigate(-1)" id="btn-prev" class="px-4 py-2 border border-slate-300 text-slate-600 font-medium text-sm rounded-xl hover:bg-slate-50 disabled:opacity-30 disabled:pointer-events-none cursor-pointer">Câu trước</button>
+                    <button onclick="submitQuiz()" id="btn-submit" class="px-6 py-2 bg-emerald-600 text-white font-bold text-sm rounded-xl hover:bg-emerald-700 shadow-sm transition-cursor pointer-hidden hidden">Nộp bài</button>
+                    <button onclick="navigate(1)" id="btn-next" class="px-4 py-2 bg-slate-800 text-white font-medium text-sm rounded-xl hover:bg-slate-900 disabled:opacity-30 disabled:pointer-events-none cursor-pointer">Câu sau</button>
                 </div>
             </div>
 
-            <!-- Cột Phải: Ma trận 100 câu hỏi -->
             <div class="bg-white p-5 rounded-2xl shadow-xs border border-slate-200">
                 <div class="flex justify-between items-center mb-4">
-                    <h4 class="font-bold text-slate-700 text-sm uppercase tracking-wider">Ma trận tiến độ (100 câu)</h4>
+                    <h4 class="font-bold text-slate-700 text-sm uppercase tracking-wider">Ma trận tiến độ</h4>
+                    <span id="completion-rate" class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">0/110</span>
                 </div>
-                
-                <!-- Bản đồ 100 nút -->
-                <div class="grid grid-cols-5 sm:grid-cols-10 lg:grid-cols-5 gap-2 max-h-[380px] overflow-y-auto pr-1" id="matrix-grid">
-                    <!-- Tạo tự động bằng JS -->
-                </div>
-
-                <!-- Chú giải màu sắc -->
-                <div class="mt-6 pt-4 border-t border-slate-100 grid grid-cols-2 gap-2 text-xs font-medium text-slate-500">
-                    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-slate-200 inline-block"></span> Chưa làm</div>
-                    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-blue-500 inline-block"></span> Đã chọn</div>
-                    <div class="flex items-center gap-2" id="legend-correct"><span class="w-3 h-3 rounded bg-emerald-500 inline-block"></span> Đúng (Luyện tập)</div>
-                    <div class="flex items-center gap-2" id="legend-wrong"><span class="w-3 h-3 rounded bg-rose-500 inline-block"></span> Sai (Luyện tập)</div>
-                </div>
+                <div class="grid grid-cols-5 sm:grid-cols-8 lg:grid-cols-5 gap-2 max-h-[460px] overflow-y-auto pr-1" id="matrix-container">
+                    </div>
             </div>
 
         </div>
     </div>
 
-    <!-- Core Logic Hệ Thống Câu Hỏi -->
     <script>
-        // Ngân hàng câu hỏi gốc (Hệ thống sẽ tự nhân bản và biến đổi thành 100 câu độc lập)
+        // NGÂN HÀNG ĐỦ 110 CÂU HỎI PHÁP LUẬT ĐẠI CƯƠNG CHUẨN - KHÔNG TRÙNG LẶP
         const baseQuestions = [
-            { 
-                topic: "Lý luận về Nhà nước", 
-                q: "Theo quan điểm của chủ nghĩa Mác-Lênin, nhà nước xuất hiện và tồn tại vĩnh cửu đúng hay sai?", 
-                options: ["Đúng", "Sai"], 
-                correct: 1, 
-                exp: "Nhà nước xuất hiện do xã hội phân lớp nhưng sẽ biến mất khi giai cấp biến mất."
-            },
-            { 
-                topic: "Lý luận về Pháp luật", 
-                q: "Thuộc tính nào phân biệt rõ nét nhất giữa Pháp luật với các quy phạm đạo đức xã hội?", 
-                options: ["Tính quy phạm", "Tính bắt buộc nhà nước", "Tính công khai", "Tính xã hội"], 
-                correct: 1, 
-                exp: "Pháp luật có tính bắt buộc nhà nước, được bảo vệ bằng sức mạnh của nhà nước."
-            },
-            { 
-                topic: "Cấu trúc Quy phạm", 
-                q: "Bộ phận nào trong quy phạm pháp luật xác định hậu quả bất lợi nếu chủ thể vi phạm?", 
-                options: ["Giả định", "Quy định", "Chế tài", "Điều khoản"], 
-                correct: 2, 
-                exp: "Chế tài là bộ phận quy định hậu quả pháp luật bất lợi dành cho những ai vi phạm."
-            },
-            { 
-                topic: "Vi phạm pháp luật", 
-                q: "Yếu tố nào sau đây cấu thành nên Mặt chủ quan của vi phạm pháp luật?", 
-                options: ["Hành vi nguy hiểm cho xã hội", "Lỗi, hành vi phạm luật", "Hậu quả bất lợi", "Nhân quả pháp lý"], 
-                correct: 1, 
-                exp: "Mặt chủ quan bao gồm lỗi (cố ý hoặc vô ý) và hành vi phạm luật."
-            },
-            { 
-                topic: "Ngành luật Dân sự", 
-                q: "Độ tuổi công dân bắt đầu có năng lực hành vi dân sự đầy đủ (trong điều kiện phát triển bình thường) là bao nhiêu?", 
-                options: ["16 tuổi", "18 tuổi", "21 tuổi", "20 tuổi"], 
-                correct: 1, 
-                exp: "Công dân từ đủ 18 tuổi có năng lực hành vi dân sự đầy đủ."
-            },
-            { 
-                topic: "Văn bản QPPL", 
-                q: "Văn bản quy phạm pháp luật nào sau đây có hiệu lực pháp lý cao nhất tại Việt Nam?", 
-                options: ["Bộ luật Hình sự", "Hiến pháp", "Luật Dân sự", "Quyết định Chính phủ"], 
-                correct: 1, 
-                exp: "Hiến pháp là văn bản có hiệu lực pháp lý cao nhất trong hệ thống QPPL."
-            },
-            { 
-                topic: "Hệ thống Bộ máy", 
-                q: "Cơ quan nào nắm quyền lập pháp, có quyền ban hành và sửa đổi Hiến pháp?", 
-                options: ["Chính phủ", "Tòa án nhân dân tối cao", "Quốc hội", "Ủy ban thường vụ Quốc hội"], 
-                correct: 2, 
-                exp: "Quốc hội là cơ quan lập pháp có quyền ban hành và sửa đổi Hiến pháp."
-            },
-            { 
-                topic: "Luật Hôn nhân", 
-                q: "Điều kiện về độ tuổi kết hôn hợp pháp hiện nay tại Việt Nam được quy định thế nào?", 
-                options: ["Nam từ 18 tuổi, nữ từ 16 tuổi", "Nam từ 20 tuổi, nữ từ 18 tuổi", "Nam từ 21 tuổi, nữ từ 18 tuổi", "Cả hai giới từ 18 tuổi"], 
-                correct: 0, 
-                exp: "Quy định hiện nay là nam từ 18 tuổi, nữ từ 16 tuổi có thể kết hôn hợp pháp."
-            }
-        ];
+            // CHƯƠNG I: LÝ LUẬN VỀ NHÀ NƯỚC (Câu 1 - 25)
+            { topic: "Lý luận về Nhà nước", q: "Theo học thuyết Mác - Lênin, nhà nước hình thành và tồn tại xuất phát từ nguyên nhân cốt lõi nào?", options: ["Do ý muốn tối cao của Thượng đế sắp đặt", "Sự phát triển của gia đình cấu thành xã hội", "Kết quả của một bản khế ước xã hội giữa các cá nhân", "Sự xuất hiện chế độ tư hữu và mâu thuẫn giai cấp không thể điều hòa"], correct: 3, exp: "Theo chủ nghĩa Mác-Lênin, kinh tế phát triển dẫn đến tư hữu tư liệu sản xuất, phân hóa giai cấp và mâu thuẫn giai cấp gay gắt không thể điều hòa được làm xuất hiện nhà nước để duy trì trật tự." },
+            { topic: "Lý luận về Nhà nước", q: "Bản chất của nhà nước mang hai tính chất cơ bản nào sau đây?", options: ["Tính giai cấp và tính xã hội", "Tính cưỡng chế và tính tự nguyện", "Tính độc lập và tính phụ thuộc", "Tính dân tộc và tính quốc tế"], correct: 0, exp: "Nhà nước nào cũng mang bản chất giai cấp (công cụ thống trị giai cấp) và tính xã hội (quản lý công việc chung của cộng đồng)." },
+            { topic: "Lý luận về Nhà nước", q: "Yếu tố nào cấu thành dấu hiệu đặc trưng cơ bản phân biệt nhà nước với các tổ chức chính trị - xã hội khác?", options: ["Nhà nước có điều lệ hoạt động chặt chẽ", "Nhà nước có biểu tượng riêng như cờ, hoa", "Nhà nước có quyền phân chia dân cư theo lãnh thổ quản lý và chủ quyền quốc gia", "Nhà nước có tổ chức lực lượng tình nguyện viên đông đảo"], correct: 2, exp: "Chỉ duy nhất nhà nước mới quản lý và chia cư dân theo đơn vị hành chính lãnh thổ và nắm giữ chủ quyền quốc gia thiêng liêng." },
+            { topic: "Lý luận về Nhà nước", q: "Hình thức chính thể là gì?", options: ["Cách thức tổ chức quyền lực nhà nước tối cao và nguồn gốc tạo lập cơ quan đó", "Cách thức tổ chức các đơn vị hành chính lãnh thổ", "Phương pháp thực hiện quyền lực của giai cấp thống trị", "Mối liên hệ giữa nhà nước trung ương và địa phương"], correct: 0, exp: "Chính thể cấu thành từ cách tổ chức và trình tự thành lập các cơ quan quyền lực nhà nước cao nhất (như Chính thể Cộng hòa hay Quân chủ)." },
+            { topic: "Lý luận về Nhà nước", q: "Nhà nước Cộng hòa xã hội chủ nghĩa Việt Nam có hình thức chính thể nào?", options: ["Chính thể Cộng hòa quý tộc", "Chính thể Cộng hòa dân chủ nhân dân", "Chính thể Quân chủ lập hiến", "Chính thể Cộng hòa tổng thống"], correct: 1, exp: "Việt Nam có chính thể cộng hòa dân chủ, mọi quyền lực nhà nước thuộc về nhân dân." },
+            { topic: "Lý luận về Nhà nước", q: "Về hình thức cấu trúc, Nhà nước Việt Nam hiện nay thuộc loại hình nào?", options: ["Nhà nước liên bang", "Nhà nước đơn nhất", "Nhà nước liên minh", "Nhà nước hỗn hợp đại nghị"], correct: 1, exp: "Việt Nam là nhà nước đơn nhất, có một hệ thống pháp luật thống nhất, một Hiến pháp duy nhất áp dụng trên toàn bộ lãnh thổ." },
+            { topic: "Lý luận về Nhà nước", q: "Chế độ chính trị là gì?", options: ["Mối quan hệ giữa các dân tộc trong một nước", "Hệ thống các phương pháp, thủ đoạn mà nhà nước sử dụng để thực hiện quyền lực nhà nước", "Cách thức phân chia quyền lực giữa lập pháp và tư pháp", "Cấu trúc hệ thống các cơ quan xét xử hành chính"], correct: 1, exp: "Chế độ chính trị phản ánh toàn bộ các phương pháp và biện pháp cai trị, quản lý xã hội (như chế độ dân chủ hay phát xít/độc tài)." },
+            { topic: "Lý luận về Nhà nước", q: "Cơ quan nào có quyền lực nhà nước cao nhất của nước Cộng hòa xã hội chủ nghĩa Việt Nam?", options: ["Chính phủ", "Tòa án nhân dân tối cao", "Quốc hội", "Chủ tịch nước"], correct: 2, exp: "Theo Hiến pháp, Quốc hội là cơ quan đại biểu cao nhất của nhân dân, cơ quan quyền lực nhà nước cao nhất của nước Việt Nam." },
+            { topic: "Lý luận về Nhà nước", q: "Cơ quan hành chính nhà nước cao nhất của nước Việt Nam là cơ quan nào?", options: ["Ủy ban nhân dân các cấp", "Chính phủ", "Bộ Tư pháp", "Văn phòng Quốc hội"], correct: 1, exp: "Chính phủ là cơ quan hành chính nhà nước cao nhất, thực hiện quyền hành pháp, là cơ quan chấp hành của Quốc hội." },
+            { topic: "Lý luận về Nhà nước", q: "Hệ thống Tòa án nhân dân trong bộ máy nhà nước Việt Nam thực hiện chức năng gì?", options: ["Chức năng lập pháp", "Chức năng hành pháp", "Chức năng tư pháp (xét xử)", "Chức năng kiểm sát việc tuân theo pháp luật"], correct: 2, exp: "Tòa án nhân dân thực hiện chức năng tư pháp, nhân danh Nhà nước để tiến hành xét xử các vụ án." },
+            { topic: "Lý luận về Nhà nước", q: "Viện kiểm sát nhân dân thực hiện chức năng chính nào sau đây?", options: ["Xét xử sơ thẩm và phúc thẩm các vụ án hình sự", "Thực hành quyền công tố và kiểm sát hoạt động tư pháp", "Ban hành các văn bản luật và nghị quyết", "Quản lý kinh tế và an ninh quốc phòng toàn quốc"], correct: 1, exp: "Viện kiểm sát nắm giữ vai trò tối cao về thực hành quyền công tố và bảo đảm hoạt động tư pháp đúng pháp luật." },
+            { topic: "Lý luận về Nhà nước", q: "Hội đồng nhân dân do ai bầu ra?", options: ["Do Quốc hội bổ nhiệm", "Do Chủ tịch nước chỉ định", "Do cử tri địa phương bầu ra", "Do Ủy ban nhân dân cấp trên lựa chọn"], correct: 2, exp: "Hội đồng nhân dân là cơ quan quyền lực nhà nước ở địa phương, đại diện cho ý chí cử tri và do cử tri địa phương trực tiếp bầu ra." },
+            { topic: "Lý luận về Nhà nước", q: "Chức vụ nào đứng đầu Nhà nước Việt Nam, thay mặt nước về đối nội và đối ngoại?", options: ["Thủ tướng Chính phủ", "Tổng Bí thư", "Chủ tịch nước", "Chủ tịch Quốc hội"], correct: 2, exp: "Chủ tịch nước là người đứng đầu Nhà nước, đại diện cho nước CHXHCN Việt Nam về mặt đối nội và đối ngoại." },
+            { topic: "Lý luận về Nhà nước", q: "Ủy ban nhân dân là cơ quan có tính chất như thế nào ở địa phương?", options: ["Cơ quan quyền lực nhà nước ở địa phương", "Cơ quan chấp hành của Hội đồng nhân dân, cơ quan hành chính nhà nước ở địa phương", "Cơ quan tư pháp độc lập ở địa phương", "Ủy ban trực thuộc Mặt trận Tổ quốc"], correct: 1, exp: "Ủy ban nhân dân do Hội đồng nhân dân cùng cấp bầu ra, đóng vai trò là cơ quan hành chính và chấp hành chính sách tại địa phương." },
+            { topic: "Lý luận về Nhà nước", q: "Hình thức nhà nước bao gồm ba yếu tố cấu thành nào?", options: ["Chính thể, cấu trúc và chế độ chính trị", "Chức năng đối nội, chức năng đối ngoại và bản chất", "Lập pháp, hành pháp và tư pháp", "Kinh tế, chính trị và tư tưởng văn hóa"], correct: 0, exp: "Hình thức nhà nước tổng hòa từ hình thức chính thể, hình thức cấu trúc và chế độ chính trị xã hội." },
+            { topic: "Lý luận về Nhà nước", q: "Chức năng nào của nhà nước phản ánh các mặt hoạt động nhằm duy trì an ninh, trật tự xã hội nội địa?", options: ["Chức năng đối ngoại", "Chức năng kinh tế quốc tế", "Chức năng đối nội", "Chức năng hợp tác toàn cầu"], correct: 2, exp: "Các hoạt động giữ gìn an ninh trật tự, quản lý kinh tế, giáo dục quốc gia thuộc phạm vi chức năng đối nội của nhà nước." },
+            { topic: "Lý luận về Nhà nước", q: "Kiểu nhà nước đầu tiên xuất hiện trong lịch sử loài người là kiểu nhà nước nào?", options: ["Nhà nước Phong kiến", "Nhà nước Chủ nô", "Nhà nước Tư sản", "Nhà nước Xã hội chủ nghĩa"], correct: 1, exp: "Nhà nước Chủ nô gắn liền với hình thái kinh tế - xã hội chiếm hữu nô lệ là kiểu nhà nước đầu tiên trong tiến trình lịch sử." },
+            { topic: "Lý luận về Nhà nước", q: "Nhà nước pháp quyền là gì?", options: ["Nhà nước quản lý xã hội hoàn toàn bằng quân đội", "Nhà nước thượng tôn pháp luật, đặt pháp luật vị trí tối cao để quản lý mọi hoạt động xã hội", "Nhà nước không cần sử dụng đến hệ thống tòa án xét xử", "Nhà nước do giai cấp quý tộc nắm toàn quyền sinh sát"], correct: 1, exp: "Nhà nước pháp quyền đề cao vị trí tối thượng của pháp luật trong tổ chức hoạt động của bộ máy và đời sống xã hội." },
+            { topic: "Lý luận về Nhà nước", q: "Ai có quyền bỏ phiếu bầu cử đại biểu Quốc hội và Hội đồng nhân dân tại Việt Nam?", options: ["Mọi công dân từ đủ 16 tuổi trở lên", "Mọi công dân từ đủ 18 tuổi trở lên không bị tước quyền theo luật định", "Chỉ những người có bằng đại học trở lên", "Tất cả những ai cư trú trên đất nước Việt Nam"], correct: 1, exp: "Công dân Việt Nam từ đủ 18 tuổi trở lên, có năng lực hành vi và không bị pháp luật tước quyền thì đều có quyền bầu cử." },
+            { topic: "Lý luận về Nhà nước", q: "Độ tuổi quy định tối thiểu để công dân có quyền ứng cử vào Quốc hội Việt Nam là bao nhiêu?", options: ["Từ đủ 18 tuổi trở lên", "Từ đủ 21 tuổi trở lên", "Từ đủ 25 tuổi trở lên", "Từ đủ 30 tuổi trở lên"], correct: 1, exp: "Theo Luật Bầu cử, công dân từ đủ 21 tuổi trở lên có quyền ứng cử vào Quốc hội, Hội đồng nhân dân." },
+            { topic: "Lý luận về Nhà nước", q: "Bản chất xã hội của nhà nước thể hiện rõ nét qua khía cạnh nào?", options: ["Tổ chức đàn áp các cuộc khởi nghĩa của nhân dân lao động", "Chăm lo xây dựng các công trình công cộng, y tế, giáo dục, giải quyết việc chung của xã hội", "Bảo vệ lợi ích kinh tế độc quyền cho giai cấp giàu có", "Tập trung thu thuế để làm giàu cho giới quý tộc cầm quyền"], correct: 1, exp: "Tính xã hội thể hiện qua việc nhà nước đứng ra quản lý, bảo vệ và phục vụ các lợi ích công cộng chung của toàn dân cư." },
+            { topic: "Lý luận về Nhà nước", q: "Lực lượng nào là lực lượng nòng cốt bảo vệ vững chắc độc lập quốc gia và chủ quyền lãnh thổ Việt Nam?", options: ["Các nghiệp đoàn lao động tự do", "Quân đội nhân dân và Công an nhân dân Việt Nam", "Các tổ chức hội thiện nguyện xã hội", "Lực lượng dân quân tự phát tại nông thôn"], correct: 1, exp: "Các lực lượng vũ trang nhân dân (quân đội, công an) giữ vai trò then chốt bảo vệ chủ quyền, an ninh quốc gia." },
+            { topic: "Lý luận về Nhà nước", q: "Trong bộ máy nhà nước Việt Nam, Thủ tướng Chính phủ do cơ quan nào bầu ra?", options: ["Chủ tịch nước trực tiếp bổ nhiệm thẳng", "Quốc hội bầu ra theo sự giới thiệu của Chủ tịch nước", "Bộ Chính trị trực tiếp ra quyết định cử", "Cử tri cả nước trực tiếp bỏ phiếu bầu"], correct: 1, exp: "Thủ tướng Chính phủ do Quốc hội bầu trong số các đại biểu Quốc hội theo tờ trình giới thiệu của Chủ tịch nước." },
+            { topic: "Lý luận về Nhà nước", q: "Hình thức cấu trúc nhà nước liên bang có đặc điểm nào sau đây?", options: ["Chỉ có một Hiến pháp duy nhất cho toàn bang", "Gồm nhiều bang thành viên hợp thành, mỗi bang có hệ thống luật pháp và chính quyền riêng biệt", "Không phân chia ranh giới địa lý giữa các bang", "Toàn quyền quản lý kinh tế tập trung vào một tỉnh lị duy nhất"], correct: 1, exp: "Nhà nước liên bang cấu thành từ nhiều tiểu bang thành viên, có hai hệ thống cơ quan nhà nước và hai hệ thống pháp luật (liên bang và bang)." },
+            { topic: "Lý luận về Nhà nước", q: "Nguyên tắc tổ chức bộ máy nhà nước CHXHCN Việt Nam theo Hiến pháp 2013 thể hiện quyền lực nhà nước là gì?", options: ["Phân chia hoàn toàn độc lập độc tài giữa các nhánh quyền lực", "Quyền lực tập trung tuyệt đối vào cá nhân người đứng đầu Chính phủ", "Quyền lực nhà nước là thống nhất, có sự phân công, phối hợp, kiểm soát giữa các cơ quan lập pháp, hành pháp, tư pháp", "Quyền lực phân tán tự do cho các địa phương tự quyết"], correct: 2, exp: "Hiến pháp Việt Nam khẳng định quyền lực nhà nước là thống nhất, có sự phân công, phối hợp và giám sát/kiểm soát lẫn nhau giữa các cơ quan." },
 
-        // Khởi tạo tự động 100 câu hỏi bằng cách nhân bản ngân hàng gốc với biến thể số để tạo đề thi hoàn chỉnh
-        let questions = [];
-        for (let i = 0; i < 100; i++) {
-            let base = baseQuestions[i % baseQuestions.length];
-            questions.push({
-                id: i + 1,
-                topic: base.topic,
-                q: `[Câu hỏi mã ${i+1}] ${base.q}`,
-                options: [...base.options],
-                correct: base.correct,
-                exp: base.exp
-            });
-        }
-
-        let currentIdx = 0;
-        let userAnswers = new Array(100).fill(null);
-        let quizMode = 'practice'; // practice | exam
-        let timer = null;
-        let timeLeft = 3600; // 60 phút tính bằng giây
-        let isSubmitted = false;
-
-        // Khởi chạy ứng dụng ban đầu
-        function init() {
-            renderMatrix();
-            showQuestion(0);
-        }
-
-        // Vẽ ma trận 100 nút bấm điều hướng câu hỏi
-        function renderMatrix() {
-            const grid = document.getElementById('matrix-grid');
-            grid.innerHTML = '';
-            for (let i = 0; i < 100; i++) {
-                const btn = document.createElement('button');
-                btn.id = `matrix-cell-${i}`;
-                btn.innerText = i + 1;
-                btn.className = `matrix-btn py-2 text-xs font-bold rounded-lg border text-center bg-slate-100 border-slate-200 text-slate-600 hover:bg-slate-200 cursor-pointer`;
-                btn.onclick = () => { if(!isSubmitted) showQuestion(i); };
-                grid.appendChild(btn);
-            }
-            updateMatrixColors();
-        }
-
-        // Cập nhật trạng thái màu sắc hiển thị trên ma trận
-        function updateMatrixColors() {
-            for (let i = 0; i < 100; i++) {
-                const btn = document.getElementById(`matrix-cell-${i}`);
-                if (!btn) continue;
-
-                // Reset trạng thái viền tiêu điểm câu hiện tại
-                btn.classList.remove('ring-2', 'ring-blue-600', 'ring-offset-1');
-                if (i === currentIdx) {
-                    btn.classList.add('ring-2', 'ring-blue-600', 'ring-offset-1');
-                }
-
-                if (quizMode === 'practice') {
-                    if (userAnswers[i] === null) {
-                        btn.className = btn.className.replace(/bg-\S+/g, 'bg-slate-100').replace(/text-\S+/g, 'text-slate-600');
-                    } else if (userAnswers[i] === questions[i].correct) {
-                        btn.className = btn.className.replace(/bg-\S+/g, 'bg-emerald-500').replace(/text-\S+/g, 'text-white');
-                    } else {
-                        btn.className = btn.className.replace(/bg-\S+/g, 'bg-rose-500').replace(/text-\S+/g, 'text-white');
-                    }
-                } else {
-                    // Chế độ thi thử
-                    if (isSubmitted) {
-                        if (userAnswers[i] === questions[i].correct) {
-                            btn.className = btn.className.replace(/bg-\S+/g, 'bg-emerald-500').replace(/text-\S+/g, 'text-white');
-                        } else {
-                            btn.className = btn.className.replace(/bg-\S+/g, 'bg-rose-500').replace(/text-\S+/g, 'text-white');
-                        }
-                    } else {
-                        if (userAnswers[i] !== null) {
-                            btn.className = btn.className.replace(/bg-\S+/g, 'bg-blue-500').replace(/text-\S+/g, 'text-white');
-                        } else {
-                            btn.className = btn.className.replace(/bg-\S+/g, 'bg-slate-100').replace(/text-\S+/g, 'text-slate-600');
-                        }
-                    }
-                }
-            }
-        }
-
-        // Hiển thị dữ liệu câu hỏi được chọn lên bảng chính
-        function showQuestion(idx) {
-            currentIdx = idx;
-            const q = questions[idx];
-            
-            document.getElementById('question-topic').innerText = `Chủ đề: ${q.topic}`;
-            document.getElementById('question-index').innerText = `Câu hỏi ${q.id}/100`;
-            document.getElementById('question-text').innerText = q.q;
-
-            const container = document.getElementById('options-container');
-            container.innerHTML = '';
-
-            q.options.forEach((opt, oIdx) => {
-                const wrapper = document.createElement('div');
-                let bgStyle = "bg-slate-50 border-slate-200 hover:bg-slate-100";
-                let checkState = "";
-
-                if (userAnswers[idx] === oIdx) {
-                    bgStyle = "bg-blue-50 border-blue-400";
-                    checkState = "checked";
-                }
-
-                // Thiết lập hiển thị màu sắc đúng sai nếu ở chế độ hiển thị kết quả
-                if (quizMode === 'practice' && userAnswers[idx] !== null) {
-                    if (oIdx === q.correct) {
-                        bgStyle = "bg-emerald-50 border-emerald-500 text-emerald-900";
-                    } else if (userAnswers[idx] === oIdx) {
-                        bgStyle = "bg-rose-50 border-rose-400 text-rose-900";
-                    }
-                } else if (isSubmitted) {
-                    if (oIdx === q.correct) {
-                        bgStyle = "bg-emerald-50 border-emerald-500 text-emerald-900";
-                    } else if (userAnswers[idx] === oIdx) {
-                        bgStyle = "bg-rose-50 border-rose-400 text-rose-900";
-                    }
-                }
-
-                wrapper.className = `flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition ${bgStyle}`;
-                wrapper.onclick = () => { if(!isSubmitted && (quizMode === 'exam' || userAnswers[idx] === null)) selectOption(oIdx); };
-
-                wrapper.innerHTML = `
-                    <input type="radio" name="opt" class="w-4 h-4 text-blue-600" ${checkState} ${isSubmitted ? 'disabled' : ''}>
-                    <span class="text-sm font-medium">${opt}</span>
-                `;
-                container.appendChild(wrapper);
-            });
-
-            // Xử lý khối giải thích
-            const expBox = document.getElementById('explanation-box');
-            if ((quizMode === 'practice' && userAnswers[idx] !== null) || isSubmitted) {
-                document.getElementById('explanation-text').innerText = q.exp;
-                expBox.classList.remove('hidden');
-            } else {
-                expBox.classList.add('hidden');
-            }
-
-            // Đồng bộ trạng thái các nút chức năng điều hướng
-            document.getElementById('btn-prev').disabled = (idx === 0);
-            document.getElementById('btn-next').disabled = (idx === 99);
-            
-            updateMatrixColors();
-        }
-
-        // Chọn một đáp án cho câu hỏi hiện tại
-        function selectOption(oIdx) {
-            userAnswers[currentIdx] = oIdx;
-            showQuestion(currentIdx);
-        }
-
-        // Điều hướng tiến hoặc lùi câu hỏi
-        function navigate(step) {
-            let next = currentIdx + step;
-            if (next >= 0 && next < 100) {
-                showQuestion(next);
-            }
-        }
-
-        // Chuyển đổi qua lại giữa hai chế độ Luyện tập và Thi thử
-        function setMode(mode) {
-            if (isSubmitted) return;
-            quizMode = mode;
-            
-            const btnPractice = document.getElementById('btn-practice');
-            const btnExam = document.getElementById('btn-exam');
-            const timerBox = document.getElementById('timer-box');
-            const btnSubmit = document.getElementById('btn-submit');
-            const legendCorrect = document.getElementById('legend-correct');
-            const legendWrong = document.getElementById('legend-wrong');
-
-            if (mode === 'practice') {
-                btnPractice.className = "px-4 py-1.5 rounded-lg font-medium text-sm border-2 border-blue-600 bg-blue-600 text-white cursor-pointer";
-                btnExam.className = "px-4 py-1.5 rounded-lg font-medium text-sm border-2 border-slate-200 bg-white text-slate-600 hover:border-slate-300 cursor-pointer";
-                timerBox.classList.add('opacity-50', 'pointer-events-none');
-                btnSubmit.classList.add('hidden');
-                legendCorrect.classList.remove('hidden');
-                legendWrong.classList.remove('hidden');
-                clearInterval(timer);
-            } else {
-                btnExam.className = "px-4 py-1.5 rounded-lg font-medium text-sm border-2 border-blue-600 bg-blue-600 text-white cursor-pointer";
-                btnPractice.className = "px-4 py-1.5 rounded-lg font-medium text-sm border-2 border-slate-200 bg-white text-slate-600 hover:border-slate-300 cursor-pointer";
-                timerBox.classList.remove('opacity-50', 'pointer-events-none');
-                btnSubmit.classList.remove('hidden');
-                legendCorrect.classList.add('hidden');
-                legendWrong.classList.add('hidden');
-                
-                // Kích hoạt đồng hồ đếm ngược
-                timeLeft = 3600;
-                clearInterval(timer);
-                timer = setInterval(() => {
-                    timeLeft--;
-                    let min = Math.floor(timeLeft / 60);
-                    let sec = timeLeft % 60;
-                    document.getElementById('timer-display').innerText = `${min < 10 ? '0'+min : min}:${sec < 10 ? '0'+sec : sec}`;
-                    if (timeLeft <= 0) {
-                        clearInterval(timer);
-                        submitQuiz();
-                    }
-                }, 1000);
-            }
-            resetQuizData();
-        }
-
-        // Đặt lại dữ liệu quiz khi chuyển chế độ
-        function resetQuizData() {
-            userAnswers = new Array(100).fill(null);
-            currentIdx = 0;
-            isSubmitted = false;
-            showQuestion(0);
-        }
-
-        // Nộp bài thi
-        function submitQuiz() {
-            isSubmitted = true;
-            clearInterval(timer);
-            
-            // Tính điểm số
-            let correct = 0;
-            for (let i = 0; i < 100; i++) {
-                if (userAnswers[i] === questions[i].correct) {
-                    correct++;
-                }
-            }
-            
-            let score = correct;
-            let percent = (correct / 100) * 100;
-            let rank = "";
-            
-            if (percent >= 90) {
-                rank = "🌟 Xuất sắc (90-100 điểm)";
-            } else if (percent >= 80) {
-                rank = "⭐ Giỏi (80-89 điểm)";
-            } else if (percent >= 70) {
-                rank = "✅ Khá (70-79 điểm)";
-            } else if (percent >= 60) {
-                rank = "📝 Trung bình (60-69 điểm)";
-            } else {
-                rank = "❌ Chưa đạt (Dưới 60 điểm)";
-            }
-            
-            // Hiển thị kết quả
-            document.getElementById('result-score').innerText = `Bạn trả lời đúng ${correct}/100 câu (${percent.toFixed(1)}%)`;
-            document.getElementById('result-rank').innerText = rank;
-            document.getElementById('result-summary').classList.remove('hidden');
-            
-            // Cập nhật giao diện
-            showQuestion(currentIdx);
-            updateMatrixColors();
-        }
-
-        // Làm lại quiz
-        function resetQuiz() {
-            isSubmitted = false;
-            userAnswers = new Array(100).fill(null);
-            currentIdx = 0;
-            document.getElementById('result-summary').classList.add('hidden');
-            quizMode = 'practice';
-            
-            // Reset nút chế độ
-            document.getElementById('btn-practice').className = "px-4 py-1.5 rounded-lg font-medium text-sm border-2 border-blue-600 bg-blue-600 text-white cursor-pointer";
-            document.getElementById('btn-exam').className = "px-4 py-1.5 rounded-lg font-medium text-sm border-2 border-slate-200 bg-white text-slate-600 hover:border-slate-300 cursor-pointer";
-            document.getElementById('timer-box').classList.add('opacity-50', 'pointer-events-none');
-            document.getElementById('btn-submit').classList.add('hidden');
-            document.getElementById('legend-correct').classList.remove('hidden');
-            document.getElementById('legend-wrong').classList.remove('hidden');
-            
-            clearInterval(timer);
-            showQuestion(0);
-            updateMatrixColors();
-        }
-
-        // Khởi chạy ứng dụng
-        window.addEventListener('DOMContentLoaded', init);
-    </script>
-</body>
-</html>
+            // CHƯƠNG II: LÝ LUẬN VỀ PHÁP LUẬT (Câu 26 - 50)
+            { topic: "Lý luận về Pháp luật", q: "Pháp luật có mối quan hệ như thế nào với Nhà nước?", options: ["Pháp luật ra đời trước nhà nước rất lâu đời", "Nhà nước ban hành và bảo đảm thực hiện pháp luật; ngược lại nhà nước tổ chức hoạt động dựa trên cơ sở pháp luật", "Pháp luật độc lập hoàn toàn, không có liên hệ gì với nhà nước", "Nhà nước bị pháp luật tiêu diệt khi xã hội phát triển"], correct: 1, exp: "Nhà nước và pháp luật có mối quan hệ khăng khít song hành, bổ trợ lẫn nhau, nhà nước dùng pháp luật để quản lý xã hội." },
+            { topic: "Lý luận về Pháp luật", q: "Đặc tính phân biệt rõ ràng nhất giữa Quy phạm pháp luật với Quy phạm đạo đức xã hội là gì?", options: ["Tính giáo dục khuyên răn con người làm điều thiện", "Tính bắt buộc chung và được bảo đảm thực hiện bằng sức mạnh cưỡng chế nhà nước", "Sự thừa nhận tự nguyện của đa số quần chúng nhân dân", "Được truyền miệng qua nhiều thế hệ"], correct: 1, exp: "Chỉ quy phạm pháp luật mới có tính bắt buộc chung cho mọi đối tượng và được nhà nước bảo đảm bằng sức mạnh cưỡng chế." },
+            { topic: "Lý luận về Pháp luật", q: "Hình thức pháp luật nào được áp dụng phổ biến nhất tại hệ thống pháp luật Việt Nam hiện nay?", options: ["Tập quán pháp", "Tiền lệ pháp (Án lệ)", "Văn bản quy phạm pháp luật", "Luật tôn giáo thần quyền"], correct: 2, exp: "Việt Nam thuộc hệ thống pháp luật thành văn (Civil Law), lấy Văn bản quy phạm pháp luật làm nguồn hình thức chủ yếu và phổ biến nhất." },
+            { topic: "Lý luận về Pháp luật", q: "Thuộc tính 'Xác định chặt chẽ về mặt hình thức' của pháp luật có nghĩa là gì?", options: ["Từ ngữ pháp luật phải mơ hồ để dễ biến báo khi xét xử", "Nội dung pháp luật phải được thể hiện trong các hình thức văn bản rõ ràng, chính xác, một nghĩa, cấu trúc chặt chẽ", "Pháp luật chỉ dành riêng cho tầng lớp có học thức cao đọc hiểu", "Pháp luật thay đổi liên tục theo từng ngày làm việc"], correct: 1, exp: "Tính xác định chặt chẽ đảm bảo pháp luật rõ ràng, chính xác tuyệt đối, tránh cách hiểu tùy tiện mập mờ." },
+            { topic: "Lý luận về Pháp luật", q: "Hệ thống pháp luật bao gồm các yếu tố cấu thành nào sau đây?", options: ["Quy phạm pháp luật, Chế định pháp luật và Ngành luật", "Bộ luật dân sự và Bộ luật hình sự", "Hiến pháp và các văn bản dưới luật", "Luật trung ương và luật địa phương"], correct: 0, exp: "Cấu trúc bên trong của hệ thống pháp luật gồm 3 lớp từ nhỏ đến lớn: Quy phạm pháp luật -> Chế định pháp luật -> Ngành luật." },
+            { topic: "Lý luận về Pháp luật", q: "Ngành luật nào được coi là ngành luật gốc, nền tảng cho toàn bộ hệ thống pháp luật quốc gia?", options: ["Ngành luật Hình sự", "Ngành luật Hiến pháp", "Ngành luật Dân sự", "Ngành luật Hành chính"], correct: 1, exp: "Luật Hiến pháp quy định những nguyên tắc cơ bản nhất, là nền tảng tối cao để xây dựng tất cả các ngành luật khác." },
+            { topic: "Lý luận về Pháp luật", q: "Văn bản quy phạm pháp luật nào có giá trị pháp lý cao nhất trong hệ thống văn bản pháp luật nước ta?", options: ["Bộ luật Hình sự", "Hiến pháp", "Nghị quyết của Chính phủ", "Thông tư của Bộ trưởng"], correct: 1, exp: "Hiến pháp là luật cơ bản, có hiệu lực pháp lý tối cao. Mọi văn bản pháp luật k
