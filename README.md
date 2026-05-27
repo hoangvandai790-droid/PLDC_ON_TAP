@@ -1,4 +1,5 @@
 # PLDC_ON_TAP
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -70,9 +71,9 @@
 
                 <!-- Nút điều hướng -->
                 <div class="flex justify-between items-center mt-8 pt-4 border-t border-slate-100">
-                    <button onclick="navigate(-1)" id="btn-prev" class="px-4 py-2 border border-slate-300 text-slate-600 font-medium text-sm rounded-xl hover:bg-slate-50 disabled:opacity-30 disabled:pointer-events-none">← Câu trước</button>
+                    <button onclick="navigate(-1)" id="btn-prev" class="px-4 py-2 border border-slate-300 text-slate-600 font-medium text-sm rounded-xl hover:bg-slate-50 disabled:opacity-30 disabled:pointer-events-none cursor-pointer">← Câu trước</button>
                     <button onclick="submitQuiz()" id="btn-submit" class="px-6 py-2 bg-emerald-600 text-white font-bold text-sm rounded-xl hover:bg-emerald-700 shadow-sm transition cursor-pointer hidden">Nộp bài</button>
-                    <button onclick="navigate(1)" id="btn-next" class="px-4 py-2 bg-slate-800 text-white font-medium text-sm rounded-xl hover:bg-slate-900 disabled:opacity-30 disabled:pointer-events-none">Câu tiếp →</button>
+                    <button onclick="navigate(1)" id="btn-next" class="px-4 py-2 bg-slate-800 text-white font-medium text-sm rounded-xl hover:bg-slate-900 disabled:opacity-30 disabled:pointer-events-none cursor-pointer">Câu sau →</button>
                 </div>
             </div>
 
@@ -103,14 +104,62 @@
     <script>
         // Ngân hàng câu hỏi gốc (Hệ thống sẽ tự nhân bản và biến đổi thành 100 câu độc lập)
         const baseQuestions = [
-            { topic: "Lý luận về Nhà nước", q: "Theo quan điểm của chủ nghĩa Mác-Lênin, nhà nước xuất hiện và tồn tại vĩnh cửu đúng hay sai?", options: ["Đúng", "Sai"], correct: 1, exp: "Nhà nước là sản phẩm xã hội lịch sử, chỉ xuất hiện khi có giai cấp và sẽ biến mất khi giai cấp mất đi." },
-            { topic: "Lý luận về Pháp luật", q: "Thuộc tính nào phân biệt rõ nét nhất giữa Pháp luật với các quy phạm đạo đức xã hội?", options: ["Tính quy phạm", "Tính bắt buộc", "Tính công khai"], correct: 1, exp: "Pháp luật có tính bắt buộc được đảm bảo bởi sức mạnh của nhà nước, đây là đặc trưng cơ bản của nó." },
-            { topic: "Cấu trúc Quy phạm", q: "Bộ phận nào trong quy phạm pháp luật xác định hậu quả bất lợi nếu chủ thể vi phạm?", options: ["Giả định", "Quy định", "Chế tài"], correct: 2, exp: "Chế tài là bộ phận quy định những hậu quả bất lợi cho người vi phạm pháp luật." },
-            { topic: "Vi phạm pháp luật", q: "Yếu tố nào sau đây cấu thành nên Mặt chủ quan của vi phạm pháp luật?", options: ["Hành vi nguy hiểm cho xã hội", "Lỗi, động cơ", "Kết quả hành vi"], correct: 1, exp: "Mặt chủ quan bao gồm lỗi (cố ý hoặc vô ý) và động cơ vi phạm." },
-            { topic: "Ngành luật Dân sự", q: "Độ tuổi công dân bắt đầu có năng lực hành vi dân sự đầy đủ (trong điều kiện phát triển bình thường) là bao nhiêu?", options: ["16 tuổi", "18 tuổi", "21 tuổi"], correct: 1, exp: "Theo Bộ luật Dân sự Việt Nam, độ tuổi là 18 tuổi." },
-            { topic: "Văn bản QPPL", q: "Văn bản quy phạm pháp luật nào sau đây có hiệu lực pháp lý cao nhất tại Việt Nam?", options: ["Bộ luật Hình sự", "Hiến pháp", "Quyết định của Chính phủ"], correct: 1, exp: "Hiến pháp là đạo luật có hiệu lực pháp lý cao nhất." },
-            { topic: "Hệ thống Bộ máy", q: "Cơ quan nào nắm quyền lập pháp, có quyền ban hành và sửa đổi Hiến pháp?", options: ["Chính phủ", "Tòa án nhân dân tối cao", "Quốc hội"], correct: 2, exp: "Quốc hội là cơ quan quyền lập pháp tối cao, có quyền ban hành và sửa đổi Hiến pháp." },
-            { topic: "Luật Hôn nhân", q: "Điều kiện về độ tuổi kết hôn hợp pháp hiện nay tại Việt Nam được quy định thế nào?", options: ["Nam từ 18 tuổi, nữ từ 16 tuổi", "Nam từ 20 tuổi, nữ từ 18 tuổi", "Nam từ 21 tuổi, nữ từ 18 tuổi"], correct: 0, exp: "Luật Hôn nhân và Gia đình Việt Nam quy định tuổi kết hôn là 18 tuổi cho nam và 16 tuổi cho nữ." }
+            { 
+                topic: "Lý luận về Nhà nước", 
+                q: "Theo quan điểm của chủ nghĩa Mác-Lênin, nhà nước xuất hiện và tồn tại vĩnh cửu đúng hay sai?", 
+                options: ["Đúng", "Sai"], 
+                correct: 1, 
+                exp: "Nhà nước xuất hiện do xã hội phân lớp nhưng sẽ biến mất khi giai cấp biến mất."
+            },
+            { 
+                topic: "Lý luận về Pháp luật", 
+                q: "Thuộc tính nào phân biệt rõ nét nhất giữa Pháp luật với các quy phạm đạo đức xã hội?", 
+                options: ["Tính quy phạm", "Tính bắt buộc nhà nước", "Tính công khai", "Tính xã hội"], 
+                correct: 1, 
+                exp: "Pháp luật có tính bắt buộc nhà nước, được bảo vệ bằng sức mạnh của nhà nước."
+            },
+            { 
+                topic: "Cấu trúc Quy phạm", 
+                q: "Bộ phận nào trong quy phạm pháp luật xác định hậu quả bất lợi nếu chủ thể vi phạm?", 
+                options: ["Giả định", "Quy định", "Chế tài", "Điều khoản"], 
+                correct: 2, 
+                exp: "Chế tài là bộ phận quy định hậu quả pháp luật bất lợi dành cho những ai vi phạm."
+            },
+            { 
+                topic: "Vi phạm pháp luật", 
+                q: "Yếu tố nào sau đây cấu thành nên Mặt chủ quan của vi phạm pháp luật?", 
+                options: ["Hành vi nguy hiểm cho xã hội", "Lỗi, hành vi phạm luật", "Hậu quả bất lợi", "Nhân quả pháp lý"], 
+                correct: 1, 
+                exp: "Mặt chủ quan bao gồm lỗi (cố ý hoặc vô ý) và hành vi phạm luật."
+            },
+            { 
+                topic: "Ngành luật Dân sự", 
+                q: "Độ tuổi công dân bắt đầu có năng lực hành vi dân sự đầy đủ (trong điều kiện phát triển bình thường) là bao nhiêu?", 
+                options: ["16 tuổi", "18 tuổi", "21 tuổi", "20 tuổi"], 
+                correct: 1, 
+                exp: "Công dân từ đủ 18 tuổi có năng lực hành vi dân sự đầy đủ."
+            },
+            { 
+                topic: "Văn bản QPPL", 
+                q: "Văn bản quy phạm pháp luật nào sau đây có hiệu lực pháp lý cao nhất tại Việt Nam?", 
+                options: ["Bộ luật Hình sự", "Hiến pháp", "Luật Dân sự", "Quyết định Chính phủ"], 
+                correct: 1, 
+                exp: "Hiến pháp là văn bản có hiệu lực pháp lý cao nhất trong hệ thống QPPL."
+            },
+            { 
+                topic: "Hệ thống Bộ máy", 
+                q: "Cơ quan nào nắm quyền lập pháp, có quyền ban hành và sửa đổi Hiến pháp?", 
+                options: ["Chính phủ", "Tòa án nhân dân tối cao", "Quốc hội", "Ủy ban thường vụ Quốc hội"], 
+                correct: 2, 
+                exp: "Quốc hội là cơ quan lập pháp có quyền ban hành và sửa đổi Hiến pháp."
+            },
+            { 
+                topic: "Luật Hôn nhân", 
+                q: "Điều kiện về độ tuổi kết hôn hợp pháp hiện nay tại Việt Nam được quy định thế nào?", 
+                options: ["Nam từ 18 tuổi, nữ từ 16 tuổi", "Nam từ 20 tuổi, nữ từ 18 tuổi", "Nam từ 21 tuổi, nữ từ 18 tuổi", "Cả hai giới từ 18 tuổi"], 
+                correct: 0, 
+                exp: "Quy định hiện nay là nam từ 18 tuổi, nữ từ 16 tuổi có thể kết hôn hợp pháp."
+            }
         ];
 
         // Khởi tạo tự động 100 câu hỏi bằng cách nhân bản ngân hàng gốc với biến thể số để tạo đề thi hoàn chỉnh
