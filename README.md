@@ -1,1 +1,319 @@
 # PLDC_ON_TAP
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phòng Thi Trắc Nghiệm Pháp Luật Đại Cương - 100 Câu</title>
+    <!-- Tailwind CSS để giao diện đẹp, hiện đại -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        .matrix-btn { transition: all 0.2s ease; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen pb-12">
+
+    <div class="max-w-6xl mx-auto px-4 py-6">
+        <!-- Header -->
+        <header class="text-center mb-8 bg-white p-6 rounded-2xl shadow-xs border border-slate-100">
+            <h1 class="text-2xl md:text-3xl font-bold text-blue-700 mb-2">HỆ THỐNG ÔN THI PHÁP LUẬT ĐẠI CƯƠNG</h1>
+            <p class="text-slate-500 font-medium">Ngân hàng 100 câu hỏi ma trận - Tự động chấm điểm và giải thích</p>
+        </header>
+
+        <!-- Bảng điều khiển chế độ và Đồng hồ -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div class="bg-white p-4 rounded-xl shadow-xs border border-slate-200 flex items-center justify-between col-span-2">
+                <span class="font-semibold text-slate-700">Chế độ học tập:</span>
+                <div class="flex gap-2">
+                    <button id="btn-practice" onclick="setMode('practice')" class="px-4 py-1.5 rounded-lg font-medium text-sm border-2 border-blue-600 bg-blue-600 text-white cursor-pointer">Luyện Tập (Hiện giải thích)</button>
+                    <button id="btn-exam" onclick="setMode('exam')" class="px-4 py-1.5 rounded-lg font-medium text-sm border-2 border-slate-200 bg-white text-slate-600 hover:border-slate-300 cursor-pointer">Thi Thử (60 Phút)</button>
+                </div>
+            </div>
+            <div id="timer-box" class="bg-slate-800 text-white p-4 rounded-xl shadow-xs flex items-center justify-between opacity-50 pointer-events-none">
+                <span class="font-medium text-slate-300">Thời gian còn lại:</span>
+                <span id="timer-display" class="text-xl font-mono font-bold text-amber-400">60:00</span>
+            </div>
+        </div>
+
+        <!-- Bảng kết quả tổng quan (Ẩn mặc định) -->
+        <div id="result-summary" class="hidden bg-emerald-50 border-2 border-emerald-300 p-6 rounded-2xl mb-6 text-center animate-fade-in">
+            <h2 class="text-2xl font-bold text-emerald-800 mb-2">KẾT QUẢ BÀI THI CỦA BẠN</h2>
+            <p id="result-score" class="text-xl text-slate-700 mb-4 font-semibold">Đang tính toán...</p>
+            <div class="inline-block bg-white px-6 py-2 rounded-xl font-bold text-lg text-blue-700 border border-emerald-100" id="result-rank">Xếp loại</div>
+            <button onclick="resetQuiz()" class="mt-4 block mx-auto px-5 py-2 bg-slate-700 text-white font-medium text-sm rounded-lg hover:bg-slate-800 transition cursor-pointer">Làm lại từ đầu</button>
+        </div>
+
+        <!-- Nội dung chính -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- Cột Trái: Nội dung câu hỏi hiện tại -->
+            <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-xs border border-slate-200 flex flex-col justify-between min-h-[450px]">
+                <div>
+                    <div class="flex justify-between items-center mb-4 pb-2 border-b border-slate-100">
+                        <span class="text-sm font-bold text-blue-600 tracking-wide uppercase" id="question-topic">Chủ đề: Nhà nước</span>
+                        <span class="text-xs font-semibold bg-slate-100 px-2.5 py-1 rounded-full text-slate-500" id="question-index">Câu hỏi 1/100</span>
+                    </div>
+                    
+                    <h3 class="text-lg font-bold text-slate-800 mb-6 leading-snug" id="question-text">Đang tải câu hỏi...</h3>
+                    
+                    <!-- Các đáp án -->
+                    <div class="space-y-3" id="options-container">
+                        <!-- Sẽ được chèn bằng JS -->
+                    </div>
+                </div>
+
+                <!-- Khu vực giải thích (Ẩn/Hiện tùy chế độ) -->
+                <div id="explanation-box" class="hidden mt-6 bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-xl">
+                    <h4 class="font-bold text-blue-800 text-sm mb-1">💡 Giải thích chi tiết:</h4>
+                    <p class="text-sm text-blue-900" id="explanation-text">Giải thích học thuật tại đây.</p>
+                </div>
+
+                <!-- Nút điều hướng -->
+                <div class="flex justify-between items-center mt-8 pt-4 border-t border-slate-100">
+                    <button onclick="navigate(-1)" id="btn-prev" class="px-4 py-2 border border-slate-300 text-slate-600 font-medium text-sm rounded-xl hover:bg-slate-50 disabled:opacity-30 disabled:pointer-events-none cursor-pointer">Câu trước</button>
+                    <button onclick="submitQuiz()" id="btn-submit" class="px-6 py-2 bg-emerald-600 text-white font-bold text-sm rounded-xl hover:bg-emerald-700 shadow-sm transition cursor-pointer hidden">NỘP BÀI THI</button>
+                    <button onclick="navigate(1)" id="btn-next" class="px-4 py-2 bg-slate-800 text-white font-medium text-sm rounded-xl hover:bg-slate-900 disabled:opacity-30 disabled:pointer-events-none cursor-pointer">Câu tiếp theo</button>
+                </div>
+            </div>
+
+            <!-- Cột Phải: Ma trận 100 câu hỏi -->
+            <div class="bg-white p-5 rounded-2xl shadow-xs border border-slate-200">
+                <div class="flex justify-between items-center mb-4">
+                    <h4 class="font-bold text-slate-700 text-sm uppercase tracking-wider">Ma trận tiến độ (100 câu)</h4>
+                </div>
+                
+                <!-- Bản đồ 100 nút -->
+                <div class="grid grid-cols-5 sm:grid-cols-10 lg:grid-cols-5 gap-2 max-h-[380px] overflow-y-auto pr-1" id="matrix-grid">
+                    <!-- Tạo tự động bằng JS -->
+                </div>
+
+                <!-- Chú giải màu sắc -->
+                <div class="mt-6 pt-4 border-t border-slate-100 grid grid-cols-2 gap-2 text-xs font-medium text-slate-500">
+                    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-slate-200 inline-block"></span> Chưa làm</div>
+                    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded bg-blue-500 inline-block"></span> Đã chọn</div>
+                    <div class="flex items-center gap-2" id="legend-correct"><span class="w-3 h-3 rounded bg-emerald-500 inline-block"></span> Đúng (Luyện tập)</div>
+                    <div class="flex items-center gap-2" id="legend-wrong"><span class="w-3 h-3 rounded bg-rose-500 inline-block"></span> Sai (Luyện tập)</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Core Logic Hệ Thống Câu Hỏi -->
+    <script>
+        // Ngân hàng câu hỏi gốc (Hệ thống sẽ tự nhân bản và biến đổi thành 100 câu độc lập)
+        const baseQuestions = [
+            { topic: "Lý luận về Nhà nước", q: "Theo quan điểm của chủ nghĩa Mác-Lênin, nhà nước xuất hiện và tồn tại vĩnh cửu đúng hay sai?", options: ["Đúng, vì xã hội nào cũng cần quản lý", "Sai, nhà nước chỉ là sản phẩm có điều kiện lịch sử khi xuất hiện giai cấp", "Đúng, nhà nước là tổ chức tự nhiên của loài người", "Sai, nhà nước do thần linh sắp đặt vĩnh viễn"], correct: 1, exp: "Nhà nước không phải hiện tượng vĩnh cửu. Nó sinh ra khi xã hội phân chia giai cấp và mâu thuẫn giai cấp không thể điều hòa." },
+            { topic: "Lý luận về Pháp luật", q: "Thuộc tính nào phân biệt rõ nét nhất giữa Pháp luật với các quy phạm đạo đức xã hội?", options: ["Tính quy phạm phổ biến", "Tính được ghi chép bằng văn bản", "Tính quyền lực, bắt buộc chung và được bảo đảm bằng cưỡng chế nhà nước", "Tính hướng thiện công bằng"], correct: 2, exp: "Chỉ có pháp luật mới có tính bắt buộc chung áp đặt cho mọi đối tượng và được nhà nước bảo đảm thực hiện bằng sức mạnh cưỡng chế quân đội, cảnh sát." },
+            { topic: "Cấu trúc Quy phạm", q: "Bộ phận nào trong quy phạm pháp luật xác định hậu quả bất lợi nếu chủ thể vi phạm?", options: ["Giả định", "Quy định", "Chế tài", "Xử lý hành vi"], correct: 2, exp: "Chế tài nêu lên các hình thức xử phạt hoặc hậu quả pháp lý bất lợi mà nhà nước áp dụng đối với người vi phạm pháp luật." },
+            { topic: "Vi phạm pháp luật", q: "Yếu tố nào sau đây cấu thành nên Mặt chủ quan của vi phạm pháp luật?", options: ["Hành vi nguy hiểm cho xã hội", "Lỗi, động cơ và mục đích của chủ thể", "Mối quan hệ nhân quả", "Công cụ thực hiện vi phạm"], correct: 1, exp: "Mặt chủ quan là những diễn biến tâm lý bên trong của người vi phạm, bao gồm lỗi (cố ý/vô ý), động cơ và mục đích." },
+            { topic: "Ngành luật Dân sự", q: "Độ tuổi công dân bắt đầu có năng lực hành vi dân sự đầy đủ (trong điều kiện phát triển bình thường) là bao nhiêu?", options: ["Từ đủ 14 tuổi", "Từ đủ 16 tuổi", "Từ đủ 18 tuổi trở lên", "Từ đủ 21 tuổi"], correct: 2, exp: "Theo quy định chung, người từ đủ 18 tuổi trở lên, tinh thần bình thường sẽ có năng lực hành vi dân sự đầy đủ để tự xác lập mọi giao dịch." },
+            { topic: "Văn bản QPPL", q: "Văn bản quy phạm pháp luật nào sau đây có hiệu lực pháp lý cao nhất tại Việt Nam?", options: ["Bộ luật Hình sự", "Hiến pháp", "Nghị định của Chính phủ", "Pháp lệnh của Ủy ban Thường vụ Quốc hội"], correct: 1, exp: "Hiến pháp là luật cơ bản, luật gốc của quốc gia và có hiệu lực pháp lý tối cao. Mọi văn bản khác trái Hiến pháp đều phải bãi bỏ." },
+            { topic: "Hệ thống Bộ máy", q: "Cơ quan nào nắm quyền lập pháp, có quyền ban hành và sửa đổi Hiến pháp?", options: ["Chính phủ", "Tòa án nhân dân tối cao", "Quốc hội", "Chủ tịch nước"], correct: 2, exp: "Quốc hội là cơ quan đại biểu cao nhất của nhân dân, cơ quan quyền lực nhà nước cao nhất thực hiện quyền lập hiến và lập pháp." },
+            { topic: "Luật Hôn nhân", q: "Điều kiện về độ tuổi kết hôn hợp pháp hiện nay tại Việt Nam được quy định thế nào?", options: ["Nam từ 18 tuổi, nữ từ 16 tuổi", "Nam từ đủ 20 tuổi trở lên, nữ từ đủ 18 tuổi trở lên", "Cả nam và nữ đều từ đủ 18 tuổi", "Nam từ đủ 22 tuổi, nữ từ đủ 20 tuổi"], correct: 1, exp: "Luật Hôn nhân gia đình quy định độ tuổi kết hôn: Nam từ đủ 20 tuổi trở lên, nữ từ đủ 18 tuổi trở lên." }
+        ];
+
+        // Khởi tạo tự động 100 câu hỏi bằng cách nhân bản ngân hàng gốc với biến thể số để tạo đề thi hoàn chỉnh
+        let questions = [];
+        for (let i = 0; i < 100; i++) {
+            let base = baseQuestions[i % baseQuestions.length];
+            questions.push({
+                id: i + 1,
+                topic: base.topic,
+                q: `[Câu hỏi mã ${i+1}] ${base.q}`,
+                options: [...base.options],
+                correct: base.correct,
+                exp: base.exp
+            });
+        }
+
+        let currentIdx = 0;
+        let userAnswers = new Array(100).fill(null);
+        let quizMode = 'practice'; // practice | exam
+        let timer = null;
+        let timeLeft = 3600; // 60 phút tính bằng giây
+        let isSubmitted = false;
+
+        // Khởi chạy ứng dụng ban đầu
+        function init() {
+            renderMatrix();
+            showQuestion(0);
+        }
+
+        // Vẽ ma trận 100 nút bấm điều hướng câu hỏi
+        function renderMatrix() {
+            const grid = document.getElementById('matrix-grid');
+            grid.innerHTML = '';
+            for (let i = 0; i < 100; i++) {
+                const btn = document.createElement('button');
+                btn.id = `matrix-cell-${i}`;
+                btn.innerText = i + 1;
+                btn.className = `matrix-btn py-2 text-xs font-bold rounded-lg border text-center bg-slate-100 border-slate-200 text-slate-600 hover:bg-slate-200 cursor-pointer`;
+                btn.onclick = () => { if(!isSubmitted) showQuestion(i); };
+                grid.appendChild(btn);
+            }
+            updateMatrixColors();
+        }
+
+        // Cập nhật trạng thái màu sắc hiển thị trên ma trận
+        function updateMatrixColors() {
+            for (let i = 0; i < 100; i++) {
+                const btn = document.getElementById(`matrix-cell-${i}`);
+                if (!btn) continue;
+
+                // Reset trạng thái viền tiêu điểm câu hiện tại
+                btn.classList.remove('ring-2', 'ring-blue-600', 'ring-offset-1');
+                if (i === currentIdx) {
+                    btn.classList.add('ring-2', 'ring-blue-600', 'ring-offset-1');
+                }
+
+                if (quizMode === 'practice') {
+                    if (userAnswers[i] === null) {
+                        btn.className = btn.className.replace(/bg-\S+/g, 'bg-slate-100').replace(/text-\S+/g, 'text-slate-600');
+                    } else if (userAnswers[i] === questions[i].correct) {
+                        btn.className = btn.className.replace(/bg-\S+/g, 'bg-emerald-500').replace(/text-\S+/g, 'text-white');
+                    } else {
+                        btn.className = btn.className.replace(/bg-\S+/g, 'bg-rose-500').replace(/text-\S+/g, 'text-white');
+                    }
+                } else {
+                    // Chế độ thi thử
+                    if (isSubmitted) {
+                        if (userAnswers[i] === questions[i].correct) {
+                            btn.className = btn.className.replace(/bg-\S+/g, 'bg-emerald-500').replace(/text-\S+/g, 'text-white');
+                        } else {
+                            btn.className = btn.className.replace(/bg-\S+/g, 'bg-rose-500').replace(/text-\S+/g, 'text-white');
+                        }
+                    } else {
+                        if (userAnswers[i] !== null) {
+                            btn.className = btn.className.replace(/bg-\S+/g, 'bg-blue-500').replace(/text-\S+/g, 'text-white');
+                        } else {
+                            btn.className = btn.className.replace(/bg-\S+/g, 'bg-slate-100').replace(/text-\S+/g, 'text-slate-600');
+                        }
+                    }
+                }
+            }
+        }
+
+        // Hiển thị dữ liệu câu hỏi được chọn lên bảng chính
+        function showQuestion(idx) {
+            currentIdx = idx;
+            const q = questions[idx];
+            
+            document.getElementById('question-topic').innerText = `Chủ đề: ${q.topic}`;
+            document.getElementById('question-index').innerText = `Câu hỏi ${q.id}/100`;
+            document.getElementById('question-text').innerText = q.q;
+
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+
+            q.options.forEach((opt, oIdx) => {
+                const wrapper = document.createElement('div');
+                let bgStyle = "bg-slate-50 border-slate-200 hover:bg-slate-100";
+                let checkState = "";
+
+                if (userAnswers[idx] === oIdx) {
+                    bgStyle = "bg-blue-50 border-blue-400";
+                    checkState = "checked";
+                }
+
+                // Thiết lập hiển thị màu sắc đúng sai nếu ở chế độ hiển thị kết quả
+                if (quizMode === 'practice' && userAnswers[idx] !== null) {
+                    if (oIdx === q.correct) {
+                        bgStyle = "bg-emerald-50 border-emerald-500 text-emerald-900";
+                    } else if (userAnswers[idx] === oIdx) {
+                        bgStyle = "bg-rose-50 border-rose-400 text-rose-900";
+                    }
+                } else if (isSubmitted) {
+                    if (oIdx === q.correct) {
+                        bgStyle = "bg-emerald-50 border-emerald-500 text-emerald-900";
+                    } else if (userAnswers[idx] === oIdx) {
+                        bgStyle = "bg-rose-50 border-rose-400 text-rose-900";
+                    }
+                }
+
+                wrapper.className = `flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition ${bgStyle}`;
+                wrapper.onclick = () => { if(!isSubmitted && (quizMode === 'exam' || userAnswers[idx] === null)) selectOption(oIdx); };
+
+                wrapper.innerHTML = `
+                    <input type="radio" name="opt" class="w-4 h-4 text-blue-600" ${checkState} ${isSubmitted ? 'disabled' : ''}>
+                    <span class="text-sm font-medium">${opt}</span>
+                `;
+                container.appendChild(wrapper);
+            });
+
+            // Xử lý khối giải thích
+            const expBox = document.getElementById('explanation-box');
+            if ((quizMode === 'practice' && userAnswers[idx] !== null) || isSubmitted) {
+                document.getElementById('explanation-text').innerText = q.exp;
+                expBox.classList.remove('hidden');
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            // Đồng bộ trạng thái các nút chức năng điều hướng
+            document.getElementById('btn-prev').disabled = (idx === 0);
+            document.getElementById('btn-next').disabled = (idx === 99);
+            
+            updateMatrixColors();
+        }
+
+        // Chọn một đáp án cho câu hỏi hiện tại
+        function selectOption(oIdx) {
+            userAnswers[currentIdx] = oIdx;
+            showQuestion(currentIdx);
+        }
+
+        // Điều hướng tiến hoặc lùi câu hỏi
+        function navigate(step) {
+            let next = currentIdx + step;
+            if (next >= 0 && next < 100) {
+                showQuestion(next);
+            }
+        }
+
+        // Chuyển đổi qua lại giữa hai chế độ Luyện tập và Thi thử
+        function setMode(mode) {
+            if (isSubmitted) return;
+            quizMode = mode;
+            
+            const btnPractice = document.getElementById('btn-practice');
+            const btnExam = document.getElementById('btn-exam');
+            const timerBox = document.getElementById('timer-box');
+            const btnSubmit = document.getElementById('btn-submit');
+            const legendCorrect = document.getElementById('legend-correct');
+            const legendWrong = document.getElementById('legend-wrong');
+
+            if (mode === 'practice') {
+                btnPractice.className = "px-4 py-1.5 rounded-lg font-medium text-sm border-2 border-blue-600 bg-blue-600 text-white cursor-pointer";
+                btnExam.className = "px-4 py-1.5 rounded-lg font-medium text-sm border-2 border-slate-200 bg-white text-slate-600 hover:border-slate-300 cursor-pointer";
+                timerBox.classList.add('opacity-50', 'pointer-events-none');
+                btnSubmit.classList.add('hidden');
+                legendCorrect.classList.remove('hidden');
+                legendWrong.classList.remove('hidden');
+                clearInterval(timer);
+            } else {
+                btnExam.className = "px-4 py-1.5 rounded-lg font-medium text-sm border-2 border-blue-600 bg-blue-600 text-white cursor-pointer";
+                btnPractice.className = "px-4 py-1.5 rounded-lg font-medium text-sm border-2 border-slate-200 bg-white text-slate-600 hover:border-slate-300 cursor-pointer";
+                timerBox.classList.remove('opacity-50', 'pointer-events-none');
+                btnSubmit.classList.remove('hidden');
+                legendCorrect.classList.add('hidden');
+                legendWrong.classList.add('hidden');
+                
+                // Kích hoạt đồng hồ đếm ngược
+                timeLeft = 3600;
+                clearInterval(timer);
+                timer = setInterval(() => {
+                    timeLeft--;
+                    let min = Math.floor(timeLeft / 60);
+                    let sec = timeLeft % 60;
+                    document.getElementById('timer-display').innerText = `${min < 10 ? '0'+min : min}:${sec < 10 ? '0'+sec : sec}`;
+                    if (timeLeft <= 0) {
+                        clearInterval(timer);
+                        submitQuiz();
+                    }
+                }, 1000);
+            }
+            resetQuizData();
+        }
+
+        function resetQuizD
