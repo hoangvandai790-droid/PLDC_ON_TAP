@@ -29,7 +29,7 @@
         <!-- Welcome view -->
         <div id="welcome-box" class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 text-center space-y-6">
             <h2 class="text-2xl font-bold text-slate-900">Sẵn sàng ôn tập trọn bộ 160 câu?</h2>
-            <p class="text-slate-600">Hệ thống đã nạp đầy đủ <strong>160 câu hỏi trắc nghiệm</strong> kèm tính năng đảo thứ tự tự động. Không hiển thị dấu vết câu gốc để bạn rèn luyện phản xạ chuẩn xác nhất!</p>
+            <p class="text-slate-600">Hệ thống đã nạp đầy đủ <strong>160 câu hỏi trắc nghiệm</strong> kèm tính năng đảo thứ tự tự động và bộ lưu vết câu sai để bạn rèn luyện phản xạ chuẩn xác nhất!</p>
             <button onclick="startQuiz()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition shadow-sm cursor-pointer">
                 Bắt Đầu Học (160 Câu Đã Đảo)
             </button>
@@ -72,7 +72,19 @@
                 <span id="final-score">0</span>/<span id="total-questions">0</span>
             </div>
             <p id="feedback-text" class="text-slate-600 max-w-md mx-auto"></p>
-            <button onclick="resetQuiz()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition shadow-sm cursor-pointer">
+            
+            <!-- Vùng hiển thị câu hỏi sai (Mới thêm) -->
+            <div id="review-section" class="text-left hidden border-t border-slate-200 pt-6 mt-6">
+                <h3 class="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    Danh sách các câu trả lời chưa đúng:
+                </h3>
+                <div id="wrong-questions-container" class="space-y-4 max-h-[400px] overflow-y-auto pr-2 scrollbar-thin">
+                    <!-- Các câu sai sẽ render ở đây -->
+                </div>
+            </div>
+
+            <button onclick="resetQuiz()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition shadow-sm cursor-pointer w-full sm:w-auto">
                 Làm Lại (Đổi Thứ Tự Mới)
             </button>
         </div>
@@ -195,7 +207,7 @@
             { q: "Trong trường hợp nào người sử dụng lao động được quyền đơn phương chấm dứt hợp đồng lao động?", o: ["Người lao động thường xuyên không hoàn thành công việc theo hợp đồng", "Người lao động nữ nghỉ thai sản theo chế độ", "Người lao động đi làm nghĩa vụ quân sự", "Người lao động bị tai nạn"], a: 0 },
             { q: "Người lao động làm việc vào ban đêm được trả lương như thế nào?", o: ["Được trả thêm ít nhất bằng 10% tiền lương tính theo đơn giá tiền lương hoặc tiền lương của công việc đang làm theo ban ngày", "Được trả thêm ít nhất bằng 20% tiền lương tính theo đơn giá tiền lương hoặc tiền lương của công việc đang làm theo ban ngày", "Được trả thêm ít nhất bằng 30% tiền lương tính theo đơn giá tiền lương hoặc tiền lương của công việc đang làm theo ban ngày", "Được trả thêm ít nhất bằng 40% tiền lương tính theo đơn giá tiền lương hoặc tiền lương của công việc đang làm theo ban ngày"], a: 2 },
             { q: "Người lao động làm việc trong khoảng thời gian nào sau đây thì được coi là làm việc vào ban đêm?", o: ["Từ 21 giờ đến 6 giờ sáng ngày hôm sau", "Từ 22 giờ đến 6 giờ sáng ngày hôm sau", "Từ 21 giờ đến 5 giờ sáng ngày hôm sau", "Từ 22 giờ đến 5 giờ sáng ngày hôm sau"], a: 1 },
-            { q: "Bộ luật lao động quy định những hình thức xử lý kỷ luật lao động nào?", o: ["Cảnh cáo; kéo dài thời gian nâng lương; sa thải.", "Khiển trách; kéo dài thời hạn nâng bậc lương không quá 06 tháng hoặc cách chức; sa thải.", "Cảnh cáo; kéo dài thời gian nâng lương không quá sáu tháng hoặc chuyển làm công việc khác có mức lương thấp hơn.", "Khiển trách; cảnh cáo; cách chức; sa thải."], a: 3 },
+            { q: "Bộ luật lao động quy định những hình thức xử lý kỷ luật lao động nào?", o: ["Cảnh cáo; kéo dài thời gian nâng lương; sa thái.", "Khiển trách; kéo dài thời hạn nâng bậc lương không quá 06 tháng hoặc cách chức; sa thải.", "Cảnh cáo; kéo dài thời gian nâng lương không quá sáu tháng hoặc chuyển làm công việc khác có mức lương thấp hơn.", "Khiển trách; cảnh cáo; cách chức; sa thải."], a: 3 },
             { q: "Người lao động được nghỉ về việc riêng mà vẫn hưởng nguyên lương trong trường hợp nào?", o: ["Kết hôn, nghỉ 3 ngày", "Con kết hôn, nghỉ 1 ngày", "Bố mẹ, vợ chồng, con chết, nghỉ 3 ngày", "Cả A, B, C đều đúng"], a: 3 },
             { q: "Hình thức kỷ luật sa thải được áp dụng trong những trường hợp nào?", o: ["Người lao động có hành vi trộm cắp, tham ô, tiết lộ bí mật công nghệ, kinh doanh.", "Người lao động bị xử lý kỷ luật kéo dài thời hạn nâng lương, chuyển làm công việc khác mà tái phạm.", "Người lao động tự ý bỏ việc 05 ngày cộng dồn trong một tháng hoặc 20 ngày cộng dồn trong một năm.", "Cả A,B,C đều đúng"], a: 3 },
             { q: "Theo Bộ luật lao động, thời hiệu xử lý vi phạm kỷ luật lao động tối đa là 12 tháng trong trường hợp nào?", o: ["Trường hợp hành vi vi phạm liên quan trực tiếp đến biểu tình.", "Trường hợp hành vi vi phạm liên quan trực tiếp đến ăn cắp.", "Trường hợp hành vi vi phạm liên quan trực tiếp đến tài chính.", "Trường hợp hành vi vi phạm liên quan trực tiếp đến nhân thân."], a: 2 },
@@ -227,7 +239,7 @@
             { q: "Cơ quan nào có quyền giám sát tối cao đối với toàn bộ hoạt động của Nhà nước Việt Nam?", o: ["Chính phủ", "Ủy ban thường vụ Quốc hội", "Quốc hội", "Viện kiểm sát nhân dân tối cao"], a: 2 },
             { q: "Ai là người đứng đầu Nhà nước, thay mặt nước Cộng hòa xã hội chủ nghĩa Việt Nam về đối nội và đối ngoại?", o: ["Thủ tướng Chính phủ", "Tổng Bí thư", "Chủ tịch Quốc hội", "Chủ tịch nước"], a: 3 },
             { q: "Viện kiểm sát nhân dân có chức năng, nhiệm vụ chính nào sau đây?", o: ["Xét xử các vụ án dân sự, hình sự", "Thực hành quyền công tố và kiểm sát hoạt động tư pháp", "Ban hành các văn bản quy phạm pháp luật", "Quản lý trật tự an toàn xã hội"], a: 1 },
-            { q: "Theo Luật Hôn nhân và Gia đình, tài sản nào sau đây được coi là tài sản riêng của vợ hoặc chồng?", o: ["Tài sản thu nhập từ lao động trong thời kỳ hôn nhân", "Tài sản được thừa kế riêng, tặng cho riêng trong thời kỳ hôn nhân", "Tài sản do hai người cùng mua bằng tiền lương chung", "Hoa lợi, lợi tức phát sinh từ tài sản chung"], a: 1 },
+            { q: "Theo Luật Hôn nhân và Gia Đình, tài sản nào sau đây được coi là tài sản riêng của vợ hoặc chồng?", o: ["Tài sản thu nhập từ lao động trong thời kỳ hôn nhân", "Tài sản được thừa kế riêng, tặng cho riêng trong thời kỳ hôn nhân", "Tài sản do hai người cùng mua bằng tiền lương chung", "Hoa lợi, lợi tức phát sinh từ tài sản chung"], a: 1 },
             { q: "Yêu cầu ly hôn không được chấp nhận trong trường hợp nào sau đây?", o: ["Người vợ đang mang thai, sinh con hoặc đang nuôi con dưới 12 tháng tuổi (áp dụng với người chồng)", "Hai bên tự nguyện thuận tình ly hôn", "Người chồng không có việc làm ổn định", "Vợ chồng thường xuyên xảy ra mâu thuẫn lớn"], a: 0 },
             { q: "Hợp đồng lao động có thời hạn từ bao lâu thì bắt buộc phải giao kết bằng văn bản?", o: ["Từ 01 tháng trở lên", "Từ 03 tháng trở lên", "Từ 06 tháng trở lên", "Từ 12 tháng trở lên"], a: 0 },
             { q: "Người lao động làm việc đủ 12 tháng thì được nghỉ hằng năm hưởng nguyên lương thông thường là bao nhiêu ngày làm việc?", o: ["10 ngày", "12 ngày", "14 ngày", "16 ngày"], a: 1 },
@@ -345,24 +357,57 @@
             document.getElementById('result-box').classList.remove('hidden');
             
             let correctCount = 0;
+            const wrongContainer = document.getElementById('wrong-questions-container');
+            wrongContainer.innerHTML = ''; // Reset container
+            let hasWrongQuestions = false;
+
             userAnswers.forEach((ans, idx) => {
-                if (ans === questions[idx].a) correctCount++;
+                if (ans === questions[idx].a) {
+                    correctCount++;
+                } else {
+                    hasWrongQuestions = true;
+                    const qObj = questions[idx];
+                    
+                    // Tạo block hiển thị thông tin câu sai
+                    const wrongBlock = document.createElement('div');
+                    wrongBlock.className = "p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2 text-sm";
+                    
+                    const userText = ans !== null ? `${String.fromCharCode(65 + ans)}. ${qObj.o[ans]}` : "Chưa trả lời";
+                    const correctText = `${String.fromCharCode(65 + qObj.a)}. ${qObj.o[qObj.a]}`;
+                    
+                    wrongBlock.innerHTML = `
+                        <p class="font-semibold text-slate-900">Nội dung: ${qObj.q}</p>
+                        <p class="text-rose-600 font-medium">❌ Bạn đã chọn: ${userText}</p>
+                        <p class="text-emerald-600 font-medium">✅ Đáp án đúng: ${correctText}</p>
+                    `;
+                    wrongContainer.appendChild(wrongBlock);
+                }
             });
+
+            // Hiển thị phần xem lại nếu có câu sai
+            const reviewSection = document.getElementById('review-section');
+            if (hasWrongQuestions) {
+                reviewSection.classList.remove('hidden');
+            } else {
+                reviewSection.classList.add('hidden');
+            }
 
             document.getElementById('final-score').innerText = correctCount;
             document.getElementById('total-questions').innerText = questions.length;
 
             const ratio = correctCount / questions.length;
             let feedback = "";
-            if (ratio >= 0.8) feedback = "Xuất sắc! Bạn đã nắm cực kỳ vững 160 câu trắc nghiệm Pháp luật đại cương. Tự tin lấy điểm tuyệt đối môn này nhé!";
-            else if (ratio >= 0.5) feedback = "Khá tốt! Tỷ lệ đúng ổn định. Hãy xem lại kỹ những câu làm sai để nâng cao điểm số nhé.";
-            else feedback = "Kết quả chưa đạt kỳ vọng lắm. Hãy thử reset làm lại một lượt nữa để nhớ đáp án lâu hơn nhé!";
+            if (ratio === 1) feedback = "Tuyệt đối tuyệt vời! Bạn không sai một câu nào cả. 10 điểm trong tầm tay!";
+            else if (ratio >= 0.8) feedback = "Xuất sắc! Bạn nắm bài cực tốt. Đọc lại danh sách câu sai bên dưới một lượt là bao trọn điểm giỏi luôn!";
+            else if (ratio >= 0.5) feedback = "Khá ổn! Tỷ lệ đúng ở mức an toàn. Hãy tập trung coi lại các câu sai ở dưới để cải thiện điểm số nhé.";
+            else feedback = "Kết quả hơi thấp một chút. Đừng lo, kéo xuống xem lại toàn bộ câu sai để rút kinh nghiệm rồi nhấn làm lại nha!";
 
             document.getElementById('feedback-text').innerText = feedback;
         }
 
         function resetQuiz() {
             document.getElementById('result-box').classList.add('hidden');
+            document.getElementById('review-section').classList.add('hidden');
             document.getElementById('welcome-box').classList.remove('hidden');
             document.getElementById('progress-text').innerText = `0/${originalQuestions.length}`;
         }
