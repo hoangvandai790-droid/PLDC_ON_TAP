@@ -301,8 +301,8 @@
 </div>
 
 <script>
-    // Toàn bộ dữ liệu 60 câu trắc nghiệm được trích xuất chính xác từ file PLDC.docx
-    const quizData = [
+    // Cơ sở dữ liệu gốc cố định tự gốc tập tin
+    const originalQuizData = [
         { id: 1, q: "Theo Hiến pháp Việt Nam 2013, Thủ tướng Chính phủ nước CHXHCN Việt Nam:", o: ["Do nhân dân bầu", "Do Quốc hội bầu theo sự giới thiệu của Chủ tịch nước", "Do Chủ tịch nước giới thiệu", "Do Chính phủ bầu"], a: 1 },
         { id: 2, q: "Cơ quan nào có thẩm quyền xét xử ở Việt Nam hiện nay là", o: ["Viện kiểm sát nhân dân", "Toà án nhân dân", "Hội đồng nhân dân; Ủy ban nhân dân", "Quốc hội"], a: 1 },
         { id: 3, q: "Cơ quan nắm quyền công tố ở Việt Nam là", o: ["UBND các cấp", "Toà án", "Hội đồng nhân dân các cấp", "Viện kiểm sát"], a: 3 },
@@ -370,14 +370,28 @@
 
     const situationText = `<strong>Bài tập tình huống (Dùng chung cho câu 16 - 19):</strong><br>Ông Nghĩa và bà Trang kết hôn với nhau có hai người con chung là Quang và Tài và một đứa con nuôi là Thương, anh Quang có vợ là Ánh và có hai người con chung là Ti (19 tuổi) và Nị (20 tuổi bị liệt từ nhỏ), anh Tài có vợ là Mị và có con là Mị. Do mắc bệnh hiểm nghèo anh Quang đã qua đời vào tháng 7 năm 2020, có để lại di chúc định đoạt toàn bộ tài sản cho chị Ánh và cho hai con Ti và Nị. Tài sản chung hợp nhất của anh Quang và chị Ánh được xác định là 500 triệu đồng.`;
 
+    // quizData sẽ đóng vai trò mảng động phục vụ Chế độ Luyện tập
+    let quizData = [];
     let currentIdx = 0;
-    let userAnswers = new Array(quizData.length).fill(null);
+    let userAnswers = [];
 
     // Khởi tạo giao diện khi web chạy
     function init() {
+        mixAndResetQuizData();
         renderGrid();
         renderQuestion();
-        renderFullList();
+        renderFullList(); 
+    }
+
+    // Hàm thực hiện xáo trộn thuật toán Fisher-Yates và reset bộ nhớ trả lời
+    function mixAndResetQuizData() {
+        quizData = [...originalQuizData];
+        for (let i = quizData.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [quizData[i], quizData[j]] = [quizData[j], quizData[i]];
+        }
+        userAnswers = new Array(quizData.length).fill(null);
+        currentIdx = 0;
     }
 
     function renderQuestion() {
@@ -389,7 +403,8 @@
             html += `<div class="situation-box">${situationText}</div>`;
         }
         
-        html += `<div class="question-title">Câu ${qData.id}: ${qData.q}</div>`;
+        // Hiển thị số thứ tự hiện tại trong bộ đề đã xáo trộn, đi kèm ID gốc của câu đó để đối chiếu
+        html += `<div class="question-title">Câu ${currentIdx + 1} <span style="font-size:13px; color:#64748b; font-weight:400;">(ID Gốc: Câu ${qData.id})</span>: ${qData.q}</div>`;
         html += `<ul class="options-list">`;
         
         qData.o.forEach((opt, idx) => {
@@ -408,7 +423,7 @@
         document.getElementById("prevBtn").disabled = currentIdx === 0;
         document.getElementById("nextBtn").disabled = currentIdx === quizData.length - 1;
 
-        // Cập nhật trạng thái nút lưới bên phải
+        // Cập nhật trạng thái lưới tiến trình bên phải
         document.querySelectorAll('.grid-btn').forEach((btn, idx) => {
             if (idx === currentIdx) btn.classList.add('active');
             else btn.classList.remove('active');
@@ -455,7 +470,7 @@
             const btn = document.createElement('button');
             btn.className = 'grid-btn';
             btn.id = `grid-btn-${idx}`;
-            btn.innerText = q.id;
+            btn.innerText = idx + 1; // Lưới hiển thị tiến trình từ 1 đến 60 câu luyện tập
             btn.onclick = () => jumpToQuestion(idx);
             grid.appendChild(btn);
         });
@@ -475,12 +490,13 @@
     }
 
     function resetQuiz() {
-        userAnswers = new Array(quizData.length).fill(null);
-        currentIdx = 0;
-        document.getElementById("correctCount").innerText = '0';
-        document.getElementById("incorrectCount").innerText = '0';
-        renderGrid();
-        renderQuestion();
+        if (confirm("Bạn có chắc chắn muốn XÁO TRỘN ĐỀ VÀ LÀM LẠI từ đầu không?")) {
+            mixAndResetQuizData();
+            document.getElementById("correctCount").innerText = '0';
+            document.getElementById("incorrectCount").innerText = '0';
+            renderGrid();
+            renderQuestion();
+        }
     }
 
     function switchTab(mode) {
@@ -498,12 +514,12 @@
         }
     }
 
-    // Render chế độ xem danh sách tất cả
+    // Render danh sách chuẩn dựa trên mảng tĩnh originalQuizData để không bị xáo trộn khi tra cứu toàn bộ câu hỏi
     function renderFullList() {
         const container = document.getElementById("fullQuestionList");
         let html = '';
         
-        quizData.forEach((q, idx) => {
+        originalQuizData.forEach((q, idx) => {
             if (q.id === 16) {
                 html += `<div class="situation-box" style="margin-top:20px;">${situationText}</div>`;
             }
@@ -513,7 +529,7 @@
                 html += `<div style="margin-left: 15px;">${getLetter(oIdx)}. ${opt}</div>`;
             });
             html += `<button class="show-ans-btn" onclick="toggleAns(${q.id})">Xem đáp án chính xác</button>`;
-            html += `<div class="ans-text" id="ans-text-${q.id}">Đáp án: ${getLetter(q.a)} - ${q.o[q.a]}</div>`;
+            html += `<div class="ans-text" id="ans-text-${q.id}">Đáp án chính xác: ${getLetter(q.a)} - ${q.o[q.a]}</div>`;
             html += `</div>`;
         });
         container.innerHTML = html;
@@ -528,7 +544,6 @@
         }
     }
 
-    // Khởi chạy hệ thống khi tải trang xong
     window.onload = init;
 </script>
 </body>
