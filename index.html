@@ -3,548 +3,356 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ôn Tập Pháp Luật Đại Cương</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Ôn Tập Trắc Nghiệm Pháp Luật Đại Cương</title>
+    <!-- Tải Tailwind CSS qua CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        :root {
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text: #1e293b;
-            --correct: #10b981;
-            --incorrect: #ef4444;
-            --border: #e2e8f0;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 20px;
-            background: linear-gradient(135deg, #1e3a8a, #2563eb);
-            color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        header h1 {
-            font-size: 24px;
-            margin-bottom: 8px;
-        }
-
-        .nav-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .tab-btn {
-            padding: 10px 20px;
-            border: none;
-            background-color: #e2e8f0;
-            color: #475569;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .tab-btn.active {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .quiz-layout {
-            display: grid;
-            grid-template-columns: 1fr 280px;
-            gap: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .quiz-layout {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            border: 1px solid var(--border);
-            margin-bottom: 20px;
-        }
-
-        .situation-box {
-            background-color: #f0fdf4;
-            border-left: 4px solid #16a34a;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 0 8px 8px 0;
-            font-size: 14px;
-            color: #14532d;
-        }
-
-        .question-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .options-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .option-item {
-            padding: 14px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-weight: 500;
-        }
-
-        .option-item:hover {
-            background-color: #f1f5f9;
-            border-color: #cbd5e1;
-        }
-
-        .option-item.correct {
-            background-color: #d1fae5 !important;
-            border-color: var(--correct) !important;
-            color: #065f46;
-        }
-
-        .option-item.incorrect {
-            background-color: #fee2e2 !important;
-            border-color: var(--incorrect) !important;
-            color: #991b1b;
-        }
-
-        .option-item.disabled {
-            pointer-events: none;
-        }
-
-        .nav-controls {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-
-        .control-btn {
-            padding: 10px 20px;
-            border: 1px solid var(--border);
-            background-color: white;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .control-btn:hover:not(:disabled) {
-            background-color: #f1f5f9;
-        }
-
-        .control-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .sidebar {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            height: fit-content;
-        }
-
-        .sidebar h3 {
-            margin-bottom: 15px;
-            font-size: 16px;
-        }
-
-        .q-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 8px;
-            max-height: 400px;
-            overflow-y: auto;
-            padding-right: 5px;
-        }
-
-        .grid-btn {
-            aspect-ratio: 1;
-            border: 1px solid var(--border);
-            background-color: #f1f5f9;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .grid-btn.active {
-            border: 2px solid var(--primary);
-        }
-
-        .grid-btn.correct {
-            background-color: var(--correct);
-            color: white;
-            border: none;
-        }
-
-        .grid-btn.incorrect {
-            background-color: var(--incorrect);
-            color: white;
-            border: none;
-        }
-
-        .stats {
-            margin-top: 15px;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .list-view {
-            display: none;
-        }
-
-        .list-item {
-            border-bottom: 1px solid var(--border);
-            padding: 20px 0;
-        }
-
-        .list-item:last-child {
-            border: none;
-        }
-
-        .show-ans-btn {
-            margin-top: 10px;
-            padding: 6px 12px;
-            background-color: #e2e8f0;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 500;
-        }
-
-        .ans-text {
-            display: none;
-            margin-top: 10px;
-            color: var(--correct);
-            font-weight: 600;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
 
-<div class="container">
-    <header>
-        <h1>ỨNG DỤNG ÔN THI PHÁP LUẬT ĐẠI CƯƠNG</h1>
-        <p>Hệ thống trắc nghiệm tương tác dữ liệu 60 câu hỏi</p>
+    <!-- Header -->
+    <header class="bg-blue-600 text-white shadow-md p-4 sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-wide">Ứng Dụng Ôn Thi Pháp Luật Đại Cương</h1>
+            <div id="score-badge" class="bg-blue-700 px-3 py-1.5 rounded-full text-sm font-semibold">
+                Tiến độ: <span id="progress-text">0/0</span>
+            </div>
+        </div>
     </header>
 
-    <div class="nav-tabs">
-        <button class="tab-btn active" onclick="switchTab('practice')">Chế Độ Luyện Tập</button>
-        <button class="tab-btn" onclick="switchTab('list')">Xem Tất Cả Câu Hỏi</button>
-    </div>
+    <!-- Main Content -->
+    <main class="max-w-4xl w-full mx-auto p-4 flex-grow flex flex-col justify-center">
+        
+        <!-- Welcome view -->
+        <div id="welcome-box" class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 text-center space-y-6">
+            <h2 class="text-2xl font-bold text-slate-900">Sẵn sàng ôn tập?</h2>
+            <p class="text-slate-600">Hệ thống đã tích hợp tính năng <strong>đảo câu hỏi ngẫu nhiên</strong>. Mỗi lần bấm bắt đầu hoặc làm lại, bộ câu hỏi sẽ tự động tráo thứ tự để giúp bạn học thuộc lòng hiệu quả hơn!</p>
+            <button onclick="startQuiz()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition shadow-sm cursor-pointer">
+                Bắt Đầu Học (Đã Đảo Câu)
+            </button>
+        </div>
 
-    <div id="practiceMode" class="quiz-layout">
-        <div>
-            <div class="card" id="quizCard">
-                </div>
-            <div class="nav-controls">
-                <button class="control-btn" id="prevBtn" onclick="changeQuestion(-1)">Câu trước</button>
-                <button class="control-btn" id="nextBtn" onclick="changeQuestion(1)">Câu tiếp theo</button>
+        <!-- Quiz view (Hidden initially) -->
+        <div id="quiz-box" class="hidden bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-100 rounded-full h-2">
+                <div id="progress-bar" class="bg-blue-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+
+            <!-- Question Area -->
+            <div>
+                <span id="question-number" class="text-xs font-bold text-blue-600 uppercase tracking-wider block mb-1">Câu hỏi 1</span>
+                <h3 id="question-text" class="text-lg font-semibold text-slate-900 leading-snug">Nội dung câu hỏi đang tải...</h3>
+            </div>
+
+            <!-- Options Area -->
+            <div id="options-container" class="space-y-3">
+                <!-- Sẽ được render động bằng Javascript -->
+            </div>
+
+            <!-- Action Area -->
+            <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                <button id="prev-btn" onclick="prevQuestion()" class="px-4 py-2 border border-slate-300 rounded-xl font-medium text-slate-700 hover:bg-slate-50 transition disabled:opacity-40 disabled:cursor-not-allowed">
+                    Câu Trước
+                </button>
+                <button id="next-btn" onclick="nextQuestion()" class="px-5 py-2 bg-slate-900 hover:bg-slate-800 text-white font-medium rounded-xl transition disabled:opacity-40 disabled:cursor-not-allowed">
+                    Câu Tiếp Theo
+                </button>
             </div>
         </div>
 
-        <div class="sidebar">
-            <h3>Tiến trình câu hỏi</h3>
-            <div class="q-grid" id="questionGrid"></div>
-            <div class="stats">
-                <p>Đúng: <span id="correctCount" style="color:var(--correct)">0</span> / 60</p>
-                <p>Sai: <span id="incorrectCount" style="color:var(--incorrect)">0</span></p>
+        <!-- Score Results view (Hidden initially) -->
+        <div id="result-box" class="hidden bg-white p-8 rounded-2xl shadow-sm border border-slate-200 text-center space-y-6">
+            <h2 class="text-3xl font-bold text-slate-900">Kết Quả Ôn Tập 🎉</h2>
+            <p class="text-lg">Bạn đã hoàn thành bài trắc nghiệm với số điểm:</p>
+            <div class="inline-block bg-blue-50 text-blue-700 text-5xl font-extrabold px-8 py-4 rounded-3xl">
+                <span id="final-score">0</span>/<span id="total-questions">0</span>
             </div>
-            <button class="control-btn" style="width:100%; margin-top:15px; background-color:#fee2e2; color:#991b1b; border:none;" onclick="resetQuiz()">Làm lại từ đầu</button>
+            <p id="feedback-text" class="text-slate-600 max-w-md mx-auto"></p>
+            <button onclick="resetQuiz()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition shadow-sm cursor-pointer">
+                Làm Lại (Đổi Thứ Tự Mới)
+            </button>
         </div>
-    </div>
 
-    <div id="listMode" class="card list-view">
-        <div id="fullQuestionList"></div>
-    </div>
-</div>
+    </main>
 
-<script>
-    // Cơ sở dữ liệu gốc cố định tự gốc tập tin
-    const originalQuizData = [
-        { id: 1, q: "Theo Hiến pháp Việt Nam 2013, Thủ tướng Chính phủ nước CHXHCN Việt Nam:", o: ["Do nhân dân bầu", "Do Quốc hội bầu theo sự giới thiệu của Chủ tịch nước", "Do Chủ tịch nước giới thiệu", "Do Chính phủ bầu"], a: 1 },
-        { id: 2, q: "Cơ quan nào có thẩm quyền xét xử ở Việt Nam hiện nay là", o: ["Viện kiểm sát nhân dân", "Toà án nhân dân", "Hội đồng nhân dân; Ủy ban nhân dân", "Quốc hội"], a: 1 },
-        { id: 3, q: "Cơ quan nắm quyền công tố ở Việt Nam là", o: ["UBND các cấp", "Toà án", "Hội đồng nhân dân các cấp", "Viện kiểm sát"], a: 3 },
-        { id: 4, q: "Hình thức chính thể của Nhà nước CHXHCN Việt Nam là", o: ["Nhà nước cộng hoà dân chủ", "Nhà nước cộng hoà phi dân chủ", "Nhà nước đơn nhất", "Tất cả đều sai"], a: 0 },
-        { id: 5, q: "Hình thức cấu trúc của Nhà nước CHXHCN Việt Nam là", o: ["Nhà nước cộng hoà dân chủ", "Nhà nước cộng hoà phi dân chủ", "Nhà nước đơn nhất", "Tất cả đều sai"], a: 2 },
-        { id: 6, q: "Hình thức nhà nước là cách tổ chức bộ máy quyền lực nhà nước và phương pháp thực hiện quyền lực nhà nước. Hình thức nhà nước được thực hiện chủ yếu ở ....... khía cạnh; đó là ...........", o: ["3 – hình thức chính thể, cấu trúc nhà nước và chế độ KT – XH", "3 – hình thức chính thể, hình thức cấu trúc nhà nước và chế độ chính trị", "3 – hình thức chuyên chính, hình thức cấu trúc nhà nước và chế độ KT – XH", "3 – hình thức chuyên chính, hình thức cấu trúc nhà nước và chế độ chính trị"], a: 1 },
-        { id: 7, q: "Cơ quan thường trực của Quốc hội là", o: ["Hội đồng dân tộc", "Ủy ban Quốc hội", "Ủy ban thường vụ Quốc hội", "Ban thường vụ Quốc hội"], a: 2 },
-        { id: 8, q: "Vản bản cấp nào muốn có hiệu lực phải đăng công báo", o: ["Cấp trung ương, cấp tỉnh, cấp huyện", "Cấp xã, huyện, tỉnh và trung ương", "Cấp tỉnh và cấp trung ương", "Cấp xã và cấp huyện"], a: 2 },
-        { id: 9, q: "Nhà nước bắt đầu xuất hiện trong hình thái kinh tế xã hội nào sau đây", o: ["Hình thái kinh tế xã hội cộng sản nguyên thuỷ", "Hình thái kinh tế xã hội chiếm hữu nô lệ", "Hình thái kinh tế xã hội phong kiến", "Hình thái kinh tế xã hội tư sản"], a: 1 },
-        { id: 10, q: "Theo học thuyết thần học Nhà nước ra đời do", o: ["Là kết quả của gia đình, là hình thức tổ chức tự nhiên của đời sống con người", "Nhà nước do thượng đế sáng tạo và sắp đặt", "Nhà nước ra đời khi xã hội phát triển đến một mức độ nhất định thông qua 3 lần phân công lao động xã hội, xã hội xuất hiện hiện giai cấp đối kháng", "Các tầng lớp trong xã hội thoả thuận với nhau lập ra khế ước"], a: 1 },
-        { id: 11, q: "Quốc hội có quyền nào sau đây:", o: ["Truy tố cá nhân, tổ chức ra trước pháp luật", "Công bộ Luật, pháp lệnh", "Ban hành các văn bản pháp luật", "Cả A, B, C đều đúng"], a: 2 },
-        { id: 12, q: "Thành phố Cần Thơ là thành phố tương đương cấp nào trong hệ thống hành chính", o: ["Cấp tỉnh", "Cấp xã", "Cấp huyện", "Cấp ấp"], a: 0 },
-        { id: 13, q: "Thời điểm bắt đầu có hiệu lực của văn bản quy phạm pháp luật trong điều kiện bình thường là", o: ["Sau 45 ngày đối với văn bản trung ương, sau 10 ngày đối với văn bản cấp tỉnh", "Sau 30 ngày đối với văn bản trung ương, sau 7 ngày đối với văn bản cấp tỉnh", "Sau 50 ngày đối với văn bản trung ương, sau 15 ngày đối với văn bản cấp tỉnh", "Sau 40 ngày đối với văn bản trung ương, sau 5 ngày đối với văn bản cấp tỉnh"], a: 0 },
-        { id: 14, q: "Hàng thừa kế thứ nhất gồm", o: ["Ông nội, bà nội, ông ngoại, bà ngoại, anh ruột, chị ruột, em ruột của người chết", "Vợ, chồng, cha đẻ, mẹ đẻ, cha nuôi, mẹ nuôi, con đẻ, con nuôi của người chết", "Cụ nội, cụ ngoại, bác ruột, chú ruột, cậu ruột, cô ruột, dì ruột của người chết", "Vợ, chồng, cháu ruột, chắt ruột của người chết"], a: 1 },
-        { id: 15, q: "Người thừa kế không phụ thuộc nội dung của di chúc gồm", o: ["Con chưa thành niên", "Con chưa thành niên, vợ, chồng", "Con đã thành niên, cha, mẹ, vợ chồng", "Con chưa thành niên, cha, mẹ, vợ, chồng, con đã thành niên không có khả năng lao động"], a: 3 },
-        
-        // Nhóm bài tập tình huống có gắn context riêng
-        { id: 16, q: "Hàng thừa kế thứ nhất của anh Quang là", o: ["Ông Nghĩa, bà Trang, chị Ánh, Ti và Nị", "Ông Nghĩa, bà Trang, anh Thương, anh Tài, chị Ánh, Ti và Nị", "Ông Nghĩa, bà Trang, chị Ánh, Ti và Nị (trùng phương án A)", "Chị Ánh, Ti và Nị"], a: 0, ctx: true },
-        { id: 17, q: "Căn cứ vào quy định của pháp luật hiện hành những chủ thể nào sẽ được hưởng thừa kế mà không phụ thuộc vào nội dung di chúc của Quang", o: ["Ông Nghĩa và bà Trang", "Chị Ánh và Nị", "Ông Nghĩa, bà Trang, chị Ánh và Nị", "Chị Ánh, Ti và Nị"], a: 0, ctx: true },
-        { id: 18, q: "Theo anh chị, giả sử Quang không chết, mà là ông Nghĩa chết vậy hàng thừa kế thứ nhất của ông Nghĩa là:", o: ["Bà Trang, Quang và Tài", "Bà Trang, Quang, Tài và Thương", "Anh Quang, Tài và Thương", "Bà Trang, Quang, Tài, Ánh và Thương"], a: 1, ctx: true },
-        { id: 19, q: "Hàng thừa kế thứ hai của ông Nghĩa là", o: ["Bà Trang, Quang, Ánh, Tài, Mị, Thương", "Anh Quang, Tài, Thương, bà Trang", "Anh Thương, Ti, Nị, Mị", "Ti, Nị, Mị"], a: 3, ctx: true },
-        
-        { id: 20, q: "Người thừa kế theo pháp luật có thể là", o: ["Tổ chức", "Con của người chết", "Cá nhân không có quan hệ huyết thống với người chết", "Tất cả đều có thể thừa kế"], a: 1 },
-        { id: 21, q: "Người để lại di sản có thể là", o: ["Tổ chức", "Cá nhân, tổ chức", "Chỉ cá nhân", "Chỉ tổ chức"], a: 2 },
-        { id: 22, q: "Độ tuổi kết hôn theo luật Việt Nam là", o: ["Nam từ 20, nữ từ 18", "Nữ đủ 18, nam đủ 20", "Nữ từ 20, nam từ 18", "Nữ đủ 20, nam đủ 18"], a: 1 },
-        { id: 23, q: "Kết quả của lần phân công lao động thứ ba trong lịch sử là", o: ["Tách chăn nuôi khỏi trồng trọt", "Tách thủ công nghiệp ra khỏi nông nghiệp", "Phát sinh ngành thương mại", "Cả 3 kết quả trên"], a: 2 },
-        { id: 24, q: "Chính phủ là cơ quan có quyền", o: ["Có quyền lập pháp, hành pháp và tư pháp", "Có quyền lập pháp", "Có quyền hành pháp", "Có quyền tư pháp"], a: 2 },
-        { id: 25, q: "Trong nước CHXHCN Việt Nam, chủ thể nào dưới đây đại diện cho nhà nước thực hiện công tác đối nội và đối ngoại", o: ["Tổng bí thư", "Chủ tịch nước", "Thủ tướng", "Chủ tịch Quốc hội"], a: 1 },
-        { id: 26, q: "Theo quy định của luật hình sự Việt Nam, lỗi được chia thành", o: ["Lỗi cố ý và lỗi vô ý", "Lỗi trực tiếp và lỗi gián tiếp", "Lỗi cố ý trực tiếp và lỗi cố ý gián tiếp", "Lỗi vô ý vì quá tự tin và lỗi vô ý do cẩu thả", "Bao gồm C và D"], a: 4 },
-        { id: 27, q: "Cá nhân có năng lực hành vi dân sự đầy đủ khi đạt ...... tuổi trở lên", o: ["15", "16", "17", "18"], a: 3 },
-        { id: 28, q: "Theo luật hình sự Việt Nam, đặc điểm nào sau đây là đặc điểm của tội phạm", o: ["Tính nguy hiểm cho xã hội của tội phạm", "Hành vi phải được quy định trong luật hình sự và có lỗi", "Tính chịu hình phạt của tội phạm", "Bao gồm tất cả các đặc điểm trên"], a: 3 },
-        { id: 29, q: "Theo luật hình sự Việt Nam hiện hành, bao nhiêu tuổi sẽ chịu trách nhiệm hình sự về các tội phạm", o: ["Đủ 14 tuổi", "Đủ 16 tuổi", "Đủ 15 tuổi", "Đủ 18 tuổi"], a: 1 },
-        { id: 30, q: "Quyền sở hữu bao gồm", o: ["Quyền chiếm giữ, quyền sử dụng và quyền định đoạt", "Quyền chiếm hữu, quyền định đoạt và quyền thừa kế", "Quyền sử dụng, quyền từ chối, quyền chiếm hữu", "Quyền chiếm hữu, quyền sử dụng, quyền định đoạt"], a: 3 },
-        { id: 31, q: "Theo quy định của pháp luật hiện hành thì Thủ tướng Chính phủ có quyền ban hành", o: ["Quyết định", "Nghị định", "Lệnh", "Nghị quyết"], a: 0 },
-        { id: 32, q: "Trường hợp nào chủ thể phải chịu trách nhiệm pháp lý khi không có hành vi vi phạm pháp luật", o: ["Cha mẹ phải bồi thường thiệt hại do con chưa thành niên gây ra", "Bồi thường do nguồn nguy hiểm cao độ của mình gây ra", "Bồi thường do súc vật của mình gây ra", "Cả A, B, C đều đúng"], a: 3 },
-        { id: 33, q: "Cơ quan nào có thẩm quyền ban hành Thông tư", o: ["Quốc hội", "Viện trưởng Viện kiểm sát nhân dân tối cao", "Chủ tịch nước", "Thủ tướng Chính phủ"], a: 1 },
-        { id: 34, q: "Theo quy định của Bộ luật dân sự thì có bao nhiêu hàng thừa kế", o: ["2", "3", "4", "5"], a: 1 },
-        { id: 35, q: "Học thuyết nào cho rằng Nhà nước là sản phẩm do Thượng đế tạo ra", o: ["Thuyết bạo lực", "Thuyết tâm lý", "Thuyết gia trưởng", "Thuyết thần học"], a: 3 },
-        { id: 36, q: "Có sự kiện pháp lý như sau: \"A cầm dao đâm chết B\", vậy hành vi của A là sự kiện pháp lý", o: ["Làm phát sinh quan hệ pháp luật", "Làm chấm dứt quan hệ pháp luật", "Làm thay đổi quan hệ pháp luật", "Cả 3 câu trên đều đúng"], a: 3 },
-        { id: 37, q: "Cơ quan nào sau đây là cơ quan tương đương cấp xã", o: ["Xã, phường, thị tứ", "Ấp, xã, phường", "Quận, thị trấn, phường", "Xã, phường, thị trấn"], a: 3 },
-        { id: 38, q: "Phương pháp điều chỉnh của ngành luật hình sự là", o: ["Phương pháp quyền uy", "Phương pháp thoả thuận", "Phương pháp quản triệt tư tưởng", "Phương pháp bình đẳng"], a: 0 },
-        { id: 39, q: "Phương pháp điều chỉnh của ngành luật dân sự là", o: ["Phương pháp quyền uy", "Phương pháp thoả thuận", "Phương pháp quán triệt tư tưởng", "Phương pháp bình đẳng"], a: 1 },
-        { id: 40, q: "Cấu thành tội phạm bao gồm các yếu tố", o: ["4 yếu tố (khách thể, khách quan, chủ thể, chủ quan)", "3 yếu tố (lỗi, hành vi, tuổi)", "2 yếu tố (khách quan và chủ quan)", "5 yếu tố (lỗi, hành vi, hậu quả, nguyên nhân, địa điểm)"], a: 0 },
-        { id: 41, q: "Người lao động là người từ", o: ["Đủ 14 tuổi", "Đủ 15 tuổi", "Đủ 16 tuổi", "Đủ 18 tuổi"], a: 1 },
-        { id: 42, q: "Hệ thống chính trị Việt Nam vận hành theo cơ chế", o: ["Đảng lãnh đạo, Nhà nước chỉ đạo, Nhân dân làm chủ", "Đảng lãnh đạo, Nhà nước quản lý, Nhân dân làm chủ", "Đảng chỉ đạo, Nhà nước thực thi, Nhân dân giám sát", "Đảng tiên phong, Nhà nước thực thi, Nhân dân cùng làm"], a: 1 },
-        { id: 43, q: "Hình thức của pháp luật gồm", o: ["Văn bản quy phạm pháp luật, tập quán pháp, tiền lệ pháp", "Tiền lệ pháp, văn bản quy phạm pháp luật", "Tôn giáo pháp, tiền lệ pháp, văn bản quy phạm pháp luật", "Văn bản quy phạm pháp luật, tiền lệ pháp, tập quán pháp, tôn giáo pháp"], a: 0 },
-        { id: 44, q: "Bản chất của nhà nước", o: ["Tính nghiêm minh", "Tính quyền uy", "Tính xã hội", "Tính giai cấp, tính xã hội"], a: 3 },
-        { id: 45, q: "Cơ quan nào lãnh đạo theo nguyên tắc thủ trưởng 1 người", o: ["Bộ và cơ quan ngang bộ", "Ủy ban nhân dân các cấp", "Chính phủ", "Quốc hội"], a: 0 },
-        { id: 46, q: "Số lượng đại biểu Quốc hội nhiệm kỳ khoá XV là", o: ["494 đại biểu", "500 đại biểu", "483 đại biểu", "473 đại biểu"], a: 1 },
-        { id: 47, q: "Chính phủ là", o: ["Cơ quan quyền lực cao nhất của nước CHXHCN Việt Nam", "Cơ quan tư pháp cao nhất của nước CHXHCN Việt Nam", "Cơ quan hành chính nhà nước cao nhất của nước CHXHCN Việt Nam", "Cơ quan hành pháp cao nhất của nước CHXHCN Việt Nam"], a: 2 },
-        { id: 48, q: "Cơ quan trực thuộc Chính phủ là", o: ["Ủy ban thường vụ Chính phủ", "Bộ và các cơ quan ngang bộ", "Ban dân tộc", "Ủy ban nhân dân, Hội đồng nhân dân"], a: 1 },
-        { id: 49, q: "Trong hệ thống cơ quan nhà nước, cơ quan nào làm việc theo nguyên tắc độc lập", o: ["Chính phủ", "Hội đồng nhân dân", "Ủy ban nhân dân", "Toà án"], a: 3 },
-        { id: 50, q: "Ủy ban nhân dân các cấp được tổ chức theo nguyên tắc", o: ["Nguyên tắc độc lập", "Nguyên tắc tập trung dân chủ", "Nguyên tắc song trùng trực thuộc", "Nguyên tắc tam quyền phân lập"], a: 2 },
-        { id: 51, q: "Hiện nay, nhà nước ta có bao nhiêu bộ và cơ quan ngang bộ", o: ["18 bộ và 10 cơ quan ngang bộ", "10 bộ và 8 cơ quan ngang bộ", "4 bộ và 18 cơ quan ngang bộ", "18 bộ và 4 cơ quan ngang bộ"], a: 3 },
-        { id: 52, q: "Chủ thể của quan hệ pháp luật gồm", o: ["Cá nhân, cá thể", "Tổ chức", "Cá thể", "Tổ chức, cá nhân"], a: 3 },
-        { id: 53, q: "Điều kiện để một chủ thể tham gia quan hệ pháp luật", o: ["Năng lực cá nhân, năng lực trí tuệ", "Năng lực hành vi, năng lực cá nhân", "Năng lực pháp luật, năng lực hành vi", "Năng lực pháp luật, năng lực cá nhân"], a: 2 },
-        { id: 54, q: "Năng lực pháp luật là", o: ["Là khả năng của chủ thể bằng hành vi của mình tham gia trực tiếp vào các quan hệ pháp luật", "Là khả năng của chủ thể có được các quyền và nghĩa vụ pháp lý do pháp luật quy định", "Là năng lực của chủ thể xác lập các quan hệ pháp luật", "Là năng lực của chủ thể thực hiện các quan hệ pháp luật"], a: 1 },
-        { id: 55, q: "Năng lực hành vi là", o: ["Là khả năng của chủ thể bằng hành vi của mình tham gia trực tiếp vào các quan hệ pháp luật", "Là khả năng của chủ thể có được các quyền và nghĩa vụ pháp lý do pháp luật quy định", "Là năng lực của chủ thể có từ khi sinh ra và mất đi khi chủ thể đó chết", "Cả B, C đều đúng"], a: 0 },
-        { id: 56, q: "Cơ cấu của một phạm pháp luật gồm", o: ["Giả định đơn giản, giả định phức tạp, chế tài", "Quy định dứt khoát, quy định không dứt khoát, giả định", "Giả định, quy định, chế tài", "Quy định đơn giản, chế tài cố định"], a: 2 },
-        { id: 57, q: "Quy phạm pháp luật", o: ["Là hành vi vi phạm pháp luật", "Là quy tắc xử sự chung có tính bắt buộc", "Là hành vi nguy hiểm cho xã hội", "Là nguyên tắc xử sự riêng đối với người phạm tội"], a: 1 },
-        { id: 58, q: "Cơ quan có quyền giải thích pháp luật", o: ["Ủy ban thường vụ quốc hội", "Quốc hội", "Toà án nhân dân tối cao", "Viện kiểm sát nhân dân tối cao"], a: 0 },
-        { id: 59, q: "Các nguyên tắc tổ chức nhà nước là", o: ["Nguyên tắc tập quyền", "Nguyên tắc phân quyền", "Nguyên tắc tập quyền xã hội chủ nghĩa", "Cả 3 đều đúng"], a: 3 },
-        { id: 60, q: "Người mất năng lực hành vi dân sự là người", o: ["Người dưới 6 tuổi", "Người bị bệnh tâm thần hoặc bệnh khác dẫn đến mất khả năng nhận thức hoặc mất khả năng điều khiển hành vi", "Người bị nghiện ma tuý dẫn đến phá tán tài sản", "Tất cả đều đúng"], a: 1 }
-    ];
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-center p-4 text-xs border-t border-slate-800">
+        Ngân hàng câu hỏi trắc nghiệm Pháp luật đại cương &copy; 2026. Phát triển bởi Gemini.
+    </footer>
 
-    const situationText = `<strong>Bài tập tình huống (Dùng chung cho câu 16 - 19):</strong><br>Ông Nghĩa và bà Trang kết hôn với nhau có hai người con chung là Quang và Tài và một đứa con nuôi là Thương, anh Quang có vợ là Ánh và có hai người con chung là Ti (19 tuổi) và Nị (20 tuổi bị liệt từ nhỏ), anh Tài có vợ là Mị và có con là Mị. Do mắc bệnh hiểm nghèo anh Quang đã qua đời vào tháng 7 năm 2020, có để lại di chúc định đoạt toàn bộ tài sản cho chị Ánh và cho hai con Ti và Nị. Tài sản chung hợp nhất của anh Quang và chị Ánh được xác định là 500 triệu đồng.`;
+    <script>
+        // Ngân hàng câu hỏi gốc của bạn
+        const originalQuestions = [
+            { q: "Bản chất của nhà nước Cộng hoà XHCN Việt Nam:", o: ["Là nhà nước dân chủ, của dân, do dân và vì dân", "Đề cao quyền tự do cá nhân không hạn chế", "Chú trọng làm bạn với các nước tư bản", "Cả A, B, C đều đúng"], a: 0 },
+            { q: "Pháp luật xã hội chủ nghĩa là do:", o: ["Kế thừa pháp luật tư sản", "Do nhà nước xã hội chủ nghĩa ban hành", "Sao chép một phần pháp luật tư sản", "Cả A, B, C đều đúng"], a: 1 },
+            { q: "Pháp luật có vai trò quan trọng như thế nào đối với kinh tế:", o: ["Pháp luật điều chỉnh các hoạt động kinh tế", "Thúc đẩy kinh tế bằng các chính sách ưu đãi, thông thoáng", "Bảo vệ nền kinh tế thông qua việc ngăn chặn, loại trừ các hoạt động kinh tế trái pháp luật", "Cả A, B, C đều đúng"], a: 3 },
+            { q: "Pháp luật có vai trò như thế nào đối với xã hội:", o: ["Pháp luật là công cụ hiệu quả nhất để Nhà nước sử dụng quản lý xã hội", "Giáo dục con người ý thức chấp hành pháp luật, góp phần đề cao trách nhiệm của công dân trước các vấn đề của xã hội", "Ghi nhận và bảo vệ các chuẩn mực và giá trị xã hội", "Cả A, B, C đều đúng"], a: 3 },
+            { q: "Đặt ra pháp luật và buộc mọi thành viên trong xã hội phải chấp hành, đó là đặc trưng của:", o: ["Nhà nước chiếm hữu nô lệ", "Nhà nước phong kiến và nhà nước tư sản", "Nhà nước xã hội chủ nghĩa", "Mọi nhà nước"], a: 3 },
+            { q: "Nhà nước không tồn tại trong xã hội nào sau đây:", o: ["Xã hội chiếm hữu nô lệ", "Xã hội phong kiến", "Xã hội Cộng sản nguyên thủy", "Tất cả đều đúng"], a: 2 },
+            { q: "Theo quan điểm của chủ nghĩa Mác - Lênin, nguyên nhân chủ yếu làm xuất hiện Nhà nước là:", o: ["Do nhu cầu của con người trong xã hội", "Do yêu cầu của hoạt động đắp đê, làm thủy lợi", "Do xã hội có sự phân chia giai cấp và đấu tranh giai cấp", "Do yêu cầu của hoạt động chống giặc ngoại xâm"], a: 2 },
+            { q: "Bản chất giai cấp của Nhà nước thể hiện:", o: ["Nhà nước là một bộ máy trấn áp đặc biệt của giai cấp này đối với giai cấp khác", "Nhà nước là công cụ để bảo vệ an ninh, chính trị, trật tự, an toàn xã hội", "Nhà nước là một bộ máy để trấn áp những người chống đối nhân dân", "Cả A,B,C đều đúng"], a: 0 },
+            { q: "Bản chất xã hội của Nhà nước thể hiện:", o: ["Nhà nước là công cụ để giai cấp thống trị bóc lột giai cấp bị trị.", "Nhà nước là một bộ máy trấn áp đặc biệt trong tay nhà cầm quyền", "Nhà nước là công cụ của đa số nhân dân lao động sử dụng để trấn áp thiểu số giai cấp bóc lột", "Nhà nước là bộ máy nhằm bảo đảm trật tự an toàn xã hội, giải quyết các công việc mang tính xã hội, phục vụ cho lợi ích chung của xã hội"], a: 3 },
+            { q: "Căn cứ vào phạm vi hoạt động của nhà nước, các chức năng nhà nước được chia thành:", o: ["Chức năng kinh tế, chức năng chính trị", "Chức năng đối nội, chức năng đối ngoại", "Chức năng điều chỉnh, chức năng giáo dục", "Cả A, B, C đều đúng"], a: 1 },
+            { q: "Các chức năng của pháp luật:", o: ["Giáo dục, quản lý, điều chỉnh", "Giáo dục, điều chỉnh, bảo vệ", "Điều chỉnh, bảo vệ, quyền uy", "Điều chỉnh, bảo vệ, thỏa thuận"], a: 1 },
+            { q: "Dấu hiệu nào sau đây không phải là đặc trưng cơ bản của Nhà nước:", o: ["Nhà nước phân chia dân cư theo lãnh thổ", "Nhà nước có chủ quyền Quốc gia", "Nhà nước điều chỉnh xã hội bằng các tập quán và đạo đức xã hội", "Nhà nước đặt ra thuế và tiến hành thu các loại thuế"], a: 2 },
+            { q: "Nhà nước và pháp luật là hai hiện tượng xã hội thuộc:", o: ["Cơ sở hạ tầng", "Kiến trúc thượng tầng", "Quan hệ sản xuất", "Lực lượng sản xuất"], a: 1 },
+            { q: "Có mấy kiểu lịch sử cụ thể của pháp luật?", o: ["2", "3", "4", "5"], a: 2 },
+            { q: "Khẳng định nào sau đây là đúng:", o: ["Chỉ có Nhà nước mới có quyền ban hành pháp luật để quản lý xã hội", "Nhà nước và các tổ chức xã hội có quyền ban hành pháp luật để quản lý xã hội", "Tổ chức xã hội chỉ có quyền ban hành pháp luật khi được nhà nước trao quyền", "Cả A, B, C đều đúng"], a: 0 },
+            { q: "Điền vào chỗ trống: ....là nhà nước “không còn nguyên nghĩa”, “nhà nước nửa nhà nước”:", o: ["Nhà nước cộng sản chủ nghĩa", "Nhà nước phong kiến", "Nhà nước tư sản", "Nhà nước Xã hội chủ nghĩa"], a: 3 },
+            { q: "Việt Nam có quan hệ ngoại giao với các khu vực:", o: ["Châu Á Thái Bình Dương - Châu Âu - Châu Mỹ", "Châu Phi - Trung Đông", "Cả A và B đều đúng", "Cả A và B đều sai"], a: 2 },
+            { q: "Quy phạm pháp luật là:", o: ["Quy tắc xử sự có tính bắt buộc chung do nhà nước ban hành và bảo đảm thực hiện", "Các nội quy do nhà nước đặt ra", "Các quy định do người nắm giữ quyền lực nhà nước đặt ra", "Cả A, B, C đều đúng"], a: 0 },
+            { q: "Quy phạm pháp luật là quy tắc xử sự cho phép cá nhân:", o: ["Được làm bất cứ việc gì mình muốn", "Chỉ được làm những việc mà luật cho phép và không cấm", "Không làm những việc có lợi cho nước ngoài", "Cả A, B, C đều đúng"], a: 1 },
+            { q: "Khi tham gia một quan hệ pháp luật thì bắt buộc chủ thể tham gia quan hệ pháp luật đó phải có đủ các điều kiện cần thiết nào sau đây:", o: ["Có đủ tài sản", "Có đủ tiền và thời gian", "Có đủ năng lực pháp luật", "Có đủ năng lực pháp luật và năng lực hành vi"], a: 3 },
+            { q: "Năng lực hành vi của chủ thể là:", o: ["Khả năng của chủ thể tự mình thực hiện một cách độc lập các nghĩa vụ pháp lý", "Khả năng của chủ thể tự mình thực hiện một cách độc lập các quyền và nghĩa vụ pháp lý", "Khả năng của chủ thể cùng với sự giúp đỡ của người khác thực hiện các quyền và nghĩa vụ pháp lý", "Khả năng của chủ thể tự mình thực hiện một cách độc lập các quyền của mình"], a: 1 },
+            { q: "Văn bản quy phạm pháp luật có hiệu lực cao nhất, các văn bản quy phạm pháp luật khác không được trái với nó, đó chính là:", o: ["Bộ luật hình sự", "Luật tổ chức Quốc hội", "Hiến pháp", "Luật tổ chức Chính phủ"], a: 2 },
+            { q: "Cấu trúc của Quy phạm pháp luật gồm có ba bộ phận:", o: ["Giả định, quy định, chế tài", "Chủ thể, nội dung, khách thể", "Giả định, quy định, hình phạt", "Cả A, B, C đều đúng"], a: 0 },
+            { q: "Văn bản quy phạm pháp luật là văn bản do:", o: ["Chủ tịch nước ban hành", "Chính phủ ban hành", "Quốc hội ban hành", "Cơ quan Nhà nước có thẩm quyền ban hành"], a: 3 },
+            { q: "Chọn phương án đúng điền vào chỗ trống: ....là văn bản quy phạm pháp luật do Chủ tịch nước ban hành", o: ["Nghị định", "Luật", "Lệnh", "Thông tư"], a: 2 },
+            { q: "Quyền của chủ thể trong quan hệ pháp luật được thể hiện:", o: ["Khả năng của chủ thể được thực hiện những hành vi nhất định do quy phạm pháp luật tương ứng quy định", "Khả năng yêu cầu cơ quan Nhà nước có thẩm quyền can thiệp, bảo vệ quyền và lợi ích hợp pháp của mình", "Khả năng yêu cầu các chủ thể khác tôn trọng quyền, nghĩa vụ; chấm dứt hành vi cản trở việc thực hiện quyền và nghĩa vụ", "Cả A, B, C đều đúng"], a: 3 },
+            { q: "Nghĩa vụ pháp lý của chủ thể trong quan hệ pháp luật được thể hiện:", o: ["Phải thực hiện một số yêu cầu nhất định do Quy phạm pháp luật xác định nhằm đáp ứng quyền của chủ thể khác", "Kiềm chế không thực hiện một số hành vi nhất định", "Phải chịu trách nhiệm pháp lý khi xử sự trái với quy định của pháp luật", "Cả A, B, C đều đúng"], a: 3 },
+            { q: "Để cá nhân trở thành chủ thể của quan hệ pháp luật cần có các điều kiện:", o: ["Không mắc các bệnh tâm thần", "Có năng lực pháp luật và năng lực hành vi", "Đạt độ tuổi từ 18 tuổi trở lên", "Cả A, B, C đều đúng"], a: 1 },
+            { q: "Thông thường, năng lực pháp luật của cá nhân xuất hiện từ khi:", o: ["Cá nhân sinh ra", "Cá nhân đủ 18 tuổi", "Cá nhân tham gia vào quan hệ pháp luật", "Cá nhân có khả năng nhận thức và điều khiển hành vi"], a: 0 },
+            { q: "Năng lực hành vi của cá nhân chỉ xuất hiện khi:", o: ["Cá nhân đủ 18 tuổi và không mắc các bệnh tâm thần", "Cá nhân đủ 14 tuổi và không mắc các bệnh về tâm thần hoặc những bệnh khác làm mất khả năng nhân thức và điều khiển hành vi", "Cá nhân đạt đến một độ tuổi nhất định và không mắc các bệnh về tâm thần hoặc những bệnh khác làm mất khả năng nhân thức và điều khiển hành vi", "Cả A, B, C đều đúng"], a: 2 },
+            { q: "Quy phạm pháp luật là cách xử sự do nhà nước quy định để:", o: ["Áp dụng cho một lần duy nhất và hết hiệu lực sau lần áp dụng đó", "Áp dụng cho một lần duy nhất và vẫn còn hiệu lực sau lần áp dụng đó", "Áp dụng cho nhiều lần và vẫn còn hiệu lực sau những lần áp dụng đó", "Áp dụng cho nhiều lần và hết hiệu lực sau những lần áp dụng đó"], a: 2 },
+            { q: "Tính xác định chặt chẽ về mặt hình thức là thuộc tính (đặc trưng) của:", o: ["Quy phạm đạo đức", "Quy phạm tập quán", "Quy phạm pháp luật", "Quy phạm tôn giáo"], a: 2 },
+            { q: "Tính quy phạm phổ biến (tính bắt buộc chung) là thuộc tính (đặc trưng) của:", o: ["Quy phạm pháp luật", "Quy phạm đạo đức", "Quy phạm tập quán", "Quy phạm tôn giáo"], a: 0 },
+            { q: "Sự kiện pháp lý có thể:", o: ["Làm phát sinh một quan hệ pháp luật cụ thể", "Làm thay đổi một quan hệ pháp luật cụ thể", "Làm chấm dứt một quan hệ pháp luật cụ thể", "Cả A, B và C đều đúng"], a: 3 },
+            { q: "Trong một bản án, phần căn cứ pháp lý được trình bày như sau: “căn cứ bản án số 132 KDTM – ST ngày 01/05/2012 của Toà án nhân dân tỉnh A…” hình thức pháp luật được áp dụng trong trường hợp này là:", o: ["Tập quán pháp", "Tiền lệ pháp", "Văn bản pháp luật", "B và C là đúng"], a: 1 },
+            { q: "Đặc điểm của quan hệ pháp luật", o: ["Là quan hệ mang tính tinh thần", "Là quan hệ mang tính ý chí", "Là quan hệ mang tính tình cảm", "Cả A và B đều đúng"], a: 1 },
+            { q: "Công dân nước cộng hoà xã hội chủ nghĩa Việt Nam là người:", o: ["Định cư trên lãnh thổ Việt Nam", "Có quốc tịch việt Nam", "Sinh ra và lớn lên ở Việt Nam", "Cả a,c đều đúng"], a: 1 },
+            { q: "Công dân ...có quyền biểu quyết khi nhà nước tổ chức trưng cầu ý dân.", o: ["Đủ14 tuổi trở lên", "Đủ 16 tuổi trở lên", "Đủ 18 tuổi trở lên", "Cả A, B, C đều sai"], a: 2 },
+            { q: "Luật nhà nước chỉ điều chỉnh các quan hệ xã hội:", o: ["Cơ bản nhất, quan trọng nhất", "Không cơ bản", "Đã được quy định trong các bộ luật khác", "Cả A, B, C đều đúng"], a: 0 },
+            { q: "Công dân đủ bao nhiêu tuổi trở lên có quyền tham gia ứng cử vào Quốc hội, Hội đồng nhân dân", o: ["Đủ 18 tuổi trở lên", "Đủ 19 tuổi trở lên", "Đủ 20 tuổi trở lên", "Đủ 21 tuổi trở lên"], a: 3 },
+            { q: "Các quyền và nghĩa vụ cơ bản của công dân được quy định trong:", o: ["Hiến pháp", "Luật dân sự", "Luật lao động", "Luật đất đai"], a: 0 },
+            { q: "Mỗi khóa Quốc hội nước Cộng Hoà xã hội chủ nghĩa Việt Nam có nhiệm kì mấy năm:", o: ["3 năm", "4 năm", "5 năm", "6 năm"], a: 2 },
+            { q: "Từ năm 1945 đến nay, nước cộng hoà xã hội chủ nghĩa Việt Nam có 5 bản Hiến pháp là:", o: ["Hiến pháp 1946, 1959, 1980,1992, 2013", "Hiến pháp 1945, 1959,1980,1992, 2001", "Hiến pháp 1946, 1959,1980, 2010, 2014", "Hiến pháp 1945, 1959, 2980, 2001, 2013"], a: 0 },
+            { q: "Việc sửa đổi bổ sung Hiến pháp phải có:", o: ["Ít nhất 1/3 tổng số đại biểu tán thành", "Ít nhất 2/3 tổng số đại biểu tán thành", "Đủ 100% đại biểu tán thành", "Công dân cả nước tán thành"], a: 1 },
+            { q: "Theo Hiến pháp Việt Nam 2013, Thủ tướng Chính phủ Nước CHXHCN Việt Nam:", o: ["Do nhân dân bầu", "Do Quốc hội bầu trong số đại biểu Quốc hội", "Do Chủ tịch nước giới thiệu", "Do Chính phủ bầu"], a: 1 },
+            { q: "Đạo luật nào dưới đây quy định một cách cơ bản về chế độ chính trị, chế độ kinh tế, văn hóa, xã hội và tổ chức bộ máy nhà nước", o: ["Luật tổ chức Quốc hội", "Luật tổ chức Chính phủ", "Luật tổ chức Hội đồng nhân dân và UBND", "Hiến pháp"], a: 3 },
+            { q: "Hiến pháp năm 2013, Công dân có các nghĩa vụ cơ bản:", o: ["Trung thành với Tổ quốc; Bảo vệ môi trường; nộp thuế theo luật định", "Thực hiện nghĩa vụ quân sự và tham gia xây dựng nền quốc phòng toàn dân", "Tuân theo Hiến pháp và pháp luật; tham gia bảo vệ an ninh quốc gia, trật tự, an toàn xã hội và chấp hành những quy tắc sinh hoạt công cộng", "Cả A, B, C đều đúng"], a: 3 },
+            { q: "Điền từ vào chỗ trống: ...Là văn bản quy phạm pháp luật có hiệu lực cao nhất, chỉ có Quốc hội có quyền bổ sung, sửa đổi theo quy định của pháp luật:", o: ["Bộ luật hình sự", "Luật tổ chức Quốc hội", "Hiến pháp", "Luật tổ chức Chính phủ"], a: 2 },
+            { q: "Theo quy định của pháp luật Việt Nam, đối với công dân tội nặng nhất là:", o: ["Giết người hàng loạt", "Phản bội tổ quốc", "Tham nhũng", "Cả a.c đều đúng"], a: 1 },
+            { q: "Độ tuổi công dân có quyền bầu cử", o: ["Đủ 17 tuổi trở lên", "Đủ 18 tuổi trở lên", "Đủ 19 tuổi trở lên", "Đủ 20 tuổi trở lên"], a: 1 },
+            { q: "Quyền được học tập và nghiên cứu khoa học của công dân được quy định tại:", o: ["Luật Dân sự", "Luật Hình sự", "Luật Hành chính", "Hiến pháp"], a: 3 },
+            { q: "Tòa án đã xét xử vụ kiện và quyết định doanh nghiệp A phải bồi thường cho doanh nghiệp B là 200 triệu đồng do vi phạm hợp đồng mua bán hàng hóa. Trách nhiệm pháp lý mà doanh nghiệp A phải thực hiện là loại trách nhiệm pháp lý nào?", o: ["Trách nhiệm dân sự", "Trách nhiệm hành chính", "Trách nhiệm hình sự", "Trách nhiệm kỷ luật"], a: 0 },
+            { q: "Cơ sở truy cứu trách nhiệm pháp lý là:", o: ["Nhân chứng", "Vật chứng", "Vi phạm pháp luật", "Cả A, B đều đúng"], a: 2 },
+            { q: "Chủ thể của quan hệ pháp luật hành chính là:", o: ["Cơ quan, tổ chức, cá nhân", "Cá nhân, pháp nhân", "Pháp nhân, tổ chức", "Cả A, B, C đều đúng"], a: 0 },
+            { q: "Ông A vận chuyển gia cầm bị bệnh, bị cơ quan có thẩm quyền phát hiện và bắt phải tiêu huỷ hết số gia cầm này. Đây là biện pháp chế tài:", o: ["Dân sự", "Hành chính", "Kỷ luật", "Hình sự"], a: 1 },
+            { q: "A và B có mâu thuẫn với nhau nên ngày 20/3/2014 A đã đánh B với thương tích 10%. Vậy A sẽ bị xử lý vi phạm gì?", o: ["Xử lý vi phạm hành chính", "Xử lý vi phạm hình sự", "Xử lý vi phạm dân sự", "Cả A, B,C đều đúng"], a: 0 },
+            { q: "Không bị xử lý vi phạm hành chính trong các trường hợp nào sau đây:", o: ["Tình thế cấp thiết, phòng vệ chính đáng", "Sự kiện bất ngờ", "Người đang mắc bệnh tâm thần", "Cả A, B,C đều đúng"], a: 3 },
+            { q: "Một người thực hiện nhiều hành vi vi phạm hành chính thì bị xử phạt", o: ["Hành vi vi phạm đầu tiên", "Hành vi vi phạm nặng nhất", "Từng hành vi vi phạm", "Cả A, B, C đều sai"], a: 2 },
+            { q: "Cơ quan giữ vững an ninh chính trị, trật tự an toàn xã hội của nhà nước ta là:…", o: ["Bộ quốc phòng", "Bộ ngoại giao", "Bộ công an", "Bộ công thương"], a: 2 },
+            { q: "A từng có tiền án về tội cướp giật tài sản, A ăn trộm của B con gà trị giá 50.000 đồng. Vậy A phải chịu trách nhiệm pháp lý nào sau đây:", o: ["Trách nhiệm pháp lý hình sự", "Trách nhiệm pháp lý hành chính", "Trách nhiệm pháp lý dấn sự", "Trách nhiệm pháp lý kỷ luật"], a: 0 },
+            { q: "Hình thức xử phạt chính của vi phạm pháp luật Hành chính là:", o: ["Cảnh cáo, phạt tiền", "Cảnh cáo, tước quyền sử dụng giấy phép", "Cải tạo không giam giữ", "Cả A, B, C đều đúng"], a: 0 },
+            { q: "Sinh viên tham gia đánh nhau, gây mất trật tự công cộng sẽ bị xử lý:", o: ["Hình sự", "Hành chính", "Kỷ luật", "Tùy theo mức độ vi phạm"], a: 3 },
+            { q: "Để phân biệt vi phạm pháp luật hình sự và vi phạm pháp luật hành chính, căn cứ vào:", o: ["Chủ thể vi phạm", "Khách thể vi phạm", "Tính chất nguy hiểm của hành vi vi phạm pháp luật", "Tính có lỗi"], a: 2 },
+            { q: "Hình phạt nào được tuyên độc lập", o: ["Hình phạt chính, hình phạt bổ sung", "Hình phạt chính", "Hình phạt bổ sung", "Cả A, B, C đều sai"], a: 1 },
+            { q: "Hình phạt chỉ áp dụng đối với:", o: ["Cá nhân", "Pháp nhân", "Vừa cá nhân vừa pháp nhân", "Cá nhân, pháp nhân và các loại chủ thể khác"], a: 2 },
+            { q: "Độ tuổi phải chịu trách nhiệm đối với mọi vi phạm hành chính là:", o: ["Đủ 13", "Đủ 14", "Đủ 15", "Đủ 16"], a: 3 },
+            { q: "Chủ thể vi phạm pháp luật hành chính không bị xử lý vi phạm trong trường hợp:", o: ["Chưa đủ 18 tuổi", "Tình thế cấp thiết", "Thiếu hiểu biết về pháp luật", "Cả A, B, C đều đúng"], a: 1 },
+            { q: "Căn cứ NĐ 46/2016 mức phạt vi phạm giao thông đối với người điều khiển xe máy mà sử dụng điện thoại khi đang lái xe là:", o: ["100.000VNĐ- 150.000VNĐ", "100.000VNĐ- 200.000VNĐ", "100.000VNĐ- 250.000VNĐ", "100.000VNĐ- 300.000VNĐ"], a: 1 },
+            { q: "Toà án nhân dân tuyên án D mức án tù chung thân vì tội giết người, 10 năm tù vì tội cướp giật tài sản, 5 năm tù vì tội hiếp dâm. Vậy hình phạt chung cho D là:", o: ["15 năm", "20 năm tù", "Tù chung thân", "Tử hình"], a: 2 },
+            { q: "Tháng 2/ 2010, anh A bị toà án tối cao tuyên án giết chị B, chịu hình phạt 15 năm tù. Tháng 3/ 2014 anh C ra đầu thú và cơ quan điều tra xác minh C là người giết chị B. Tháng 4/2014 toà tối cao xét xử lại vụ án. Đây là giai đoạn nào trong tố tụng hình sự:", o: ["Phúc thẩm", "Tái thẩm", "Giám đốc thẩm", "Sơ thẩm"], a: 1 },
+            { q: "Một người chỉ bị coi là có tội khi:", o: ["Bị cơ quan Công an bắt tạm giam để điều tra", "Bị cơ quan Công an bắt theo lệnh bắt của Viện Kiểm Sát", "Bị cơ quan Công an khởi tố, điều tra về hành vi vi phạm pháp luật", "Có bản án kết tội của Tòa án đã có hiệu lực pháp luật"], a: 3 },
+            { q: "Phúc thẩm là giai đoạn phải tiến hành ở toà án nhân dân:", o: ["Tối cao", "Toà án nhân dân cấp trên trực tiếp của toà án nhân dân đã xét xử sơ thẩm", "Toà án nhân dân cùng cấp toà án nhân dân giai đoạn sơ thẩm", "Thấp nhất là toà án nhân dân cấp huyện"], a: 1 },
+            { q: "Thời hiệu truy cứu trách nhiệm hình sự đối với tội phạm đặc biệt nghiêm trọng là:", o: ["10 năm", "15 năm", "20 năm", "25 năm"], a: 2 },
+            { q: "Đối với tội phạm bị tuyên án tử hình mà có thư đặc xá của Chủ tịch nước thì hình phạt phải chịu là:", o: ["Tù chung thân", "Tù từ 20 năm trở lên", "Tù từ 25 năm trở lên", "Tuỳ từng trường hợp"], a: 0 },
+            { q: "Chủ thể của quan hệ pháp luật hình sự là:", o: ["Cá nhân", "Cơ quan, tổ chức", "Cơ quan, tổ chức, các nhân", "Cá nhân, pháp nhân"], a: 3 },
+            { q: "A lấy trộm của bà B 10 triệu đồng và 2 cây vàng. A chịu trách nhiệm pháp lý:", o: ["Trách nhiệm hành chính", "Trách nhiệm hình sự", "Trách nhiệm dấn sự", "Trách nhiệm kỷ luật"], a: 1 },
+            { q: "Điền vào chỗ trống: …là hành vi nguy hiểm cho xã hội được quy định trong Bộ luật Hình sự", o: ["Vi phạm pháp luật", "Tội phạm", "Chủ thể vi phạm pháp luật", "Lỗi"], a: 1 },
+            { q: "Luật hình sự Việt Nam quy định không áp dụng hình thức xử phạt tử hình đối với:", o: ["Đối với người nước ngoài có quốc tịch Việt Nam", "Phụ nữ nuôi con nhỏ dưới 36 tháng tuổi", "Người cao tuổi phạm tội", "Cả A, B, C đều đúng"], a: 1 },
+            { q: "Thời hiệu kháng cáo bản án xét xử sơ thẩm theo Luật hình sự Việt Nam là:", o: ["15 ngày", "20 ngày", "30 ngày", "Tùy từng vụ án"], a: 0 },
+            { q: "Dấu hiệu của tội phạm:", o: ["Tính nguy hiểm cho xã hội", "Tính trái pháp Luật Hình sự", "Tính có lỗi của chủ thể", "Cả A. B. C đều đúng"], a: 3 },
+            { q: "Trách nghiệm pháp lý nghiêm khắc nhất là:", o: ["Trách nhiệm hình sự", "Trách nhiệm dân sự", "Trách nhiệm kỷ luật", "Trách nhiệm vật chất"], a: 0 },
+            { q: "A là người nghiện ma tuý, để có tiền đã dùng dao giết 3 người trong một gia đình để cướp 5 triệu đồng. Hành vi của A thuộc loại:", o: ["Tội phạm ít nghiêm trọng", "Tội phạm nghiêm trọng", "Tội phạm rất nghiêm trọng", "Tội phạm đặc biệt nghiêm trọng"], a: 3 },
+            { q: "Hình phạt nào không được tuyên độc lập", o: ["Hình phạt chính, hình phạt bổ sung", "Hình phạt chính", "Hình phạt bổ sung", "Cả A, B, C đều sai"], a: 2 },
+            { q: "Hệ thống hình phạt trong Luật Hình sự Việt Nam gồm:", o: ["Hình phạt chính, hình phạt bổ sung", "Hình phạt chính, hình phạt phụ", "Hình phạt chính, biện pháp tư pháp", "Hình phạt cơ bản, hình phạt không cơ bản"], a: 0 },
+            { q: "A phạm tội đặc biệt nghiêm trọng theo quy định luật hình sự khi 15 tuổi. Khung hình phạt cao nhất mà A phải chịu:", o: ["12 năm tù", "15 năm tù", "20 năm tù", "Tử hình"], a: 0 },
+            { q: "Luật hôn nhân và gia đình năm 2014 có hiệu lực từ ngày, tháng, năm nào?", o: ["1/1/2014", "19/6/2014", "1/1/2015", "1/1/2016"], a: 2 },
+            { q: "Theo Luật Hôn nhân và Gia đình việc lựa chọn nơi cư trú của vợ chồng là do ai quyết định?", o: ["Vợ quyết định", "Chồng quyết định", "Vợ chồng thoản thuận", "Vợ chồng, con cái thỏa thuận"], a: 2 },
+            { q: "Độ tuổi kết hôn theo quy định của Luật Hôn nhân và gia đình năm 2014 là như thế nào?", o: ["Nữ từ đủ 18 tuổi trở lên, nam từ đủ 20 tuổi trở lên", "Nữ từ 18 tuổi trở lên, nam từ 20 tuổi trở lên", "Công dân từ 18 tuổi trở lên", "Nam, nữ từ 20 tuổi trở lên"], a: 0 },
+            { q: "Theo quy định của luật hôn nhân - gia đình thì những trường hợp nào sau đây không bị cấm kết hôn?", o: ["Có quan hệ trong phạm vi ba đời, có cùng dòng máu về trực hệ", "Hôn nhân cùng giới", "Người mất năng lực hành vi dân sự", "Cả A, B, C đều đúng"], a: 1 },
+            { q: "Thủ tục kết hôn theo quy định của Luật hôn nhân - gia đình Việt Nam là gì?", o: ["Chỉ cần tổ chức tiệc cưới", "Phải đăng ký kết hôn ở Ủy ban nhân dân bên nam thường trú", "Phải đăng ký kết hôn tại Tòa án", "Phải đăng ký tại Ủy ban nhân dân xã, phườnng, thị trấn nơi cư trú của một trong hai bên"], a: 3 },
+            { q: "Chế độ hôn nhân và gia đình nước ta dựa trên nguyên tắc nào?", o: ["Quan hệ hôn nhân và gia đình được tôn trọng và được pháp luật bảo vệ", "Hôn nhân tự nguyện, tiến bộ, một vợ một chồng, vợ chồng bình đẳng", "Bảo vệ quyền và lợi ích hợp pháp của các thành viên trong gia đình", "Cả A, B, C đều đúng"], a: 3 },
+            { q: "Chế độ hôn nhân và gia đình nước ta nghiêm cấm việc kết hôn đối với những đối tượng nào?", o: ["Người đang có vợ hoặc chồng", "Người mất năng lực hành vi dân sự", "Giữa những người cùng dòng máu trực hệ, giữa những người có họ trong phạm vị ba đời", "Cả A,B,C đều đúng"], a: 3 },
+            { q: "Đối tượng nào sau đây được tư vấn về gia đình?", o: ["Nam từ 20 tuổi, nữ từ 18 tuổi;", "Người chuẩn bị kết hôn", "Những người mới kết hôn.", "Tất cả Phụ nữ."], a: 1 },
+            { q: "Hành vi bạo lực gia đình theo quy định của Luật phòng, chống bạo lực gia đình gồm có mấy nhóm hành vi?", o: ["1 nhóm: Bạo lực về tình dục", "2 nhóm: Bạo lực về thể chất và bạo lực về tinh thần.", "3 nhóm: Bạo lực về thể chất; bạo lực về tinh thần; bạo lực về kinh tế.", "4 nhóm: Bạo lực về thể chất; bạo lực về tinh thần; bạo lực về kinh tế; bạo lực về tình dục."], a: 3 },
+            { q: "Nghĩa vụ cấp dưỡng được thực hiện giữa ai?", o: ["Cha, mẹ và con", "Giữa anh chị em với nhau", "Giữa vợ và chồng", "Cả A, B, C đều đúng"], a: 3 },
+            { q: "Câu khẳng định nào sau đây đúng theo quy định của Luật Hôn nhân và gia đình Việt Nam?", o: ["Con nuôi và con đẻ không được kết hôn với nhau", "Con nuôi không được thừa hưởng tài sản thừa kế theo pháp luật do cha mẹ nuôi để lại nếu cha mẹ nuôi có con đẻ", "Cha mẹ nuôi không được thay đổi họ tên, dân tộc của con nuôi theo họ tên, dân tộc của mình", "Những người đã từng có mối quan hệ cha mẹ nuôi và con nuôi không được kết hôn với nhau"], a: 3 },
+            { q: "Con cái có thể tự mình quản lý tài sản riêng khi bao nhiêu tuổi?", o: ["Từ đủ 18 tuổi trở lên", "Từ đủ 15 tuổi trở lên", "Đã kết hôn và có gia đình riêng", "Có sự đồng ý của cha, mẹ"], a: 1 },
+            { q: "Nghĩa vụ cấp dưỡng chấm dứt trong các trường hợp nào sau đây?", o: ["Người được cấp dưỡng đã thành niên và có khả năng lao động", "Người được cấp dưỡng được nhận làm con nuôi", "Người được cấp dưỡng có thu nhập hoặc tài sản để tự nuôi mình", "Cả A, B, C đều đúng"], a: 3 },
+            { q: "Theo luật Hôn nhân và gia đình 2014, bố mẹ ly hôn, con được đưa ra nguyện vọng sống với ai khi bao nhiêu tuổi?", o: ["Từ đủ 6 tuổi trở lên", "Từ đủ 7 tuổi trở lên", "Từ đủ 8 tuổi trở lên", "Từ đủ 9 tuổi trở lên"], a: 1 },
+            { q: "A (Nam) và B (Nữ) đã đủ tuổi kết hôn nhưng không đăng ký kết hôn mà \"sống thử\". Vậy pháp luật hiện hành quy định như thế nào về trường hợp này?", o: ["Yêu cầu A (Nam) và B (Nữ) làm thủ tục đăng ký kết hôn", "Huỷ việc kết hôn trái pháp luật giữa A (Nam) và B (Nữ)", "Thừa nhận A (Nam) và B (Nữ) là vợ chồng", "Cả A, B, C đều sai"], a: 3 },
+            { q: "Chia tài sản chung trong thời kỳ hôn nhân bị vô hiệu trong trường hợp nào?", o: ["Ảnh hưởng đến đạo đức xã hội", "Trốn tránh nghĩa vụ nuôi dưỡng, cấp dưỡng", "Tài sản dùng để kinh doanh riêng của vợ hoặc chồng", "Cả A, B, C đều đúng"], a: 1 },
+            { q: "Theo Bộ luật Lao đông, người lao động là người:", o: ["Từ đủ 14 tuổi trở lên, có khả năng lao động", "Từ đủ 15 tuổi trở lên, có khả năng lao động", "Từ đủ 16 tuổi trở lên, có khả năng lao động", "Từ đủ 18 tuổi trở lên, có khả năng lao động"], a: 1 },
+            { q: "Trong quan hệ lao động, tiền lương là dựa trên:", o: ["Sự thỏa thuận giữa người lao động và người sử dụng lao động phù hợp với quy định của pháp luật", "Sự đề nghị của người lao động", "Sự quyết định của người sử dụng lao động", "Căn cứ của pháp luật về mức lương căn bản và tối thiểu của xã hội"], a: 0 },
+            { q: "Phương pháp điều chỉnh của ngành luật lao động là:", o: ["Quyền uy, mệnh lệnh", "Quyền uy, thỏa thuận", "Thỏa thuận, mệnh lệnh, có sự tham gia của tổ chức công đoàn", "Tất cả đều sai"], a: 2 },
+            { q: "Trong trường hợp nào người lao động được quyền đơn phương chấm dứt hợp đồng lao động?", o: ["Bản thân hoặc gia đình thật sự có hoàn cảnh khó khăn không thể tiếp tục thực hiện hợp đồng.", "Được bầu làm nhiệm vụ chuyên trách ở các cơ quan dân cử hoặc được bổ nhiệm giữ chức vụ trong bộ máy nhà nước.", "Người lao động nữ có thai phải nghỉ việc theo chỉ định của thầy thuốc", "Cả A, B và C đều đúng"], a: 3 },
+            { q: "Trong trường hợp nào người sử dụng lao động được quyền đơn phương chấm dứt hợp đồng lao động?", o: ["Người lao động thường xuyên không hoàn thành công việc theo hợp đồng", "Người lao động nữ nghỉ thai sản theo chế độ", "Người lao động đi làm nghĩa vụ quân sự", "Người lao động bị tai nạn"], a: 0 },
+            { q: "Người lao động làm việc vào ban đêm được trả lương như thế nào?", o: ["Được trả thêm ít nhất bằng 10% tiền lương tính theo đơn giá tiền lương hoặc tiền lương của công việc đang làm theo ban ngày", "Được trả thêm ít nhất bằng 20% tiền lương tính theo đơn giá tiền lương hoặc tiền lương của công việc đang làm theo ban ngày", "Được trả thêm ít nhất bằng 30% tiền lương tính theo đơn giá tiền lương hoặc tiền lương của công việc đang làm theo ban ngày", "Được trả thêm ít nhất bằng 40% tiền lương tính theo đơn giá tiền lương hoặc tiền lương của công việc đang làm theo ban ngày"], a: 2 },
+            { q: "Người lao động làm việc trong khoảng thời gian nào sau đây thì được coi là làm việc vào ban đêm?", o: ["Từ 21 giờ đến 6 giờ sáng ngày hôm sau", "Từ 22 giờ đến 6 giờ sáng ngày hôm sau", "Từ 21 giờ đến 5 giờ sáng ngày hôm sau", "Từ 22 giờ đến 5 giờ sáng ngày hôm sau"], a: 1 },
+            { q: "Bộ luật lao động quy định những hình thức xử lý kỷ luật lao động nào?", o: ["Cảnh cáo; kéo dài thời gian nâng lương; sa thải.", "Khiển trách; kéo dài thời hạn nâng bậc lương không quá 06 tháng hoặc cách chức; sa thải.", "Cảnh cáo; kéo dài thời gian nâng lương không quá sáu tháng hoặc chuyển làm công việc khác có mức lương thấp hơn.", "Khiển trách; cảnh cáo; cách chức; sa thải."], a: 3 },
+            { q: "Người lao động được nghỉ về việc riêng mà vẫn hưởng nguyên lương trong trường hợp nào?", o: ["Kết hôn, nghỉ 3 ngày", "Con kết hôn, nghỉ 1 ngày", "Bố mẹ, vợ chồng, con chết, nghỉ 3 ngày", "Cả A, B, C đều đúng"], a: 3 },
+            { q: "Hình thức kỷ luật sa thải được áp dụng trong những trường hợp nào?", o: ["Người lao động có hành vi trộm cắp, tham ô, tiết lộ bí mật công nghệ, kinh doanh.", "Người lao động bị xử lý kỷ luật kéo dài thời hạn nâng lương, chuyển làm công việc khác mà tái phạm.", "Người lao động tự ý bỏ việc 05 ngày cộng dồn trong một tháng hoặc 20 ngày cộng dồn trong một năm.", "Cả A,B,C đều đúng"], a: 3 },
+            { q: "Theo Bộ luật lao động, thời hiệu xử lý vi phạm kỷ luật lao động tối đa là 12 tháng trong trường hợp nào?", o: ["Trường hợp hành vi vi phạm liên quan trực tiếp đến biểu tình.", "Trường hợp hành vi vi phạm liên quan trực tiếp đến ăn cắp.", "Trường hợp hành vi vi phạm liên quan trực tiếp đến tài chính.", "Trường hợp hành vi vi phạm liên quan trực tiếp đến nhân thân."], a: 2 },
+            { q: "Luật Lao động quy định như thế nào về thời giờ làm việc?", o: ["Không quá 8 giờ trong một ngày hoặc 40 giờ trong một tuần", "Không quá 8 giờ trong một ngày hoặc 48 giờ trong một tuần", "Không quá 10 giờ trong một ngày hoặc 50 giờ trong một tuần", "Không quá 10 giờ trong một ngày hoặc 52 giờ trong một tuần"], a: 1 },
+            { q: "Hậu quả pháp lý trong trường hợp người lao động đơn phương chấm dứt hợp đồng lao động trái pháp luật?", o: ["Người lao động không được trợ cấp thôi việc và phải bồi thường nửa tháng tiền lương.", "Bồi thường chi phí đào tạo (nếu có) cho người sử dụng lao động.", "Nếu vi phạm thời hạn báo trước, phải bồi thường một khoản tiền tương ứng ngày không báo trước.", "Cả A, B và C đều đúng"], a: 3 },
+            { q: "Điền từ vào chỗ trống: Thỏa ước lao động tập thể là …..thỏa thuận giữa tập thể người lao động vối người sử dụng lao động.", o: ["Văn bản", "Hình thức", "Nội dung", "Điều kiện"], a: 0 },
+            { q: "Người lao động làm thêm giờ vào ngày lễ, tết, ngày nghỉ có hưởng lương thì được trả lương như thế nào?", o: ["Ít nhất bằng 100% tiền lương.", "Ít nhất bằng 150% tiền lương.", "Ít nhất bằng 200% tiền lương.", "Ít nhất bằng 300% tiền lương."], a: 3 },
+            { q: "Điền từ vào chỗ trống: Tham nhũng là...của người có chức vụ, quyền hạn lợi dụng chức vụ, quyền hạn đó vì vụ lợi", o: ["Hành động", "Thái độ", "Hành vi", "Biểu hiện"], a: 2 },
+            { q: "Hành vi nào sau đây được xác định là hành vi tham nhũng", o: ["Lạm dụng chức vụ, quyền hạn chiếm đoạt tài sản", "Lạm dụng tín nhiệm chiếm đoạt tài sản", "Trộm cắp tài sản", "Cả A, B, C đều đúng"], a: 0 },
+            { q: "Tác hại của tham nhũng", o: ["Tác hại về chính trị", "Tác hại về kinh tế", "Tác hại về xã hội", "Cả A,B,C đều đúng"], a: 3 },
+            { q: "Hành vi tham nhũng là hành vi thực hiện với lỗi:", o: ["Cố ý trực tiếp", "Cố ý gián tiếp", "Cả A, B đều đúng", "Cả A, B đều sai"], a: 0 },
+            { q: "Mục đích của hành vi tham nhũng là:", o: ["Chiếm đoạt tài sản", "Nhận hối lộ", "Vụ lợi", "Tham ô tài sản"], a: 2 },
+            { q: "Theo Luật phòng chống tham nhũng thì những người nào sau đây phải kê khai tài sản", o: ["Cán bộ từ phó trưởng phòng Uỷ ban nhân dân huyện, quận trở lên", "Một số cán bộ công chức quản lý ngân sách, tài sản nhà nước hoặc trực tiếp tiếp xúc công việc", "Người được ứng cử đại biểu Quốc hội, đại biểu Hội đồng nhân dân", "Cả A, B, C đều đúng"], a: 3 },
+            { q: "Một trong những nguyên tắc xử lý tài sản tham nhũng là?", o: ["Tài sản tham nhũng phải được trả lại cho chủ sở hữu hoặc xung công quỹ nhà nước", "Cơ quan phải áp dụng biện pháp kê biên tài sản để thu hồi", "Cho đoàn người đến tịch thu tài sản mang về niêm yết", "Cả A, B, C đều đúng"], a: 0 },
+            { q: "Hình thức tố cáo tham nhũng", o: ["Tố cáo trực tiếp", "Gửi đơn tố cáo", "Tố cáo qua điện thoại, bằng thông điệp dữ liệu", "Cả A,B, C đều đúng"], a: 3 },
+            { q: "Chủ thể tham nhũng là", o: ["Bất kể cá nhân nào", "Một số cá nhân, tổ chức", "Người có chức vụ, quyền hạn", "Một số cá nhân có chức vụ, quyền hạn"], a: 2 },
+            { q: "Lựa chọn đáp án đúng điền vào chỗ trống: Tham ô có giá trị … thì bị truy cứu trách nhiệm hình sự:", o: ["500.000 đồng", "1.000.000 đồng", "1.500.000 đồng", "2.000.000 đồng"], a: 3 }
+        ];
 
-    // quizData sẽ đóng vai trò mảng động phục vụ Chế độ Luyện tập
-    let quizData = [];
-    let currentIdx = 0;
-    let userAnswers = [];
+        // Biến lưu trữ mảng câu hỏi sau khi xáo trộn
+        let questions = [];
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
 
-    // Khởi tạo giao diện khi web chạy
-    function init() {
-        mixAndResetQuizData();
-        renderGrid();
-        renderQuestion();
-        renderFullList(); 
-    }
-
-    // Hàm thực hiện xáo trộn thuật toán Fisher-Yates và reset bộ nhớ trả lời
-    function mixAndResetQuizData() {
-        quizData = [...originalQuizData];
-        for (let i = quizData.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [quizData[i], quizData[j]] = [quizData[j], quizData[i]];
-        }
-        userAnswers = new Array(quizData.length).fill(null);
-        currentIdx = 0;
-    }
-
-    function renderQuestion() {
-        const qData = quizData[currentIdx];
-        const card = document.getElementById("quizCard");
-        
-        let html = '';
-        if (qData.ctx) {
-            html += `<div class="situation-box">${situationText}</div>`;
-        }
-        
-        // Hiển thị số thứ tự hiện tại trong bộ đề đã xáo trộn, đi kèm ID gốc của câu đó để đối chiếu
-        html += `<div class="question-title">Câu ${currentIdx + 1} <span style="font-size:13px; color:#64748b; font-weight:400;">(ID Gốc: Câu ${qData.id})</span>: ${qData.q}</div>`;
-        html += `<ul class="options-list">`;
-        
-        qData.o.forEach((opt, idx) => {
-            let className = 'option-item';
-            if (userAnswers[currentIdx] !== null) {
-                className += ' disabled';
-                if (idx === qData.a) className += ' correct';
-                else if (idx === userAnswers[currentIdx]) className += ' incorrect';
+        // Thuật toán xáo trộn mảng ngẫu nhiên (Fisher-Yates Shuffle)
+        function shuffleQuestions(array) {
+            let currentIndex = array.length, randomIndex;
+            while (currentIndex != 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                // Đảo vị trí các phần tử
+                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
             }
-            html += `<li class="${className}" onclick="selectOption(${idx})">${getLetter(idx)}. ${opt}</li>`;
-        });
-        
-        html += `</ul>`;
-        card.innerHTML = html;
-
-        document.getElementById("prevBtn").disabled = currentIdx === 0;
-        document.getElementById("nextBtn").disabled = currentIdx === quizData.length - 1;
-
-        // Cập nhật trạng thái lưới tiến trình bên phải
-        document.querySelectorAll('.grid-btn').forEach((btn, idx) => {
-            if (idx === currentIdx) btn.classList.add('active');
-            else btn.classList.remove('active');
-        });
-    }
-
-    function getLetter(idx) {
-        return ['A', 'B', 'C', 'D', 'E'][idx] || '';
-    }
-
-    function selectOption(optIdx) {
-        if (userAnswers[currentIdx] !== null) return;
-        userAnswers[currentIdx] = optIdx;
-        
-        const correctAns = quizData[currentIdx].a;
-        const gridBtn = document.getElementById(`grid-btn-${currentIdx}`);
-        
-        if (optIdx === correctAns) {
-            gridBtn.classList.add('correct');
-        } else {
-            gridBtn.classList.add('incorrect');
+            return array;
         }
-        
-        renderQuestion();
-        updateStats();
-    }
 
-    function changeQuestion(dir) {
-        currentIdx += dir;
-        if (currentIdx < 0) currentIdx = 0;
-        if (currentIdx >= quizData.length) currentIdx = quizData.length - 1;
-        renderQuestion();
-    }
+        // Khởi động bài Quiz
+        function startQuiz() {
+            // Sao chép sâu mảng câu hỏi gốc để không làm hỏng dữ liệu gốc, sau đó xáo trộn
+            questions = shuffleQuestions(JSON.parse(JSON.stringify(originalQuestions)));
+            userAnswers = new Array(questions.length).fill(null);
+            currentQuestionIndex = 0;
 
-    function jumpToQuestion(idx) {
-        currentIdx = idx;
-        renderQuestion();
-    }
-
-    function renderGrid() {
-        const grid = document.getElementById("questionGrid");
-        grid.innerHTML = '';
-        quizData.forEach((q, idx) => {
-            const btn = document.createElement('button');
-            btn.className = 'grid-btn';
-            btn.id = `grid-btn-${idx}`;
-            btn.innerText = idx + 1; // Lưới hiển thị tiến trình từ 1 đến 60 câu luyện tập
-            btn.onclick = () => jumpToQuestion(idx);
-            grid.appendChild(btn);
-        });
-    }
-
-    function updateStats() {
-        let correct = 0;
-        let incorrect = 0;
-        userAnswers.forEach((ans, idx) => {
-            if (ans !== null) {
-                if (ans === quizData[idx].a) correct++;
-                else incorrect++;
-            }
-        });
-        document.getElementById("correctCount").innerText = correct;
-        document.getElementById("incorrectCount").innerText = incorrect;
-    }
-
-    function resetQuiz() {
-        if (confirm("Bạn có chắc chắn muốn XÁO TRỘN ĐỀ VÀ LÀM LẠI từ đầu không?")) {
-            mixAndResetQuizData();
-            document.getElementById("correctCount").innerText = '0';
-            document.getElementById("incorrectCount").innerText = '0';
-            renderGrid();
-            renderQuestion();
+            document.getElementById('welcome-box').classList.add('hidden');
+            document.getElementById('quiz-box').classList.remove('hidden');
+            document.getElementById('progress-text').innerText = `1/${questions.length}`;
+            showQuestion();
         }
-    }
 
-    function switchTab(mode) {
-        const tabs = document.querySelectorAll('.tab-btn');
-        if (mode === 'practice') {
-            tabs[0].classList.add('active');
-            tabs[1].classList.remove('active');
-            document.getElementById("practiceMode").style.display = 'grid';
-            document.getElementById("listMode").style.display = 'none';
-        } else {
-            tabs[0].classList.remove('active');
-            tabs[1].classList.add('active');
-            document.getElementById("practiceMode").style.display = 'none';
-            document.getElementById("listMode").style.display = 'block';
-        }
-    }
-
-    // Render danh sách chuẩn dựa trên mảng tĩnh originalQuizData để không bị xáo trộn khi tra cứu toàn bộ câu hỏi
-    function renderFullList() {
-        const container = document.getElementById("fullQuestionList");
-        let html = '';
-        
-        originalQuizData.forEach((q, idx) => {
-            if (q.id === 16) {
-                html += `<div class="situation-box" style="margin-top:20px;">${situationText}</div>`;
-            }
-            html += `<div class="list-item">`;
-            html += `<div style="font-weight:600; margin-bottom:8px;">Câu ${q.id}: ${q.q}</div>`;
-            q.o.forEach((opt, oIdx) => {
-                html += `<div style="margin-left: 15px;">${getLetter(oIdx)}. ${opt}</div>`;
+        // Hiển thị câu hỏi hiện tại
+        function showQuestion() {
+            const currentQuestion = questions[currentQuestionIndex];
+            
+            // Cập nhật text câu hỏi và số thứ tự hiển thị thuần túy (Không kèm số câu cũ)
+            document.getElementById('question-number').innerText = `Câu hỏi ${currentQuestionIndex + 1}`;
+            document.getElementById('question-text').innerText = currentQuestion.q;
+            
+            // Xóa sạch container đáp án cũ
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            // Render danh sách lựa chọn
+            currentQuestion.o.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.className = `w-full text-left p-4 rounded-xl border border-slate-200 hover:bg-slate-50 transition font-medium flex items-center justify-between group cursor-pointer`;
+                
+                // Ký tự đầu lựa chọn (A, B, C, D)
+                const prefix = String.fromCharCode(65 + index);
+                button.innerHTML = `<span><strong class="text-slate-400 group-hover:text-blue-600 mr-2">${prefix}.</strong> ${option}</span>`;
+                
+                // Nếu người dùng đã chọn đáp án này trước đó
+                if (userAnswers[currentQuestionIndex] !== null) {
+                    if (index === currentQuestion.a) {
+                        // Đáp án đúng hiển thị màu xanh lá
+                        button.className = `w-full text-left p-4 rounded-xl border border-emerald-500 bg-emerald-50 text-emerald-900 font-medium flex items-center justify-between`;
+                        button.innerHTML += `<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>`;
+                    } else if (index === userAnswers[currentQuestionIndex]) {
+                        // Đáp án người dùng chọn sai hiển thị màu đỏ
+                        button.className = `w-full text-left p-4 rounded-xl border border-rose-500 bg-rose-50 text-rose-900 font-medium flex items-center justify-between`;
+                        button.innerHTML += `<svg class="w-5 h-5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>`;
+                    }
+                } else {
+                    // Nếu chưa trả lời, gán sự kiện click chọn đáp án
+                    button.onclick = () => selectOption(index);
+                }
+                
+                optionsContainer.appendChild(button);
             });
-            html += `<button class="show-ans-btn" onclick="toggleAns(${q.id})">Xem đáp án chính xác</button>`;
-            html += `<div class="ans-text" id="ans-text-${q.id}">Đáp án chính xác: ${getLetter(q.a)} - ${q.o[q.a]}</div>`;
-            html += `</div>`;
-        });
-        container.innerHTML = html;
-    }
 
-    function toggleAns(id) {
-        const el = document.getElementById(`ans-text-${id}`);
-        if (el.style.display === 'block') {
-            el.style.display = 'none';
-        } else {
-            el.style.display = 'block';
+            // Cập nhật trạng thái các nút Điều hướng
+            document.getElementById('prev-btn').disabled = currentQuestionIndex === 0;
+            if (currentQuestionIndex === questions.length - 1) {
+                document.getElementById('next-btn').innerText = "Nộp Bài & Kết Thúc";
+            } else {
+                document.getElementById('next-btn').innerText = "Câu Tiếp Theo";
+            }
+
+            // Cập nhật thanh tiến độ
+            const progressPercent = ((currentQuestionIndex + 1) / questions.length) * 100;
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+            document.getElementById('progress-text').innerText = `${currentQuestionIndex + 1}/${questions.length}`;
         }
-    }
 
-    window.onload = init;
-</script>
+        // Xử lý khi bấm chọn một đáp án
+        function selectOption(selectedIndex) {
+            userAnswers[currentQuestionIndex] = selectedIndex;
+            showQuestion(); // Render lại câu hỏi ngay lập tức để hiển thị kết quả Đúng/Sai
+        }
+
+        // Chuyển sang câu hỏi tiếp theo
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                showQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        // Quay lại câu hỏi trước
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                showQuestion();
+            }
+        }
+
+        // Kết thúc bài thi và hiển thị điểm số
+        function finishQuiz() {
+            document.getElementById('quiz-box').classList.add('hidden');
+            document.getElementById('result-box').classList.remove('hidden');
+            
+            // Tính số lượng câu trả lời đúng
+            let correctCount = 0;
+            userAnswers.forEach((ans, idx) => {
+                if (ans === questions[idx].a) correctCount++;
+            });
+
+            document.getElementById('final-score').innerText = correctCount;
+            document.getElementById('total-questions').innerText = questions.length;
+
+            // Đưa ra nhận xét ngắn gọn
+            const ratio = correctCount / questions.length;
+            let feedback = "";
+            if (ratio >= 0.8) feedback = "Xuất sắc! Kiến thức Pháp luật đại cương của bạn rất vững chắc. Sẵn sàng đi thi lấy điểm A+ rồi nhé!";
+            else if (ratio >= 0.5) feedback = "Khá tốt! Bạn đã nắm được các nguyên lý cơ bản. Hãy xem lại các câu sai để cải thiện thêm điểm số.";
+            else feedback = "Bạn cần cố gắng học thêm nhé! Thử sức lại một lần nữa xem sao.";
+
+            document.getElementById('feedback-text').innerText = feedback;
+        }
+
+        // Reset toàn bộ trạng thái để làm lại (Sẽ đảo lại thứ tự câu hỏi mới)
+        function resetQuiz() {
+            document.getElementById('result-box').classList.add('hidden');
+            document.getElementById('welcome-box').classList.remove('hidden');
+            document.getElementById('progress-text').innerText = `0/${originalQuestions.length}`;
+        }
+    </script>
 </body>
 </html>
