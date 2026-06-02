@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ Thống Ôn Thi Trắc Nghiệm Cao Cấp - TACB1</title>
+    <title>Hệ Thống Ôn Thi Trắc Nghiệm Cao Cấp - TACB1 Full Trọn Bộ</title>
     <style>
         :root {
             --slate-900: #0f172a;
@@ -14,7 +14,6 @@
             --indigo-700: #4338ca;
             --emerald-600: #16a34a;
             --emerald-500: #10b981;
-            --emerald-50; #ecfdf5;
             --rose-600: #dc2626;
             --rose-50: #fef2f2;
             --amber-500: #f59e0b;
@@ -107,7 +106,6 @@
             max-width: 1200px;
         }
 
-        /* Thanh trạng thái / Header phía trên */
         header {
             background: #ffffff;
             padding: 24px 35px;
@@ -117,7 +115,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border: 1px solid #line;
             border: 1px solid var(--slate-100);
         }
 
@@ -140,7 +137,6 @@
             align-items: center;
         }
 
-        /* Nút bấm Premium */
         .btn {
             padding: 12px 22px;
             border-radius: 10px;
@@ -171,7 +167,7 @@
             border-color: #cbd5e1;
         }
 
-        /* Widget Đồng hồ & Tiến độ ghim phía trên */
+        /* Widget Đồng hồ & Tiến độ */
         .quiz-status-bar {
             display: flex;
             gap: 20px;
@@ -209,7 +205,7 @@
             animation: pulse 1s infinite;
         }
 
-        /* Dashboard báo cáo kết quả sau khi nộp bài */
+        /* Dashboard báo cáo kết quả */
         .dashboard-container {
             background: linear-gradient(135deg, #ffffff, var(--slate-100));
             border-radius: 20px;
@@ -245,7 +241,7 @@
         .metric-box.m-success .m-val { color: var(--emerald-600); }
         .metric-box.m-danger .m-val { color: var(--rose-600); }
 
-        /* Đoạn văn đọc hiểu (Passage) */
+        /* Đoạn văn đọc hiểu */
         .passage-box {
             background: #ffffff;
             border-left: 5px solid var(--indigo-600);
@@ -280,8 +276,6 @@
             font-weight: 700;
             margin-bottom: 20px;
             color: var(--slate-900);
-            display: flex;
-            gap: 10px;
         }
 
         .options-grid {
@@ -302,10 +296,9 @@
             color: var(--text-main);
             display: flex;
             align-items: center;
-            position: relative;
         }
 
-        /* Giao diện tương tác khi bấm chọn ngầm (Chưa nộp) */
+        /* Chế độ Luyện đề (Chưa nộp) */
         .quiz-mode-active .option-item:hover:not(.disabled) {
             border-color: var(--indigo-600);
             background-color: var(--slate-100);
@@ -317,7 +310,7 @@
             box-shadow: 0 0 0 1px var(--indigo-600);
         }
 
-        /* Chế độ Học Thuộc: Luôn hiện màu đỏ cho câu đúng */
+        /* Chế độ Học Thuộc */
         .study-mode-active .is-correct-ans {
             color: var(--rose-600) !important;
             font-weight: 800 !important;
@@ -325,7 +318,7 @@
             background-color: var(--rose-50) !important;
         }
 
-        /* Chế độ Luyện Đề: Sau khi ĐÃ NỘP bài */
+        /* Sau khi ĐÃ NỘP bài */
         .quiz-submitted .option-item { cursor: not-allowed; }
         .quiz-submitted .option-item.selected-correct {
             background-color: #dcfce7 !important;
@@ -344,7 +337,7 @@
             border-style: dashed;
         }
 
-        /* Khu vực tổng hợp các câu làm sai chuyên biệt */
+        /* Khối tổng hợp các câu làm sai */
         .wrong-summary-card {
             background: #ffffff;
             border-radius: 16px;
@@ -370,7 +363,6 @@
         .wrong-item p { font-weight: 700; margin-bottom: 8px; }
         .wrong-item span { font-weight: 600; font-size: 0.95rem; }
 
-        /* Nút nộp bài cố định góc dưới */
         .submit-action-container {
             margin-top: 40px;
             text-align: center;
@@ -473,7 +465,7 @@
     </div>
 
     <script>
-        // --- CƠ SỞ DỮ LIỆU BÀI TẬP ---
+        // --- TOÀN BỘ CƠ SỞ DỮ LIỆU ĐƯỢC TRANSCRIBE TỪ 9 ẢNH ĐÃ UP ---
         const dataset = {
             part3: {
                 type: "standard", layout: "horizontal",
@@ -494,7 +486,7 @@
                 type: "passage", layout: "horizontal",
                 passages: [
                     {
-                        title: "Question 1: MY BEST FRIEND",
+                        title: "MY BEST FRIEND",
                         text: "I've __1__ a lot of good friends. This is a photo __2__ my best friend, Lily. Lily's sixteen and she's __3__ Brighton. She's British but __4__ dad's from Jamaica. Lily's got a brother, Andrew. He's eleven. <br><br> Lily's got two interests: music and ... music! She's music mad. Her favorite thing is her MP3 __5__. She's got 500 songs on it and 50 of them are by The Kaiser Chiefs! My favorite band __6__ The Kooks. So we haven't got the same songs on our MP3 players.<br><br> She's got __7__ electric guitar and she's in a band with her classmates. They are all girls! They __8__ got a lot of fans at school.<br><br> Lily has got a mobile phone and a computer __9__ she hasn't got a games console - computer games aren't her thing.<br><br> Lily's got two pets - a cat called Lyra and a goldfish called Moby Dick.<br><br> Oh and Lily's got a nickname. It's Lulu. My nickname's Spider. Lily isn't my girlfriend - she's __10__ best friend.",
                         subQuestions: [
                             { id: "4_1_1", text: "Blank 1", options: ["A. many", "B. so", "C. got", "D. about"], correct: 2 },
@@ -515,21 +507,45 @@
                 type: "standard", layout: "vertical",
                 questions: [
                     { id: "5_1", text: "1. There is a sink, a tub and a shower in the bathroom.", options: ["A. The bathroom has a sink, a tub and a shower.", "B. The bathroom is well equipped.", "C. The bathroom has sink, tub and shower in.", "D. The bathroom is a sink, a tub and a shower."], correct: 0 },
-                    { id: "5_2", text: "2. Do you have a better refrigerator than this?", options: ["A. Is this a better refrigerator you have?", "B. Is this better than a refrigerator you have?", "C. Is this the best refrigerator you have?", "D. Is this a refrigerator than yours?"], correct: 2 }
+                    { id: "5_2", text: "2. Do you have a better refrigerator than this?", options: ["A. Is this a better refrigerator you have?", "B. Is this better than a refrigerator you have?", "C. Is this the best refrigerator you have?", "D. Is this a refrigerator than yours?"], correct: 2 },
+                    { id: "5_3", text: "3. My house is the oldest house on the street.", options: ["A. No houses on the street is older than my house.", "B. No house on the street is older than my house.", "C. My house is older than no houses on the street.", "D. My house is as old as other houses on the street."], correct: 1 },
+                    { id: "5_4", text: "4. I don't have a computer at home.", options: ["A. I have no computer at home.", "B. I have not computer at home.", "C. At home I don't have no computer.", "D. No computer is at home with me."], correct: 0 },
+                    { id: "5_5", text: "5. Let's go to the supermarket.", options: ["A. Why don't we go to the supermarket?", "B. How about to go to the supermarket?", "C. What about go to the supermarket?", "D. We should to go to the supermarket."], correct: 0 },
+                    { id: "5_6", text: "6. He likes playing board games.", options: ["A. He is interested in playing board games.", "B. He interested in playing board games.", "C. He is dynamic in playing board games.", "D. He loves to playing board games."], correct: 0 },
+                    { id: "5_7", text: "7. Why don't we go to the cinema tonight?", options: ["A. What about going to the cinema tonight?", "B. Let's going to the cinema tonight.", "C. Shall we going to the cinema tonight?", "D. How about go to the cinema tonight."], correct: 0 },
+                    { id: "5_8", text: "8. The library has over eleven thousand books.", options: ["A. There are over eleven thousand books in the library.", "B. There is over eleven thousand books in the library.", "C. Over eleven thousand books has the library.", "D. The library contains of over eleven thousand books."], correct: 0 },
+                    { id: "5_9", text: "9. Regular exercise is good for your health.", options: ["A. Doing exercise regularly is good for your health.", "B. Regular exercise do good to your health.", "C. Exercise regularly is good for health.", "D. To do regular exercise is good for your health."], correct: 0 },
+                    { id: "5_10", text: "10. It is not necessary for you to finish the report today.", options: ["A. You don't need to finish the report today.", "B. You must not finish the report today.", "C. You should not finish the report today.", "D. You may not finish the report today."], correct: 0 }
                 ]
             },
             part6: {
                 type: "standard", layout: "horizontal",
                 questions: [
-                    { id: "6_1", text: "1. They are all girls! They've got a lot of fans........ school.", options: ["A. on", "B. at", "C. from", "D. in"], correct: 1 },
-                    { id: "6_2", text: "2. She ........ got a games console, computer games aren't her thing.", options: ["A. don't have", "B. hasn't", "C. has", "D. have"], correct: 1 }
+                    { id: "6_1", text: "1. They are all girls! They've got a lot of fans ______ school.", options: ["A. on", "B. at", "C. from", "D. in"], correct: 1 },
+                    { id: "6_2", text: "2. She ______ got a games console, computer games aren't her thing.", options: ["A. don't have", "B. hasn't", "C. has", "D. have"], correct: 1 },
+                    { id: "6_3", text: "3. My brother is really ______ sports. He plays football every afternoon.", options: ["A. in", "B. into", "C. on", "D. at"], correct: 1 },
+                    { id: "6_4", text: "4. What ______ your new classmates like? - They are very friendly.", options: ["A. do", "B. are", "C. is", "D. does"], correct: 1 },
+                    { id: "6_5", text: "5. Look! The children ______ a sandcastle on the beach.", options: ["A. are building", "B. build", "C. builds", "D. is building"], correct: 0 },
+                    { id: "6_6", text: "6. Excuse me, is there a post office ______ here?", options: ["A. near", "B. next", "C. in front", "D. between"], correct: 0 },
+                    { id: "6_7", text: "7. You ______ walk on the grass in the park. It's against the rules.", options: ["A. mustn't", "B. needn't", "C. don't have to", "D. shouldn't"], correct: 0 },
+                    { id: "6_8", text: "8. How ______ milk do you need for the cake?", options: ["A. many", "B. much", "C. a lot", "D. some"], correct: 1 },
+                    { id: "6_9", text: "9. Yesterday, we ______ to the museum and saw many historical objects.", options: ["A. go", "B. went", "C. gone", "D. goes"], correct: 1 },
+                    { id: "6_10", text: "10. This laptop is ______ than that one, but it is more durable.", options: ["A. expensive", "B. more expensive", "C. cheaper", "D. cheapest"], correct: 2 }
                 ]
             },
             part7: {
                 type: "standard", layout: "vertical",
                 questions: [
-                    { id: "7_1", text: "1. read/ books/ free time/ is/ favorite/ hobby.", options: ["A. Reading books is my favorite hobby in the free time", "B. Read book is my favorite hobby in the free time", "C. My favorite hobby in free time is read books"], correct: 0 },
-                    { id: "7_2", text: "2. I /not/ know/ why/ my mother/ cook/ like", options: ["A. I not know why my mother cooking like", "B. I don't knows why my mother cooks", "C. I don't know why my mother likes cooking"], correct: 2 }
+                    { id: "7_1", text: "1. read / books / free time / is / favorite / hobby.", options: ["A. Reading books in my free time is my favorite hobby.", "B. Read books in my free time is my favorite hobby.", "C. My favorite hobby in free time is read books.", "D. Reading books is my favorite hobby in my free time."], correct: 0 },
+                    { id: "7_2", text: "2. I / not / know / why / my mother / cook / like", options: ["A. I not know why my mother cooking like.", "B. I don't knows why my mother cooks.", "C. I don't know why my mother likes cooking.", "D. I don't know why my mother like cook."], correct: 2 },
+                    { id: "7_3", text: "3. there / any / milk / left / the / fridge / ?", options: ["A. Is there any milk left in the fridge?", "B. There is any milk left in the fridge?", "C. Are there any milk left in the fridge?", "D. Is there some milk left in the fridge?"], correct: 0 },
+                    { id: "7_4", text: "4. she / usually / go / school / bus / morning.", options: ["A. She usually goes to school by bus in the morning.", "B. She usually go to school by bus in the morning.", "C. She goes usually to school by bus in the morning.", "D. She usually goes school by bus in morning."], correct: 0 },
+                    { id: "7_5", text: "5. we / have / great / time / party / last night.", options: ["A. We had a great time at the party last night.", "B. We have a great time at the party last night.", "C. We had great time at party last night.", "D. We did have a great time at the party last night."], correct: 0 },
+                    { id: "7_6", text: "6. how / many / floors / there / your / school / ?", options: ["A. How many floors are there in your school?", "B. How many floors there are in your school?", "C. How many floors are there at your school?", "D. How many floors is there in your school."], correct: 0 },
+                    { id: "7_7", text: "7. my / father / work / factory / five / days / week.", options: ["A. My father works in a factory five days a week.", "B. My father work in a factory five days a week.", "C. My father works at a factory five days week.", "D. My father works in factory five days a week."], correct: 0 },
+                    { id: "7_8", text: "8. look! / boys / play / football / school yard.", options: ["A. Look! The boys are playing football in the school yard.", "B. Look! The boys play football in the school yard.", "C. Look! Boys are playing football on the school yard.", "D. Look! The boys is playing football in the school yard."], correct: 0 },
+                    { id: "7_9", text: "9. he / not / want / eat / anything / because / he / full.", options: ["A. He doesn't want to eat anything because he is full.", "B. He don't want to eat anything because he is full.", "C. He doesn't want eat anything because he is full.", "D. He doesn't want to eat anything because he full."], correct: 0 },
+                    { id: "7_10", text: "10. what / weather / like / summer / Vietnam / ?", options: ["A. What is the weather like in summer in Vietnam?", "B. What does the weather like in summer in Vietnam?", "C. What is weather like in summer in Vietnam?", "D. What is the weather like on summer in Vietnam."], correct: 0 }
                 ]
             }
         };
@@ -537,11 +553,10 @@
         // --- TRẠNG THÁI HỆ THỐNG ---
         let currentPart = "part3";
         let currentMode = "study"; 
-        let userSelections = {};  // Lưu đáp án học viên chọn tạm thời { qId: idx }
+        let userSelections = {};  
         let isSubmitted = false;
         
-        // Quản lý thời gian
-        let timeTotal = 3600; // 60 phút tính bằng giây
+        let timeTotal = 3600; 
         let timeLeft = timeTotal;
         let timerInterval = null;
 
@@ -581,7 +596,6 @@
             const statusBar = document.getElementById("status-bar");
             const submitBox = document.getElementById("submit-box");
 
-            // Ẩn bảng kết quả cũ
             document.getElementById("quiz-dashboard").style.display = "none";
             document.getElementById("wrong-summary-box").style.display = "none";
             body.classList.remove("quiz-submitted");
@@ -629,7 +643,6 @@
             if(currentMode === 'quiz') startTimer();
         }
 
-        // --- XỬ LÝ ĐỒNG HỒ ĐẾM NGƯỢC ---
         function startTimer() {
             clearInterval(timerInterval);
             displayTime(timeLeft);
@@ -637,7 +650,7 @@
                 timeLeft--;
                 displayTime(timeLeft);
 
-                if(timeLeft <= 300) { // Dưới 5 phút báo đỏ nhấp nháy
+                if(timeLeft <= 300) { 
                     document.getElementById("timer-card").classList.add("timer-low");
                 }
 
@@ -655,17 +668,13 @@
             document.getElementById("timer-display").innerText = `${m}:${s}`;
         }
 
-        // --- XỬ LÝ CLICK CHỌN ĐÁP ÁN ---
         function handleOptionClick(qId, optionIdx, element) {
             if (currentMode !== 'quiz' || isSubmitted) return;
 
             userSelections[qId] = optionIdx;
 
-            // Xóa highlight cũ của các câu cùng nhóm câu hỏi
             const parentCard = element.closest('.question-card');
             parentCard.querySelectorAll('.option-item').forEach(opt => opt.classList.remove('selected'));
-            
-            // Highlight câu vừa chọn
             element.classList.add('selected');
 
             updateProgressText();
@@ -687,7 +696,6 @@
             return count;
         }
 
-        // --- XỬ LÝ NỘP BÀI & THỐNG KÊ CÂU SAI ---
         function submitQuiz(forced = false) {
             if (isSubmitted) return;
             
@@ -705,7 +713,6 @@
             document.body.classList.add("quiz-submitted");
             document.getElementById("submit-box").style.display = "none";
 
-            // Tính toán kết quả chuyên sâu
             let correctCount = 0;
             let wrongQuestionsList = [];
             const data = dataset[currentPart];
@@ -723,22 +730,19 @@
                     });
                 }
 
-                // Cập nhật class hiển thị trực tiếp trên thẻ câu hỏi
-                const cards = document.querySelectorAll('.question-card');
-                cards.forEach(card => {
+                const card = document.querySelector(`.question-card[data-qid="${q.id}"]`);
+                if (card) {
                     const optElements = card.querySelectorAll('.option-item');
                     optElements.forEach(el => {
                         let idx = parseInt(el.getAttribute('data-idx'));
-                        if (el.closest('.question-card').querySelector('.question-text').innerText === q.text) {
-                            if (idx === q.correct) {
-                                if (userAns === q.correct) el.classList.add('selected-correct');
-                                else el.classList.add('reveal-correct');
-                            } else if (idx === userAns) {
-                                el.classList.add('selected-wrong');
-                            }
+                        if (idx === q.correct) {
+                            if (userAns === q.correct) el.classList.add('selected-correct');
+                            else el.classList.add('reveal-correct');
+                        } else if (idx === userAns) {
+                            el.classList.add('selected-wrong');
                         }
                     });
-                });
+                }
             };
 
             if (data.type === "standard") {
@@ -747,7 +751,6 @@
                 data.passages.forEach(p => p.subQuestions.forEach(checkAndProcess));
             }
 
-            // Hiển thị Dashboard điểm số số thập phân thang 10
             let score = ((correctCount / total) * 10).toFixed(1);
             let timeElapsed = timeTotal - timeLeft;
             const minSpent = Math.floor(timeElapsed / 60).toString().padStart(2, '0');
@@ -759,10 +762,9 @@
             document.getElementById("dash-time").innerText = `${minSpent}:${secSpent}`;
             document.getElementById("quiz-dashboard").style.display = "block";
 
-            // Xử lý khối tổng hợp các câu sai
             const wrongSummaryBox = document.getElementById("wrong-summary-box");
             const wrongSummaryList = document.getElementById("wrong-summary-list");
-            wrongSummaryList.innerHTML = ""; // Reset cũ
+            wrongSummaryList.innerHTML = ""; 
 
             if (wrongQuestionsList.length > 0) {
                 wrongQuestionsList.forEach(item => {
@@ -783,11 +785,9 @@
                 wrongSummaryBox.style.display = "block";
             }
 
-            // Tự động cuộn lên đầu để xem Dashboard điểm
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // --- CƠ CHẾ RENDER MÃ HTML CHO CÂU HỎI ---
         function renderContent() {
             const container = document.getElementById("quiz-container");
             container.innerHTML = ""; 
@@ -815,6 +815,7 @@
         function createQuestionCard(q, layoutMode) {
             const card = document.createElement("div");
             card.className = "question-card";
+            card.setAttribute("data-qid", q.id);
 
             const qText = document.createElement("div");
             qText.className = "question-text";
@@ -841,7 +842,6 @@
             return card;
         }
 
-        // Khởi chạy hệ thống khi tải trang xong
         window.onload = initApp;
     </script>
 </body>
