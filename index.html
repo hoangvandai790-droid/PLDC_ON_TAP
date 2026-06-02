@@ -1,495 +1,617 @@
-# De_cuong_on_tap_KTHP_TACB1.py
-
-de_cuong_reading = {
-    "Part 3: Choose the odd one out": {
-        "1": {"A": "brush", "B": "face", "C": "clean", "D": "wash", "correct": "B"},
-        "2": {"A": "homework", "B": "often", "C": "usually", "D": "sometimes", "correct": "A"},
-        "3": {"A": "breakfast", "B": "lunch", "C": "dinner", "D": "family", "correct": "D"},
-        "4": {"A": "see", "B": "watch", "C": "hear", "D": "music", "correct": "D"},
-        "5": {"A": "enjoy", "B": "like", "C": "book", "D": "love", "correct": "C"},
-        "6": {"A": "party", "B": "street", "C": "road", "D": "lane", "correct": "A"},
-        "7": {"A": "week", "B": "city", "C": "village", "D": "town", "correct": "A"},
-        "8": {"A": "study", "B": "play", "C": "watch", "D": "house", "correct": "D"},
-        "9": {"A": "morning", "B": "day", "C": "afternoon", "D": "evening", "correct": "B"},
-        "10": {"A": "city", "B": "bus", "C": "bike", "D": "car", "correct": "A"},
-        "11": {"A": "pencil", "B": "ruler", "C": "pen", "D": "school", "correct": "D"},
-        "12": {"A": "rubber", "B": "book", "C": "bag", "D": "class", "correct": "D"},
-        "13": {"A": "subject", "B": "Vietnamese", "C": "English", "D": "Math", "correct": "A"},
-        "14": {"A": "nice", "B": "tall", "C": "short", "D": "pupil", "correct": "D"},
-        "15": {"A": "what", "B": "who", "C": "speak", "D": "when", "correct": "C"},
-        "16": {"A": "read", "B": "speak", "C": "listen", "D": "good", "correct": "D"},
-        "17": {"A": "dog", "B": "lamp", "C": "rabbit", "D": "cat", "correct": "B"},
-        "18": {"A": "kind", "B": "generous", "C": "gentle", "D": "story", "correct": "D"},
-        "19": {"A": "body", "B": "beautiful", "C": "nice", "D": "handsome", "correct": "A"},
-        "20": {"A": "bedroom", "B": "dining room", "C": "bathroom", "D": "class", "correct": "D"},
-        "21": {"A": "summer", "B": "winter", "C": "water", "D": "spring", "correct": "C"},
-        "22": {"A": "Monday", "B": "May", "C": "Sunday", "D": "Tuesday", "correct": "B"},
-        "23": {"A": "April", "B": "June", "C": "Saturday", "D": "July", "correct": "C"},
-        "24": {"A": "morning", "B": "night", "C": "evening", "D": "summer", "correct": "D"},
-        "25": {"A": "autumn", "B": "August", "C": "September", "D": "March", "correct": "A"},
-        "26": {"A": "tiger", "B": "fish", "C": "panda", "D": "bear", "correct": "B"},
-        "27": {"A": "month", "B": "year", "C": "week", "D": "subject", "correct": "D"},
-        "28": {"A": "father", "B": "mother", "C": "grandma", "D": "teacher", "correct": "D"},
-        "29": {"A": "brother", "B": "sister", "C": "mother", "D": "daughter", "correct": "A"},
-        "30": {"A": "father", "B": "grandfather", "C": "son", "D": "sister", "correct": "D"},
-        "31": {"A": "mirror", "B": "sofa", "C": "chair", "D": "room", "correct": "D"},
-        "32": {"A": "Music", "B": "subject", "C": "Art", "D": "Geography", "correct": "B"},
-        "33": {"A": "Science", "B": "ruler", "C": "pen", "D": "pencil case", "correct": "A"},
-        "34": {"A": "get up", "B": "wash", "C": "wake up", "D": "breakfast", "correct": "D"},
-        "35": {"A": "bookshop", "B": "shopping", "C": "music shop", "D": "shoe shop", "correct": "B"},
-        "36": {"A": "cinema", "B": "post office", "C": "hotel", "D": "car", "correct": "D"},
-        "37": {"A": "play", "B": "golf", "C": "tennis", "D": "badminton", "correct": "A"},
-        "38": {"A": "toothache", "B": "headache", "C": "earache", "D": "healthy", "correct": "D"},
-        "39": {"A": "headache", "B": "knee", "C": "leg", "D": "foot", "correct": "A"},
-        "40": {"A": "Italian", "B": "American", "C": "England", "D": "Scottish", "correct": "C"}
-    },
-    
-    "Part 4: Choose the best answer to complete the text": {
-        "Question 1: MY BEST FRIEND": {
-            "options": {
-                "1": {"A": "many", "B": "so", "C": "got", "D": "about", "correct": "C"},
-                "2": {"A": "from", "B": "of", "C": "about", "D": "to", "correct": "B"},
-                "3": {"A": "from", "B": "in", "C": "on", "D": "to", "correct": "A"},
-                "4": {"A": "she", "B": "his", "C": "my", "D": "her", "correct": "D"},
-                "5": {"A": "player", "B": "CDs", "C": "DVDs", "D": "console", "correct": "A"},
-                "6": {"A": "are", "B": "is", "C": "got", "D": "has", "correct": "B"},
-                "7": {"A": "a", "B": "the", "C": "many", "D": "an", "correct": "D"},
-                "8": {"A": "have", "B": "has", "C": "do", "D": "does", "correct": "A"},
-                "9": {"A": "and", "B": "so", "C": "but", "D": "or", "correct": "C"},
-                "10": {"A": "a", "B": "an", "C": "my", "D": "her", "correct": "C"}
-            }
-        },
-        "Question 2: MEET LAN FROM CHINA": {
-            "options": {
-                "1": {"A": "walk", "B": "walks", "C": "go", "D": "goes", "correct": "B"},
-                "2": {"A": "cycle", "B": "cycles", "C": "not", "D": "has cycle", "correct": "A"},
-                "3": {"A": "at", "B": "on", "C": "in", "D": "to", "correct": "A"},
-                "4": {"A": "studys", "B": "studies", "C": "studyes", "D": "study", "correct": "D"},
-                "5": {"A": "has", "B": "got", "C": "is", "D": "have", "correct": "C"},
-                "6": {"A": "wears", "B": "wear", "C": "wearing", "D": "has wear", "correct": "B"},
-                "7": {"A": "likes", "B": "don't like", "C": "have", "D": "got", "correct": "A"},
-                "8": {"A": "goes", "B": "go", "C": "going", "D": "gos", "correct": "B"},
-                "9": {"A": "on", "B": "at", "C": "from", "D": "in", "correct": "D"},
-                "10": {"A": "in", "B": "to", "C": "at", "D": "about", "correct": "C"}
-            }
-        },
-        "Question 3: A HOME ON THE WATER": {
-            "options": {
-                "1": {"A": "about", "B": "on", "C": "with", "D": "in", "correct": "A"},
-                "2": {"A": "a", "B": "an", "C": "the", "D": "Φ", "correct": "B"},
-                "3": {"A": "on", "B": "in", "C": "at", "D": "to", "correct": "B"},
-                "4": {"A": "and", "B": "but", "C": "also", "D": "or", "correct": "A"},
-                "5": {"A": "much", "B": "often", "C": "many", "D": "about", "correct": "C"},
-                "6": {"A": "much", "B": "often", "C": "many", "D": "about", "correct": "A"},
-                "7": {"A": "is", "B": "in", "C": "got", "D": "are", "correct": "D"},
-                "8": {"A": "much", "B": "often", "C": "many", "D": "about", "correct": "A"},
-                "9": {"A": "is", "B": "got", "C": "are", "D": "Have", "correct": "C"},
-                "10": {"A": "in", "B": "about", "C": "Φ", "D": "of", "correct": "D"}
-            }
-        },
-        "Question 4: LIVING IN LIVERPOOL": {
-            "options": {
-                "1": {"A": "interview", "B": "Interviews", "C": "to interview", "D": "interviewing", "correct": "B"},
-                "2": {"A": "on", "B": "in", "C": "at", "D": "of", "correct": "A"},
-                "3": {"A": "lots", "B": "lot", "C": "one", "D": "many", "correct": "A"},
-                "4": {"A": "Is", "B": "Have", "C": "Has", "D": "Are", "correct": "D"},
-                "5": {"A": "long", "B": "wide", "C": "size", "D": "big", "correct": "C"},
-                "6": {"A": "are", "B": "is", "C": "have", "D": "has", "correct": "B"},
-                "7": {"A": "in", "B": "at", "C": "on", "D": "about", "correct": "C"},
-                "8": {"A": "lots", "B": "lot", "C": "many", "D": "much", "correct": "B"},
-                "9": {"A": "go", "B": "to go", "C": "going", "D": "goes", "correct": "A"},
-                "10": {"A": "hundred", "B": "hundreds", "C": "many", "D": "Much", "correct": "B"}
-            }
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Ôn Thi Học Phần TACB1 - Bản Full Nghe & Đọc 100%</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --success-color: #16a34a;
+            --error-color: #dc2626;
+            --bg-color: #f1f5f9;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --accent-color: #7c3aed;
         }
-    },
 
-    "Part 5: Choose the correct answer which best rewrites the given one": {
-        "Question 1": {
-            "1": {
-                "prompt": "There is a sink, a tub and a shower in the bathroom.",
-                "A": "The bathroom has a sink, a tub and a shower.",
-                "B": "The bathroom is well equipped.",
-                "C": "The bathroom has sink, tub and shower in.",
-                "D": "The bathroom is a sink, a tub and a shower.",
-                "correct": "A"
-            },
-            "2": {
-                "prompt": "Do you have a better refrigerator than this?",
-                "A": "Is this a better refrigerator you have?",
-                "B": "Is this better than a refrigerator you have?",
-                "C": "Is this the best refrigerator you have?",
-                "D": "Is this a refrigerator than yours?",
-                "correct": "C"
-            },
-            "3": {
-                "prompt": "I get to work in half an hour.",
-                "A": "It takes to work in an hour.",
-                "B": "It takes me an hour to get to work.",
-                "C": "It takes an hour to work.",
-                "D": "It takes me to work an hour.",
-                "correct": "B"
-            },
-            "4": {
-                "prompt": "He is a careful driver.",
-                "A": "He drives careful.",
-                "B": "He is careful.",
-                "C": "He drives careful driver.",
-                "D": "He drives carefully.",
-                "correct": "D"
-            },
-            "5": {
-                "prompt": "My school has thirty classrooms.",
-                "A": "There are thirty classrooms in my school.",
-                "B": "There is my school and thirty classrooms.",
-                "C": "There has thirty classrooms in my school.",
-                "D": "There in my school, thirty classrooms.",
-                "correct": "A"
-            }
-        },
-        "Question 2": {
-            "1": {
-                "prompt": "They are good teachers at Math.",
-                "A": "They teach good Math.",
-                "B": "They teach Math good.",
-                "C": "They teach Math well.",
-                "D": "They teach good at Math.",
-                "correct": "C"
-            },
-            "2": {
-                "prompt": "David has a lot of CDs in his room",
-                "A": "There is a lot of CDs in his room",
-                "B": "There are a lot of CDs in David's room",
-                "C": "There is a lot of CDs in David room",
-                "D": "There are a lot of CDs in David room",
-                "correct": "B"
-            },
-            "3": {
-                "prompt": "He drives to the countryside with his family",
-                "A": "He drive with his family to the countryside",
-                "B": "He goes to the countryside with his family by a car",
-                "C": "He goes to the countryside with his family by car",
-                "correct": "C"
-            },
-            "4": {
-                "prompt": "I have a favourite sister. Her name is Anna",
-                "A": "My name is Anna. I have a favourite sister",
-                "B": "My favourite sister's name is Anna",
-                "C": "My sister Anna is favourite.",
-                "D": "Anna likes my favourite sister",
-                "correct": "B"
-            },
-            "5": {
-                "prompt": "Where is the nearest post office?",
-                "A": "Could you show me the way to the nearest post-office?",
-                "B": "Could you go to the nearest post-office?",
-                "C": "Could you take me to the nearest post-office?",
-                "D": "Could you ask me about the way to the nearest post-office?",
-                "correct": "A"
-            }
-        },
-        "Question 3": {
-            "1": {
-                "prompt": "They enjoy taking part in the activities.",
-                "A": "They fancy to taking part in the activities.",
-                "B": "They fancy taking part in the activities.",
-                "C": "They enjoy to take part in the activities.",
-                "D": "They enjoy take part in the activities.",
-                "correct": "B"
-            },
-            "2": {
-                "prompt": "I always take the bus to go back home",
-                "A": "I always go back home by bus",
-                "B": "I always go home back by bus",
-                "C": "I always go back home to take by bus",
-                "D": "I always go back home take by bus",
-                "correct": "A"
-            },
-            "3": {
-                "prompt": "This schoolbag is my schoolbag not your schoolbag",
-                "A": "This schoolbag is my schoolbag not yours",
-                "B": "This schoolbag is mine not yours",
-                "C": "This schoolbag is mine not your schoolbag",
-                "D": "This schoolbag is mine and not yours",
-                "correct": "B"
-            },
-            "4": {
-                "prompt": "There are a lot of interesting programs on VTV 3",
-                "A": "A lot of interesting programs is on VTV 3",
-                "B": "VTV3 has a lot of interesting programs",
-                "C": "VTV3 have a lot of interesting programs",
-                "D": "A lot of interesting programs have on VTV 3",
-                "correct": "B"
-            },
-            "5": {
-                "prompt": "I feel very tired so I go to bed early.",
-                "A": "I go to bed early because I feel very tired.",
-                "B": "I go to bed early, so I feel tired.",
-                "C": "I got to bed early that I felt tired.",
-                "D": "I go to bed early makes I felt tired.",
-                "correct": "A"
-            }
-        },
-        "Question 4": {
-            "1": {
-                "prompt": "Is the police station is behind the post office?",
-                "A": "Is the post office beside the police station?",
-                "B": "Is the post office next the police station?",
-                "C": "Is the post office next to the police station?",
-                "D": "Is the post office in front of the police station?",
-                "correct": "D"
-            },
-            "2": {
-                "prompt": "She has good ability to memorize things.",
-                "A": "She has terrible ability to memorize things.",
-                "B": "She has bad ability to memorize things.",
-                "C": "She memorizes things well.",
-                "D": "She doesn't have ability to memorize things.",
-                "correct": "C"
-            },
-            "3": {
-                "prompt": "That motorbike belongs to Mr Trung",
-                "A": "That is Mr Trung's motorbike",
-                "B": "Mr Trung have a motorbike.",
-                "C": "Mr Trung belong to a motorbike.",
-                "D": "Trung's motorbike is belong to.",
-                "correct": "A"
-            },
-            "4": {
-                "prompt": "He makes up a story to link random numbers and words.",
-                "A": "He creates a story to link random numbers and words.",
-                "B": "He tells a story to link random numbers and words.",
-                "C": "He reads a story to link random numbers and words.",
-                "D": "He likes a story to link random numbers and words.",
-                "correct": "A"
-            },
-            "5": {
-                "prompt": "Long is a bad swimmer.",
-                "A": "Long swims bad.",
-                "B": "Long swims badly.",
-                "C": "Long is bad swim.",
-                "D": "Long is a badly swimmer.",
-                "correct": "B"
-            }
-        },
-        "Question 5": {
-            "1": {
-                "prompt": "Our house is far from the school.",
-                "A": "Our house is not near the school.",
-                "B": "The school is beside our house",
-                "C": "I live next to the school",
-                "D": "The way from our house to the school is not far",
-                "correct": "A"
-            },
-            "2": {
-                "prompt": "She believes that anybody can train their mind to memorize.",
-                "A": "She doesn't believe that anybody can train their mind to memorize.",
-                "B": "She was believed that anybody can train their mind to memorize.",
-                "C": "She thinks that anybody can train their mind to memorize.",
-                "D": "She doesn't like that anybody can train their mind to memorize.",
-                "correct": "C"
-            },
-            "3": {
-                "prompt": "She has 2 good children.",
-                "A": "Her children have good.",
-                "B": "Her children are two good.",
-                "C": "Her children have two good.",
-                "D": "Her children are good.",
-                "correct": "D"
-            },
-            "4": {
-                "prompt": "There are over eight hundred stamps in Tim's collection.",
-                "A": "Tim's collection are there over eight hundred stamps.",
-                "B": "Tim's collection has over eight hundred stamps.",
-                "C": "Tim's collection is in over eight hundred stamps.",
-                "D": "Tim's collection are over eight hundred stamps",
-                "correct": "B"
-            },
-            "5": {
-                "prompt": "She wants to study languages.",
-                "A": "She likes to study languages.",
-                "B": "She would like to study languages.",
-                "C": "She likes to study languages.",
-                "D": "She likes studying languages.",
-                "correct": "B"
-            }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-color); padding: 20px; line-height: 1.5; }
+        .container { max-width: 1350px; margin: 0 auto; }
+
+        header {
+            text-align: center; padding: 20px; margin-bottom: 20px;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: white;
+            border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
-    },
+        header h1 { font-size: 24px; margin-bottom: 5px; }
+        header p { font-size: 14px; opacity: 0.9; }
 
-    "Part 6: Choose the best answer to complete the sentence": {
-        "1": {"text": "They are all girls! They've got o a lot of fans........ school.", "A": "on", "B": "at", "C": "from", "D": "in", "correct": "B"},
-        "2": {"text": "She ........ got a games console, computer games aren't her thing.", "A": "don't have", "B": "hasn't", "C": "has", "D": "have", "correct": "B"},
-        "3": {"text": "Lily's got two pets - a cat .......... Lyra and a goldfish s called Moby Dick.", "A": "called", "B": "to call", "C": "calling", "D": "to be called", "correct": "A"},
-        "4": {"text": "Lily's got a ............. It's Lulu. My nickname's Spider.", "A": "name", "B": "first name", "C": "surname", "D": "nickname", "correct": "D"},
-        "5": {"text": "He's got short fair ............. He's good-looking.", "A": "face", "B": "leg", "C": "hand", "D": "hair", "correct": "D"},
-        "6": {"text": "She's very shy. She's young. She's only 11 ........... old. She's got long dark hair.", "A": "year", "B": "years", "C": "teen", "D": "year's", "correct": "B"},
-        "7": {"text": "She's short. She's got grey hair and .......... She's very friendly.", "A": "glass", "B": "wear glass", "C": "glasses", "D": "got glass", "correct": "C"},
-        "8": {"text": "He's tall and slim. He's old. He's about 70. He's ...... grey hair. He's very nice.", "A": "have", "B": "get", "C": "got", "D": "has", "correct": "C"},
-        "9": {"text": "........... got long hair. She's fun. She's seven.", "A": "She's", "B": "She is", "C": "She", "D": "Her", "correct": "A"},
-        "10": {"text": "He's about 45. He's got a ........... and a moustache.", "A": "head", "B": "mouth", "C": "body", "D": "beard", "correct": "D"},
-        "11": {"text": "He always does ........... in the afternoon and he often has evening classes at school.", "A": "housework", "B": "homework", "C": "English", "D": "Maths", "correct": "B"},
-        "12": {"text": "You get up, you have a shower, you get dressed, and you have .............", "A": "dinner", "B": "lunch", "C": "breakfast", "D": "meal", "correct": "C"},
-        "13": {"text": "It isn't easy for Lauren Miller. She's disabled and she's in a ..........", "A": "chair", "B": "wheelchair", "C": "bed", "D": "box", "correct": "B"},
-        "14": {"text": "She doesn't live alone - she's got a helper. 'Kylie helps ....with my life,' says Lauren.", "A": "her", "B": "me", "C": "him", "D": "them", "correct": "B"},
-        "15": {"text": "She's my best friend. But Kylie doesn't talk to .......... Kylie's a capuchin monkey!", "A": "her", "B": "me", "C": "him", "D": "them", "correct": "B"},
-        "16": {"text": "The organisation Helping Hands ....... monkeys at a special 'college' in Boston, USA.", "A": "teach", "B": "teaching", "C": "teaches", "D": "teacher", "correct": "C"},
-        "17": {"text": "At first, the monkeys don't work with disabled people - they learn how to help .........", "A": "her", "B": "me", "C": "him", "D": "them", "correct": "D"},
-        "18": {"text": "After two years, ..........go to their new homes. About a hundred capuchin monkeys live with disabled people and help them.", "A": "their", "B": "they", "C": "them", "D": "theirs", "correct": "B"},
-        "19": {"text": "Kylie works hard and doesn't play during the day. She ........... Lauren wash and she gets food and drink for her.", "A": "helps", "B": "help", "C": "helped", "D": "helping", "correct": "A"},
-        "20": {"text": "She opens books and turns the pages for her. She helps with the phone and puts discs .......... the computer.", "A": "on", "B": "in", "C": "into", "D": "under", "correct": "B"},
-        "21": {"text": "But Kylie doesn't help Lauren 24 hours ..... day.", "A": "the", "B": "a", "C": "an", "D": "one", "correct": "B"},
-        "22": {"text": "And there are some great shops - clothes shops, shoe shops, music shops. And they are all in ........ same place.", "A": "a", "B": "the", "C": "any", "D": "one", "correct": "B"},
-        "23": {"text": "The ........... mall is the place to be!", "A": "loving", "B": "cinema", "C": "shopping", "D": "one", "correct": "C"},
-        "24": {"text": "It's a canal boat. It's .......... Stratford-upon-Avon, Shakespeare's birthplace.", "A": "upon", "B": "under", "C": "on", "D": "into", "correct": "C"},
-        "25": {"text": "I often travel with the boat. I'm .... artist and the boat is a fantastic place for painting.", "A": "a", "B": "an", "C": "are", "D": "one", "correct": "B"},
-        "26": {"text": "There aren't many boats on the canals. But .......... the summer, it's often very busy and noisy!", "A": "on", "B": "in", "C": "into", "D": "under", "correct": "B"},
-        "27": {"text": "How .......... rooms are there on your boat?", "A": "many", "B": "much", "C": "long", "D": "far", "correct": "A"},
-        "28": {"text": "The boat is quite small ........ I haven't got many rooms. There are three. There isn't much space for my things.", "A": "so", "B": "for", "C": "then", "D": "but", "correct": "A"},
-        "29": {"text": "I live in Manchester. It's ......... exciting, multicultural city.", "A": "an", "B": "a", "C": "very", "D": "is", "correct": "A"},
-        "30": {"text": "I've got .......... clothes! And there are my paintings, too!", "A": "any", "B": "a lot of", "C": "more", "D": "lot of", "correct": "B"}
-    },
-
-    "Part 7: Complete sentences": {
-        "1": {
-            "words": "read/ books/ free time/ is/ favorite/ hobby.",
-            "A": "Reading books is my favorite hobby in the free time",
-            "B": "Read book is my favorite hobby in the free time",
-            "C": "My favorite hobby in free time is read books",
-            "correct": "A"
-        },
-        "2": {
-            "words": "I /not/ know/ why/ my mother/ cook/ like",
-            "A": "I not know why my mother cooking like",
-            "B": "I don't knows why my mother cooks",
-            "C": "I don't know why my mother likes cooking",
-            "correct": "C"
-        },
-        "3": {
-            "words": "He/ collect/ books/ whenever/ have/ money.",
-            "A": "Collecting book he whenever has money.",
-            "B": "He collects books whenever he has money",
-            "C": "Whenever he have money, he collects book.",
-            "correct": "B"
-        },
-        "4": {
-            "words": "How many/ paintings/ she/ paint?",
-            "A": "How many paintings she paint?",
-            "B": "How many paintings does she paints?",
-            "C": "How many paintings does she paint?",
-            "correct": "C"
-        },
-        "5": {
-            "words": "I/love/ flowers/ so/ I/ plant/ around/ house.",
-            "A": "I love flowers so I plant around the house.",
-            "B": "Flower plant around the house so I love",
-            "C": "The house I love I plant flower around so",
-            "correct": "A"
-        },
-        "6": {
-            "words": "We/find/ make/ models/ interesting/ should/ be/ because/ creative/ very/ we",
-            "A": "We finds make models creative because we be interesting should.",
-            "B": "We should be interesting because we find models making creative",
-            "C": "We find making models very interesting because we should be creative",
-            "correct": "C"
-        },
-        "7": {
-            "words": "The future/ I/ in/ think/ will/ take/ people/ take/ more/ activities/ outdoor/ up.",
-            "A": "People will take up more outdoor activities I thinks in the future.",
-            "B": "I think in the future people will take up more outdoor activities",
-            "C": "People thinks I will take up outdoor activities more in the future.",
-            "correct": "B"
-        },
-        "8": {
-            "words": "Best/ my/ doesn't/ mountain/ like/ climbing/ he/ is/ afraid/ height/ because",
-            "A": "My friend doesn't like climbing mountain because he is afraid of best height.",
-            "B": "My best friend doesn't like mountain climbing because he is afraid of height",
-            "C": "He is afraid of climbing mountain because my best friend doesn't like.",
-            "correct": "B"
-        },
-        "9": {
-            "words": "My/ enjoys/ sister/ cooking/ new/ dishes/ making/ own/ her/ on/ and",
-            "A": "My sister enjoys cooking dishes on her on and making.",
-            "B": "My sister enjoys on her own cooking dishes and making.",
-            "C": "My sister enjoys cooking and making new dishes on her own",
-            "correct": "C"
-        },
-        "10": {
-            "words": "There / in / be/ twenty/ beautiful/ garden/ my/ flowers/ five.",
-            "A": "There are five - twenty flowers beautiful in my garden",
-            "B": "There are twenty-five beautiful flowers in my garden.",
-            "C": "In my garden, twenty-five beautiful flower there are",
-            "correct": "B"
-        },
-        "11": {
-            "words": "She/ working/ be/ now/ receptionist/ a/ as.",
-            "A": "She are working as a receptionist now",
-            "B": "Receptionist is working now as she.",
-            "C": "She is working as a receptionist now.",
-            "correct": "C"
-        },
-        "12": {
-            "words": "You/ play/ can/ badminton/ well/ very/ but / can't/ swim/ you.",
-            "A": "You can swim well but you can't play very well badminton.",
-            "B": "You can play badminton very well but you can't swim.",
-            "C": "Can you play badminton very well but you can't swim?",
-            "correct": "B"
-        },
-        "13": {
-            "words": "in/ picture/ people/ any/ the/ not/ there/ be/",
-            "A": "There isn't any people in the picture",
-            "B": "There aren't any people in the picture",
-            "C": "There are any people not in the picture",
-            "correct": "B"
-        },
-        "14": {
-            "words": "Shoud/ go/ you/ take/ nap/ a.",
-            "A": "You should take a go nap",
-            "B": "You should go and take a nap.",
-            "C": "You should go a nap take",
-            "correct": "B"
-        },
-        "15": {
-            "words": "There/ six/ in/ teams/ Mark/ be/ 's/ members.",
-            "A": "There is six teams in Mark's members",
-            "B": "There are six teams in member's Mark",
-            "C": "There are six members in Mark's team.",
-            "correct": "C"
-        },
-        "16": {
-            "words": "Which /?/ do/ want/Why/ festival/ you/ to/ go?",
-            "A": "Why do you want to go which festival?",
-            "B": "Which do you want to go festival why?",
-            "C": "Which festival do you want to go? Why?",
-            "correct": "C"
-        },
-        "17": {
-            "words": "you/ stay/ late/ bed/ why/ do/ so?",
-            "A": "Why you stay in bed so late?",
-            "B": "Why do you stay in bed late so?",
-            "C": "Why do you stay in bed so late?",
-            "correct": "C"
-        },
-        "18": {
-            "words": "Not/ do/ wash/ machine/ hand/ or.",
-            "A": "Not do wash machine or hand",
-            "B": "Do not machine or hand wash.",
-            "C": "Do not washs machine or hand",
-            "correct": "B"
-        },
-        "19": {
-            "words": "Luke's/ read/ text/ Jessica/ to/ message / answer/ questions/ the!",
-            "A": "Lukes read the text to Jessica answer the question message!",
-            "B": "Read the Jessica questions and answer the Lukes' text message!",
-            "C": "Read Luke's text message to Jessica and answer the questions.",
-            "correct": "C"
+        .nav-tabs { display: flex; gap: 8px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 5px; }
+        .tab-btn {
+            flex: 1; min-width: 150px; padding: 12px; background-color: #cbd5e1; border: none;
+            font-size: 14px; font-weight: bold; color: #475569; border-radius: 8px;
+            cursor: pointer; transition: all 0.2s; white-space: nowrap; text-align: center;
         }
+        .tab-btn.active { background-color: var(--primary-color); color: white; }
+        .tab-btn.reading-tab.active { background-color: var(--accent-color); }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .section-title {
+            background-color: #e2e8f0; padding: 10px 15px; border-radius: 8px;
+            margin: 20px 0 15px 0; font-size: 15px; font-weight: bold; color: #1e3a8a;
+            border-left: 5px solid var(--primary-color);
+        }
+        .reading-section .section-title { color: #5b21b6; border-left-color: var(--accent-color); }
+
+        .reading-passage {
+            background: #f8fafc; padding: 15px; border-left: 4px solid var(--accent-color);
+            margin-bottom: 15px; border-radius: 4px; font-style: italic; color: #334155;
+        }
+
+        .quiz-block { display: grid; grid-template-columns: 1fr 430px; gap: 20px; margin-bottom: 25px; }
+        @media (max-width: 950px) {
+            .quiz-block { grid-template-columns: 1fr; }
+            .video-sticky { position: relative !important; top: 0 !important; }
+        }
+
+        .questions-side, .reading-card-container {
+            background: var(--card-bg); padding: 20px; border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .video-sticky {
+            position: sticky; top: 20px; background: var(--card-bg); padding: 15px;
+            border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center;
+        }
+        .video-container {
+            position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+            border-radius: 8px; background: #000; margin-top: 8px;
+        }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        .question-card { margin-bottom: 18px; padding-bottom: 15px; border-bottom: 1px dashed #e2e8f0; }
+        .question-card:last-child { border-bottom: none; }
+        .question-text { font-weight: 600; margin-bottom: 10px; font-size: 15px; }
+
+        .options-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+        .options-vertical { display: flex; flex-direction: column; gap: 8px; }
+        
+        .option-label {
+            display: flex; align-items: center; padding: 10px 12px;
+            border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer; transition: all 0.15s;
+        }
+        .option-label:hover { background-color: #f8fafc; border-color: #94a3b8; }
+        .option-label input { margin-right: 10px; transform: scale(1.1); }
+
+        .option-label.correct { background-color: #dcfce7 !important; border-color: var(--success-color) !important; color: #166534; font-weight: 600; }
+        .option-label.incorrect { background-color: #fee2e2 !important; border-color: var(--error-color) !important; color: #991b1b; }
+
+        .action-zone { text-align: center; margin: 30px 0; padding: 15px; background: #fff; border-radius: 12px; }
+        .btn {
+            background-color: var(--primary-color); color: white; border: none;
+            padding: 12px 40px; font-size: 16px; font-weight: 600; border-radius: 8px;
+            cursor: pointer; box-shadow: 0 4px 6px rgba(37,99,235,0.15); transition: all 0.2s;
+        }
+        .btn:hover { background-color: #1d4ed8; }
+        .btn-reading { background-color: var(--accent-color); box-shadow: 0 4px 6px rgba(124,58,237,0.15); }
+        .btn-reading:hover { background-color: #6d28d9; }
+
+        .score-display { margin-top: 15px; font-size: 18px; font-weight: bold; display: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>HỆ THỐNG TỰ LUYỆN ĐỀ THI HẾT HỌC PHẦN TACB1 - BẢN FULL 100%</h1>
+        <p>Đầy đủ toàn bộ câu hỏi nghe (Listening) chi tiết và nội dung trắc nghiệm, đọc hiểu từ đề cương</p>
+    </header>
+
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('listening', this)">🎵 PHẦN I: BÀI NGHE (LISTENING)</button>
+        <button class="tab-btn reading-tab" onclick="switchTab('part3', this)">🧩 PART 3: ODD ONE OUT</button>
+        <button class="tab-btn reading-tab" onclick="switchTab('part4', this)">📖 PART 4: ĐIỀN TỪ VÀO ĐOẠN VĂN</button>
+        <button class="tab-btn reading-tab" onclick="switchTab('part5', this)">⛓️ PART 5: REWRITE SENTENCES</button>
+        <button class="tab-btn reading-tab" onclick="switchTab('part6', this)">📝 PART 6: TRẮC NGHIỆM ĐƠN</button>
+        <button class="tab-btn reading-tab" onclick="switchTab('part7', this)">🏗️ PART 7: HOÀN THÀNH CÂU</button>
+    </div>
+
+    <!-- ================== PHẦN I: LISTENING (ĐÃ NẠP CHI TIẾT 100%) ================== -->
+    <div id="listening" class="tab-content active">
+        <div class="section-title">AUDIO 1: KET 1 - Test 3 (Travel Agency)</div>
+        <div class="quiz-block">
+            <div class="questions-side" id="listening-p1-questions">
+                <!-- Sẽ tự động tạo câu hỏi chi tiết qua JavaScript bên dưới -->
+            </div>
+            <div class="video-side"><div class="video-sticky"><strong>🎵 Audio (Travel Agency)</strong><div class="video-container"><iframe src="https://www.youtube.com/embed/Z0oYj0C6Svo" allowfullscreen></iframe></div></div></div>
+        </div>
+
+        <div class="section-title">AUDIO 2: KET 2 - Test 1 (Lost Bag)</div>
+        <div class="quiz-block">
+            <div class="questions-side" id="listening-p2-questions">
+                <!-- Sẽ tự động tạo câu hỏi chi tiết qua JavaScript bên dưới -->
+            </div>
+            <div class="video-side"><div class="video-sticky"><strong>🎵 Audio (Lost Bag)</strong><div class="video-container"><iframe src="https://www.youtube.com/embed/4y8w4wG8Fas" allowfullscreen></iframe></div></div></div>
+        </div>
+
+        <div class="section-title">AUDIO 3: KET 2 - Test 4 (Sailing Holiday)</div>
+        <div class="quiz-block">
+            <div class="questions-side" id="listening-p3-questions">
+                <!-- Sẽ tự động tạo câu hỏi chi tiết qua JavaScript bên dưới -->
+            </div>
+            <div class="video-side"><div class="video-sticky"><strong>🎵 Audio (Sailing Holiday)</strong><div class="video-container"><iframe src="https://www.youtube.com/embed/AOnN6pCcoq8" allowfullscreen></iframe></div></div></div>
+        </div>
+
+        <div class="action-zone">
+            <button class="btn" onclick="checkGroup('listening')">Nộp Bài Phần Nghe</button>
+            <div class="score-display" id="listening-score"></div>
+        </div>
+    </div>
+
+    <!-- ================== CÁC PART ĐỌC HIỂU ================== -->
+    <div id="part3" class="tab-content reading-section">
+        <div class="section-title">PART 3: CHOOSE THE ODD ONE OUT (Đầy đủ 40 câu)</div>
+        <div class="reading-card-container"><div id="part3-container"></div></div>
+        <div class="action-zone">
+            <button class="btn btn-reading" onclick="checkGroup('part3')">Kiểm Tra Đáp Án Part 3</button>
+            <div class="score-display" id="part3-score"></div>
+        </div>
+    </div>
+
+    <div id="part4" class="tab-content reading-section">
+        <div class="section-title">PART 4: CHOOSE THE BEST ANSWER TO COMPLETE THE TEXT (Đầy đủ 4 bài đọc)</div>
+        <div class="reading-card-container"><div id="part4-container"></div></div>
+        <div class="action-zone">
+            <button class="btn btn-reading" onclick="checkGroup('part4')">Kiểm Tra Đáp Án Part 4</button>
+            <div class="score-display" id="part4-score"></div>
+        </div>
+    </div>
+
+    <div id="part5" class="tab-content reading-section">
+        <div class="section-title">PART 5: REWRITE SENTENCES (Đầy đủ 25 câu)</div>
+        <div class="reading-card-container"><div id="part5-container"></div></div>
+        <div class="action-zone">
+            <button class="btn btn-reading" onclick="checkGroup('part5')">Kiểm Tra Đáp Án Part 5</button>
+            <div class="score-display" id="part5-score"></div>
+        </div>
+    </div>
+
+    <div id="part6" class="tab-content reading-section">
+        <div class="section-title">PART 6: CHOOSE THE BEST ANSWER TO COMPLETE THE SENTENCE (24 câu)</div>
+        <div class="reading-card-container"><div id="part6-container"></div></div>
+        <div class="action-zone">
+            <button class="btn btn-reading" onclick="checkGroup('part6')">Kiểm Tra Đáp Án Part 6</button>
+            <div class="score-display" id="part6-score"></div>
+        </div>
+    </div>
+
+    <div id="part7" class="tab-content reading-section">
+        <div class="section-title">PART 7: COMPLETE SENTENCES (Đầy đủ 18 câu)</div>
+        <div class="reading-card-container"><div id="part7-container"></div></div>
+        <div class="action-zone">
+            <button class="btn btn-reading" onclick="checkGroup('part7')">Kiểm Tra Đáp Án Part 7</button>
+            <div class="score-display" id="part7-score"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+// DỮ LIỆU TOÀN BỘ BÀI NGHE (LISTENING) CHI TIẾT 100%
+const listeningP1Data = [
+    { q: "1. The plane leaves at:", choices: ["12.00 a.m.", "2.00 p.m.", "3.00 p.m."], ans: "A" },
+    { q: "2. The bus station is in:", choices: ["Bill Street.", "Hill Street.", "Mill Street."], ans: "B" },
+    { q: "3. The journey to the airport takes:", choices: ["1 hour 15 minutes.", "1 hour 30 minutes.", "1 hour 45 minutes."], ans: "A" },
+    { q: "4. The man's ticket to Buenos Aires will cost:", choices: ["£240.", "£300.", "£320."], ans: "C" },
+    { q: "5. The coach costs:", choices: ["£13.50.", "£14.50.", "£30.50."], ans: "B" }
+];
+
+const listeningP2Data = [
+    { q: "1. How much money was in the bag?", choices: ["£20", "£40", "£50"], ans: "B" },
+    { q: "2. What else was in the bag?", choices: ["a credit card", "a driving licence", "some gloves"], ans: "C" },
+    { q: "3. The bag was:", choices: ["old", "expensive", "big"], ans: "B" },
+    { q: "4. What time did the woman lose the bag?", choices: ["9.30", "10.00", "10.30"], ans: "B" },
+    { q: "5. The policeman will telephone her in the:", choices: ["morning", "afternoon", "evening"], ans: "B" }
+];
+
+const listeningP3Data = [
+    { q: "1. Chloe started sailing when she was:", choices: ["12", "14", "16"], ans: "A" },
+    { q: "2. Chloe preferred the intermediate course because she:", choices: ["wanted to go fast.", "liked the practice format.", "knew the instructor."], ans: "B" },
+    { q: "3. What did Chloe find most difficult?", choices: ["tying knots", "reaching the shore", "turning the boat round"], ans: "A" },
+    { q: "4. Chloe advises against taking:", choices: ["expensive cameras.", "heavy sweaters.", "leather shoes."], JS_ans: "B", ans: "B" },
+    { q: "5. The next course Chloe wants to do is:", choices: ["windsurfing.", "deep-sea fishing.", "water-skiing."], ans: "C" }
+];
+
+// DỮ LIỆU CÁC PHẦN ĐỌC HIỂU
+const part3Data = [
+    { q: "1", choices: ["brush", "face", "clean", "wash"], ans: "B" },
+    { q: "2", choices: ["homework", "often", "usually", "sometimes"], ans: "A" },
+    { q: "3", choices: ["breakfast", "lunch", "dinner", "family"], ans: "D" },
+    { q: "4", choices: ["see", "watch", "hear", "music"], ans: "D" },
+    { q: "5", choices: ["enjoy", "like", "book", "love"], ans: "C" },
+    { q: "6", choices: ["party", "street", "road", "lane"], ans: "A" },
+    { q: "7", choices: ["week", "city ", "village", "town"], ans: "A" },
+    { q: "8", choices: ["study", "play", "watch", "house"], ans: "D" },
+    { q: "9", choices: ["morning", "day ", "afternoon", "evening"], ans: "B" },
+    { q: "10", choices: ["city", "bus", "bike", "car"], ans: "A" },
+    { q: "11", choices: ["pencil", "ruler", "pen ", "school"], ans: "D" },
+    { q: "12", choices: ["rubber", "book", "bag", "class"], ans: "D" },
+    { q: "13", choices: ["subject", "Vietnamese", "English", "Math"], ans: "A" },
+    { q: "14", choices: ["nice", "tall", "short", "pupil"], ans: "D" },
+    { q: "15", choices: ["what", "who", "speak", "when"], ans: "C" },
+    { q: "16", choices: ["read", "speak", "listen", "good"], ans: "D" },
+    { q: "17", choices: ["dog", "lamp", "rabbit", "cat"], ans: "B" },
+    { q: "18", choices: ["kind", "generous", "gentle", "story"], ans: "D" },
+    { q: "19", choices: ["body", "beautiful", "nice", "handsome"], ans: "A" },
+    { q: "20", choices: ["bedroom", "dining room", "bathroom", "class"], ans: "D" },
+    { q: "21", choices: ["summer ", "winter", "water", "spring"], ans: "C" },
+    { q: "22", choices: ["Monday", "May", "Sunday", "Tuesday"], ans: "B" },
+    { q: "23", choices: ["April", "June", "Saturday", "July"], ans: "C" },
+    { q: "24", choices: ["morning", "night", "evening", "summer"], ans: "D" },
+    { q: "25", choices: ["autumn", "August", "September", "March"], ans: "A" },
+    { q: "26", choices: ["tiger", "fish", "panda", "bear"], ans: "B" },
+    { q: "27", choices: ["month", "year", "week", "subject"], ans: "D" },
+    { q: "28", choices: ["father", "mother", "grandma", "teacher"], ans: "D" },
+    { q: "29", choices: ["brother", "sister", "mother", "daughter"], ans: "C" },
+    { q: "30", choices: ["father", "grandfather", "son", "sister"], ans: "D" },
+    { q: "31", choices: ["mirror", "sofa", "chair", "room"], ans: "D" },
+    { q: "32", choices: ["Music", "subject", "Art", "Geography"], ans: "B" },
+    { q: "33", choices: ["Science", "ruler", "pen", "pencil case"], ans: "A" },
+    { q: "34", choices: ["get up", "wash", "wake up", "breakfast"], ans: "D" },
+    { q: "35", choices: ["bookshop", "shopping", "music shop", "shoe shop"], ans: "B" },
+    { q: "36", choices: ["cinema", "post office", "hotel", "car"], ans: "D" },
+    { q: "37", choices: ["play", "golf", "tennis", "badminton"], ans: "A" },
+    { q: "38", choices: ["toothache", "headache", "earache", "healthy"], ans: "D" },
+    { q: "39", choices: ["headache", "knee", "leg", "foot"], ans: "A" },
+    { q: "40", choices: ["Italian", "American", "England", "Scottish"], ans: "C" }
+];
+
+const part4Data = [
+    {
+        title: "Question 1: MY BEST FRIEND",
+        passage: "I‘ve __1__ a lot of good friends. This is a photo __2__ my best friend, Lily. Lily’s sixteen and she’s __3__ Brighton. She’s British but __4__ dad’s from Jamaica. Lily’s got a brother, Andrew. He’s eleven. Lily’s got two interests: music and ... music! She’s music mad. Her favorite thing is her MP3 __5__. She’s got 500 songs on it and 50 of them are by The Kaiser Chiefs! My favorite band __6__ The Kooks. So we haven’t got the same songs on our MP3 players. She’s got __7__ electric guitar and she’s in a band with her classmates. They are all girls! They __8__ got a lot of fans at school. Lily has got a mobile phone and a computer __9__ she hasn’t got a games console – computer games aren’t her thing. Lily’s got two pets – a cat called Lyra and a goldfish called Moby Dick. Oh and Lily’s got a nickname. It’s Lulu. My nickname’s Spider. Lily isn’t my girlfriend – she’s __10__ best friend.",
+        subs: [
+            { n: "1", choices: ["many", "so", "got", "about"], ans: "C" },
+            { n: "2", choices: ["from", "of", "about", "to"], ans: "B" },
+            { n: "3", choices: ["from", "in", "on", "to"], ans: "A" },
+            { n: "4", choices: ["she", "his", "my", "her"], ans: "D" },
+            { n: "5", choices: ["player", "CDs", "DVDs", "console"], ans: "A" },
+            { n: "6", choices: ["are", "is", "got", "has"], ans: "B" },
+            { n: "7", choices: ["a", "the", "many", "an"], ans: "D" },
+            { n: "8", choices: ["have", "has", "do", "does"], ans: "A" },
+            { n: "9", choices: ["and", "so", "but", "or"], ans: "C" },
+            { n: "10", choices: ["a", "an", "my", "her"], ans: "C" }
+        ]
+    },
+    {
+        title: "Question 2: MEET LAN FROM CHINA",
+        passage: "Lan __1__ to school but his friends __2__ or go by bus. All the students tidy the classroom and lessons start __3__ 8.00 a.m. Students __4__ Chinese, History, Geography, Maths, Science, Foreign Languages, Citizenship and other subjects. Lan’s favorite subject __5__ English! Students __6__ school uniform – a tracksuit. Lan __7__ it! Lan is happy when it’s 12.00 – lunch time! Some of his friends __8__ home for lunch but he has lunch in the school canteen. He has meat or fish with rice. After lunch, Lan usually plays football. He sometimes goes to the library. After classes start at 2.00 p.m. and finish at 5.30 p.m. He always does homework __9__ the afternoon and he often has evening classes __10__ school",
+        subs: [
+            { n: "1", choices: ["walk", "walks", "go", "goes"], ans: "B" },
+            { n: "2", choices: ["cycle", "cycles", "not", "has cycle"], ans: "A" },
+            { n: "3", choices: ["at", "on", "in", "to"], ans: "A" },
+            { n: "4", choices: ["studys", "studies", "studyes", "study"], ans: "D" },
+            { n: "5", choices: ["has", "got", "is", "have"], ans: "C" },
+            { n: "6", choices: ["wears", "wear", "wearing", "has wear"], ans: "B" },
+            { n: "7", choices: ["likes", "don’t like", "have", "got"], ans: "A" },
+            { n: "8", choices: ["goes", "go", "going", "gos"], ans: "B" },
+            { n: "9", choices: ["on", "at", "from", "in"], ans: "D" },
+            { n: "10", choices: ["in", "to", "at", "about"], ans: "C" }
+        ]
+    },
+    {
+        title: "Question 3: A HOME ON THE WATER",
+        passage: "Interviewer: Tell me __1__ your home, Melanie.<br>Melanie: It’s a canal boat. Its in Stratford-upon-Avon, Shakespeare’s birthplace. But I often travel with the boat. I’m __2__ artist and the boat is a fantastic place for painting.<br>Interviewer: Is it a quiet life?<br>Melanie: Yes, usually there aren’t many boats on the canals. But __3__ the summer, its often very busy __4__ noisy!<br>Interviewer: How __5__ rooms are there on your boat?<br>Melanie: Not many! The boat is quite small so I haven’t got many rooms. There are three. There isn’t __6__ space for my things.<br>Interviewer: How many bedrooms __7__ there?<br>Melanie: There’s one. But it’s a living room and a bedroom. And I’ve got a kitchen and a bathroom, too.<br>Interviewer: How __8__ furniture have you got?<br>Melanie: Not much but I’ve got a lot of clothes! And there __9__ my paintings!<br>Interviewer: Have you got a lot __10__ paintings?<br>Melanie: Yes, a lot! Hundreds!",
+        subs: [
+            { n: "1", choices: ["about", "on", "with", "in"], ans: "A" },
+            { n: "2", choices: ["a", "an", "the", "Ф"], ans: "B" },
+            { n: "3", choices: ["on", "in", "at", "to"], ans: "B" },
+            { n: "4", choices: ["and", "but", "also", "or"], ans: "A" },
+            { n: "5", choices: ["much", "often", "many", "about"], ans: "C" },
+            { n: "6", choices: ["much", "often", "many", "about"], ans: "A" },
+            { n: "7", choices: ["is", "in", "got", "are"], ans: "D" },
+            { n: "8", choices: ["much", "often", "many", "about"], ans: "A" },
+            { n: "9", choices: ["is", "got", "are", "Have"], ans: "C" },
+            { n: "10", choices: ["in", "about", "Ф", "of"], ans: "D" }
+        ]
+    },
+    {
+        title: "Question 4: LIVING IN LIVERPOOL",
+        passage: "Mark Richard __1__ Anne-Marie, a twenty-year-old student from Liverpool. Anne-Marie, you live in Liverpool, the 2009 European Capital of Culture. Can you tell me two special things about your city? Only two? Well...It’s near the sea, __2__ the river, Mersey, and it has got a lot of culture and __3__ of things to do. __4__ there any good museums? Oh, yes, a lot. In the UK, only London has more museums than Liverpool. There’s the World Museum and Maritime Museum, the Tate Liverpool – that’s an art gallery – and of course The Beatles Story Museum. Are the shops good? There’s a fantastic new shopping mall called Liverpool ONE. It is the __5__ of 28 football fields. It has got 160 shops, restaurants and cafes, two hotels and a cinema with 14 screens. Are there many green spaces? In the city centre, there __6__ Sefton Park with a beautiful palm house and a statue of Peter Pan. Just eight miles from the centre there is Knowsley Safari Park. And on the Wirral, __7__ the other side of the river, there are a __8__ of green areas and great walks. What about sports? We’ve got two famous football clubs, Everton and Liverpool FC. But people also play golf, basketball, rugby and tennis. There are beaches on the Wirral so you can __9__ windsurfing or sailing. What can you do in the evening? Come and see! There are __10__ of clubs and bars with fantastic live music, especially around the Concert Square.",
+        subs: [
+            { n: "1", choices: ["interview", "Interviews", "to intervew", "interviewing"], ans: "B" },
+            { n: "2", choices: ["on", "in", "at", "of"], ans: "A" },
+            { n: "3", choices: ["lots", "lot", "one", "many"], ans: "A" },
+            { n: "4", choices: ["Is", "Have", "Has", "Are"], ans: "D" },
+            { n: "5", choices: ["long", "wide", "size", "big"], ans: "C" },
+            { n: "6", choices: ["are", "is", "have", "has"], ans: "B" },
+            { n: "7", choices: ["in", "at", "on", "about"], ans: "C" },
+            { n: "8", choices: ["lots", "lot", "many", "much"], ans: "B" },
+            { n: "9", choices: ["go", "to go", "going", "goes"], ans: "A" },
+            { n: "10", choices: ["hundred", "hundreds", "many", "much"], ans: "B" }
+        ]
+    }
+];
+
+const part5Data = [
+    { title: "Question 1 - Câu 1: There is a sink, a tub and a shower in the bathroom.", choices: ["A. The bathroom has a sink, a tub and a shower.", "B. The bathroom is well equipped.", "C. The bathroom has sink, tub and shower in.", "D. The bathroom is a sink, a tub and a shower."], ans: "A" },
+    { title: "Question 1 - Câu 2: Do you have a better refrigerator than this?", choices: ["A. Is this a better refrigerator you have?", "B. Is this better than a refrigerator you have?", "C. Is this the best refrigerator you have?", "D. Is this a refrigerator than yours?"], ans: "C" },
+    { title: "Question 1 - Câu 3: I get to work in half an hour.", choices: ["A. It takes to work in an hour.", "B. It takes me an hour to get to work.", "C. It takes an hour to work.", "D. It takes me to work an hour."], ans: "B" },
+    { title: "Question 1 - Câu 4: He is a careful driver.", choices: ["A. He drives careful.", "B. He is careful.", "C. He drives careful driver.", "D. He drives carefully."], ans: "D" },
+    { title: "Question 1 - Câu 5: My school has thirty classrooms.", choices: ["A. There are thirty classrooms in my school.", "B. There is my school and thirty classrooms.", "C. There has thirty classrooms in my school.", "D. There in my school, thirty classrooms."], ans: "A" },
+    { title: "Question 2 - Câu 1: They are good teachers at Math.", choices: ["A. They teach good Math.", "B. They teach Math good.", "C. They teach Math well.", "D. They teach good at Math."], ans: "C" },
+    { title: "Question 2 - Câu 2: David has a lot of CDs in his room.", choices: ["A. There is a lot of CDs in his room", "B. There are a lot of CDs in David’s room", "C. There is a lot of CDs in David room", "D. There are a lot of CDs in David room"], ans: "B" },
+    { title: "Question 2 - Câu 3: He drives to the countryside with his family.", choices: ["A. He drive with his family to the countryside", "B. He goes to the countryside with his family by a car", "C. He goes to the countryside with his family by car", "D. He go to the countryside with his family by car"], ans: "C" },
+    { title: "Question 2 - Câu 4: I have a favourite sister. Her name is Anna.", choices: ["A. My name is Anna. I have a favourite sister", "B. My favourite sister’s name is Anna", "C. My sister Anna is favourite.", "D. Anna likes my favourite sister"], ans: "B" },
+    { title: "Question 2 - Câu 5: Where is the nearest post office?", choices: ["A. Could you show me the way to the nearest post-office?", "B. Could you go to the nearest post-office?", "C. Could you take me to the nearest post-office?", "D. Could you ask me about the way to the nearest post-office?"], ans: "A" },
+    { title: "Question 3 - Câu 1: They enjoy taking part in the activities.", choices: ["A. They fancy to taking part in the activities.", "B. They fancy taking part in the activities.", "C. They enjoy to take part in the activities.", "D. They enjoy take part in the activities."], ans: "B" },
+    { title: "Question 3 - Câu 2: I always take the bus to go back home.", choices: ["A. I always go back home by bus", "B. I always go home back by bus", "C. I always go back home to take by bus", "D. I always go back home take by bus"], ans: "A" },
+    { title: "Question 3 - Câu 3: This schoolbag is my schoolbag not your schoolbag.", choices: ["A. This schoolbag is my schoolbag not yours", "B. This schoolbag is mine not yours", "C. This schoolbag is mine not your schoolbag", "D. This schoolbag is mine and not yours"], ans: "B" },
+    { title: "Question 3 - Câu 4: There are a lot of interesting programs on VTV 3.", choices: ["A. A lot of interesting programs is on VTV 3", "B. VTV3 has a lot of interesting programs", "C. VTV3 have a lot of interesting programs", "D. A lot of interesting programs have on VTV 3"], ans: "B" },
+    { title: "Question 3 - Câu 5: I feel very tired so I go to bed early.", choices: ["A. I go to bed early because I feel very tired.", "B. I go to bed early, so I feel tired.", "C. I got to bed early that I felt tired.", "D. I go to bed early makes I felt tired."], ans: "A" },
+    { title: "Question 4 - Câu 1: Is the police station behind the post office?", choices: ["A. Is the post office beside the police station?", "B. Is the post office next the police station?", "C. Is the post office next to the police station?", "D. Is the post office in front of the police station?"], ans: "C" },
+    { title: "Question 4 - Câu 2: She has good ability to memorize things.", choices: ["A. She has terrible ability to memorize things.", "B. She has bad ability to memorize things.", "C. She memorizes things well.", "D. She doesn’t have ability to memorize things."], ans: "C" },
+    { title: "Question 4 - Câu 3: That motorbike belongs to Mr Trung.", choices: ["A. That is Mr Trung’s motorbike", "B. Mr Trung have a motorbike.", "C. Mr Trung belong to a motorbike.", "D. Trung’s motorbike is belong to."], ans: "A" },
+    { title: "Question 4 - Câu 4: He makes up a story to link random numbers and words.", choices: ["A. He creates a story to link random numbers and words.", "B. He tells a story to link random numbers and words.", "C. He reads a story to link random numbers and words.", "D. He likes a story to link random numbers and words"], ans: "A" },
+    { title: "Question 4 - Câu 5: Long is a bad swimmer.", choices: ["A. Long swims bad.", "B. Long swims badly.", "C. Long is bad swim.", "D. Long is a badly swimmer."], ans: "B" },
+    { title: "Question 5 - Câu 1: Our house is far from the school.", choices: ["A. Our house is not near the school.", "B. The school is beside our house", "C. I live next to the school", "D. The way from our house to the school is not far"], ans: "A" },
+    { title: "Question 5 - Câu 2: She believes that anybody can train their mind to memorize.", choices: ["A. She doesn’t believe that anybody can train their mind to memorize.", "B. She was believed that anybody can train their mind to memorize.", "C. She thinks that anybody can train their mind to memorize.", "D. She doesn’t like that anybody can train their mind to memorize."], ans: "C" },
+    { title: "Question 5 - Câu 3: She has 2 good children.", choices: ["A. Her children have good.", "B. Her children are two good.", "C. Her children have two good.", "D. Her children are good."], ans: "D" },
+    { title: "Question 5 - Câu 4: There are over eight hundred stamps in Tim’s collection.", choices: ["A. Tim’s collection are there over eight hundred stamps.", "B. Tim’s collection has over eight hundred stamps.", "C. Tim’s collection is in over eight hundred stamps.", "D. Tim’s collection are over eight hundred stamps"], ans: "B" },
+    { title: "Question 5 - Câu 5: She wants to study languages.", choices: ["A. She likes study languages.", "B. She would like to study languages.", "C. She likes to study languages.", "D. She likes studying languages."], ans: "B" }
+];
+
+const part6Data = [
+    { q: "1. They've got a lot of fans ........ school.", choices: ["on", "at", "from", "in"], ans: "B" },
+    { q: "2. She ........ got a games console, computer games aren't her thing.", choices: ["don’t have", "hasn’t", "has", "have"], ans: "B" },
+    { q: "3. Lily's got two pets - a cat .......... Lyra and a goldfish called Moby Dick.", choices: ["called", "to call", "calling", "to be called"], ans: "A" },
+    { q: "4. Lily's got a ............... It's Lulu. My nickname's Spider.", choices: ["name", "first name", "surname", "nickname"], ans: "D" },
+    { q: "5. He's got short fair ............. He's good-looking.", choices: ["face", "leg", "hand", "hair"], ans: "D" },
+    { q: "6. She's very shy. She's young. She's only 11 ......... old.", choices: ["year", "years", "teen", "year’s"], ans: "B" },
+    { q: "7. She's short. She's got grey hair and ........... She's very friendly.", choices: ["glass", "wear glass", "glasses", "got glass"], ans: "C" },
+    { q: "8. He's tall and slim. He's old. He's about 70. He's ...... grey hair.", choices: ["have", "get", "got", "has"], ans: "C" },
+    { q: "9. ........... got long hair. She's fun. She's seven.", choices: ["She’s", "She is", "She", "Her"], ans: "A" },
+    { q: "10. He's about 45. He's got a ............ and a moustache.", choices: ["head", "mouth", "body", "beard"], ans: "D" },
+    { q: "11. He always does ............ in the afternoon and he often has evening classes.", choices: ["housework", "homework", "English", "Maths"], ans: "B" },
+    { q: "12. You get up, you have a shower, you get dressed, and you have ................", choices: ["dinner", "lunch", "breakfast", "meal"], ans: "C" },
+    { q: "13. It isn't easy for Lauren Miller. She's disabled and she's in a ...........", choices: ["chair", "wheelchair", "bed", "box"], ans: "B" },
+    { q: "14. She doesn't live alone - she's got a helper. 'Kylie helps .... with my life.'", choices: ["her", "me", "him", "them"], ans: "B" },
+    { q: "15. She's my best friend. But Kylie doesn't talk to .......... Kylie's a monkey!", choices: ["her", "me", "him", "them"], ans: "B" },
+    { q: "16. The organisation Helping Hands ....... monkeys at a special 'college'.", choices: ["teach", "teaching", "teaches", "teacher"], ans: "C" },
+    { q: "17. At first, the monkeys don't work with disabled people – they learn how to help ..........", choices: ["her", "me", "him", "them"], ans: "D" },
+    { q: "18. After two years, ............ go to their new homes.", choices: ["their", "they", "them", "theirs"], ans: "B" },
+    { q: "19. Kylie works hard. She ............ Lauren wash and gets food for her.", choices: ["helps", "help", "helped", "helping"], ans: "A" },
+    { q: "20. She helps with the phone and puts discs .......... the computer.", choices: ["on", "in", "into", "under"], ans: "C" },
+    { q: "21. But Kylie doesn't help Lauren 24 hours ..... day.", choices: ["the", "a", "an", "one"], ans: "B" },
+    { q: "22. And there are some great shops... And they are all in ......... same place.", choices: ["a", "the", "any", "one"], ans: "B" },
+    { q: "23. The ............. mall is the place to be!", choices: ["loving", "cinema", "shopping", "one"], ans: "C" },
+    { q: "24. It's a canal boat. It's .......... Stratford-upon-Avon.", choices: ["upon", "under", "on", "into"], ans: "C" }
+];
+
+const part7Data = [
+    { q: "1. read/ books/ free time/ is/ favorite/ hobby.", choices: ["A. Reading books is my favorite hobby in the free time", "B. Read book is my favorite hobby in the free time", "C. My favorite hobby in free time is read books"], ans: "A" },
+    { q: "2. I /not/ know/ why/ my mother/ cook/ like", choices: ["A. I not know why my mother cooking like", "B. I don’t knows why my mother cooks", "C. I don’t know why my mother likes cooking"], ans: "C" },
+    { q: "3. He/ collect/ books/ whenever/ have/ money.", choices: ["A. Collecting book he whenever has money.", "B. He collects books whenever he has money", "C. Whenever he have money, he collects book."], ans: "B" },
+    { q: "4. How many/ paintings/ she/ paint?", choices: ["A. How many pantings she paint?", "B. How many paintings does she paints?", "C. How many paintings does she paint?"], ans: "C" },
+    { q: "5. I/love/ flowers/ so/ I/ plant/ around/ house.", choices: ["A. I love flowers so I plant around the house.", "B. Flower plant around the house so I love", "C. The house I love I plant flower around so"], ans: "A" },
+    { q: "6. We/find/ make/ models/ interesting/ should/ be/ because/ creative/ very/ we", choices: ["A. We finds make models creative because we be interesting should.", "B. We should be interesting because we find models making creative", "C. We find making models very interesting because we should be creative"], ans: "C" },
+    { q: "7. The future/ I/ in/ think/ will/ take/ people/ take/ more/ activities/ outdoor/up.", choices: ["A. People will take up more outdoor activities I thinks in the future.", "B. I think in the future people will take up more outdoor activities", "C. People thinks I will take up outdoor activities more in the future."], ans: "B" },
+    { q: "8. Best/ my/ doesn’t/ mountain/ like/ climbing/ he/ is/ afraid/ height/ because", choices: ["A. My friend doesn’t like climbing mountain because he is afraid of best height.", "B. My best friend doesn't like mountain climbing because he is afraid of height", "C. He is afraid of climbing mountain because my best friend doesn’t like."], ans: "B" },
+    { q: "10. My/ enjoys/ sister/ cooking/ new/ dishes/ making/ own/ her/ on/ and", choices: ["A. My sister enjoys cooking dishes on her on and making.", "B. My sister enjoys on her own cooking dishes and making.", "C. My sister enjoys cooking and making new dishes on her own"], ans: "C" },
+    { q: "11. There / in / be/ twenty/ beautiful/ garden/ my/ flowers/ five.", choices: ["A. There are five – twenty flowers beautiful in my garden", "B. There are twenty-five beautiful flowers in my garden.", "C. In my garden, twenty-five beautiful flower there are"], ans: "B" },
+    { q: "12. She/ working/ be/ now/ receptionist/ a/ as.", choices: ["A. She are working as a receptionist now", "B. Receptionist is working now as she.", "C. She is working as a receptionist now."], ans: "C" },
+    { q: "13. You/ play/ can/ badminton/ well/ very/ but / can’t/ swim/ you.", choices: ["A. You can swim well but you can’t play very well badminton.", "B. You can play badminton very well but you can’t swim.", "C. Can you play badminton very well but you can’t swim?"], ans: "B" },
+    { q: "14. in/ picture/ people/ any/ the/ not/ there/ be/", choices: ["A. There isn’t any people in the picture", "B. There aren’t any people in the picture", "C. There are any people not in the picture"], ans: "B" },
+    { q: "15. Shoud/ go/ you/ take/ nap/ a.", choices: ["A. You should take a go nap", "B. You should go and take a nap.", "C. You should go a nap take"], ans: "B" },
+    { q: "16. There/ six/ in/ teams/ Mark/ be/ ‘s/ members.", choices: ["A. There is six teams in Mark’ members", "B. There are six teams in member’s Mark", "C. There are six members in Mark’s team."], ans: "C" },
+    { q: "17. Which /?/ do/ want/Why/ festival/ you/ to/ go?", choices: ["A. Why do you want to go which festival?", "B. Which do you want to go festival why?", "C. Which festival do you want to go? Why?"], ans: "C" },
+    { q: "18. you/ stay/ late/ bed/ why/ do/ so?", choices: ["A. Why you stay in bed so do late?", "B. Why do you stay in bed late so?", "C. Why do you stay in bed so late?"], ans: "C" },
+    { q: "19. Not/ do/ wash/ machine/ hand/ or.", choices: ["A. Not do wash machine or hand", "B. Do not machine or hand wash.", "C. Do not washs machine or hand"], ans: "B" },
+    { q: "20. Luke’s/ read/ text/ Jessica/ to/ message / answer/ questions/ the!", choices: ["A. Lukes read the text to Jessica answer the question message!", "B. Read the Jessica questions and answer the Lukes’ text message!", "C. Read the Luke’s text message to Jessica and answer the questions."], ans: "C" }
+];
+
+// TRÌNH ĐIỀU KHIỂN CHUYỂN TAB
+function switchTab(tabId, btn) {
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    btn.classList.add('active');
+}
+
+// HÀM TỰ ĐỘNG SINH GIAO DIỆN CÂU HỎI
+function renderQuiz() {
+    // Render Listening Audio 1
+    let l1Html = '';
+    listeningP1Data.forEach((item, index) => {
+        l1Html += `<div class="question-card"><div class="question-text">${item.q}</div><div class="options-vertical">`;
+        item.choices.forEach((c, i) => {
+            const letter = String.fromCharCode(65 + i);
+            l1Html += `<label class="option-label"><input type="radio" name="lis1_${index}" value="${letter}"> ${letter}. ${c}</label>`;
+        });
+        l1Html += `</div></div>`;
+    });
+    document.getElementById('listening-p1-questions').innerHTML = l1Html;
+
+    // Render Listening Audio 2
+    let l2Html = '';
+    listeningP2Data.forEach((item, index) => {
+        l2Html += `<div class="question-card"><div class="question-text">${item.q}</div><div class="options-vertical">`;
+        item.choices.forEach((c, i) => {
+            const letter = String.fromCharCode(65 + i);
+            l2Html += `<label class="option-label"><input type="radio" name="lis2_${index}" value="${letter}"> ${letter}. ${c}</label>`;
+        });
+        l2Html += `</div></div>`;
+    });
+    document.getElementById('listening-p2-questions').innerHTML = l2Html;
+
+    // Render Listening Audio 3
+    let l3Html = '';
+    listeningP3Data.forEach((item, index) => {
+        l3Html += `<div class="question-card"><div class="question-text">${item.q}</div><div class="options-vertical">`;
+        item.choices.forEach((c, i) => {
+            const letter = String.fromCharCode(65 + i);
+            l3Html += `<label class="option-label"><input type="radio" name="lis3_${index}" value="${letter}"> ${letter}. ${c}</label>`;
+        });
+        l3Html += `</div></div>`;
+    });
+    document.getElementById('listening-p3-questions').innerHTML = l3Html;
+
+    // Render Part 3
+    let p3Html = '';
+    part3Data.forEach((item, index) => {
+        p3Html += `<div class="question-card"><div class="question-text">Câu hỏi từ khác biệt ${item.q}:</div><div class="options-grid">`;
+        item.choices.forEach((c, i) => {
+            const letter = String.fromCharCode(65 + i);
+            p3Html += `<label class="option-label"><input type="radio" name="p3_${index}" value="${letter}"> ${letter}. ${c}</label>`;
+        });
+        p3Html += `</div></div>`;
+    });
+    document.getElementById('part3-container').innerHTML = p3Html;
+
+    // Render Part 4
+    let p4Html = '';
+    part4Data.forEach((block, bIndex) => {
+        p4Html += `<div style="margin-bottom: 30px; border: 1px solid #ddd; padding: 15px; border-radius: 8px;">`;
+        p4Html += `<h3>${block.title}</h3><div class="reading-passage">${block.passage}</div>`;
+        block.subs.forEach((sub) => {
+            p4Html += `<div class="question-card" style="padding-left:10px;"><div class="question-text">Vị trí trống số (__${sub.n}__):</div><div class="options-grid">`;
+            sub.choices.forEach((c, i) => {
+                const letter = String.fromCharCode(65 + i);
+                p4Html += `<label class="option-label"><input type="radio" name="p4_${bIndex}_${sub.n}" value="${letter}"> ${letter}. ${c}</label>`;
+            });
+            p4Html += `</div></div>`;
+        });
+        p4Html += `</div>`;
+    });
+    document.getElementById('part4-container').innerHTML = p4Html;
+
+    // Render Part 5
+    let p5Html = '';
+    part5Data.forEach((item, index) => {
+        p5Html += `<div class="question-card"><div class="question-text">${item.title}</div><div class="options-vertical">`;
+        item.choices.forEach((c, i) => {
+            const letter = String.fromCharCode(65 + i);
+            p5Html += `<label class="option-label"><input type="radio" name="p5_${index}" value="${letter}"> ${c}</label>`;
+        });
+        p5Html += `</div></div>`;
+    });
+    document.getElementById('part5-container').innerHTML = p5Html;
+
+    // Render Part 6
+    let p6Html = '';
+    part6Data.forEach((item, index) => {
+        p6Html += `<div class="question-card"><div class="question-text">${item.q}</div><div class="options-grid">`;
+        item.choices.forEach((c, i) => {
+            const letter = String.fromCharCode(65 + i);
+            p6Html += `<label class="option-label"><input type="radio" name="p6_${index}" value="${letter}"> ${letter}. ${c}</label>`;
+        });
+        p6Html += `</div></div>`;
+    });
+    document.getElementById('part6-container').innerHTML = p6Html;
+
+    // Render Part 7
+    let p7Html = '';
+    part7Data.forEach((item, index) => {
+        p7Html += `<div class="question-card"><div class="question-text">Sắp xếp / Ghép câu: ${item.q}</div><div class="options-vertical">`;
+        item.choices.forEach((c, i) => {
+            const letter = String.fromCharCode(65 + i);
+            p7Html += `<label class="option-label"><input type="radio" name="p7_${index}" value="${letter}"> ${c}</label>`;
+        });
+        p7Html += `</div></div>`;
+    });
+    document.getElementById('part7-container').innerHTML = p7Html;
+}
+
+// HÀM CHẤM ĐIỂM TỰ ĐỘNG TỪNG PHẦN
+function checkGroup(type) {
+    let score = 0, total = 0;
+    let container = document.getElementById(type);
+    container.querySelectorAll('.option-label').forEach(l => l.classList.remove('correct', 'incorrect'));
+
+    if (type === 'listening') {
+        // Chấm bài nghe 1
+        listeningP1Data.forEach((item, index) => {
+            total++;
+            const checked = container.querySelector(`input[name="lis1_${index}"]:checked`);
+            if (checked) {
+                if (checked.value === item.ans) { checked.parentElement.classList.add('correct'); score++; }
+                else { checked.parentElement.classList.add('incorrect'); }
+            }
+            container.querySelectorAll(`input[name="lis1_${index}"]`).forEach(inp => {
+                if (inp.value === item.ans) inp.parentElement.classList.add('correct');
+            });
+        });
+        // Chấm bài nghe 2
+        listeningP2Data.forEach((item, index) => {
+            total++;
+            const checked = container.querySelector(`input[name="lis2_${index}"]:checked`);
+            if (checked) {
+                if (checked.value === item.ans) { checked.parentElement.classList.add('correct'); score++; }
+                else { checked.parentElement.classList.add('incorrect'); }
+            }
+            container.querySelectorAll(`input[name="lis2_${index}"]`).forEach(inp => {
+                if (inp.value === item.ans) inp.parentElement.classList.add('correct');
+            });
+        });
+        // Chấm bài nghe 3
+        listeningP3Data.forEach((item, index) => {
+            total++;
+            const checked = container.querySelector(`input[name="lis3_${index}"]:checked`);
+            if (checked) {
+                if (checked.value === item.ans) { checked.parentElement.classList.add('correct'); score++; }
+                else { checked.parentElement.classList.add('incorrect'); }
+            }
+            container.querySelectorAll(`input[name="lis3_${index}"]`).forEach(inp => {
+                if (inp.value === item.ans) inp.parentElement.classList.add('correct');
+            });
+        });
+        showScore('listening-score', score, total);
+    } 
+    else if (type === 'part4') {
+        part4Data.forEach((block, bIndex) => {
+            block.subs.forEach((sub) => {
+                total++;
+                const checked = container.querySelector(`input[name="p4_${bIndex}_${sub.n}"]:checked`);
+                if (checked) {
+                    if (checked.value === sub.ans) { checked.parentElement.classList.add('correct'); score++; }
+                    else { checked.parentElement.classList.add('incorrect'); }
+                }
+                container.querySelectorAll(`input[name="p4_${bIndex}_${sub.n}"]`).forEach(input => {
+                    if (input.value === sub.ans) input.parentElement.classList.add('correct');
+                });
+            });
+        });
+        showScore('part4-score', score, total);
+    }
+    else {
+        let dataset = type === 'part3' ? part3Data : type === 'part5' ? part5Data : type === 'part6' ? part6Data : part7Data;
+        let prefix = type === 'part3' ? 'p3_' : type === 'part5' ? 'p5_' : type === 'part6' ? 'p6_' : 'p7_';
+        total = dataset.length;
+
+        dataset.forEach((item, index) => {
+            const checked = container.querySelector(`input[name="${prefix}${index}"]:checked`);
+            if (checked) {
+                if (checked.value === item.ans) { checked.parentElement.classList.add('correct'); score++; }
+                else { checked.parentElement.classList.add('incorrect'); }
+            }
+            container.querySelectorAll(`input[name="${prefix}${index}"]`).forEach(input => {
+                if (input.value === item.ans) input.parentElement.classList.add('correct');
+            });
+        });
+        showScore(`${type}-score`, score, total);
     }
 }
 
-# Đoạn code kiểm tra thử cấu trúc dữ liệu
-if __name__ == "__main__":
-    print(f"Tổng số phần đọc hiểu đã số hóa: {len(de_cuong_reading)} phần.\n")
-    
-    # In thử đáp án của Part 3 câu 1 và câu 2
-    print("Ví dụ Part 3:")
-    print("Câu 1:", de_cuong_reading["Part 3: Choose the odd one out"]["1"])
-    print("Đáp án đúng câu 2:", de_cuong_reading["Part 3: Choose the odd one out"]["2"]["correct"])
+function showScore(id, score, total) {
+    const box = document.getElementById(id);
+    box.style.display = 'block';
+    box.innerHTML = `Kết quả chấm điểm: Bạn đúng ${score}/${total} câu! 🎉`;
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+window.onload = renderQuiz;
+</script>
+</body>
+</html>
