@@ -113,7 +113,6 @@
             transform: scale(1.2);
         }
 
-        /* Trạng thái đúng sai sau khi chấm điểm */
         .option-label.correct-answer {
             background-color: #d4edda !important;
             border-color: var(--success-color) !important;
@@ -405,19 +404,19 @@
                 </div>
             </div>
 
-            <div class="quiz-card" data-correct="D">
+            <div class="quiz-card" data-correct="A">
                 <div class="question">Câu 20. Đốt cháy C (Carbon - than đá), nhiệt lượng khai thác trong nhà máy nhiệt điện than để phát điện theo phương trình:</div>
                 <div class="formula">C + O₂ → CO₂, ΔH = -393,5 kJ/mol</div>
                 <p>Nếu đốt 1 tấn than, nhiệt lượng tỏa ra gần bằng:</p>
                 <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q20" value="A"> A. 3,28 × 10⁶ kJ</label>
+                    <label class="option-label"><input type="radio" name="q20" value="A"> A. 3,28 × 10⁷ kJ</label>
                     <label class="option-label"><input type="radio" name="q20" value="B"> B. 2,36 × 10⁷ kJ</label>
                     <label class="option-label"><input type="radio" name="q20" value="C"> C. 7,87 × 10⁶ kJ</label>
                     <label class="option-label"><input type="radio" name="q20" value="D"> D. 1,97 × 10⁷ kJ</label>
                 </div>
             </div>
 
-            <div class="quiz-card" data-correct="C">
+            <div class="quiz-card" data-correct="A">
                 <div class="question">Câu 23. Nhiệt phân KClO₃ (Potassium chlorate - trong diêm, pháo), tạo ra khí O₂ hỗ trợ quá trình cháy theo phương trình:</div>
                 <div class="formula">2KClO₃ → 2KCl + 3O₂, ΔH = +89 kJ/mol</div>
                 <p>Tổng nhiệt lượng cần cung cấp khi phân hủy 2 mol KClO₃ là:</p>
@@ -473,7 +472,7 @@
                 </div>
             </div>
 
-            <div class="quiz-card" data-correct="B">
+            <div class="quiz-card" data-correct="C">
                 <div class="question">Câu 28: HI được tổng hợp theo phản ứng: H₂ + I₂ = 2HI. Biết entropy tiêu chuẩn của H₂, I₂, HI lần lượt là 130,59; 116,7; 206,3 J/(mol.K). Biến thiên entropy của phản ứng trên có giá trị là?</div>
                 <div class="options-group">
                     <label class="option-label"><input type="radio" name="q28" value="A"> A. -165,31 J/K.</label>
@@ -620,26 +619,23 @@
                 const radioGroup = card.querySelectorAll('input[type="radio"]');
                 let selectedAnswer = null;
 
-                // Xóa trạng thái css cũ nếu có
                 card.querySelectorAll('.option-label').forEach(label => {
                     label.classList.remove('correct-answer', 'wrong-answer');
                 });
 
-                // Tìm đáp án người dùng chọn
                 radioGroup.forEach(radio => {
                     if (radio.checked) {
                         selectedAnswer = radio.value;
                     }
                 });
 
-                // Tô màu kết quả trực quan
                 radioGroup.forEach(radio => {
                     const label = radio.parentElement;
                     if (radio.value === correctAnswer) {
-                        label.classList.add('correct-answer'); // Luôn hiển thị màu xanh cho câu đúng
+                        label.classList.add('correct-answer');
                     }
                     if (selectedAnswer && selectedAnswer === radio.value && selectedAnswer !== correctAnswer) {
-                        label.classList.add('wrong-answer'); // Màu đỏ cho câu chọn sai
+                        label.classList.add('wrong-answer');
                     }
                 });
 
@@ -648,7 +644,6 @@
                 }
             });
 
-            // Hiển thị điểm số lên đầu trang
             const resultBox = document.getElementById('result-box');
             const scoreText = document.getElementById('score-text');
             const percentage = Math.round((score / totalQuestions) * 100);
@@ -656,7 +651,6 @@
             scoreText.innerHTML = `Bạn trả lời đúng <strong>${score}/${totalQuestions}</strong> câu. Đạt tỉ lệ chính xác <strong>${percentage}%</strong>.`;
             resultBox.style.display = 'block';
 
-            // Cuộn trang mượt mà lên đầu để xem kết quả
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
     </script>
