@@ -3,461 +3,662 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bài Tập Chương 2: Hóa Học và Năng Lượng</title>
+    <title>Ứng Dụng Ôn Tập: Chương 2 - Hóa Học Và Năng Lượng</title>
     <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --success-color: #2ecc71;
+            --error-color: #e74c3c;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            background-color: #f4f7f6;
-            color: #333;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-        h1 {
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            width: 100%;
             text-align: center;
-            color: #2c3e50;
-            border-bottom: 3px solid #3498db;
-            padding-bottom: 10px;
+            padding: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-        h2 {
-            color: #16a085;
-            font-size: 1.3rem;
-            margin-top: 30px;
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
         }
-        .question-box {
-            background: #fafafa;
-            border-left: 4px solid #34495e;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 0 6px 6px 0;
+
+        header p {
+            margin: 5px 0 0 0;
+            font-size: 1rem;
+            opacity: 0.8;
         }
-        .question-text {
+
+        .container {
+            max-width: 800px;
+            width: 90%;
+            margin: 30px 0;
+        }
+
+        .quiz-card {
+            background: var(--card-bg);
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--secondary-color);
+            transition: transform 0.2s;
+        }
+
+        .quiz-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .question {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .formula {
+            display: block;
+            background: #f1f3f5;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', Courier, monospace;
             font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 10px;
+            color: #c0392b;
         }
-        .options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+
+        .options-group {
+            display: flex;
+            flex-direction: column;
             gap: 10px;
         }
-        @media (max-width: 600px) {
-            .options {
-                grid-template-columns: 1fr;
-            }
-        }
-        .option {
-            padding: 8px 12px;
-            background: #fff;
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
         }
-        .correct {
+
+        .option-label:hover {
+            background-color: #f0f7fc;
+            border-color: var(--secondary-color);
+        }
+
+        .option-label input {
+            margin-right: 15px;
+            transform: scale(1.2);
+        }
+
+        /* Trạng thái đúng sai sau khi chấm điểm */
+        .option-label.correct-answer {
             background-color: #d4edda !important;
-            border-color: #c3e6cb !important;
+            border-color: var(--success-color) !important;
             color: #155724;
-            font-weight: bold;
+            position: relative;
         }
-        .formula {
-            font-style: italic;
-            color: #c0392b;
+
+        .option-label.correct-answer::after {
+            content: " ✓ (Đáp án đúng)";
+            font-weight: bold;
+            margin-left: auto;
+        }
+
+        .option-label.wrong-answer {
+            background-color: #f8d7da !important;
+            border-color: var(--error-color) !important;
+            color: #721c24;
+            position: relative;
+        }
+
+        .option-label.wrong-answer::after {
+            content: " ✗ (Bạn đã chọn)";
+            font-weight: bold;
+            margin-left: auto;
+        }
+
+        .action-area {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+
+        .btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        #result-box {
+            display: none;
+            background: #e8f8f5;
+            border: 2px solid var(--success-color);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #27ae60;
+        }
+
+        #result-box h2 {
+            margin: 0 0 10px 0;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>CÂU HỎI ÔN TẬP<br><small style="font-size: 1.1rem; color: #7f8c8d;">CHƯƠNG 2. HÓA HỌC VÀ NĂNG LƯỢNG</small></h1>
+    <header>
+        <h1>ÔN TẬP TRỰC TUYẾN</h1>
+        <p>Chương 2: Hóa Học và Năng Lượng</p>
+    </header>
 
-    <div class="question-box">
-        <div class="question-text">Câu 1. Quá trình đẳng tích là quá trình:</div>
-        <div class="options">
-            <div class="option">A. Xảy ra khi áp suất không đổi</div>
-            <div class="option correct">B. Xảy ra khi thể tích không đổi</div>
-            <div class="option">C. Xảy ra khi nhiệt độ không đổi</div>
-            <div class="option">D. Xảy ra khi hệ không trao đổi nhiệt với môi trường</div>
+    <div class="container">
+        <div id="result-box">
+            <h2>Kết Quả Của Bạn</h2>
+            <p id="score-text"></p>
         </div>
+
+        <form id="quiz-form">
+            <div class="quiz-card" data-correct="B">
+                <div class="question">Câu 1. Quá trình đẳng tích là quá trình:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q1" value="A"> A. Xảy ra khi áp suất không đổi</label>
+                    <label class="option-label"><input type="radio" name="q1" value="B"> B. Xảy ra khi thể tích không đổi</label>
+                    <label class="option-label"><input type="radio" name="q1" value="C"> C. Xảy ra khi nhiệt độ không đổi</label>
+                    <label class="option-label"><input type="radio" name="q1" value="D"> D. Xảy ra khi hệ không trao đổi nhiệt với môi trường</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="A">
+                <div class="question">Câu 2. Quá trình đẳng áp là quá trình:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q2" value="A"> A. Xảy ra khi áp suất không đổi</label>
+                    <label class="option-label"><input type="radio" name="q2" value="B"> B. Xảy ra khi thể tích không đổi</label>
+                    <label class="option-label"><input type="radio" name="q2" value="C"> C. Xảy ra khi nhiệt độ không đổi</label>
+                    <label class="option-label"><input type="radio" name="q2" value="D"> D. Xảy ra khi hệ không trao đổi nhiệt với môi trường</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="A">
+                <div class="question">Câu 3. Theo nguyên lý I nhiệt động học, biến thiên nội năng của hệ (ΔU) được xác định bằng:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q3" value="A"> A. ΔU = Q + A</label>
+                    <label class="option-label"><input type="radio" name="q3" value="B"> B. ΔU = Q - A</label>
+                    <label class="option-label"><input type="radio" name="q3" value="C"> C. ΔU = Q × A</label>
+                    <label class="option-label"><input type="radio" name="q3" value="D"> D. ΔU = Q / A</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="B">
+                <div class="question">Câu 4. Trong điều kiện đẳng tích, nhiệt lượng trao đổi bằng:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q4" value="A"> A. Biến thiên enthalpy (ΔH)</label>
+                    <label class="option-label"><input type="radio" name="q4" value="B"> B. Biến thiên nội năng (ΔU)</label>
+                    <label class="option-label"><input type="radio" name="q4" value="C"> C. Công thực hiện (A)</label>
+                    <label class="option-label"><input type="radio" name="q4" value="D"> D. Tổng nhiệt và công (Q + A)</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="B">
+                <div class="question">Câu 5. Enthalpy (H) được định nghĩa là:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q5" value="A"> A. H = U - PV</label>
+                    <label class="option-label"><input type="radio" name="q5" value="B"> B. H = U + PV</label>
+                    <label class="option-label"><input type="radio" name="q5" value="C"> C. H = Q - A</label>
+                    <label class="option-label"><input type="radio" name="q5" value="D"> D. H = ΔU + ΔnRT</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="B">
+                <div class="question">Câu 6. Trong điều kiện đẳng áp, nhiệt lượng trao đổi Qp bằng:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q6" value="A"> A. ΔU</label>
+                    <label class="option-label"><input type="radio" name="q6" value="B"> B. ΔH</label>
+                    <label class="option-label"><input type="radio" name="q6" value="C"> C. ΔnRT</label>
+                    <label class="option-label"><input type="radio" name="q6" value="D"> D. 0</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="B">
+                <div class="question">Câu 7. Công thức liên hệ giữa ΔH và ΔU trong phản ứng có khí tham gia là:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q7" value="A"> A. ΔH = ΔU - ΔnRT</label>
+                    <label class="option-label"><input type="radio" name="q7" value="B"> B. ΔH = ΔU + ΔnRT</label>
+                    <label class="option-label"><input type="radio" name="q7" value="C"> C. ΔH = ΔU × ΔnRT</label>
+                    <label class="option-label"><input type="radio" name="q7" value="D"> D. ΔH = ΔU / ΔnRT</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="B">
+                <div class="question">Câu 8. Phản ứng tỏa nhiệt là phản ứng có:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q8" value="A"> A. ΔH > 0</label>
+                    <label class="option-label"><input type="radio" name="q8" value="B"> B. ΔH &lt; 0</label>
+                    <label class="option-label"><input type="radio" name="q8" value="C"> C. ΔU > 0</label>
+                    <label class="option-label"><input type="radio" name="q8" value="D"> D. ΔU = 0</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="A">
+                <div class="question">Câu 9. Phản ứng thu nhiệt là phản ứng có:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q9" value="A"> A. ΔH > 0</label>
+                    <label class="option-label"><input type="radio" name="q9" value="B"> B. ΔH &lt; 0</label>
+                    <label class="option-label"><input type="radio" name="q9" value="C"> C. ΔU &lt; 0</label>
+                    <label class="option-label"><input type="radio" name="q9" value="D"> D. ΔH = 0</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="B">
+                <div class="question">Câu 10. Trong phản ứng hóa học, nhiệt phản ứng đo ở điều kiện đẳng tích bằng:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q10" value="A"> A. ΔH</label>
+                    <label class="option-label"><input type="radio" name="q10" value="B"> B. ΔU</label>
+                    <label class="option-label"><input type="radio" name="q10" value="C"> C. ΔnRT</label>
+                    <label class="option-label"><input type="radio" name="q10" value="D"> D. Qp</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="A">
+                <div class="question">Câu 11. Đốt cháy hoàn toàn 1 mol C (Carbon - than), nhiệt lượng tỏa ra được dùng trong lò nung gạch, xi măng, luyện kim theo phương trình:</div>
+                <div class="formula">C + O₂ → CO₂, ΔH = -393,5 kJ/mol</div>
+                <p>Nhiệt tỏa ra trong phản ứng trên ở điều kiện đẳng áp là:</p>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q11" value="A"> A. -393,5 kJ</label>
+                    <label class="option-label"><input type="radio" name="q11" value="B"> B. +393,5 kJ</label>
+                    <label class="option-label"><input type="radio" name="q11" value="C"> C. 0 kJ</label>
+                    <label class="option-label"><input type="radio" name="q11" value="D"> D. -786,0 kJ</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="B">
+                <div class="question">Câu 12. Đốt cháy hoàn toàn 1 mol CH₄ (Methane - khí thiên nhiên), nhiệt lượng tỏa ra được dùng làm nhiên liệu trong bếp gas, nhà máy điện khí theo phương trình:</div>
+                <div class="formula">CH₄ + 2O₂ → CO₂ + 2H₂O, ΔH = -890,3 kJ/mol</div>
+                <p>Nhiệt lượng giải phóng khi đốt 16 g CH₄ ở đktc là:</p>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q12" value="A"> A. -445,15 kJ</label>
+                    <label class="option-label"><input type="radio" name="q12" value="B"> B. 890,3 kJ</label>
+                    <label class="option-label"><input type="radio" name="q12" value="C"> C. 1780,6 kJ</label>
+                    <label class="option-label"><input type="radio" name="q12" value="D"> D. -222,6 kJ</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="B">
+                <div class="question">Câu 13. Đốt cháy 2 mol C₂H₂ (Acetylene – khí đá), nhiệt lượng tỏa ra được dùng trong đèn xì hàn, cắt thép theo phương trình:</div>
+                <div class="formula">2C₂H₂ + 5O₂ → 4CO₂ + 2H₂O, ΔH = -2598 kJ</div>
+                <p>Nhiệt tỏa ra khi đốt 1 mol C₂H₂ là:</p>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q13" value="A"> A. -2598 kJ</label>
+                    <label class="option-label"><input type="radio" name="q13" value="B"> B. 1299 kJ</label>
+                    <label class="option-label"><input type="radio" name="q13" value="C"> C. 5196 kJ</label>
+                    <label class="option-label"><input type="radio" name="q13" value="D"> D. 650 kJ</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="B">
+                <div class="question">Câu 14. Đốt cháy 1 mol C₂H₅OH (Ethanol – cồn), được dùng làm nhiên liệu sinh học E5, E10 cho động cơ theo phương trình:</div>
+                <div class="formula">C₂H₅OH + O₂ → CO₂ + H₂O, Qv = -1367 kJ/mol</div>
+                <p>Giá trị ΔH của phản ứng là:</p>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q14" value="A"> A. 1367,0 kJ</label>
+                    <label class="option-label"><input type="radio" name="q14" value="B"> B. -1369,5 kJ</label>
+                    <label class="option-label"><input type="radio" name="q14" value="C"> C. 1364,5 kJ</label>
+                    <label class="option-label"><input type="radio" name="q14" value="D"> D. -1375,0 kJ</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="C">
+                <div class="question">Câu 15. Đốt cháy hoàn toàn 1 mol H₂ (Hydrogen - khí hiđro), nhiệt lượng được khai thác trong tên lửa đẩy, pin nhiên liệu hydro theo phương trình:</div>
+                <div class="formula">H₂ + ½O₂ → H₂O, ΔH = -286 kJ/mol</div>
+                <p>Nhiệt lượng tỏa ra khi đốt 4 g H₂ là:</p>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q15" value="A"> A. -143 kJ</label>
+                    <label class="option-label"><input type="radio" name="q15" value="B"> B. 286 kJ</label>
+                    <label class="option-label"><input type="radio" name="q15" value="C"> C. -572 kJ</label>
+                    <label class="option-label"><input type="radio" name="q15" value="D"> D. 1144 kJ</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="C">
+                <div class="question">Câu 16. CO (Carbon monoxide – khí độc) cháy trong lò luyện kim, vừa giải phóng nhiệt vừa loại bỏ CO độc theo phương trình:</div>
+                <div class="formula">CO + ½O₂ → CO₂, ΔH = -283 kJ/mol</div>
+                <p>Nhiệt lượng tỏa ra khi đốt cháy 56 g CO là:</p>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q16" value="A"> A. 1415 kJ</label>
+                    <label class="option-label"><input type="radio" name="q16" value="B"> B. 2830 kJ</label>
+                    <label class="option-label"><input type="radio" name="q16" value="C"> C. 565 kJ</label>
+                    <label class="option-label"><input type="radio" name="q16" value="D"> D. 706 kJ</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="B">
+                <div class="question">Câu 17. Phản ứng nung CaCO₃ (Calcium carbonate – đá vôi), cần cung cấp nhiệt trong lò nung vôi, sản xuất xi măng theo phương trình:</div>
+                <div class="formula">CaCO₃ → CaO + CO₂, ΔH = +178 kJ/mol</div>
+                <p>Để phân hủy hoàn toàn 200 g CaCO₃, cần cung cấp nhiệt lượng gần bằng:</p>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q17" value="A"> A. +178 kJ</label>
+                    <label class="option-label"><input type="radio" name="q17" value="B"> B. +356 kJ</label>
+                    <label class="option-label"><input type="radio" name="q17" value="C"> C. +200 kJ</label>
+                    <label class="option-label"><input type="radio" name="q17" value="D"> D. +3560 kJ</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="A">
+                <div class="question">Câu 18. Phản ứng nhiệt nhôm (Thermite) tỏa nhiệt rất lớn, dùng trong hàn đường ray, bom nhiệt nhôm theo phương trình:</div>
+                <div class="formula">2Al + Fe₂O₃ → 2Fe + Al₂O₃, ΔH = -851 kJ</div>
+                <p>Nhiệt lượng tỏa ra khi 27 g Al phản ứng vừa đủ là:</p>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q18" value="A"> A. 425,5 kJ</label>
+                    <label class="option-label"><input type="radio" name="q18" value="B"> B. 851 kJ</label>
+                    <label class="option-label"><input type="radio" name="q18" value="C"> C. 212,8 kJ</label>
+                    <label class="option-label"><input type="radio" name="q18" value="D"> D. 1702 kJ</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="C">
+                <div class="question">Câu 19. Đốt cháy 1 mol C₈H₁₈ (Octane – thành phần chính của xăng), nhiệt lượng dùng để vận hành động cơ ô tô, xe máy theo phương trình:</div>
+                <div class="formula">C₈H₁₈ + O₂ → CO₂ + H₂O, ΔH = -5470 kJ/mol</div>
+                <p>Nhiệt lượng giải phóng khi đốt 0,7 kg octan là:</p>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q19" value="A"> A. 3350 kJ</label>
+                    <label class="option-label"><input type="radio" name="q19" value="B"> B. 5470 kJ</label>
+                    <label class="option-label"><input type="radio" name="q19" value="C"> C. 33.550 kJ</label>
+                    <label class="option-label"><input type="radio" name="q19" value="D"> D. 7.350 kJ</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="D">
+                <div class="question">Câu 20. Đốt cháy C (Carbon - than đá), nhiệt lượng khai thác trong nhà máy nhiệt điện than để phát điện theo phương trình:</div>
+                <div class="formula">C + O₂ → CO₂, ΔH = -393,5 kJ/mol</div>
+                <p>Nếu đốt 1 tấn than, nhiệt lượng tỏa ra gần bằng:</p>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q20" value="A"> A. 3,28 × 10⁶ kJ</label>
+                    <label class="option-label"><input type="radio" name="q20" value="B"> B. 2,36 × 10⁷ kJ</label>
+                    <label class="option-label"><input type="radio" name="q20" value="C"> C. 7,87 × 10⁶ kJ</label>
+                    <label class="option-label"><input type="radio" name="q20" value="D"> D. 1,97 × 10⁷ kJ</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="C">
+                <div class="question">Câu 23. Nhiệt phân KClO₃ (Potassium chlorate - trong diêm, pháo), tạo ra khí O₂ hỗ trợ quá trình cháy theo phương trình:</div>
+                <div class="formula">2KClO₃ → 2KCl + 3O₂, ΔH = +89 kJ/mol</div>
+                <p>Tổng nhiệt lượng cần cung cấp khi phân hủy 2 mol KClO₃ là:</p>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q23" value="A"> A. +89 kJ</label>
+                    <label class="option-label"><input type="radio" name="q23" value="B"> B. +44,5 kJ</label>
+                    <label class="option-label"><input type="radio" name="q23" value="C"> C. +178 kJ</label>
+                    <label class="option-label"><input type="radio" name="q23" value="D"> D. +267 kJ</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="A">
+                <div class="question">Câu 24. Đốt cháy 1 mol C₄H₁₀ (Butane – thành phần chính của gas hóa lỏng), dùng trong bình gas mini, bật lửa gas theo phương trình:</div>
+                <div class="formula">2C₄H₁₀ + 13O₂ → 8CO₂ + 10H₂O, ΔH = -5750 kJ</div>
+                <p>Nhiệt lượng tỏa ra khi đốt 58 g C₄H₁₀ là:</p>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q24" value="A"> A. 2875 kJ</label>
+                    <label class="option-label"><input type="radio" name="q24" value="B"> B. 5750 kJ</label>
+                    <label class="option-label"><input type="radio" name="q24" value="C"> C. 11500 kJ</label>
+                    <label class="option-label"><input type="radio" name="q24" value="D"> D. 1437,5 kJ</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="A">
+                <div class="question">Câu 25. Động cơ xe máy đốt cháy 50 g C₈H₁₈ (Octane – xăng), nhiệt lượng chuyển hóa thành công cơ học theo phương trình:</div>
+                <div class="formula">C₈H₁₈ + O₂ → CO₂ + H₂O, ΔH = -5470 kJ/mol</div>
+                <p>Nhiệt lượng tỏa ra gần bằng:</p>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q25" value="A"> A. 2395 kJ</label>
+                    <label class="option-label"><input type="radio" name="q25" value="B"> B. 5470 kJ</label>
+                    <label class="option-label"><input type="radio" name="q25" value="C"> C. 12.000 kJ</label>
+                    <label class="option-label"><input type="radio" name="q25" value="D"> D. -2000 kJ</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="B">
+                <div class="question">Câu 26: Tính biến thiên entropy của quá trình nén làm lạnh 10 mol khí CO₂ từ nhiệt độ 300 K xuống 250 K? Biết Cp(CO₂) = 80,2 J/(mol.K).</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q26" value="A"> A. -45,19 J/K.</label>
+                    <label class="option-label"><input type="radio" name="q26" value="B"> B. -146,2 J/K.</label>
+                    <label class="option-label"><input type="radio" name="q26" value="C"> C. -451,93 J/K.</label>
+                    <label class="option-label"><input type="radio" name="q26" value="D"> D. -123,6 J/K.</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="A">
+                <div class="question">Câu 27: Tính biến thiên entropy của quá trình hàn cắt 81 g Al từ nhiệt độ 300 K lên 900 K? Biết Cp(Al) = 52,5 J/(mol.K).</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q27" value="A"> A. 173,03 J/K.</label>
+                    <label class="option-label"><input type="radio" name="q27" value="B"> B. 346,06 J/K.</label>
+                    <label class="option-label"><input type="radio" name="q27" value="C"> C. -226,62 J/K.</label>
+                    <label class="option-label"><input type="radio" name="q27" value="D"> D. 123,6 J/K.</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="B">
+                <div class="question">Câu 28: HI được tổng hợp theo phản ứng: H₂ + I₂ = 2HI. Biết entropy tiêu chuẩn của H₂, I₂, HI lần lượt là 130,59; 116,7; 206,3 J/(mol.K). Biến thiên entropy của phản ứng trên có giá trị là?</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q28" value="A"> A. -165,31 J/K.</label>
+                    <label class="option-label"><input type="radio" name="q28" value="B"> B. 40,99 J/K.</label>
+                    <label class="option-label"><input type="radio" name="q28" value="C"> C. 165,31 J/K.</label>
+                    <label class="option-label"><input type="radio" name="q28" value="D"> D. - 40,99 J/K.</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="A">
+                <div class="question">Câu 29: Cho phản ứng: 4Fe + 3O₂ → 2Fe₂O₃. Biết S°₂₉₈ lần lượt là 27,3; 205; 87,4 J/(mol.K). Biến thiên entropy của quá trình là:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q29" value="A"> A. -549,4 J/K</label>
+                    <label class="option-label"><input type="radio" name="q29" value="B"> B. 549,4 J/K</label>
+                    <label class="option-label"><input type="radio" name="q29" value="C"> C. 649,4 J/K.</label>
+                    <label class="option-label"><input type="radio" name="q29" value="D"> D. -649,4 J/K.</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="B">
+                <div class="question">Câu 30: Tính ΔS ở 25°C của phản ứng: SO₂₍ₖ₎ + ½O₂₍ₖ₎ = SO₃₍ₖ₎. Cho biết entropy tiêu chuẩn ở 25°C của các chất SO₂₍ₖ₎, O₂₍ₖ₎ và SO₃₍ₖ₎ lần lượt bằng: 248 J/(mol.K), 205 J/(mol.K) và 257 J/(mol.K).</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q30" value="A"> A. 196 J/K.</label>
+                    <label class="option-label"><input type="radio" name="q30" value="B"> B. -93,5 J/K.</label>
+                    <label class="option-label"><input type="radio" name="q30" value="C"> C. -196 J/K.</label>
+                    <label class="option-label"><input type="radio" name="q30" value="D"> D. 93,5 J/K.</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="B">
+                <div class="question">Câu 31. Cơ sở khoa học của sự cháy là gì?</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q31" value="A"> A. Sự oxi hóa – khử diễn ra chậm, không tỏa nhiệt</label>
+                    <label class="option-label"><input type="radio" name="q31" value="B"> B. Quá trình oxi hóa – khử diễn ra nhanh, tỏa nhiệt và phát sáng</label>
+                    <label class="option-label"><input type="radio" name="q31" value="C"> C. Sự phân hủy các hợp chất hữu cơ không cần oxi</label>
+                    <label class="option-label"><input type="radio" name="q31" value="D"> D. Quá trình bay hơi của nhiên liệu trong không khí</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="A">
+                <div class="question">Câu 32. Ba yếu tố cơ bản cấu thành nên “tam giác cháy” là:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q32" value="A"> A. Nhiên liệu, nhiệt độ mồi, chất oxi hóa (thường là oxi trong không khí)</label>
+                    <label class="option-label"><input type="radio" name="q32" value="B"> B. Nhiên liệu, dung môi, nước</label>
+                    <label class="option-label"><input type="radio" name="q32" value="C"> C. Điện, không khí, ánh sáng</label>
+                    <label class="option-label"><input type="radio" name="q32" value="D"> D. Áp suất, thể tích, thời gian</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="B">
+                <div class="question">Câu 33. Trong các nhà máy nhiệt điện, khí cacbonic (CO₂) được sử dụng để chữa cháy buồng máy phát điện chủ yếu vì:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q33" value="A"> A. Khí cacbonic phản ứng hóa học với nhiên liệu để ngăn cháy</label>
+                    <label class="option-label"><input type="radio" name="q33" value="B"> B. Giảm nồng độ oxi trong không khí xuống dưới giới hạn cháy, dập tắt phản ứng oxi hóa - khử</label>
+                    <label class="option-label"><input type="radio" name="q33" value="C"> C. Tăng nhiệt độ để nhiên liệu cháy hết</label>
+                    <label class="option-label"><input type="radio" name="q33" value="D"> D. Trung hòa khí độc sinh ra trong quá trình cháy</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="A">
+                <div class="question">Câu 34. Trong các trung tâm dữ liệu của ngành công nghệ thông tin, hệ thống chữa cháy bằng khí sạch như HFC-227ea hoặc Novec 1230 được lựa chọn vì:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q34" value="A"> A. Không để lại cặn, không làm hỏng thiết bị điện tử, và có khả năng ức chế gốc tự do trong phản ứng cháy</label>
+                    <label class="option-label"><input type="radio" name="q34" value="B"> B. Tạo nhiều bọt để che phủ toàn bộ thiết bị</label>
+                    <label class="option-label"><input type="radio" name="q34" value="C"> C. Có thể thay thế hoàn toàn nước trong mọi trường hợp</label>
+                    <label class="option-label"><input type="radio" name="q34" value="D"> D. Tăng hiệu suất làm việc của hệ thống làm mát</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="A">
+                <div class="question">Câu 35. Nguyên nhân chính gây nguy cơ cháy nổ trong ngành cơ khí khi hàn cắt kim loại là:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q35" value="A"> A. Tia lửa hàn bắn vào các chất dễ bay hơi, hơi dung môi hoặc vật liệu dễ cháy</label>
+                    <label class="option-label"><input type="radio" name="q35" value="B"> B. Kim loại nóng chảy bị đông cứng nhanh</label>
+                    <label class="option-label"><input type="radio" name="q35" value="C"> C. Hệ thống điện yếu gây tia lửa yếu</label>
+                    <label class="option-label"><input type="radio" name="q35" value="D"> D. Nhiệt độ hàn không đủ cao để đốt cháy</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="A">
+                <div class="question">Câu 36. Trong hàn hồ quang, khí nitơ hoặc argon được cấp vào vùng hàn với mục đích:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q36" value="A"> A. Ngăn oxi trong không khí tiếp xúc với kim loại nóng chảy, tránh phản ứng oxi hóa gây cháy và giảm chất lượng mối hàn</label>
+                    <label class="option-label"><input type="radio" name="q36" value="B"> B. Làm tăng nhiệt độ hồ quang</label>
+                    <label class="option-label"><input type="radio" name="q36" value="C"> C. Dập tắt toàn bộ ngọn lửa hồ quang</label>
+                    <label class="option-label"><input type="radio" name="q36" value="D"> D. Tạo thêm tia lửa để làm sáng vùng hàn</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="A">
+                <div class="question">Câu 37. Trong ngành sản xuất ô tô, các hệ thống chữa cháy lắp đặt trong khoang động cơ của xe đua thường dùng khí sạch (Novec 1230 hoặc HFC-227ea) vì:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q37" value="A"> A. Có khả năng làm nguội nhanh, không gây ăn mòn, không phá hủy thiết bị điện tử và ức chế gốc tự do trong phản ứng cháy</label>
+                    <label class="option-label"><input type="radio" name="q37" value="B"> B. Giá thành rẻ hơn các loại bọt chữa cháy</label>
+                    <label class="option-label"><input type="radio" name="q37" value="C"> C. Có thể tạo khói dày đặc để ngăn cháy lan</label>
+                    <label class="option-label"><input type="radio" name="q37" value="D"> D. Thường dùng để thay thế nhiên liệu</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="A">
+                <div class="question">Câu 38. Tại các bãi đỗ xe ngầm, nguy cơ cháy lớn đến từ xăng dầu rò rỉ. Biện pháp hóa học phòng cháy được sử dụng phổ biến nhất là:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q38" value="A"> A. Phun bọt foam tạo lớp màng phủ lên bề mặt xăng dầu, cách ly với oxi và ngăn bay hơi</label>
+                    <label class="option-label"><input type="radio" name="q38" value="B"> B. Phun nước áp lực cao vào toàn bộ bãi xe</label>
+                    <label class="option-label"><input type="radio" name="q38" value="C"> C. Dùng khí cacbonic để làm loãng toàn bộ không khí</label>
+                    <label class="option-label"><input type="radio" name="q38" value="D"> D. Rải bột amoni trên toàn bộ sàn</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="A">
+                <div class="question">Câu 39. Trong động cơ ô tô, phụ gia chống kích nổ sớm như metyl tert-butyl ete (MTBE) được thêm vào xăng để:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q39" value="A"> A. Nâng cao chỉ số octan, làm tăng khả năng chống cháy nổ sớm trong buồng đốt, giúp động cơ vận hành an toàn</label>
+                    <label class="option-label"><input type="radio" name="q39" value="B"> B. Làm xăng bay hơi nhanh hơn để tăng công suất</label>
+                    <label class="option-label"><input type="radio" name="q39" value="C"> C. Trung hòa khí thải độc hại sinh ra</label>
+                    <label class="option-label"><input type="radio" name="q39" value="D"> D. Làm giảm điểm sôi của xăng</label>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-correct="A">
+                <div class="question">Câu 40. Hiện tượng nổ bụi trong các nhà máy chế biến nông sản hoặc silo chứa ngũ cốc xảy ra khi:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q40" value="A"> A. Nồng độ bụi trong không khí nằm trong giới hạn cháy nổ và có nguồn nhiệt hoặc tia lửa kích thích</label>
+                    <label class="option-label"><input type="radio" name="q40" value="B"> B. Bụi tích tụ nhiều nhưng không có oxi</label>
+                    <label class="option-label"><input type="radio" name="q40" value="C"> C. Có gió mạnh thổi qua silo</label>
+                    <label class="option-label"><input type="radio" name="q40" value="D"> D. Ngũ cốc bị ẩm mốc</label>
+                </div>
+            </div>
+
+            <div class="action-area">
+                <button type="button" class="btn" onclick="checkQuiz()">Kiểm Tra Đáp Án</button>
+            </div>
+        </form>
     </div>
 
-    <div class="question-box">
-        <div class="question-text">Câu 2. Quá trình đẳng áp là quá trình:</div>
-        <div class="options">
-            <div class="option correct">A. Xảy ra khi áp suất không đổi</div>
-            <div class="option">B. Xảy ra khi thể tích không đổi</div>
-            <div class="option">C. Xảy ra khi nhiệt độ không đổi</div>
-            <div class="option">D. Xảy ra khi hệ không trao đổi nhiệt với môi trường</div>
-        </div>
-    </div>
+    <script>
+        function checkQuiz() {
+            const cards = document.querySelectorAll('.quiz-card');
+            let score = 0;
+            let totalQuestions = cards.length;
 
-    <div class="question-box">
-        <div class="question-text">Câu 3. Theo nguyên lý I nhiệt động học, biến thiên nội năng của hệ (ΔU) được xác định bằng:</div>
-        <div class="options">
-            <div class="option correct">A. ΔU = Q + A</div>
-            <div class="option">B. ΔU = Q - A</div>
-            <div class="option">C. ΔU = Q × A</div>
-            <div class="option">D. ΔU = Q / A</div>
-        </div>
-    </div>
+            cards.forEach(card => {
+                const correctAnswer = card.getAttribute('data-correct');
+                const radioGroup = card.querySelectorAll('input[type="radio"]');
+                let selectedAnswer = null;
 
-    <div class="question-box">
-        <div class="question-text">Câu 4. Trong điều kiện đẳng tích, nhiệt lượng trao đổi bằng:</div>
-        <div class="options">
-            <div class="option">A. Biến thiên enthalpy (ΔH)</div>
-            <div class="option correct">B. Biến thiên nội năng (ΔU)</div>
-            <div class="option">C. Công thực hiện (A)</div>
-            <div class="option">D. Tổng nhiệt và công (Q + A)</div>
-        </div>
-    </div>
+                // Xóa trạng thái css cũ nếu có
+                card.querySelectorAll('.option-label').forEach(label => {
+                    label.classList.remove('correct-answer', 'wrong-answer');
+                });
 
-    <div class="question-box">
-        <div class="question-text">Câu 5. Enthalpy (H) được định nghĩa là:</div>
-        <div class="options">
-            <div class="option">A. H = U - PV</div>
-            <div class="option correct">B. H = U + PV</div>
-            <div class="option">C. H = Q - A</div>
-            <div class="option">D. H = ΔU + ΔnRT</div>
-        </div>
-    </div>
+                // Tìm đáp án người dùng chọn
+                radioGroup.forEach(radio => {
+                    if (radio.checked) {
+                        selectedAnswer = radio.value;
+                    }
+                });
 
-    <div class="question-box">
-        <div class="question-text">Câu 6. Trong điều kiện đẳng áp, nhiệt lượng trao đổi Qp bằng:</div>
-        <div class="options">
-            <div class="option">A. ΔU</div>
-            <div class="option correct">B. ΔH</div>
-            <div class="option">C. ΔnRT</div>
-            <div class="option">D. 0</div>
-        </div>
-    </div>
+                // Tô màu kết quả trực quan
+                radioGroup.forEach(radio => {
+                    const label = radio.parentElement;
+                    if (radio.value === correctAnswer) {
+                        label.classList.add('correct-answer'); // Luôn hiển thị màu xanh cho câu đúng
+                    }
+                    if (selectedAnswer && selectedAnswer === radio.value && selectedAnswer !== correctAnswer) {
+                        label.classList.add('wrong-answer'); // Màu đỏ cho câu chọn sai
+                    }
+                });
 
-    <div class="question-box">
-        <div class="question-text">Câu 7. Công thức liên hệ giữa ΔH và ΔU trong phản ứng có khí tham gia là:</div>
-        <div class="options">
-            <div class="option">A. ΔH = ΔU - ΔnRT</div>
-            <div class="option correct">B. ΔH = ΔU + ΔnRT</div>
-            <div class="option">C. ΔH = ΔU × ΔnRT</div>
-            <div class="option">D. ΔH = ΔU / ΔnRT</div>
-        </div>
-    </div>
+                if (selectedAnswer === correctAnswer) {
+                    score++;
+                }
+            });
 
-    <div class="question-box">
-        <div class="question-text">Câu 8. Phản ứng tỏa nhiệt là phản ứng có:</div>
-        <div class="options">
-            <div class="option">A. ΔH > 0</div>
-            <div class="option correct">B. ΔH &lt; 0</div>
-            <div class="option">C. ΔU > 0</div>
-            <div class="option">D. ΔU = 0</div>
-        </div>
-    </div>
+            // Hiển thị điểm số lên đầu trang
+            const resultBox = document.getElementById('result-box');
+            const scoreText = document.getElementById('score-text');
+            const percentage = Math.round((score / totalQuestions) * 100);
 
-    <div class="question-box">
-        <div class="question-text">Câu 9. Phản ứng thu nhiệt là phản ứng có:</div>
-        <div class="options">
-            <div class="option correct">A. ΔH > 0</div>
-            <div class="option">B. ΔH &lt; 0</div>
-            <div class="option">C. ΔU &lt; 0</div>
-            <div class="option">D. ΔH = 0</div>
-        </div>
-    </div>
+            scoreText.innerHTML = `Bạn trả lời đúng <strong>${score}/${totalQuestions}</strong> câu. Đạt tỉ lệ chính xác <strong>${percentage}%</strong>.`;
+            resultBox.style.display = 'block';
 
-    <div class="question-box">
-        <div class="question-text">Câu 10. Trong phản ứng hóa học, nhiệt phản ứng đo ở điều kiện đẳng tích bằng:</div>
-        <div class="options">
-            <div class="option">A. ΔH</div>
-            <div class="option correct">B. ΔU</div>
-            <div class="option">C. ΔnRT</div>
-            <div class="option">D. Qp</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 11. Đốt cháy hoàn toàn 1 mol C, nhiệt tỏa ra trong phản ứng ở điều kiện đẳng áp là:<br><span class="formula">C + O₂ → CO₂, ΔH = -393,5 kJ/mol</span></div>
-        <div class="options">
-            <div class="option correct">A. -393,5 kJ</div>
-            <div class="option">B. +393,5 kJ</div>
-            <div class="option">C. 0 kJ</div>
-            <div class="option">D. -786,0 kJ</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 12. Nhiệt lượng giải phóng khi đốt 16 g CH₄ ở đktc là:<br><span class="formula">CH₄ + 2O₂ → CO₂ + 2H₂O, ΔH = -890,3 kJ/mol</span></div>
-        <div class="options">
-            <div class="option">A. -445,15 kJ</div>
-            <div class="option correct">B. 890,3 kJ</div>
-            <div class="option">C. 1780,6 kJ</div>
-            <div class="option">D. -222,6 kJ</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 13. Nhiệt tỏa ra khi đốt 1 mol C₂H₂ là:<br><span class="formula">2C₂H₂ + 5O₂ → 4CO₂ + 2H₂O, ΔH = -2598 kJ</span></div>
-        <div class="options">
-            <div class="option">A. -2598 kJ</div>
-            <div class="option correct">B. 1299 kJ</div>
-            <div class="option">C. 5196 kJ</div>
-            <div class="option">D. 650 kJ</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 14. Giá trị ΔH của phản ứng là:<br><span class="formula">C₂H₅OH + O₂ → CO₂ + H₂O, Qv = -1367 kJ/mol</span></div>
-        <div class="options">
-            <div class="option">A. 1367,0 kJ</div>
-            <div class="option correct">B. -1369,5 kJ</div>
-            <div class="option">C. 1364,5 kJ</div>
-            <div class="option">D. -1375,0 kJ</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 15. Nhiệt lượng tỏa ra khi đốt 4 g H₂ là:<br><span class="formula">H₂ + ½O₂ → H₂O, ΔH = -286 kJ/mol</span></div>
-        <div class="options">
-            <div class="option">A. -143 kJ</div>
-            <div class="option">B. 286 kJ</div>
-            <div class="option correct">C. -572 kJ</div>
-            <div class="option">D. 1144 kJ</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 16. Nhiệt lượng tỏa ra khi đốt cháy 56 g CO là:<br><span class="formula">CO + ½O₂ → CO₂, ΔH = -283 kJ/mol</span></div>
-        <div class="options">
-            <div class="option">A. 1415 kJ</div>
-            <div class="option">B. 2830 kJ</div>
-            <div class="option correct">C. 565 kJ</div>
-            <div class="option">D. 706 kJ</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 17. Để phân hủy hoàn toàn 200 g CaCO₃, cần cung cấp nhiệt lượng gần bằng:<br><span class="formula">CaCO₃ → CaO + CO₂, ΔH = +178 kJ/mol</span></div>
-        <div class="options">
-            <div class="option">A. +178 kJ</div>
-            <div class="option correct">B. +356 kJ</div>
-            <div class="option">C. +200 kJ</div>
-            <div class="option">D. +3560 kJ</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 18. Nhiệt lượng tỏa ra khi 27 g Al phản ứng vừa đủ là:<br><span class="formula">2Al + Fe₂O₃ → 2Fe + Al₂O₃, ΔH = -851 kJ</span></div>
-        <div class="options">
-            <div class="option correct">A. 425,5 kJ</div>
-            <div class="option">B. 851 kJ</div>
-            <div class="option">C. 212,8 kJ</div>
-            <div class="option">D. 1702 kJ</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 19. Nhiệt lượng giải phóng khi đốt 0,7 kg octan là:<br><span class="formula">C₈H₁₈ + O₂ → CO₂ + H₂O, ΔH = -5470 kJ/mol</span></div>
-        <div class="options">
-            <div class="option">A. 3350 kJ</div>
-            <div class="option">B. 5470 kJ</div>
-            <div class="option correct">C. 33.550 kJ</div>
-            <div class="option">D. 7.350 kJ</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 20. Nếu đốt 1 tấn than, nhiệt lượng tỏa ra gần bằng:<br><span class="formula">C + O₂ → CO₂, ΔH = -393,5 kJ/mol</span></div>
-        <div class="options">
-            <div class="option">A. 3,28 × 10⁶ kJ</div>
-            <div class="option">B. 2,36 × 10⁷ kJ</div>
-            <div class="option">C. 7,87 × 10⁶ kJ</div>
-            <div class="option correct">D. 1,97 × 10⁷ kJ (hoặc lý thuyết: 3,28 × 10⁷ kJ)</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 23. Tổng nhiệt lượng cần cung cấp khi phân hủy 2 mol KClO₃ là:<br><span class="formula">2KClO₃ → 2KCl + 3O₂, ΔH = +89 kJ/mol</span></div>
-        <div class="options">
-            <div class="option">A. +89 kJ</div>
-            <div class="option">B. +44,5 kJ</div>
-            <div class="option correct">C. +178 kJ</div>
-            <div class="option">D. +267 kJ</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 24. Nhiệt lượng tỏa ra khi đốt 58 g C₄H₁₀ là:<br><span class="formula">2C₄H₁₀ + 13O₂ → 8CO₂ + 10H₂O, ΔH = -5750 kJ</span></div>
-        <div class="options">
-            <div class="option correct">A. 2875 kJ</div>
-            <div class="option">B. 5750 kJ</div>
-            <div class="option">C. 11500 kJ</div>
-            <div class="option">D. 1437,5 kJ</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 25. Động cơ xe máy đốt cháy 50 g C₈H₁₈, nhiệt lượng tỏa ra gần bằng:<br><span class="formula">C₈H₁₈ + O₂ → CO₂ + H₂O, ΔH = -5470 kJ/mol</span></div>
-        <div class="options">
-            <div class="option correct">A. 2395 kJ</div>
-            <div class="option">B. 5470 kJ</div>
-            <div class="option">C. 12.000 kJ</div>
-            <div class="option">D. -2000 kJ</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 26: Tính biến thiên entropy của quá trình nén làm lạnh 10 mol khí CO₂ từ 300 K xuống 250 K? Biết Cp = 80,2 J/(mol.K).</div>
-        <div class="options">
-            <div class="option">A. -45,19 J/K</div>
-            <div class="option correct">B. -146,2 J/K</div>
-            <div class="option">C. -451,93 J/K</div>
-            <div class="option">D. -123,6 J/K</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 27: Tính biến thiên entropy của quá trình hàn cắt 81 g Al từ nhiệt độ 300 K lên 900 K? Biết Cp(Al) = 52,5 J/(mol.K).</div>
-        <div class="options">
-            <div class="option correct">A. 173,03 J/K</div>
-            <div class="option">B. 346,06 J/K</div>
-            <div class="option">C. -226,62 J/K</div>
-            <div class="option">D. 123,6 J/K</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 28: Biến thiên entropy của phản ứng H₂ + I₂ = 2HI là bao nhiêu? (S° lần lượt: 130,59; 116,7; 206,3)</div>
-        <div class="options">
-            <div class="option">A. -165,31 J/K</div>
-            <div class="option correct">B. 40,99 J/K</div>
-            <div class="option">C. 165,31 J/K</div>
-            <div class="option">D. -40,99 J/K</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 29: Biến thiên entropy của quá trình: 4Fe + 3O₂ → 2Fe₂O₃ là:</div>
-        <div class="options">
-            <div class="option correct">A. -549,4 J/K</div>
-            <div class="option">B. 549,4 J/K</div>
-            <div class="option">C. 649,4 J/K</div>
-            <div class="option">D. -649,4 J/K</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 30: Tính ΔS ở 25°C của phản ứng: SO₂ + ½O₂ = SO₃</div>
-        <div class="options">
-            <div class="option">A. 196 J/K</div>
-            <div class="option correct">B. -93,5 J/K</div>
-            <div class="option">C. -196 J/K</div>
-            <div class="option">D. 93,5 J/K</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 31. Cơ sở khoa học của sự cháy là gì?</div>
-        <div class="options">
-            <div class="option">A. Sự oxi hóa – khử diễn ra chậm, không tỏa nhiệt</div>
-            <div class="option correct">B. Quá trình oxi hóa – khử diễn ra nhanh, tỏa nhiệt và phát sáng</div>
-            <div class="option">C. Sự phân hủy các hợp chất hữu cơ không cần oxi</div>
-            <div class="option">D. Quá trình bay hơi của nhiên liệu trong không khí</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 32. Ba yếu tố cơ bản cấu thành nên “tam giác cháy” là:</div>
-        <div class="options">
-            <div class="option correct">A. Nhiên liệu, nhiệt độ mồi, chất oxi hóa (thường là oxi trong không khí)</div>
-            <div class="option">B. Nhiên liệu, dung môi, nước</div>
-            <div class="option">C. Điện, không khí, ánh sáng</div>
-            <div class="option">D. Áp suất, thể tích, thời gian</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 33. Trong các nhà máy nhiệt điện, khí cacbonic (CO₂) được sử dụng để chữa cháy buồng máy phát điện chủ yếu vì:</div>
-        <div class="options">
-            <div class="option">A. Khí cacbonic phản ứng hóa học với nhiên liệu để ngăn cháy</div>
-            <div class="option correct">B. Giảm nồng độ oxi trong không khí xuống dưới giới hạn cháy, dập tắt phản ứng</div>
-            <div class="option">C. Tăng nhiệt độ để nhiên liệu cháy hết</div>
-            <div class="option">D. Trung hòa khí độc sinh ra trong quá trình cháy</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 34. Trong các trung tâm dữ liệu, hệ thống chữa cháy bằng khí sạch như HFC-227ea hoặc Novec 1230 được lựa chọn vì:</div>
-        <div class="options">
-            <div class="option correct">A. Không để lại cặn, không làm hỏng thiết bị điện tử, và có khả năng ức chế gốc tự do</div>
-            <div class="option">B. Tạo nhiều bọt để che phủ toàn bộ thiết bị</div>
-            <div class="option">C. Có thể thay thế hoàn toàn nước trong mọi trường hợp</div>
-            <div class="option">D. Tăng hiệu suất làm việc của hệ thống làm mát</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 35. Nguyên nhân chính gây nguy cơ cháy nổ trong ngành cơ khí khi hàn cắt kim loại là:</div>
-        <div class="options">
-            <div class="option correct">A. Tia lửa hàn bắn vào các chất dễ bay hơi, hơi dung môi hoặc vật liệu dễ cháy</div>
-            <div class="option">B. Kim loại nóng chảy bị đông cứng nhanh</div>
-            <div class="option">C. Hệ thống điện yếu gây tia lửa yếu</div>
-            <div class="option">D. Nhiệt độ hàn không đủ cao để đốt cháy</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 36. Trong hàn hồ quang, khí nitơ hoặc argon được cấp vào vùng hàn với mục đích:</div>
-        <div class="options">
-            <div class="option correct">A. Ngăn oxi tiếp xúc với kim loại nóng chảy, tránh phản ứng oxi hóa gây cháy và giảm chất lượng</div>
-            <div class="option">B. Làm tăng nhiệt độ hồ quang</div>
-            <div class="option">C. Dập tắt toàn bộ ngọn lửa hồ quang</div>
-            <div class="option">D. Tạo thêm tia lửa để làm sáng vùng hàn</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 37. Hệ thống chữa cháy trong khoang động cơ của xe đua thường dùng khí sạch vì:</div>
-        <div class="options">
-            <div class="option correct">A. Khả năng làm nguội nhanh, không ăn mòn, bảo vệ thiết bị điện tử và ức chế gốc tự do</div>
-            <div class="option">B. Giá thành rẻ hơn các loại bọt chữa cháy</div>
-            <div class="option">C. Có thể tạo khói dày đặc để ngăn cháy lan</div>
-            <div class="option">D. Thường dùng để thay thế nhiên liệu</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 38. Tại các bãi đỗ xe ngầm, biện pháp hóa học phòng cháy được sử dụng phổ biến nhất là:</div>
-        <div class="options">
-            <div class="option correct">A. Phun bọt foam tạo lớp màng phủ lên bề mặt xăng dầu, cách ly với oxi và ngăn bay hơi</div>
-            <div class="option">B. Phun nước áp lực cao vào toàn bộ bãi xe</div>
-            <div class="option">C. Dùng khí cacbonic để làm loãng toàn bộ không khí</div>
-            <div class="option">D. Rải bột amoni trên toàn bộ sàn</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 39. Trong động cơ ô tô, phụ gia chống kích nổ sớm như metyl tert-butyl ete (MTBE) được thêm vào xăng để:</div>
-        <div class="options">
-            <div class="option correct">A. Nâng cao chỉ số octan, làm tăng khả năng chống cháy nổ sớm, giúp động cơ an toàn</div>
-            <div class="option">B. Làm xăng bay hơi nhanh hơn để tăng công suất</div>
-            <div class="option">C. Trung hòa khí thải độc hại sinh ra</div>
-            <div class="option">D. Làm giảm điểm sôi của xăng</div>
-        </div>
-    </div>
-
-    <div class="question-box">
-        <div class="question-text">Câu 40. Hiện tượng nổ bụi trong các nhà máy chế biến nông sản hoặc silo chứa ngũ cốc xảy ra khi:</div>
-        <div class="options">
-            <div class="option correct">A. Nồng độ bụi nằm trong giới hạn cháy nổ và có nguồn nhiệt hoặc tia lửa kích thích</div>
-            <div class="option">B. Bụi tích tụ nhiều nhưng không có oxi</div>
-            <div class="option">C. Có gió mạnh thổi qua silo</div>
-            <div class="option">D. Ngũ cốc bị ẩm mốc</div>
-        </div>
-    </div>
-
-</div>
-
+            // Cuộn trang mượt mà lên đầu để xem kết quả
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
 </body>
 </html>
