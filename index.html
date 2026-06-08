@@ -3,206 +3,1017 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ôn Tập Chương 4 - Khoa Học Vật Liệu</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Đáp Án Ôn Tập Chương 4: Kim Loại, Phi Kim & Polyme</title>
     <style>
-        .selected-answer { border-color: #3b82f6; background-color: #eff6ff; }
-        .correct-answer { border-color: #10b981; background-color: #ecfdf5; }
-        .wrong-answer { border-color: #ef4444; background-color: #fef2f2; }
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #2980b9;
+            --success-bg: #e6f4ea;
+            --success-text: #137333;
+            --success-border: #81c995;
+            --explain-bg: #f8f9fa;
+            --explain-text: #5f6368;
+            --text-color: #3c4043;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            background: #e8f4fd;
+            padding: 10px 15px;
+            border-left: 5px solid var(--accent-color);
+            border-radius: 4px;
+            margin-top: 40px;
+        }
+
+        .question-card {
+            background: #ffffff;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .question-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .question-text {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        .options-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 15px 0;
+        }
+
+        .options-list li {
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            background: #fff;
+        }
+
+        .options-list li.correct {
+            background-color: var(--success-bg);
+            color: var(--success-text);
+            border-color: var(--success-border);
+            font-weight: bold;
+            position: relative;
+        }
+
+        .options-list li.correct::after {
+            content: " ✓ (Đáp án đúng)";
+            font-size: 0.85rem;
+            font-style: italic;
+            margin-left: 10px;
+        }
+
+        .explanation-box {
+            background-color: var(--explain-bg);
+            border-left: 4px solid #9aa0a6;
+            padding: 12px 15px;
+            margin-top: 15px;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.95rem;
+            color: var(--explain-text);
+        }
+
+        .explanation-title {
+            font-weight: bold;
+            color: #3c4043;
+            margin-bottom: 4px;
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body>
 
-    <header class="bg-blue-600 text-white shadow-md sticky top-0 z-50">
-        <div class="max-w-5xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <h1 class="text-xl font-bold tracking-wide">HỆ THỐNG ÔN TẬP CHƯƠNG 4</h1>
-            <div class="flex gap-2">
-                <button onclick="switchTab('metal')" id="tab-metal" class="px-4 py-2 rounded-lg font-medium transition bg-white text-blue-600 shadow">Kim Loại</button>
-                <button onclick="switchTab('nonmetal')" id="tab-nonmetal" class="px-4 py-2 rounded-lg font-medium transition bg-blue-700 hover:bg-blue-800">Phi Kim</button>
-                <button onclick="switchTab('polymer')" id="tab-polymer" class="px-4 py-2 rounded-lg font-medium transition bg-blue-700 hover:bg-blue-800">Polyme</button>
-            </div>
+<div class="container">
+    <h1>ĐÁP ÁN ÔN TẬP CHƯƠNG 4<br><small style="font-size: 1.2rem; color: #7f8c8d;">Kim loại, Phi kim và Vật liệu Polyme</small></h1>
+
+    <h2>I. PHẦN KIM LOẠI</h2>
+
+    <div class="question-card">
+        <p class="question-text">Câu 1: Tính chất vật lý chung nào của kim loại được giải thích chủ yếu bởi sự di chuyển tự do của các electron trong mạng tinh thể?</p>
+        <ul class="options-list">
+            <td class="correct">A. Tính dẫn điện và dẫn nhiệt</td>
+            <td>B. Tính dẻo</td>
+            <td>C. Ánh kim</td>
+            <td>D. Nhiệt độ nóng chảy cao</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Các electron tự do di chuyển hỗn loạn giúp truyền điện năng và nhiệt năng dưới tác dụng của điện trường hoặc chênh lệch nhiệt độ.
         </div>
-    </header>
+    </div>
 
-    <main class="max-w-4xl mx-auto px-4 py-8">
-        
-        <div class="bg-white p-4 rounded-xl shadow-sm mb-6 flex justify-between items-center">
-            <div>
-                <span class="text-sm text-gray-500 uppercase tracking-wider font-semibold">Chủ đề đang học:</span>
-                <h2 id="current-topic-title" class="text-lg font-bold text-gray-800">I. Phần Kim Loại</h2>
-            </div>
-            <div class="text-right">
-                <span class="text-2xl font-black text-blue-600" id="score-counter">0</span>
-                <span class="text-gray-400">/</span>
-                <span class="text-gray-600 font-semibold" id="total-counter">20</span>
-            </div>
+    <div class="question-card">
+        <p class="question-text">Câu 2: Trong quá trình sản xuất gang bằng lò cao, đá vôi (CaCO₃) được nạp vào lò cùng quặng sắt và than cốc với mục đích chính là gì?</p>
+        <ul class="options-list">
+            <td>A. Cung cấp thêm nhiệt cho lò</td>
+            <td>B. Làm chất khử oxit sắt</td>
+            <td class="correct">C. Tạo xỉ để loại bỏ tạp chất</td>
+            <td>D. Hòa tan cacbon vào sắt lỏng</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            CaCO₃ phân hủy thành CaO, sau đó CaO phản ứng với tạp chất axit như SiO₂ để tạo xỉ CaSiO₃ nổi lên trên bề mặt gang lỏng, giúp dễ dàng tách loại.
         </div>
+    </div>
 
-        <div id="quiz-container" class="space-y-6"></div>
+    <div class="question-card">
+        <p class="question-text">Câu 3: Theo tài liệu, thép cacbon thấp (dùng làm kết cấu xây dựng, tấm lá dập nguội) có hàm lượng cacbon trong khoảng nào?</p>
+        <ul class="options-list">
+            <td class="correct">A. ≤ 0,25%</td>
+            <td>B. 0,30 ÷ 0,50%</td>
+            <td>C. 0,55 ÷ 0,65%</td>
+            <td>D. ≥ 0,70%</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Thép cacbon thấp có hàm lượng C không quá 0,25%, có độ dẻo tốt, độ cứng dai vừa phải và dễ định hình dạng dập nguội.
+        </div>
+    </div>
 
-    </main>
+    <div class="question-card">
+        <p class="question-text">Câu 4: Hợp kim đồng thau (Brass) là hợp kim của đồng (Cu) với nguyên tố hợp kim chính nào?</p>
+        <ul class="options-list">
+            <td class="correct">A. Kẽm (Zn)</td>
+            <td>B. Thiếc (Sn)</td>
+            <td>C. Nhôm (Al)</td>
+            <td>D. Niken (Ni)</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Đồng thau hay Brass là hợp kim nền Đồng với nguyên tố hợp kim hóa chính là Kẽm.
+        </div>
+    </div>
 
-    <script>
-        // Full Dataset directly inside JS
-        const dataset = {
-            metal: {
-                title: "I. PHẦN KIM LOẠI",
-                questions: [
-                    { q: "Tính chất vật lý chung nào của kim loại được giải thích chủ yếu bởi sự di chuyển tự do của các electron trong mạng tinh thể?", a: ["Tính dẫn điện và dẫn nhiệt", "Tính dẻo", "Ánh kim", "Nhiệt độ nóng chảy cao"], c: 0 },
-                    { q: "Trong quá trình sản xuất gang bằng lò cao, đá vôi (CaCO3) được nạp vào lò cùng quặng sắt và than cốc với mục đích chính là gì?", a: ["Cung cấp thêm nhiệt cho lò", "Làm chất khử oxit sắt", "Tạo xỉ để loại bỏ tạp chất", "Hòa tan cacbon vào sắt lỏng"], c: 2 },
-                    { q: "Theo tài liệu, thép cacbon thấp (dùng làm kết cấu xây dựng, tấm lá dập nguội) có hàm lượng cacbon trong khoảng nào?", a: ["≤ 0,25%", "0,30 ÷ 0,50%", "0,55 ÷ 0,65%", "≥ 0,70%"], c: 0 },
-                    { q: "Hợp kim đồng thau (Brass) là hợp kim của đồng (Cu) với nguyên tố hợp kim chính nào?", a: ["Kẽm (Zn)", "Thiếc (Sn)", "Nhôm (Al)", "Niken (Ni)"], c: 0 },
-                    { q: "Sắt (Fe) có tính chất vật lý đặc biệt nào mà hầu hết các kim loại khác không có?", a: ["Tính sắt - từ (bị nam châm hút)", "Có màu trắng bạc và ánh kim", "Khả năng dẫn điện tốt", "Rất cứng và có nhiệt độ nóng chảy rất cao"], c: 0 },
-                    { q: "Hợp kim nhôm đúc (Cast Alloys) phổ biến nhất, như Silumin, sử dụng nguyên tố hợp kim chính nào để cải thiện đáng kể độ chảy loãng (tính đúc)?", a: ["Đồng (Cu)", "Magie (Mg)", "Silic (Si)", "Kẽm (Zn)"], c: 2 },
-                    { q: "Hợp kim kẽm đúc (Die Casting) phổ biến, được biết đến với tên gọi Zamak, là hợp kim của Kẽm (Zink) với các nguyên tố chính nào sau đây?", a: ["Nhôm (Al), Magie (Mg) và Đồng", "Titan (Ti) và Đồng (Cu)", "Thiếc (Sn) và Chì (Pb)", "Niken (Ni) và Sắt (Fe)"], c: 0 },
-                    { q: "Để tạo ra vật liệu bán dẫn Silic kiểu n (negative), người ta pha tạp chất là nguyên tố thuộc nhóm nào (có mấy electron hóa trị)?", a: ["Nhóm IIIA (như Bo, Nhôm) - 3 electron hóa trị", "Nhóm VA (như Photpho, Asen) - 5 electron hóa trị", "Nhóm IVA (như Gecmani) - 4 electron hóa trị", "Nhóm VIIA (như Flo) - 7 electron hóa trị"], c: 1 },
-                    { q: "Để tạo ra vật liệu bán dẫn Silic kiểu p (positive), người ta pha tạp chất là nguyên tố nào sau đây?", a: ["Photpho (P)", "Asen (As)", "Bo (B)", "Antimon (Sb)"], c: 2 },
-                    { q: "Hợp kim Đồng-Niken (Cupronickel), ví dụ hợp kim Menchio, nổi bật với đặc tính nào?", a: ["Độ bền cơ học cao nhất trong các hợp kim đồng", "Khả năng dẫn điện tốt nhất", "Rất bền với nước biển và chống bám bẩn sinh học", "Hệ số ma sát thấp và chống mài mòn tốt"], c: 2 },
-                    { q: "Một kỹ sư cần chế tạo các chi tiết máy chịu tải trọng tĩnh và va đập cao (ví dụ: trục, bánh răng), đồng thời cần có cơ tính tổng hợp tốt. Theo tài liệu, loại thép cacbon nào là phù hợp nhất?", a: ["Thép cacbon thấp (≤ 0,25% C)", "Thép cacbon trung bình (0,30 ÷ 0,50% C)", "Thép cacbon tương đối cao (0,55 ÷ 0,65% C)", "Thép cacbon cao (≥ 0,70% C)"], c: 1 },
-                    { q: "Tại sao người ta có thể sử dụng các thùng (xitec) bằng nhôm để vận chuyển axit nitric (HNO3) đặc và nguội?", a: ["Vì nhôm là kim loại rất trơ, không phản ứng với mọi axit", "Vì nhôm tạo ra khí H2 ngăn cản phản ứng tiếp diễn", "Vì nhôm bị thụ động hóa trong axit HNO3 đặc, nguội", "Vì nhôm chỉ phản ứng với dung dịch kiềm, không phản ứng với axit"], c: 2 },
-                    { q: "Một nhà sản xuất cần làm dây dẫn điện. Họ có hai lựa chọn đồng: Đồng ETP và Đồng OFHC. Nếu quá trình sản xuất yêu cầu gia công ở nhiệt độ 500°C trong môi trường có khí Hydro (H2), họ nên chọn loại nào để tránh nứt vỡ vật liệu?", a: ["Đồng ETP, vì oxy giúp tăng độ bền khi nóng", "Đồng OFHC, vì không chứa oxy nên không nhạy cảm với hydro", "Loại nào cũng được, vì hydro không ảnh hưởng đến đồng", "Đồng ETP, vì oxy ngăn hydro khuếch tán vào trong"], c: 1 },
-                    { q: "Một công ty sản xuất đồ chơi mô hình (xe hơi) cần đúc các chi tiết vỏ xe rất mỏng, có độ phức tạp cao và yêu cầu độ chính xác kích thước tốt. Họ nên ưu tiên sử dụng hợp kim nào?", a: ["Thép cacbon cao", "Hợp kim Kẽm (Zamak)", "Hợp kim Nhôm-Magie (nhóm 5xxx)", "Hợp kim Kẽm-Titan (tấm kiến trúc)"], c: 1 },
-                    { q: "Cấu kiện bán dẫn cơ bản nào được tạo thành bằng cách ghép một lớp bán dẫn kiểu p và một lớp kiểu n (mặt tiếp giáp p-n), có chức năng chính là chuyển dòng điện xoay chiều thành một chiều?", a: ["Pin mặt trời", "Bộ chỉnh lưu (Điot bán dẫn)", "Tranzito (Transistor)", "Vi mạch tổ hợp (IC)"], c: 1 },
-                    { q: "Đâu là nhược điểm lớn nhất của thép cacbon so với thép hợp kim, đặc biệt khi chế tạo các chi tiết máy có kích thước (tiết diện) lớn?", a: ["Giá thành rẻ và dễ kiếm", "Tính công nghệ (đúc, cán, hàn) tốt", "Độ thấm tôi thấp", "Có cơ tính tổng hợp nhất định"], c: 2 },
-                    { q: "Tại sao hợp kim Nhôm-Kẽm thường được dùng cho khung máy bay, trong khi hợp kim Nhôm-Magie lại phổ biến trong đóng tàu?", a: ["Hợp kim Nhôm-Kẽm rẻ hơn hợp kim Nhôm-Magie", "Hợp kim Nhôm-Kẽm là hợp kim bền nhất, còn nhóm 5xxx có khả năng chống ăn mòn nước biển tốt", "Hợp kim Nhôm-Kẽm dễ hàn hơn hợp kim Nhôm-Magie", "Hợp kim Nhôm-Kẽm dẫn điện tốt hơn hợp kim Nhôm-Magie"], c: 1 },
-                    { q: "So với Đồng thau (Cu-Zn), hợp kim Đồng-Niken (Cu-Ni) có ưu điểm vượt trội nào khiến nó trở thành vật liệu ưu tiên cho các hệ thống đường ống dẫn nước biển trên tàu?", a: ["Có màu vàng sáng giống vàng, mang tính thẩm mỹ cao", "Dễ đúc và gia công hơn", "Khả năng chống ăn mòn nước biển và chống bám bẩn sinh học (hà, rêu)", "Cứng và bền ngang ngửa thép"], c: 2 },
-                    { q: "Sự khác biệt cơ bản trong cơ chế dẫn điện của chất bán dẫn Silic kiểu n và kiểu p là gì?", a: ["Kiểu n dẫn điện bằng ion dương, kiểu p dẫn điện bằng ion âm", "Kiểu n dẫn điện bằng 'lỗ khuyết dương', kiểu p dẫn điện bằng 'electron tự do'", "Kiểu n dẫn điện bằng 'electron tự do' (dư), kiểu p dẫn điện bằng 'lỗ khuyết dương' (thiếu electron)", "Cả hai đều dẫn điện bằng electron tự do, nhưng kiểu n dẫn điện tốt hơn"], c: 2 },
-                    { q: "Tại sao Sắt (Fe) có lẫn tạp chất lại dễ bị rỉ sét (ăn mòn) nghiêm trọng trong không khí ẩm, trong khi Nhôm (Al) lại được coi là rất bền và chống ăn mòn tốt trong cùng điều kiện?", a: ["Vì Nhôm là kim loại kém hoạt động hơn Sắt", "Vì lớp rỉ sắt (oxit sắt) xốp và giòn, không bảo vệ được kim loại bên trong, còn lớp oxit nhôm (Al2O3) mỏng, cứng, ổn định và bám chặt, bảo vệ kim loại bên dưới", "Vì Sắt là kim loại nặng, Nhôm là kim loại nhẹ", "Vì Sắt bị ăn mòn bởi CO2 trong không khí, còn Nhôm không phản ứng với CO2"], c: 1 }
-                ]
-            },
-            nonmetal: {
-                title: "II. PHẦN PHI KIM",
-                questions: [
-                    { q: "Theo tài liệu, phương pháp chính để sản xuất oxygene ở quy mô lớn trong công nghiệp là gì?", a: ["Điện phân nước.", "Chưng cất phân đoạn không khí lỏng.", "Nhiệt phân các hợp chất giàu oxi như KMnO4.", "Lọc và nén trực tiếp không khí từ khí quyển."], c: 1 },
-                    { q: "Sau khi lọc qua cát, nước dùng trong sinh hoạt được sát trùng bằng các tác nhân nào sau đây?", a: ["Phèn nhôm.", "Dung dịch KMnO4 và axit sulfuric.", "Cl2, O3, hoặc tia tử ngoại.", "Than hoạt tính và vôi sống (CaO)."], c: 2 },
-                    { q: "Dung dịch Hidro peoxit (H2O2) nồng độ 30% có tên gọi thương mại là gì?", a: ["Nước đá khô.", "Pehidrol.", "Oleum.", "Nước Javen."], c: 1 },
-                    { q: "Dạng thù hình nào của cacbon được mô tả trong tài liệu là 'cứng nhất trong tất cả các chất'?", a: ["Than chì.", "Kim cương.", "Than cốc.", "Cacbon vô định hình."], c: 1 },
-                    { q: "Khí Cacbon mono oxit (CO) gây độc cho con người chủ yếu bằng cơ chế nào?", a: ["Phá hủy tế bào thần kinh trung ương.", "Gây bỏng và tổn thương niêm mạc phổi.", "Kết hợp bền vững với hemoglobin, cản trở vận chuyển oxy.", "Làm tăng đột ngột nồng độ CO2 trong máu."], c: 2 },
-                    { q: "Cacbon đioxit (CO2) ở trạng thái rắn, màu trắng giống như tuyết được gọi là gì?", a: ["Nước đá khô (hoặc tuyết cacbonic).", "Thạch anh.", "Oleum.", "Pehidrol."], c: 0 },
-                    { q: "Ứng dụng quan trọng nhất của lưu huỳnh (Sulfur) là gì?", a: ["Sản xuất lốp xe (lưu hóa cao su).", "Làm phụ gia cho dầu nhớt chịu cực áp.", "Chế tạo thuốc súng đen và thuốc pháo.", "Dùng làm dầu cắt gọt trong gia công kim loại."], c: 0 },
-                    { q: "Hỗn hợp của axit sunfuric tinh khiết hòa tan khí SO3 được gọi là gì?", a: ["Hỗn hợp đồng sôi.", "Axit sunfuric loãng.", "Oleum (axit sunfuric bốc khói).", "Pehidrol."], c: 2 },
-                    { q: "Dựa vào thông tin trong tài liệu, ứng dụng nào sau đây tạo ra nhiệt độ cao nhất dùng trong việc hàn và cắt kim loại?", a: ["Đèn xì hidro-oxi.", "Đèn xì axetilen-oxi.", "Đốt cháy than cốc trong lò cao.", "Đốt cháy khí CO trong không khí."], c: 1 },
-                    { q: "H2O2 được dùng để phục hồi các bức tranh cổ bị đen (do chì trắng chuyển thành PbS) dựa trên phản ứng nào?", a: ["H2O2 khử PbS (đen) thành Pb (kim loại).", "H2O2 oxi hóa PbS (đen) thành PbSO4 (trắng).", "H2O2 hòa tan lớp PbS (đen) như một axit.", "H2O2 phân hủy tạo O2, thổi bay lớp PbS (đen)."], c: 1 },
-                    { q: "Nguyên tắc của phương pháp dùng đồng vị C để xác định tuổi của sinh vật cổ xưa là gì?", a: ["Nồng độ 14C trong khí quyển không đổi và 14C không bị phân hủy.", "Sinh vật ngừng đồng hóa C khi chết và lượng 14C giảm dần do phân hủy phóng xạ.", "Sinh vật chỉ hấp thụ 14C sau khi chúng đã chết.", "14C là đồng vị bền, chỉ có trong các mẫu vật cổ xưa."], c: 1 },
-                    { q: "Nhờ đặc điểm cấu trúc nào mà than chì (graphite) được dùng làm chất bôi trơn?", a: ["Có cấu trúc mạng lưới nguyên tử 3D rất cứng.", "Có khả năng dẫn điện và dẫn nhiệt tốt.", "Có cấu trúc lớp, liên kết giữa các lớp yếu (lực Van der Waals) nên rất mềm và trơn.", "Có khả năng hấp phụ mạnh các chất khí."], c: 2 },
-                    { q: "Vai trò chính của thiết bị chuyển hóa có xúc tác (Pt, Pd) lắp trong ống xả ô tô là gì?", a: ["Tăng hiệu suất đốt cháy nhiên liệu trong động cơ.", "Hấp phụ các kim loại nặng như chì để bảo vệ môi trường.", "Chuyển hóa các khí độc (CO, NO) thành các khí không độc hại (CO2, N2)", "Làm nguội khí thải trước khi thải ra không khí."], c: 2 },
-                    { q: "'Nước đá khô' (CO2 rắn) được dùng để bảo quản và vận chuyển đồ mau hỏng vì lý do chính nào?", a: ["Vì CO2 rắn rất nặng, tạo áp suất nén lên thực phẩm.", "Khi bay hơi (thăng hoa), CO2 hấp thụ nhiệt lượng lớn, làm lạnh môi trường xung quanh xuống nhiệt độ rất thấp.", "Vì CO2 không duy trì sự sống, giúp tiêu diệt vi khuẩn.", "Vì CO2 tan tốt trong nước, tạo môi trường axit nhẹ bảo quản."], c: 1 },
-                    { q: "Thao tác nào sau đây là đúng và an toàn khi pha loãng axit sunfuric đặc?", a: ["Đổ từ từ nước vào axit và khuấy đều.", "Đổ nhanh nước vào axit để hòa tan ngay lập tức.", "Đổ từ từ axit vào nước và khuấy đều.", "Đổ nhanh axit vào nước và đậy nắp ngay."], c: 2 },
-                    { q: "Trong ứng dụng 'tẩy gỉ kim loại', axit sunfuric loãng, nóng có vai trò gì?", a: ["Oxi hóa bề mặt kim loại để tạo lớp bảo vệ.", "Hòa tan và loại bỏ lớp gỉ (oxit sắt) bám trên bề mặt thép.", "Tạo ra các cầu nối đisunfua làm bền lớp gỉ.", "Làm khô và hút ẩm bề mặt kim loại trước khi mạ."], c: 1 },
-                    { q: "Nguyên nhân cơ bản nào giải thích tại sao kim cương (rất cứng) và than chì (rất mềm) có tính chất vật lý trái ngược nhau dù cùng cấu tạo từ nguyên tố cacbon?", a: ["Do kim cương chứa đồng vị 12C, còn than chì chứa đồng vị 13C.", "Do kim cương được khai thác tự nhiên, còn than chì là nhân tạo.", "Do sự khác biệt về kiến trúc tinh thể (cách sắp xếp và liên kết của các nguyên tử cacbon).", "Do kim cương trong suốt không màu, còn than chì màu xám đen."], c: 2 },
-                    { q: "Điều gì làm cho 'than hoạt tính' có khả năng hấp phụ rất lớn, được dùng trong mặt nạ phòng độc (trừ CO) và lọc chất bẩn?", a: ["Do than hoạt tính có diện tích bề mặt rất phát triển (rất xốp).", "Do than hoạt tính là dạng tinh thể hoàn hảo của than chì.", "Do than hoạt tính có tính khử mạnh hơn kim cương.", "Do than hoạt tính chỉ được điều chế từ than muội."], c: 0 },
-                    { q: "'Hiệu ứng nhà kính' xảy ra chủ yếu do CO2 trong khí quyển:", a: ["Ngăn cản bức xạ nhiệt từ Mặt trời chiếu xuống Trái Đất.", "Hấp thụ bức xạ nhiệt (tia hồng ngoại) từ Mặt Đất phát ra và bức xạ ngược trở lại.", "Phản ứng hóa học với oxy và hơi nước, sinh ra nhiệt.", "Làm tăng nhiệt độ nóng chảy của băng ở hai cực."], c: 1 },
-                    { q: "Nguyên nhân chính dẫn đến sự gia tăng của hiện tượng 'mưa axit' (nước mưa có pH < 5,6) là gì?", a: ["Sự gia tăng khí CO2 trong khí quyển do hô hấp của sinh vật.", "Khí SO2 từ núi lửa và khí NO từ sấm sét trong tự nhiên.", "Hoạt động của con người (công nghiệp, giao thông) làm tăng mạnh oxit của lưu huỳnh (SO2) và nitơ (NOx) trong khí quyển.", "Sự phân hủy của các vật liệu hữu cơ bị thối rữa giải phóng H2S."], c: 2
-                ]
-            },
-            polymer: {
-                title: "III. PHẦN VẬT LIỆU POLYME",
-                questions: [
-                    { q: "Thành phần hóa học chính cấu tạo nên cao su thiên nhiên là gì?", a: ["Polyisoprene", "Polyethylene", "Polychloroprene", "Polystyrene"], c: 0 },
-                    { q: "Loại sợi cellulose tự nhiên nào phổ biến nhất, chứa trên 90% cellulose tinh khiết và được ứng dụng rộng rãi trong ngành dệt may?", a: ["Sợi đay", "Sợi lanh", "Sợi bông (Cotton)", "Sợi gai"], c: 2 },
-                    { q: "Vật liệu composite (vật liệu tổ hợp) được cấu tạo từ ít nhất hai thành phần chính là gì?", a: ["Vật liệu nền và vật liệu cốt (gia cường)", "Nhựa nhiệt dẻo và nhựa nhiệt rắn", "Kim loại và gốm", "Polyme và dung môi"], c: 0 },
-                    { q: "Trong cấu trúc của vật liệu composite, thành phần nào đóng vai trò 'bao bọc', liên kết và truyền tải ứng suất?", a: ["Vật liệu cốt", "Vật liệu nền (Matrix)", "Sợi carbon", "Hạt gia cường"], c: 1 },
-                    { q: "Nhựa Polyethylene (PE) được tổng hợp từ monomer nào sau đây?", a: ["Propylene (C3H6)", "Vinyl chloride (C2H3Cl)", "Styrene (C8H8)", "Ethylene (C2H4)"], c: 3 },
-                    { q: "Dựa trên mật độ, nhựa PE thường được phân loại thành các nhóm chính nào?", a: ["PE cứng và PE mềm", "LDPE (mật độ thấp), MDPE (mật độ trung bình), HDPE (mật độ cao)", "PE nhiệt dẻo và PE nhiệt rắn", "PE trong suốt và PE đục"], c: 1 },
-                    { q: "Loại sợi nhân tạo nào được sản xuất bằng cách tái tạo cellulose từ bột gỗ (thường gọi là Rayon)?", a: ["Nylon", "Polyester", "Viscose", "Acrylic"], c: 2 },
-                    { q: "Đặc điểm nổi bật nhất về tính chất hóa học của nhựa PE là gì?", a: ["Dễ tan trong nước", "Dẫn điện rất tốt", "Không thấm nước và chịu được tác động của hóa chất, axit", "Dễ bị thủy phân trong môi trường kiềm"], c: 2 },
-                    { q: "Vải lanh (Linen - nguồn gốc từ cellulose) lại được ưa chuộng để may quần áo mùa hè do?", a: ["Vải có khả năng giữ nhiệt tốt giúp cơ thể ấm áp.", "Vải có khả năng dẫn nhiệt và thấm hút vượt trội, tạo cảm giác mát lạnh.", "Vải không thấm nước, giúp tránh mưa.", "Vải có bề mặt bóng loáng phản xạ ánh sáng mặt trời."], c: 1 },
-                    { q: "Trong lĩnh vực cấp thoát nước, tại sao ống nhựa HDPE lại được sử dụng thay thế cho ống kim loại truyền thống?", a: ["Vì HDPE cứng hơn kim loại.", "Vì HDPE có khả năng chịu nhiệt độ cao trên 200 độ C.", "Vì HDPE có độ bền hóa học cao, không bị rỉ sét và ăn mòn bởi môi trường.", "Vì HDPE có khả năng tự phân hủy sinh học trong đất."], c: 2 },
-                    { q: "Túi ni lông dùng để gói hàng hoặc đựng thực phẩm hàng ngày thường được làm từ nhựa LDPE (PE mật độ thấp) do:", a: ["LDPE rất cứng và chịu va đập mạnh.", "LDPE mềm dẻo, linh hoạt và dễ gia công thành màng mỏng.", "LDPE chịu được nhiệt độ đun nấu cao.", "LDPE có khả năng dẫn điện tốt."], c: 1 },
-                    { q: "Vật liệu Composite cốt sợi thủy tinh (GFRP) là lựa chọn hàng đầu để đóng thân vỏ tàu thuyền do?", a: ["Vật liệu nhẹ hơn nước nên tự nổi được.", "Vật liệu có khả năng kháng ăn mòn tuyệt vời đối với nước biển và môi trường khắc nghiệt.", "Vật liệu rẻ hơn gỗ rất nhiều.", "Vật liệu có thể trong suốt để nhìn thấy đáy biển."], c: 1 },
-                    { q: "Trong ngành hàng không vũ trụ, Composite cốt sợi Carbon (CFRP) được dùng làm vỏ máy bay (như Boeing 787) thay cho nhôm chủ yếu vì lý do gì?", a: ["Vì nó có tỷ lệ độ bền/trọng lượng rất cao, giúp giảm nhẹ máy bay và tiết kiệm nhiên liệu.", "Vì nó dẫn điện tốt hơn nhôm để chống sét.", "Vì nó dễ sơn màu hơn nhôm.", "Vì nó có thể tái chế dễ dàng 100%."], c: 0 },
-                    { q: "Một kỹ sư muốn chọn vật liệu làm gioăng chống nước cho cửa kính tòa nhà cao tầng. Cao su thiên nhiên đã lưu hóa là một lựa chọn phù hợp do?", a: ["Độ cứng rất cao như kim loại để chịu lực.", "Có khả năng dẫn điện tốt để chống sét.", "Có tính đàn hồi, bền nhiệt và không thấm nước.", "Dễ dàng phân hủy ngay khi gặp nước mưa."], c: 2 },
-                    { q: "Composite nền gốm (CMCs) được ứng dụng làm đĩa phanh cho các siêu xe thể thao thay vì dùng gốm nguyên khối do?", a: ["Gốm nguyên khối quá đắt.", "CMCs khắc phục được nhược điểm giòn của gốm, tăng độ bền dai và chịu nhiệt cực tốt khi phanh gấp.", "CMCs mềm hơn, giúp phanh êm ái hơn.", "CMCs có màu sắc đẹp hơn để trang trí bánh xe."], c: 1 },
-                    { q: "Các bồn chứa hóa chất trong công nghiệp thường được làm từ nhựa HDPE hoặc Composite mà không dùng nhựa LDPE do?", a: ["LDPE quá đắt đỏ.", "HDPE và Composite có độ cứng, độ bền cơ học và khả năng kháng hóa chất tốt hơn LDPE.", "LDPE bị hòa tan trong nước.", "HDPE trong suốt giúp nhìn thấy mức chất lỏng bên trong."], c: 1 },
-                    { q: "Phân tích vai trò của mạng lưới liên kết Hydro trong cấu trúc của Cellulose đối với tính chất vật lý của nó: Tại sao Cellulose không tan trong nước dù có nhiều nhóm thân nước (-OH)?", a: ["Do khối lượng phân tử của cellulose quá nhỏ.", "Do các liên kết hydro nội và liên phân tử quá mạnh, ngăn cản nước xâm nhập và hydrat hóa chuỗi.", "Do cellulose có lớp vỏ sáp bảo vệ bên ngoài.", "Do cellulose là một polyme ion hóa mạnh."], c: 1 },
-                    { q: "Dựa trên cấu trúc phân tử của LDPE và HDPE hãy xác định tại sao HDPE thích hợp làm ống dẫn chịu lực trong khi LDPE chỉ thích hợp làm túi nilon?", a: ["HDPE có cấu trúc mạch nhánh dài làm tăng độ dẻo, trong khi LDPE mạch thẳng nên cứng.", "HDPE có cấu trúc mạch thẳng, sắp xếp chặt chẽ (mật độ cao) tạo độ cứng và bền; LDPE có mạch nhánh ngăn cản sự sắp xếp khít nên mềm và xốp hơn.", "HDPE chứa các liên kết ngang hóa học còn LDPE thì không.", "HDPE là nhựa nhiệt rắn còn LDPE là nhựa nhiệt dẻo."], c: 1 },
-                    { q: "Khi một chi tiết composite chịu tải trọng, sự phân phối lực diễn ra như thế nào giữa nền và cốt?", a: ["Vật liệu nền chịu toàn bộ lực, vật liệu cốt chỉ để trang trí.", "Vật liệu cốt chịu toàn bộ lực, vật liệu nền không có tác dụng chịu lực.", "Vật liệu nền truyền tải ứng suất sang vật liệu cốt, vật liệu cốt chịu tải chính và ngăn cản sự biến dạng.", "Cả hai chịu lực độc lập và không liên quan đến nhau."], c: 2 },
-                    { q: "Ưu điểm của vật liệu Composite nền kim loại (MMCs) với hợp kim kim loại thông thường trong ứng dụng động cơ ô tô là gì?", a: ["MMCs rẻ hơn và dễ chế tạo hơn.", "MMCs duy trì được độ bền và độ cứng tốt hơn ở nhiệt độ cao, đồng thời chống mài mòn tốt hơn hợp kim nền đơn thuần.", "MMCs có độ dẻo cao hơn, dễ uốn cong khi va chạm.", "MMCs cách nhiệt hoàn toàn, không cho nhiệt thoát ra ngoài."], c: 1 },
-                    { q: "Trong quá trình lưu hóa cao su, nguyên tố nào đóng vai trò quan trọng để tạo ra các cầu nối liên kết ngang giữa các chuỗi polyisoprene?", a: ["Carbon (C)", "Lưu huỳnh (S)", "Oxy (O)", "Nitơ (N)"], c: 1 },
-                    { q: "Nếu bạn để một cục cao su thô (chưa lưu hóa) ngoài trời nắng nóng 40 độ C, hiện tượng gì có khả năng xảy ra nhất?", a: ["Cao su trở nên rất cứng và giòn.", "Cao su bị chảy mềm và trở nên dính.", "Cao su tăng tính đàn hồi và nảy tốt hơn.", "Không có hiện tượng gì thay đổi."], c: 1 },
-                    { q: "Tại sao việc tạo ra các cầu nối sulfide (S-S) trong quá trình lưu hóa lại giúp cao su có tính đàn hồi cao (khôi phục hình dạng sau khi kéo)?", a: ["Cầu nối S-S làm cho các chuỗi polymer cứng lại hoàn toàn như nhựa.", "Cầu nối S-S ngăn các chuỗi polymer trượt lên nhau vĩnh viễn, cho phép cấu trúc gập khúc kéo vật liệu về hình dạng cũ.", "Cầu nối S-S phản ứng với không khí tạo ra lực đẩy tĩnh điện.", "Cầu nối S-S làm tan chảy các mắt xích cis-1,4 để tái cấu trúc."], c: 1 ]
-                ]
-            }
-        };
+    <div class="question-card">
+        <p class="question-text">Câu 5: Sắt (Fe) có tính chất vật lý đặc biệt nào mà hầu hết các kim loại khác không có?</p>
+        <ul class="options-list">
+            <td class="correct">A. Tính sắt - từ (bị nam châm hút)</td>
+            <td>B. Có màu trắng bạc và ánh kim</td>
+            <td>C. Khả năng dẫn điện tốt</td>
+            <td>D. Rất cứng và có nhiệt độ nóng chảy rất cao</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Đây là tính chất đặc trưng của Sắt, Coban, Niken do cấu trúc phân lớp electron d chưa lấp đầy tạo momen từ lớn.
+        </div>
+    </div>
 
-        let currentActiveTab = 'metal';
-        let userProgressScore = 0;
+    <div class="question-card">
+        <p class="question-text">Câu 6: Hợp kim nhôm đúc (Cast Alloys) phổ biến nhất, như Silumin, sử dụng nguyên tố hợp kim chính nào để cải thiện đáng kể độ chảy loãng (tính đúc)?</p>
+        <ul class="options-list">
+            <td>A. Đồng (Cu)</td>
+            <td>B. Magie (Mg)</td>
+            <td class="correct">C. Silic (Si)</td>
+            <td>D. Kẽm (Zn)</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Hợp kim Silumin chứa khoảng 11-13% Si tạo tổ chức cùng tinh có tính đúc và độ chảy loãng điền đầy khuôn rất tuyệt vời.
+        </div>
+    </div>
 
-        function switchTab(tabKey) {
-            currentActiveTab = tabKey;
-            
-            // UI tabs switching styling
-            ['metal', 'nonmetal', 'polymer'].forEach(key => {
-                const btn = document.getElementById(`tab-${key}`);
-                if(key === tabKey) {
-                    btn.className = "px-4 py-2 rounded-lg font-medium transition bg-white text-blue-600 shadow";
-                } else {
-                    btn.className = "px-4 py-2 rounded-lg font-medium transition bg-blue-700 text-white hover:bg-blue-800";
-                }
-            });
+    <div class="question-card">
+        <p class="question-text">Câu 7: Hợp kim kẽm đúc (Die Casting) phổ biến, được biết đến với tên gọi Zamak, là hợp kim của Kẽm (Zink) với các nguyên tố chính nào sau đây?</p>
+        <ul class="options-list">
+            <td class="correct">A. Nhôm (Al), Magie (Mg) và Đồng</td>
+            <td>B. Titan (Ti) và Đồng (Cu)</td>
+            <td>C. Thiếc (Sn) và Chì (Pb)</td>
+            <td>D. Niken (Ni) và Sắt (Fe)</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Zamak là tên viết tắt của các nguyên tố thành phần bằng tiếng Đức: Zink (Kẽm) - Aluminium (Nhôm) - Magnesium (Magie) - Kupfer (Đồng).
+        </div>
+    </div>
 
-            userProgressScore = 0;
-            document.getElementById('score-counter').innerText = userProgressScore;
-            renderQuizView();
-        }
+    <div class="question-card">
+        <p class="question-text">Câu 8: Để tạo ra vật liệu bán dẫn Silic kiểu n (negative), người ta pha tạp chất là nguyên tố thuộc nhóm nào (có mấy electron hóa trị)?</p>
+        <ul class="options-list">
+            <td>A. Nhóm IIIA (như Bo, Nhôm) - 3 electron hóa trị</td>
+            <td class="correct">B. Nhóm VA (như Photpho, Asen) - 5 electron hóa trị</td>
+            <td>C. Nhóm IVA (như Gecmani) - 4 electron hóa trị</td>
+            <td>D. Nhóm VIIA (như Flo) - 7 electron hóa trị</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Khi pha tạp nhóm VA vào Silic (nhóm IVA), sẽ dư ra một electron tự do mang điện tích âm nên gọi là bán dẫn loại n (negative).
+        </div>
+    </div>
 
-        function renderQuizView() {
-            const activeData = dataset[currentActiveTab];
-            document.getElementById('current-topic-title').innerText = activeData.title;
-            document.getElementById('total-counter').innerText = activeData.questions.length;
-            
-            const container = document.getElementById('quiz-container');
-            container.innerHTML = '';
+    <div class="question-card">
+        <p class="question-text">Câu 9: Để tạo ra vật liệu bán dẫn Silic kiểu p (positive), người ta pha tạp chất là nguyên tố nào sau đây?</p>
+        <ul class="options-list">
+            <td>A. Photpho (P)</td>
+            <td>B. Asen (As)</td>
+            <td class="correct">C. Bo (B)</td>
+            <td>D. Antimon (Sb)</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Bo thuộc nhóm IIIA có 3 electron hóa trị, khi thế chỗ liên kết mạng lưới với Silic sẽ thiếu electron và tạo ra lỗ trống mang điện tích dương nên gọi là bán dẫn loại p (positive).
+        </div>
+    </div>
 
-            activeData.questions.forEach((item, index) => {
-                const qCard = document.createElement('div');
-                qCard.className = "bg-white p-6 rounded-2xl shadow-xs space-y-4 border border-gray-100";
-                qCard.id = `q-card-${index}`;
+    <div class="question-card">
+        <p class="question-text">Câu 10: Hợp kim Đồng-Niken (Cupronickel), ví dụ hợp kim Menchio, nổi bật với đặc tính nào?</p>
+        <ul class="options-list">
+            <td>A. Độ bền cơ học cao nhất trong các hợp kim đồng</td>
+            <td>B. Khả năng dẫn điện tốt nhất</td>
+            <td class="correct">C. Rất bền với nước biển và chống bám bẩn sinh học</td>
+            <td>D. Hệ số ma sát thấp và chống mài mòn tốt</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Đồng-Niken cực kỳ bền trong môi trường clorua, ngăn chặn hiệu quả sinh vật biển như hà, rêu bám bẩn lên bề mặt.
+        </div>
+    </div>
 
-                qCard.innerHTML = `
-                    <p class="font-semibold text-gray-900 leading-relaxed text-base">
-                        <span class="inline-block bg-blue-100 text-blue-700 text-xs px-2.5 py-1 rounded-md font-bold mr-2">Câu ${index + 1}</span>
-                        ${item.q}
-                    </p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="options-block-${index}">
-                        ${item.a.map((option, opIdx) => `
-                            <button onclick="checkUserChoice(${index}, ${opIdx})" id="opt-${index}-${opIdx}" class="w-full text-left p-3.5 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-gray-50 font-medium transition text-sm cursor-pointer">
-                                <span class="inline-block w-6 h-6 text-center text-xs font-bold leading-6 rounded-full bg-gray-100 text-gray-500 mr-2 uppercase">${String.fromCharCode(65 + opIdx)}</span> ${option}
-                            </button>
-                        `).join('')}
-                    </div>
-                `;
-                container.appendChild(qCard);
-            });
-        }
+    <div class="question-card">
+        <p class="question-text">Câu 11: Một kỹ sư cần chế tạo các chi tiết máy chịu tải trọng tĩnh và va đập cao (ví dụ: trục, bánh răng), đồng thời cần có cơ tính tổng hợp tốt. Theo tài liệu, loại thép cacbon nào là phù hợp nhất?</p>
+        <ul class="options-list">
+            <td>A. Thép cacbon thấp (≤ 0,25% C)</td>
+            <td class="correct">B. Thép cacbon trung bình (0,30 ÷ 0,50% C)</td>
+            <td>C. Thép cacbon tương đối cao (0,55 ÷ 0,65% C)</td>
+            <td>D. Thép cacbon cao (≥ 0,70% C)</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Thép cacbon trung bình sau khi nhiệt luyện (tôi + ram) đạt cơ tính tổng hợp tốt nhất, vừa có độ bền nén-kéo cao vừa giữ được độ dẻo dai chống va đập.
+        </div>
+    </div>
 
-        function checkUserChoice(qIdx, selectedOpIdx) {
-            const questionData = dataset[currentActiveTab].questions[qIdx];
-            const correctIdx = questionData.c;
-            
-            // Lock option buttons interaction
-            const block = document.getElementById(`options-block-${qIdx}`);
-            const buttons = block.getElementsByTagName('button');
-            for(let btn of buttons) {
-                btn.disabled = true;
-                btn.classList.remove('hover:border-blue-300', 'hover:bg-gray-50', 'cursor-pointer');
-            }
+    <div class="question-card">
+        <p class="question-text">Câu 12: Tại sao người ta có thể sử dụng các thùng (xitec) bằng nhôm để vận chuyển axit nitric (HNO₃) đặc và nguội?</p>
+        <ul class="options-list">
+            <td>A. Vì nhôm là kim loại rất trơ, không phản ứng với mọi axit</td>
+            <td>B. Vì nhôm tạo ra khí H₂ ngăn cản phản ứng tiếp diễn</td>
+            <td class="correct">C. Vì nhôm bị thụ động hóa trong axit HNO₃ đặc, nguội</td>
+            <td>D. Vì nhôm chỉ phản ứng với dung dịch kiềm, không phản ứng với axit</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Nhôm phản ứng oxi hóa bề mặt tạo ra lớp màng oxit Al₂O₃ cực kỳ bền, mỏng và bám chặt ngăn không cho axit tiếp xúc với khối kim loại bên trong.
+        </div>
+    </div>
 
-            const chosenBtn = document.getElementById(`opt-${qIdx}-${selectedOpIdx}`);
-            const correctBtn = document.getElementById(`opt-${qIdx}-${correctIdx}`);
+    <div class="question-card">
+        <p class="question-text">Câu 13: Một nhà sản xuất cần làm dây dẫn điện. Họ có hai lựa chọn đồng: Đồng ETP (chứa ~0,04% O₂) và Đồng OFHC (sạch oxy). Nếu quá trình sản xuất yêu cầu gia công ở nhiệt độ 500°C trong môi trường có khí Hydro (H₂), họ nên chọn loại nào để tránh nứt vỡ vật liệu?</p>
+        <ul class="options-list">
+            <td>A. Đồng ETP, vì oxy giúp tăng độ bền khi nóng</td>
+            <td class="correct">B. Đồng OFHC, vì không chứa oxy nên không nhạy cảm với hydro</td>
+            <td>C. Loại nào cũng được, vì hydro không ảnh hưởng đến đồng</td>
+            <td>D. Đồng ETP, vì oxy ngăn hydro khuếch tán vào trong</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Đồng ETP chứa oxy dưới dạng oxit Cu₂O ở biên giới hạt, khi gặp Hydro ở nhiệt độ cao sẽ bị khử tạo thành hơi nước áp suất lớn gây nứt vỡ vật liệu (hiện tượng giòn hydro).
+        </div>
+    </div>
 
-            if (selectedOpIdx === correctIdx) {
-                chosenBtn.className += " correct-answer text-green-800 font-semibold border-2 shadow-xs";
-                userProgressScore++;
-                document.getElementById('score-counter').innerText = userProgressScore;
-            } else {
-                chosenBtn.className += " wrong-answer text-red-800 border-2";
-                correctBtn.className += " correct-answer text-green-800 font-semibold border-2 shadow-inner animate-pulse";
-            }
-        }
+    <div class="question-card">
+        <p class="question-text">Câu 14: Một công ty sản xuất đồ chơi mô hình (xe hơi) cần đúc các chi tiết vỏ xe rất mỏng, có độ phức tạp cao và yêu cầu độ chính xác kích thước tốt. Họ nên ưu tiên sử dụng hợp kim nào?</p>
+        <ul class="options-list">
+            <td>A. Thép cacbon cao</td>
+            <td class="correct">B. Hợp kim Kẽm (Zamak)</td>
+            <td>C. Hợp kim Nhôm-Magie (nhóm 5xxx)</td>
+            <td>D. Hợp kim Kẽm-Titan (tấm kiến trúc)</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Hợp kim kẽm đúc đúc chết (Zamak) có nhiệt độ nóng chảy thấp, độ chảy loãng cao, điền đầy khuôn siêu tốt nên chế tạo được chi tiết rất mỏng và chính xác.
+        </div>
+    </div>
 
-        // Initialize quiz view on load
-        window.onload = () => { renderQuizView(); };
-    </script>
+    <div class="question-card">
+        <p class="question-text">Câu 15: Cấu kiện bán dẫn cơ bản nào được tạo thành bằng cách ghép một lớp bán dẫn kiểu p và một lớp kiểu n (mặt tiếp giáp p-n), có chức năng chính là chuyển dòng điện xoay chiều thành một chiều?</p>
+        <ul class="options-list">
+            <td>A. Pin mặt trời</td>
+            <td class="correct">B. Bộ chỉnh lưu (Điot bán dẫn)</td>
+            <td>C. Tranzito (Transistor)</td>
+            <td>D. Vi mạch tổ hợp (IC)</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Mặt tiếp giáp p-n có tính chất dẫn điện một chiều đơn hướng, ứng dụng làm điot bán dẫn trong mạch chỉnh lưu.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 16: Đâu là nhược điểm lớn nhất của thép cacbon so với thép hợp kim, đặc biệt khi chế tạo các chi tiết máy có kích thước (tiết diện) lớn?</p>
+        <ul class="options-list">
+            <td>A. Giá thành rẻ và dễ kiếm</td>
+            <td>B. Tính công nghệ (đúc, cán, hàn) tốt</td>
+            <td class="correct">C. Độ thấm tôi thấp</td>
+            <td>D. Có cơ tính tổng hợp nhất định</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Thép cacbon có tốc độ tôi tới hạn lớn nên khi tôi các chi tiết lớn, vùng lõi bên trong không thể làm nguội đủ nhanh để hóa martensite, dẫn đến độ thấm tôi kém.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 17: Tại sao hợp kim Nhôm-Kẽm thường được dùng cho khung máy bay, trong khi hợp kim Nhôm-Magie lại phổ biến trong đóng tàu?</p>
+        <ul class="options-list">
+            <td>A. Hợp kim Nhôm-Kẽm rẻ hơn hợp kim Nhôm-Magie</td>
+            <td class="correct">B. Hợp kim Nhôm-Kẽm là hợp kim bền nhất, còn nhóm 5xxx có khả năng chống ăn mòn nước biển tốt</td>
+            <td>C. Hợp kim Nhôm-Kẽm dễ hàn hơn hợp kim Nhôm-Magie</td>
+            <td>D. Harp kim Nhôm-Kẽm dẫn điện tốt hơn hợp kim Nhôm-Magie</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Hợp kim Nhôm-Kẽm (hệ 7xxx) có độ bền cơ học cao nhất nên làm khung máy bay để chịu tải; Nhôm-Magie (hệ 5xxx) kháng muối biển vượt trội bảo vệ thân tàu.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 18: So với Đồng thau (Cu-Zn), hợp kim Đồng-Niken (Cu-Ni) có ưu điểm vượt trội nào khiến nó trở thành vật liệu ưu tiên cho các hệ thống đường ống dẫn nước biển trên tàu?</p>
+        <ul class="options-list">
+            <td>A. Có màu vàng sáng giống vàng, mang tính thẩm mỹ cao</td>
+            <td>B. Dễ đúc và gia công hơn</td>
+            <td class="correct">C. Khả năng chống ăn mòn nước biển và chống bám bẩn sinh học (hà, rêu)</td>
+            <td>D. Cứng và bền ngang ngửa thép</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Hợp kim Cu-Ni kháng mài mòn xâm thực bởi dòng chảy nước biển tốc độ cao và ngăn chặn sinh vật biển bám dính tốt hơn hẳn đồng thau.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 19: Sự khác biệt cơ bản trong cơ chế dẫn điện của chất bán dẫn Silic kiểu n và kiểu p là gì?</p>
+        <ul class="options-list">
+            <td>A. Kiểu n dẫn điện bằng ion dương, kiểu p dẫn điện bằng ion âm</td>
+            <td>B. Kiểu n dẫn điện bằng 'lỗ khuyết dương', kiểu p dẫn điện bằng 'electron tự do'</td>
+            <td class="correct">C. Kiểu n dẫn điện bằng 'electron tự do' (dư), kiểu p dẫn điện bằng 'lỗ khuyết dương' (thiếu electron)</td>
+            <td>D. Cả hai đều dẫn điện bằng electron tự do, nhưng kiểu n dẫn điện tốt hơn</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Kiểu n (negative) thừa electron mang điện tích âm; kiểu p (positive) thiếu electron sinh ra các lỗ trống mang điện tích dương đóng vai trò tải điện.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 20: Tại sao Sắt (Fe) có lẫn tạp chất lại dễ bị rỉ sét (ăn mòn) nghiêm trọng trong không khí ẩm, trong khi Nhôm (Al) lại được coi là rất bền và chống ăn mòn tốt trong cùng điều kiện?</p>
+        <ul class="options-list">
+            <td>A. Vì Nhôm là kim loại kém hoạt động hơn Sắt</td>
+            <td class="correct">B. Vì lớp rỉ sắt (oxit sắt) xốp và giòn, không bảo vệ được kim loại bên trong, còn lớp oxit nhôm (Al₂O₃) mỏng, cứng, ổn định và bám chặt, bảo vệ kim loại bên dưới</td>
+            <td>C. Vì Sắt là kim loại nặng, Nhôm là kim loại nhẹ</td>
+            <td>D. Vì Sắt bị ăn mòn bởi CO₂ trong không khí, còn Nhôm không phản ứng với CO₂</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Lớp rỉ sắt (Fe₂O₃·nH₂O) xốp dễ bong tróc tạo điều kiện cho ẩm tiếp tục ăn mòn sâu, trong khi màng Al₂O₃ rất kín khít và thụ động hóa bảo vệ hoàn hảo phần nhôm bên trong.
+        </div>
+    </div>
+
+
+    <h2>II. PHẦN PHI KIM</h2>
+
+    <div class="question-card">
+        <p class="question-text">Câu 1: Theo tài liệu, phương pháp chính để sản xuất oxygene ở quy mô lớn trong công nghiệp là gì?</p>
+        <ul class="options-list">
+            <td>A. Điện phân nước.</td>
+            <td class="correct">B. Chưng cất phân đoạn không khí lỏng.</td>
+            <td>C. Nhiệt phân các hợp chất giàu oxi như KMnO₄.</td>
+            <td>D. Lọc và nén trực tiếp không khí từ khí quyển.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Hạ nhiệt độ hóa lỏng không khí rồi nâng dần nhiệt độ để tách riêng Nitơ và Oxy dựa trên sự khác biệt về nhiệt độ sôi.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 2: Sau khi lọc qua cát, nước dùng trong sinh hoạt được sát trùng bằng các tác nhân nào sau đây?</p>
+        <ul class="options-list">
+            <td>A. Phèn nhôm.</td>
+            <td>B. Dung dịch KMnO₄ và axit sulfuric.</td>
+            <td class="correct">C. Cl₂, O₃, hoặc tia tử ngoại.</td>
+            <td>D. Than hoạt tính và vôi sống (CaO).</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Đây là các tác nhân oxi hóa hoặc bức xạ năng lượng cao có khả năng tiêu diệt các tế bào vi sinh vật, vi khuẩn trong nước hiệu quả.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 3: Dung dịch Hidro peoxit (H₂O₂) nồng độ 30% có tên gọi thương mại là gì?</p>
+        <ul class="options-list">
+            <td>A. Nước đá khô.</td>
+            <td class="correct">B. Pehidrol.</td>
+            <td>C. Oleum.</td>
+            <td>D. Nước Javen.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Pehidrol là thuật ngữ thương mại phổ biến dùng để chỉ dung dịch đậm đặc H₂O₂ nồng độ khoảng 30%.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 4: Dạng thù hình nào của cacbon được mô tả trong tài liệu là 'cứng nhất trong tất cả các chất'?</p>
+        <ul class="options-list">
+            <td>A. Than chì.</td>
+            <td class="correct">B. Kim cương.</td>
+            <td>C. Than cốc.</td>
+            <td>D. Cacbon vô định hình.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Kim cương có cấu trúc mạng lưới cộng hóa trị tứ diện đều 3 chiều cực kỳ bền vững đem lại độ cứng tuyệt đối.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 5: Khí Cacbon mono oxit (CO) gây độc cho con người chủ yếu bằng cơ chế nào?</p>
+        <ul class="options-list">
+            <td>A. Phá hủy tế bào thần kinh trung ương.</td>
+            <td>B. Gây bỏng và tổn thương niêm mạc phổi.</td>
+            <td class="correct">C. Kết hợp bền vững với hemoglobin, cản trở vận chuyển oxy.</td>
+            <td>D. Làm tăng đột ngột nồng độ CO₂ trong máu.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            CO liên kết với hemoglobin trong máu mạnh gấp hơn 200 lần so với O₂, làm mất khả năng vận chuyển oxy nuôi cơ thể, dẫn đến ngạt khí.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 6: Cacbon đioxit (CO₂) ở trạng thái rắn, màu trắng giống như tuyết được gọi là gì?</p>
+        <ul class="options-list">
+            <td class="correct">A. Nước đá khô (hoặc tuyết cacbonic).</td>
+            <td>B. Thạch anh.</td>
+            <td>C. Oleum.</td>
+            <td>D. Pehidrol.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            CO₂ rắn được gọi là nước đá khô, được dùng làm chất làm lạnh sạch không để lại nước khi thăng hoa.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 7: Ứng dụng quan trọng nhất của lưu huỳnh (Sulfur) là gì?</p>
+        <ul class="options-list">
+            <td class="correct">A. Sản xuất lốp xe (lưu hóa cao su).</td>
+            <td>B. Làm phụ gia cho dầu nhớt chịu cực áp.</td>
+            <td>C. Chế tạo thuốc súng đen và thuốc pháo.</td>
+            <td>D. Dùng làm dầu cắt gọt trong gia công kim loại.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Lưu huỳnh phản ứng tạo các cầu nối disunfua liên kết các mạch cao su thẳng thành mạng không gian tạo độ đàn hồi cao cho lốp xe.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 8: Hỗn hợp của axit sunfuric tinh khiết hòa tan khí SO₃ được gọi là gì?</p>
+        <ul class="options-list">
+            <td>A. Hỗn hợp đồng sôi.</td>
+            <td>B. Axit sunfuric loãng.</td>
+            <td class="correct">C. Oleum (axit sunfuric bốc khói).</td>
+            <td>D. Pehidrol.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Oleum có công thức tổng quát H₂SO₄·nSO₃, bốc khói mạnh trong không khí ẩm do SO₃ bay ra kết hợp hơi nước.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 9: Dựa vào thông tin trong tài liệu, ứng dụng nào sau đây tạo ra nhiệt độ cao nhất dùng trong việc hàn và cắt kim loại?</p>
+        <ul class="options-list">
+            <td>A. Đèn xì hidro-oxi.</td>
+            <td class="correct">B. Đèn xì axetilen-oxi.</td>
+            <td>C. Đốt cháy than cốc trong lò cao.</td>
+            <td>D. Đốt cháy khí CO trong không khí.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Phản ứng cháy của C₂H₂ trong O₂ tỏa ra lượng nhiệt cực lớn tập trung, đẩy nhiệt độ ngọn lửa vượt lên trên 3000°C.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 10: H₂O₂ được dùng để phục hồi các bức tranh cổ bị đen (do chì trắng chuyển thành PbS) dựa trên phản ứng nào?</p>
+        <ul class="options-list">
+            <td>A. H₂O₂ khử PbS (đen) thành Pb (kim loại).</td>
+            <td class="correct">B. H₂O₂ oxi hóa PbS (đen) thành PbSO₄ (trắng).</td>
+            <td>C. H₂O₂ hòa tan lớp PbS (đen) như một axit.</td>
+            <td>D. H₂O₂ phân hủy tạo O₂, thổi bay lớp PbS (đen).</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            H₂O₂ đóng vai trò chất oxi hóa mạnh chuyển muối chì sunfua màu đen (PbS) thành chì sunfat có màu trắng (PbSO₄), khôi phục lại màu nguyên bản của tranh cổ.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 11: Nguyên tắc của phương pháp dùng đồng vị C để xác định tuổi của sinh vật cổ xưa là gì?</p>
+        <ul class="options-list">
+            <td>A. Nồng độ ¹⁴C trong khí quyển không đổi và ¹⁴C không bị phân hủy.</td>
+            <td class="correct">B. Sinh vật ngừng đồng hóa C khi chết và lượng ¹⁴C giảm dần do phân hủy phóng xạ.</td>
+            <td>C. Sinh vật chỉ hấp thụ ¹⁴C sau khi chúng đã chết.</td>
+            <td>D. ¹⁴C là đồng vị bền, chỉ có trong các mẫu vật cổ xưa.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Dựa vào chu kỳ bán rã của tỷ lệ carbon phóng xạ ¹⁴C còn lại trong mẫu hữu cơ so với mẫu sống để tính toán mốc thời gian sinh vật đã chết.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 12: Nhờ đặc điểm cấu trúc nào mà than chì (graphite) được dùng làm chất bôi trơn?</p>
+        <ul class="options-list">
+            <td>A. Có cấu trúc mạng lưới nguyên tử 3D rất cứng.</td>
+            <td>B. Có khả năng dẫn điện và dẫn nhiệt tốt.</td>
+            <td class="correct">C. Có cấu trúc lớp, liên kết giữa các lớp yếu (lực Van der Waals) nên rất mềm và trơn.</td>
+            <td>D. Có khả năng hấp phụ mạnh các chất khí.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Các lớp nguyên tử cacbon phẳng xếp song song kết nối bằng lực Van der Waals yếu nên dễ dàng trượt lên nhau khi có ma sát ngoại lực.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 13: Vai trò chính của thiết bị chuyển hóa có xúc tác (Pt, Pd) lắp trong ống xả ô tô là gì?</p>
+        <ul class="options-list">
+            <td>A. Tăng hiệu suất đốt cháy nhiên liệu trong động cơ.</td>
+            <td>B. Hấp phụ các kim loại nặng như chì để bảo vệ môi trường.</td>
+            <td class="correct">C. Chuyển hóa các khí độc (CO, NO) thành các khí không độc hại (CO₂, N₂).</td>
+            <td>D. Làm nguội khí thải trước khi thải ra không khí.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Bộ xúc tác kích thích phản ứng oxi hóa-khử: 2CO + 2NO → 2CO₂ + N₂ để trung hòa khí thải độc hại trước khi xả ra môi trường.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 14: 'Nước đá khô' (CO₂ rắn) được dùng để bảo quản và vận chuyển đồ mau hỏng vì lý do chính nào?</p>
+        <ul class="options-list">
+            <td>A. Vì CO₂ rắn rất nặng, tạo áp suất nén lên thực phẩm.</td>
+            <td class="correct">B. Khi bay hơi (thăng hoa), CO₂ hấp thụ nhiệt lượng lớn, làm lạnh môi trường xung quanh xuống nhiệt độ rất thấp.</td>
+            <td>C. Vì CO₂ không duy trì sự sống, giúp tiêu diệt vi khuẩn.</td>
+            <td>D. Vì CO₂ tan tốt trong nước, tạo môi trường axit nhẹ bảo quản.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Quá trình thăng hoa trực tiếp từ rắn sang khí thu nhiệt mạnh giúp hạ sâu nhiệt độ bảo quản, đồng thời không tạo nước ẩm gây hỏng thực phẩm.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 15: Thao tác nào sau đây là đúng và an toàn khi pha loãng axit sunfuric đặc?</p>
+        <ul class="options-list">
+            <td>A. Đổ từ từ nước vào axit và khuấy đều.</td>
+            <td>B. Đổ nhanh nước vào axit để hòa tan ngay lập tức.</td>
+            <td class="correct">C. Đổ từ từ axit vào nước và khuấy đều.</td>
+            <td>D. Đổ nhanh axit vào nước và đậy nắp ngay.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            H₂SO₄ đặc tan tỏa nhiệt cực lớn. Đổ axit từ từ vào nước giúp nước hấp thụ nhiệt đều, tránh hiện tượng axit bắn tung tóe gây bỏng nguy hiểm.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 16: Trong ứng dụng 'tẩy gỉ kim loại', axit sunfuric loãng, nóng có vai trò gì?</p>
+        <ul class="options-list">
+            <td>A. Oxi hóa bề mặt kim loại để tạo lớp bảo vệ.</td>
+            <td class="correct">B. Hòa tan và loại bỏ lớp gỉ (oxit sắt) bám trên bề mặt thép.</td>
+            <td>C. Tạo ra các cầu nối đisunfua làm bền lớp gỉ.</td>
+            <td>D. Làm khô và hút ẩm bề mặt kim loại trước khi mạ.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Axit loãng phản ứng với các oxit sắt tạo thành muối tan, làm tróc lớp gỉ xốp và trả lại bề mặt kim loại sạch trước khi gia công mạ.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 17: Nguyên nhân cơ bản nào giải thích tại sao kim cương (rất cứng) và than chì (rất mềm) có tính chất vật lý trái ngược nhau dù cùng cấu tạo từ nguyên tố cacbon?</p>
+        <ul class="options-list">
+            <td>A. Do kim cương chứa đồng vị ¹²C, còn than chì chứa đồng vị ¹³C.</td>
+            <td>B. Do kim cương được khai thác tự nhiên, còn than chì là nhân tạo.</td>
+            <td class="correct">C. Do sự khác biệt về kiến trúc tinh thể (cách sắp xếp và liên kết của các nguyên tử cacbon).</td>
+            <td>D. Do kim cương trong suốt không màu, còn than chì màu xám đen.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Kiến trúc tinh thể quyết định tính chất: Kim cương là mạng lưới 3D liên kết chặt; than chì cấu trúc các lớp mỏng liên kết lỏng lẻo.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 18: Điều gì làm cho 'than hoạt tính' có khả năng hấp phụ rất lớn, được dùng trong mặt nạ phòng độc (trừ CO) và lọc chất bẩn?</p>
+        <ul class="options-list">
+            <td class="correct">A. Do than hoạt tính có diện tích bề mặt rất phát triển (rất xốp).</td>
+            <td>B. Do than hoạt tính là dạng tinh thể hoàn hảo của than chì.</td>
+            <td>C. Do than hoạt tính có tính khử mạnh hơn kim cương.</td>
+            <td>D. Do than hoạt tính chỉ được điều chế từ than muội.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Than hoạt tính chứa hàng triệu lỗ rỗng li ti phân nhánh tạo nên diện tích bề mặt tiếp xúc khổng lồ giúp giữ chặt các phân tử tạp chất, khí độc.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 19: 'Hiệu ứng nhà kính' xảy ra chủ yếu do CO₂ trong khí quyển:</p>
+        <ul class="options-list">
+            <td>A. Ngăn cản bức xạ nhiệt từ Mặt trời chiếu xuống Trái Đất.</td>
+            <td class="correct">B. Hấp thụ bức xạ nhiệt (tia hồng ngoại) từ Mặt Đất phát ra và bức xạ ngược trở lại.</td>
+            <td>C. Phản ứng hóa học với oxy và hơi nước, sinh ra nhiệt.</td>
+            <td>D. Làm tăng nhiệt độ nóng chảy của băng ở hai cực.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Lớp khí CO₂ giữ vai trò như một tấm kính, cho ánh sáng đi qua nhưng giữ lại dòng bức xạ hồng ngoại nhiệt từ mặt đất phát ra, làm hành tinh ấm lên.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 20: Nguyên nhân chính dẫn đến sự gia tăng của hiện tượng 'mưa axit' (nước mưa có pH < 5,6) là gì?</p>
+        <ul class="options-list">
+            <td>A. Sự gia tăng khí CO₂ trong khí quyển do hô hấp của sinh vật.</td>
+            <td>B. Khí SO₂ từ núi lửa và khí NO từ sấm sét trong tự nhiên.</td>
+            <td class="correct">C. Hoạt động của con người (công nghiệp, giao thông) làm tăng mạnh oxit của lưu huỳnh (SO₂) và nitơ (NOₓ) trong khí quyển.</td>
+            <td>D. Sự phân hủy của các vật liệu hữu cơ bị thối rữa giải phóng H₂S.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Khí thải công nghiệp SO₂ và NOₓ hòa tan vào nước mưa tạo thành dung dịch axit loãng H₂SO₄ và HNO₃ gây ra mưa axit tàn phá hệ sinh thái.
+        </div>
+    </div>
+
+
+    <h2>III. PHẦN VẬT LIỆU POLYME</h2>
+
+    <div class="question-card">
+        <p class="question-text">Câu 1: Thành phần hóa học chính cấu tạo nên cao su thiên nhiên là gì?</p>
+        <ul class="options-list">
+            <td class="correct">A. Polyisoprene</td>
+            <td>B. Polyethylene</td>
+            <td>C. Polychloroprene</td>
+            <td>D. Polystyrene</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Cao su thiên nhiên bản chất là polyme của isoprene, cụ thể là chuỗi cis-1,4-polyisoprene.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 2: Loại sợi cellulose tự nhiên nào phổ biến nhất, chứa trên 90% cellulose tinh khiết và được ứng dụng rộng rãi trong ngành dệt may?</p>
+        <ul class="options-list">
+            <td>A. Sợi đay</td>
+            <td>B. Sợi lanh</td>
+            <td class="correct">C. Sợi bông (Cotton)</td>
+            <td>D. Sợi gai</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Sợi bông thu hoạch từ quả cây bông vải chứa thành phần cellulose tự nhiên tinh khiết nhất.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 3: Vật liệu composite (vật liệu tổ hợp) được cấu tạo từ ít nhất hai thành phần chính là gì?</p>
+        <ul class="options-list">
+            <td class="correct">A. Vật liệu nền và vật liệu cốt (gia cường)</td>
+            <td>B. Nhựa nhiệt dẻo và nhựa nhiệt rắn</td>
+            <td>C. Kim loại và gốm</td>
+            <td>D. Polyme và dung môi</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Vật liệu composite bao gồm hai pha cơ bản tương tác với nhau: Pha nền liên kết và pha cốt tăng cường cơ tính.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 4: Trong cấu trúc của vật liệu composite, thành phần nào đóng vai trò 'bao bọc', liên kết và truyền tải ứng suất?</p>
+        <ul class="options-list">
+            <td>A. Vật liệu cốt</td>
+            <td class="correct">B. Vật liệu nền (Matrix)</td>
+            <td>C. Sợi carbon</td>
+            <td>D. Hạt gia cường</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Vật liệu nền (Matrix) bao bọc quanh cốt, bảo vệ cốt khỏi môi trường và thực hiện chức năng truyền tải ứng suất cơ học sang cho cốt gánh chịu.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 5: Nhựa Polyethylene (PE) được tổng hợp từ monomer nào sau đây?</p>
+        <ul class="options-list">
+            <td>A. Propylene (C₃H₆)</td>
+            <td>B. Vinyl chloride (C₂H₃Cl)</td>
+            <td>C. Styrene (C₈H₈)</td>
+            <td class="correct">B. Ethylene (C₂H₄)</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Trùng hợp các phân tử khí ethylene bẻ gãy liên kết đôi tạo thành chuỗi mạch dài vô tận Polyethylene (PE).
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 6: Dựa trên mật độ, nhựa PE thường được phân loại thành các nhóm chính nào?</p>
+        <ul class="options-list">
+            <td>A. PE cứng và PE mềm</td>
+            <td class="correct">B. LDPE (mật độ thấp), MDPE (mật độ trung bình), HDPE (mật độ cao)</td>
+            <td>C. PE nhiệt dẻo và PE nhiệt rắn</td>
+            <td>D. PE trong suốt và PE đục</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Sự khác biệt về mạch thẳng hay phân nhánh dẫn đến phân loại LDPE, MDPE, HDPE dựa vào khối lượng riêng mật độ đóng gói phân tử.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 7: Loại sợi nhân tạo nào được sản xuất bằng cách tái tạo cellulose từ bột gỗ (thường gọi là Rayon)?</p>
+        <ul class="options-list">
+            <td>A. Nylon</td>
+            <td>B. Polyester</td>
+            <td class="correct">C. Viscose</td>
+            <td>D. Acrylic</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Sợi Viscose được xếp vào nhóm tơ bán tổng hợp (nhân tạo), điều chế qua phản ứng hóa học hòa tan rồi tái kết tủa kéo màng sợi từ cellulose tự nhiên.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 8: Đặc điểm nổi bật nhất về tính chất hóa học của nhựa PE là gì?</p>
+        <ul class="options-list">
+            <td>A. Dễ tan trong nước</td>
+            <td>B. Dẫn điện rất tốt</td>
+            <td class="correct">C. Không thấm nước và chịu được tác động của hóa chất, axit</td>
+            <td>D. Dễ bị thủy phân trong môi trường kiềm</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Mạch hydrocacbon no không chứa nhóm chức phân cực giúp PE cực kỳ trơ bền hóa học trước tác động của nước, axit và kiềm.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 9: Vải lanh (Linen - nguồn gốc từ cellulose) lại được ưa chuộng để may quần áo mùa hè do?</p>
+        <ul class="options-list">
+            <td>A. Vải có khả năng giữ nhiệt tốt giúp cơ thể ấm áp.</td>
+            <td class="correct">B. Vải có khả năng dẫn nhiệt và thấm hút vượt trội, tạo cảm giác mát lạnh.</td>
+            <td>C. Vải không thấm nước, giúp tránh mưa.</td>
+            <td>D. Vải có bề mặt bóng loáng phản xạ ánh sáng mặt trời.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Cấu trúc sợi rỗng tự nhiên giúp thoát nhiệt cực nhanh và thấm hút mồ hôi tốt, lý tưởng cho khí hậu nóng bức.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 10: Trong lĩnh vực cấp thoát nước, tại sao ống nhựa HDPE lại được sử dụng thay thế cho ống kim loại truyền thống?</p>
+        <ul class="options-list">
+            <td>A. Vì HDPE cứng hơn kim loại.</td>
+            <td>B. Vì HDPE có khả năng chịu nhiệt độ cao trên 200 độ C.</td>
+            <td class="correct">C. Vì HDPE có độ bền hóa học cao, không bị rỉ sét và ăn mòn bởi môi trường.</td>
+            <td>D. Vì HDPE có khả năng tự phân hủy sinh học trong đất.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            HDPE không bị ăn mòn điện hóa, rỉ sét khi chôn ngầm dưới đất hoặc tiếp xúc lâu ngày với hóa chất xử lý nước.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 11: Túi ni lông dùng để gói hàng hoặc đựng thực phẩm hàng ngày thường được làm từ nhựa LDPE (PE mật độ thấp) do:</p>
+        <ul class="options-list">
+            <td>A. LDPE rất cứng và chịu va đập mạnh.</td>
+            <td class="correct">B. LDPE mềm dẻo, linh hoạt và dễ gia công thành màng mỏng.</td>
+            <td>C. LDPE chịu được nhiệt độ đun nấu cao.</td>
+            <td>D. LDPE có khả năng dẫn điện tốt.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            LDPE chứa nhiều mạch nhánh ngắn cản trở việc xếp khít chặt, tạo ra độ dẻo dai cao, mềm, dễ thổi màng nilon.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 12: Vật liệu Composite cốt sợi thủy tinh (GFRP) là lựa chọn hàng đầu để đóng thân vỏ tàu thuyền do?</p>
+        <ul class="options-list">
+            <td>A. Vật liệu nhẹ hơn nước nên tự nổi được.</td>
+            <td class="correct">B. Vật liệu có khả năng kháng ăn mòn tuyệt vời đối với nước biển và môi trường khắc nghiệt.</td>
+            <td>C. Vật liệu rẻ hơn gỗ rất nhiều.</td>
+            <td>D. Vật liệu có thể trong suốt để nhìn thấy đáy biển.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Composite nền polymer gia cường sợi thủy tinh hoàn toàn miễn nhiễm với sự ăn mòn ăn hại của muối biển và sinh vật biển phá hủy.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 13: Trong ngành hàng không vũ trụ, Composite cốt sợi Carbon (CFRP) được dùng làm vỏ máy bay (như Boeing 787) thay cho nhôm chủ yếu vì lý do gì?</p>
+        <ul class="options-list">
+            <td class="correct">A. Vì nó có tỷ lệ độ bền/trọng lượng rất cao, giúp giảm nhẹ máy bay và tiết kiệm nhiên liệu.</td>
+            <td>B. Vì nó dẫn điện tốt hơn nhôm để chống sét.</td>
+            <td>C. Vì nó dễ sơn màu hơn nhôm.</td>
+            <td>D. Vì nó có thể tái chế dễ dàng 100%.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Sợi Carbon siêu bền nhưng khối lượng riêng cực nhẹ, tối ưu hóa trọng lượng khí động học giúp tiết kiệm chi phí vận hành máy bay.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 14: Một kỹ sư muốn chọn vật liệu làm gioăng chống nước cho cửa kính tòa nhà cao tầng. Cao su thiên nhiên đã lưu hóa là một lựa chọn phù hợp do?</p>
+        <ul class="options-list">
+            <td>A. Độ cứng rất cao như kim loại để chịu lực.</td>
+            <td>B. Có khả năng dẫn điện tốt để chống sét.</td>
+            <td class="correct">C. Có tính đàn hồi, bền nhiệt và không thấm nước.</td>
+            <td>D. Dễ dàng phân hủy ngay khi gặp nước mưa.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Cao su sau lưu hóa duy trì phom dáng, co giãn đàn hồi kín khít, chịu nhiệt nắng mưa thời tiết tốt mà không lão hóa nhanh.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 15: Composite nền gốm (CMCs) được ứng dụng làm đĩa phanh cho các siêu xe thể thao thay vì dùng gốm nguyên khối do?</p>
+        <ul class="options-list">
+            <td>A. Gốm nguyên khối quá đắt.</td>
+            <td class="correct">B. CMCs khắc phục được nhược điểm giòn của gốm, tăng độ bền dai và chịu nhiệt cực tốt khi phanh gấp.</td>
+            <td>C. CMCs mềm hơn, giúp phanh êm ái hơn.</td>
+            <td>D. CMCs có màu sắc đẹp hơn để trang trí bánh xe.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Sợi gia cường trong nền gốm làm triệt tiêu các vết nứt lan truyền nhanh, giúp đĩa phanh chịu lực sốc mô-men xoắn lớn ở nhiệt độ cao khi phanh gắt.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 16: Các bồn chứa hóa chất trong công nghiệp thường được làm từ nhựa HDPE hoặc Composite mà không dùng nhựa LDPE do?</p>
+        <ul class="options-list">
+            <td>A. LDPE quá đắt đỏ.</td>
+            <td class="correct">B. HDPE và Composite có độ cứng, độ bền cơ học và khả năng kháng hóa chất tốt hơn LDPE.</td>
+            <td>C. LDPE bị hòa tan trong nước.</td>
+            <td>D. HDPE trong suốt giúp nhìn thấy mức chất lỏng bên trong.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Cấu trúc phân tử mạch thẳng xếp đặc khít của HDPE và sự hỗ trợ gia cường của cốt sợi composite cung cấp khả năng chịu áp lực kéo dãn lớn và trơ hóa chất hơn màng LDPE.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 17: Phân tích vai trò của mạng lưới liên kết Hydro trong cấu trúc của Cellulose đối với tính chất vật lý của nó: Tại sao Cellulose không tan trong nước dù có nhiều nhóm thân nước (-OH)?</p>
+        <ul class="options-list">
+            <td>A. Do khối lượng phân tử của cellulose quá nhỏ.</td>
+            <td class="correct">B. Do các liên kết hydro nội và liên phân tử quá mạnh, ngăn cản nước xâm nhập và hydrat hóa chuỗi.</td>
+            <td>C. Do cellulose có lớp vỏ sáp bảo vệ bên ngoài.</td>
+            <td>D. Do cellulose là một polyme ion hóa mạnh.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Mạng lưới liên kết hydro dày đặc biến miền cấu trúc cellulose thành cấu trúc tinh thể siêu chặt, các phân tử nước không thể chen vào bẻ gãy liên kết để hòa tan chuỗi.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 18: Dựa trên cấu trúc phân tử của LDPE và HDPE hãy xác định tại sao HDPE thích hợp làm ống dẫn chịu lực trong khi LDPE chỉ thích hợp làm túi nilon?</p>
+        <ul class="options-list">
+            <td>A. HDPE có cấu trúc mạch nhánh dài làm tăng độ dẻo, trong khi LDPE mạch thẳng nên cứng.</td>
+            <td class="correct">B. HDPE có cấu trúc mạch thẳng, sắp xếp chặt chẽ (mật độ cao) tạo độ cứng và bền; LDPE có mạch nhánh ngăn cản sự sắp xếp khít nên mềm và xốp hơn.</td>
+            <td>C. HDPE chứa các liên kết ngang hóa học còn LDPE thì không.</td>
+            <td>D. HDPE là nhựa nhiệt rắn còn LDPE là nhựa nhiệt dẻo.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            HDPE ít nhánh, mạch dài song song kéo khít nhau tạo lực liên phân tử lớn làm tăng mạnh độ cứng, độ bền cơ lý, chịu được áp suất dòng nước bên trong ống.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 19: Khi một chi tiết composite chịu tải trọng, sự phân phối lực diễn ra như thế nào giữa nền và cốt?</p>
+        <ul class="options-list">
+            <td>A. Vật liệu nền chịu toàn bộ lực, vật liệu cốt chỉ để trang trí.</td>
+            <td>B. Vật liệu cốt chịu toàn bộ lực, vật liệu nền không có tác dụng chịu lực.</td>
+            <td class="correct">C. Vật liệu nền truyền tải ứng suất sang vật liệu cốt, vật liệu cốt chịu tải chính và ngăn cản sự biến dạng.</td>
+            <td>D. Cả hai chịu lực độc lập và không liên quan đến nhau.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Cơ chế cộng lực hoàn hảo: Pha nền ôm chặt và gom phân bổ lực dồn sang cho các sợi/hạt cốt gánh chịu tải chính, nâng tầm giới hạn bền cho toàn khối composite.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 20: Ưu điểm của vật liệu Composite nền kim loại (MMCs) với hợp kim kim loại thông thường trong ứng dụng động cơ ô tô là gì?</p>
+        <ul class="options-list">
+            <td>A. MMCs rẻ hơn và dễ chế tạo hơn.</td>
+            <td class="correct">B. MMCs duy trì được độ bền và độ cứng tốt hơn ở nhiệt độ cao, đồng thời chống mài mòn tốt hơn hợp kim nền đơn thuần.</td>
+            <td>C. MMCs có độ dẻo cao hơn, dễ uốn cong khi va chạm.</td>
+            <td>D. MMCs cách nhiệt hoàn toàn, không cho nhiệt thoát ra ngoài.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Pha cốt (như cacbua, oxit gốm) phân tán trong nền kim loại khóa các chuyển động lệch, giúp động cơ duy trì cơ tính tuyệt vời khi vận hành ở nhiệt độ buồng đốt cao.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 21: Trong quá trình lưu hóa cao su, nguyên tố nào đóng vai trò quan trọng để tạo ra các cầu nối liên kết ngang giữa các chuỗi polyisoprene?</p>
+        <ul class="options-list">
+            <td>A. Carbon (C)</td>
+            <td class="correct">B. Lưu huỳnh (S)</td>
+            <td>C. Oxy (O)</td>
+            <td>D. Nitơ (N)</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Nguyên tố lưu huỳnh (S) tham gia khâu mạch tạo cầu nối đisunfua (-S-S-) nối các mạch cao su riêng rẽ thành mạng lưới không gian 3D.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 22: Nếu bạn để một cục cao su thô (chưa lưu hóa) ngoài trời nắng nóng 40 độ C, hiện tượng gì có khả năng xảy ra nhất?</p>
+        <ul class="options-list">
+            <td>A. Cao su trở nên rất cứng và giòn.</td>
+            <td class="correct">B. Cao su bị chảy mềm và trở nên dính.</td>
+            <td>C. Cao su tăng tính đàn hồi và nảy tốt hơn.</td>
+            <td>D. Không có hiện tượng gì thay đổi.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Cao su thô không có các liên kết ngang cố định nên khi gặp nhiệt độ cao, các chuỗi phân tử dễ trượt tự do lên nhau, khiến vật liệu bị chảy, bết dính.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Câu 23: Tại sao việc tạo ra các cầu nối sulfide (S-S) trong quá trình lưu hóa lại giúp cao su có tính đàn hồi cao (khôi phục hình dạng sau khi kéo)?</p>
+        <ul class="options-list">
+            <td>A. Cầu nối S-S làm cho các chuỗi polymer cứng lại hoàn toàn như nhựa.</td>
+            <td class="correct">B. Cầu nối S-S ngăn các chuỗi polymer trượt lên nhau vĩnh viễn, cho phép cấu trúc gập khúc kéo vật liệu về hình dạng cũ.</td>
+            <td>C. Cầu nối S-S phản ứng với không khí tạo ra lực đẩy tĩnh điện.</td>
+            <td>D. Cầu nối S-S làm tan chảy các mắt xích cis-1,4 để tái cấu trúc.</td>
+        </ul>
+        <div class="explanation-box">
+            <div class="explanation-title">Giải thích:</div>
+            Cầu nối S-S giữ vai trò như các sợi lò xo neo chốt. Khi kéo dãn, chuỗi polyme duỗi thẳng ra nhưng không bị tuột mất, khi buông lực kéo, các chốt cầu nối co kéo chuỗi quay về trạng thái cuộn khúc ban đầu.
+        </div>
+    </div>
+
+</div>
+
 </body>
 </html>
