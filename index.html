@@ -3,656 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ứng Dụng Ôn Tập: Chương 2 - Hóa Học Và Năng Lượng</title>
+    <title>Ôn Tập Chương 4 - Khoa Học Vật Liệu</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --bg-color: #f8f9fa;
-            --card-bg: #ffffff;
-            --text-color: #333333;
-            --success-color: #2ecc71;
-            --error-color: #e74c3c;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            width: 100%;
-            text-align: center;
-            padding: 20px 0;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 1.8rem;
-        }
-
-        header p {
-            margin: 5px 0 0 0;
-            font-size: 1rem;
-            opacity: 0.8;
-        }
-
-        .container {
-            max-width: 800px;
-            width: 90%;
-            margin: 30px 0;
-        }
-
-        .quiz-card {
-            background: var(--card-bg);
-            padding: 20px;
-            margin-bottom: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            border-left: 5px solid var(--secondary-color);
-            transition: transform 0.2s;
-        }
-
-        .quiz-card:hover {
-            transform: translateY(-2px);
-        }
-
-        .question {
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-            color: var(--primary-color);
-        }
-
-        .formula {
-            display: block;
-            background: #f1f3f5;
-            padding: 10px;
-            border-radius: 5px;
-            margin: 10px 0;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: bold;
-            color: #c0392b;
-        }
-
-        .options-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .option-label {
-            display: flex;
-            align-items: center;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .option-label:hover {
-            background-color: #f0f7fc;
-            border-color: var(--secondary-color);
-        }
-
-        .option-label input {
-            margin-right: 15px;
-            transform: scale(1.2);
-        }
-
-        .option-label.correct-answer {
-            background-color: #d4edda !important;
-            border-color: var(--success-color) !important;
-            color: #155724;
-            position: relative;
-        }
-
-        .option-label.correct-answer::after {
-            content: " ✓ (Đáp án đúng)";
-            font-weight: bold;
-            margin-left: auto;
-        }
-
-        .option-label.wrong-answer {
-            background-color: #f8d7da !important;
-            border-color: var(--error-color) !important;
-            color: #721c24;
-            position: relative;
-        }
-
-        .option-label.wrong-answer::after {
-            content: " ✗ (Bạn đã chọn)";
-            font-weight: bold;
-            margin-left: auto;
-        }
-
-        .action-area {
-            text-align: center;
-            margin-top: 20px;
-            margin-bottom: 50px;
-        }
-
-        .btn {
-            background-color: var(--secondary-color);
-            color: white;
-            border: none;
-            padding: 15px 35px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: background 0.2s, transform 0.1s;
-        }
-
-        .btn:hover {
-            background-color: #2980b9;
-        }
-
-        .btn:active {
-            transform: scale(0.98);
-        }
-
-        #result-box {
-            display: none;
-            background: #e8f8f5;
-            border: 2px solid var(--success-color);
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            margin-bottom: 30px;
-            color: #27ae60;
-        }
-
-        #result-box h2 {
-            margin: 0 0 10px 0;
-        }
+        .selected-answer { border-color: #3b82f6; background-color: #eff6ff; }
+        .correct-answer { border-color: #10b981; background-color: #ecfdf5; }
+        .wrong-answer { border-color: #ef4444; background-color: #fef2f2; }
     </style>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800 font-sans">
 
-    <header>
-        <h1>ÔN TẬP TRỰC TUYẾN</h1>
-        <p>Chương 2: Hóa Học và Năng Lượng</p>
+    <header class="bg-blue-600 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <h1 class="text-xl font-bold tracking-wide">HỆ THỐNG ÔN TẬP CHƯƠNG 4</h1>
+            <div class="flex gap-2">
+                <button onclick="switchTab('metal')" id="tab-metal" class="px-4 py-2 rounded-lg font-medium transition bg-white text-blue-600 shadow">Kim Loại</button>
+                <button onclick="switchTab('nonmetal')" id="tab-nonmetal" class="px-4 py-2 rounded-lg font-medium transition bg-blue-700 hover:bg-blue-800">Phi Kim</button>
+                <button onclick="switchTab('polymer')" id="tab-polymer" class="px-4 py-2 rounded-lg font-medium transition bg-blue-700 hover:bg-blue-800">Polyme</button>
+            </div>
+        </div>
     </header>
 
-    <div class="container">
-        <div id="result-box">
-            <h2>Kết Quả Của Bạn</h2>
-            <p id="score-text"></p>
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        
+        <div class="bg-white p-4 rounded-xl shadow-sm mb-6 flex justify-between items-center">
+            <div>
+                <span class="text-sm text-gray-500 uppercase tracking-wider font-semibold">Chủ đề đang học:</span>
+                <h2 id="current-topic-title" class="text-lg font-bold text-gray-800">I. Phần Kim Loại</h2>
+            </div>
+            <div class="text-right">
+                <span class="text-2xl font-black text-blue-600" id="score-counter">0</span>
+                <span class="text-gray-400">/</span>
+                <span class="text-gray-600 font-semibold" id="total-counter">20</span>
+            </div>
         </div>
 
-        <form id="quiz-form">
-            <div class="quiz-card" data-correct="B">
-                <div class="question">Câu 1. Quá trình đẳng tích là quá trình:</div>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q1" value="A"> A. Xảy ra khi áp suất không đổi</label>
-                    <label class="option-label"><input type="radio" name="q1" value="B"> B. Xảy ra khi thể tích không đổi</label>
-                    <label class="option-label"><input type="radio" name="q1" value="C"> C. Xảy ra khi nhiệt độ không đổi</label>
-                    <label class="option-label"><input type="radio" name="q1" value="D"> D. Xảy ra khi hệ không trao đổi nhiệt với môi trường</label>
-                </div>
-            </div>
+        <div id="quiz-container" class="space-y-6"></div>
 
-            <div class="quiz-card" data-correct="A">
-                <div class="question">Câu 2. Quá trình đẳng áp là quá trình:</div>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q2" value="A"> A. Xảy ra khi áp suất không đổi</label>
-                    <label class="option-label"><input type="radio" name="q2" value="B"> B. Xảy ra khi thể tích không đổi</label>
-                    <label class="option-label"><input type="radio" name="q2" value="C"> C. Xảy ra khi nhiệt độ không đổi</label>
-                    <label class="option-label"><input type="radio" name="q2" value="D"> D. Xảy ra khi hệ không trao đổi nhiệt với môi trường</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="A">
-                <div class="question">Câu 3. Theo nguyên lý I nhiệt động học, biến thiên nội năng của hệ (ΔU) được xác định bằng:</div>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q3" value="A"> A. ΔU = Q + A</label>
-                    <label class="option-label"><input type="radio" name="q3" value="B"> B. ΔU = Q - A</label>
-                    <label class="option-label"><input type="radio" name="q3" value="C"> C. ΔU = Q × A</label>
-                    <label class="option-label"><input type="radio" name="q3" value="D"> D. ΔU = Q / A</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="B">
-                <div class="question">Câu 4. Trong điều kiện đẳng tích, nhiệt lượng trao đổi bằng:</div>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q4" value="A"> A. Biến thiên enthalpy (ΔH)</label>
-                    <label class="option-label"><input type="radio" name="q4" value="B"> B. Biến thiên nội năng (ΔU)</label>
-                    <label class="option-label"><input type="radio" name="q4" value="C"> C. Công thực hiện (A)</label>
-                    <label class="option-label"><input type="radio" name="q4" value="D"> D. Tổng nhiệt và công (Q + A)</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="B">
-                <div class="question">Câu 5. Enthalpy (H) được định nghĩa là:</div>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q5" value="A"> A. H = U - PV</label>
-                    <label class="option-label"><input type="radio" name="q5" value="B"> B. H = U + PV</label>
-                    <label class="option-label"><input type="radio" name="q5" value="C"> C. H = Q - A</label>
-                    <label class="option-label"><input type="radio" name="q5" value="D"> D. H = ΔU + ΔnRT</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="B">
-                <div class="question">Câu 6. Trong điều kiện đẳng áp, nhiệt lượng trao đổi Qp bằng:</div>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q6" value="A"> A. ΔU</label>
-                    <label class="option-label"><input type="radio" name="q6" value="B"> B. ΔH</label>
-                    <label class="option-label"><input type="radio" name="q6" value="C"> C. ΔnRT</label>
-                    <label class="option-label"><input type="radio" name="q6" value="D"> D. 0</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="B">
-                <div class="question">Câu 7. Công thức liên hệ giữa ΔH và ΔU trong phản ứng có khí tham gia là:</div>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q7" value="A"> A. ΔH = ΔU - ΔnRT</label>
-                    <label class="option-label"><input type="radio" name="q7" value="B"> B. ΔH = ΔU + ΔnRT</label>
-                    <label class="option-label"><input type="radio" name="q7" value="C"> C. ΔH = ΔU × ΔnRT</label>
-                    <label class="option-label"><input type="radio" name="q7" value="D"> D. ΔH = ΔU / ΔnRT</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="B">
-                <div class="question">Câu 8. Phản ứng tỏa nhiệt là phản ứng có:</div>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q8" value="A"> A. ΔH > 0</label>
-                    <label class="option-label"><input type="radio" name="q8" value="B"> B. ΔH &lt; 0</label>
-                    <label class="option-label"><input type="radio" name="q8" value="C"> C. ΔU > 0</label>
-                    <label class="option-label"><input type="radio" name="q8" value="D"> D. ΔU = 0</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="A">
-                <div class="question">Câu 9. Phản ứng thu nhiệt là phản ứng có:</div>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q9" value="A"> A. ΔH > 0</label>
-                    <label class="option-label"><input type="radio" name="q9" value="B"> B. ΔH &lt; 0</label>
-                    <label class="option-label"><input type="radio" name="q9" value="C"> C. ΔU &lt; 0</label>
-                    <label class="option-label"><input type="radio" name="q9" value="D"> D. ΔH = 0</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="B">
-                <div class="question">Câu 10. Trong phản ứng hóa học, nhiệt phản ứng đo ở điều kiện đẳng tích bằng:</div>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q10" value="A"> A. ΔH</label>
-                    <label class="option-label"><input type="radio" name="q10" value="B"> B. ΔU</label>
-                    <label class="option-label"><input type="radio" name="q10" value="C"> C. ΔnRT</label>
-                    <label class="option-label"><input type="radio" name="q10" value="D"> D. Qp</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="A">
-                <div class="question">Câu 11. Đốt cháy hoàn toàn 1 mol C (Carbon - than), nhiệt lượng tỏa ra được dùng trong lò nung gạch, xi măng, luyện kim theo phương trình:</div>
-                <div class="formula">C + O₂ → CO₂, ΔH = -393,5 kJ/mol</div>
-                <p>Nhiệt tỏa ra trong phản ứng trên ở điều kiện đẳng áp là:</p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q11" value="A"> A. -393,5 kJ</label>
-                    <label class="option-label"><input type="radio" name="q11" value="B"> B. +393,5 kJ</label>
-                    <label class="option-label"><input type="radio" name="q11" value="C"> C. 0 kJ</label>
-                    <label class="option-label"><input type="radio" name="q11" value="D"> D. -786,0 kJ</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="B">
-                <div class="question">Câu 12. Đốt cháy hoàn toàn 1 mol CH₄ (Methane - khí thiên nhiên), nhiệt lượng tỏa ra được dùng làm nhiên liệu trong bếp gas, nhà máy điện khí theo phương trình:</div>
-                <div class="formula">CH₄ + 2O₂ → CO₂ + 2H₂O, ΔH = -890,3 kJ/mol</div>
-                <p>Nhiệt lượng giải phóng khi đốt 16 g CH₄ ở đktc là:</p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q12" value="A"> A. -445,15 kJ</label>
-                    <label class="option-label"><input type="radio" name="q12" value="B"> B. 890,3 kJ</label>
-                    <label class="option-label"><input type="radio" name="q12" value="C"> C. 1780,6 kJ</label>
-                    <label class="option-label"><input type="radio" name="q12" value="D"> D. -222,6 kJ</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="B">
-                <div class="question">Câu 13. Đốt cháy 2 mol C₂H₂ (Acetylene – khí đá), nhiệt lượng tỏa ra được dùng trong đèn xì hàn, cắt thép theo phương trình:</div>
-                <div class="formula">2C₂H₂ + 5O₂ → 4CO₂ + 2H₂O, ΔH = -2598 kJ</div>
-                <p>Nhiệt tỏa ra khi đốt 1 mol C₂H₂ là:</p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q13" value="A"> A. -2598 kJ</label>
-                    <label class="option-label"><input type="radio" name="q13" value="B"> B. 1299 kJ</label>
-                    <label class="option-label"><input type="radio" name="q13" value="C"> C. 5196 kJ</label>
-                    <label class="option-label"><input type="radio" name="q13" value="D"> D. 650 kJ</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="B">
-                <div class="question">Câu 14. Đốt cháy 1 mol C₂H₅OH (Ethanol – cồn), được dùng làm nhiên liệu sinh học E5, E10 cho động cơ theo phương trình:</div>
-                <div class="formula">C₂H₅OH + O₂ → CO₂ + H₂O, Qv = -1367 kJ/mol</div>
-                <p>Giá trị ΔH của phản ứng là:</p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q14" value="A"> A. 1367,0 kJ</label>
-                    <label class="option-label"><input type="radio" name="q14" value="B"> B. -1369,5 kJ</label>
-                    <label class="option-label"><input type="radio" name="q14" value="C"> C. 1364,5 kJ</label>
-                    <label class="option-label"><input type="radio" name="q14" value="D"> D. -1375,0 kJ</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="C">
-                <div class="question">Câu 15. Đốt cháy hoàn toàn 1 mol H₂ (Hydrogen - khí hiđro), nhiệt lượng được khai thác trong tên lửa đẩy, pin nhiên liệu hydro theo phương trình:</div>
-                <div class="formula">H₂ + ½O₂ → H₂O, ΔH = -286 kJ/mol</div>
-                <p>Nhiệt lượng tỏa ra khi đốt 4 g H₂ là:</p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q15" value="A"> A. -143 kJ</label>
-                    <label class="option-label"><input type="radio" name="q15" value="B"> B. 286 kJ</label>
-                    <label class="option-label"><input type="radio" name="q15" value="C"> C. -572 kJ</label>
-                    <label class="option-label"><input type="radio" name="q15" value="D"> D. 1144 kJ</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="C">
-                <div class="question">Câu 16. CO (Carbon monoxide – khí độc) cháy trong lò luyện kim, vừa giải phóng nhiệt vừa loại bỏ CO độc theo phương trình:</div>
-                <div class="formula">CO + ½O₂ → CO₂, ΔH = -283 kJ/mol</div>
-                <p>Nhiệt lượng tỏa ra khi đốt cháy 56 g CO là:</p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q16" value="A"> A. 1415 kJ</label>
-                    <label class="option-label"><input type="radio" name="q16" value="B"> B. 2830 kJ</label>
-                    <label class="option-label"><input type="radio" name="q16" value="C"> C. 565 kJ</label>
-                    <label class="option-label"><input type="radio" name="q16" value="D"> D. 706 kJ</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="B">
-                <div class="question">Câu 17. Phản ứng nung CaCO₃ (Calcium carbonate – đá vôi), cần cung cấp nhiệt trong lò nung vôi, sản xuất xi măng theo phương trình:</div>
-                <div class="formula">CaCO₃ → CaO + CO₂, ΔH = +178 kJ/mol</div>
-                <p>Để phân hủy hoàn toàn 200 g CaCO₃, cần cung cấp nhiệt lượng gần bằng:</p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q17" value="A"> A. +178 kJ</label>
-                    <label class="option-label"><input type="radio" name="q17" value="B"> B. +356 kJ</label>
-                    <label class="option-label"><input type="radio" name="q17" value="C"> C. +200 kJ</label>
-                    <label class="option-label"><input type="radio" name="q17" value="D"> D. +3560 kJ</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="A">
-                <div class="question">Câu 18. Phản ứng nhiệt nhôm (Thermite) tỏa nhiệt rất lớn, dùng trong hàn đường ray, bom nhiệt nhôm theo phương trình:</div>
-                <div class="formula">2Al + Fe₂O₃ → 2Fe + Al₂O₃, ΔH = -851 kJ</div>
-                <p>Nhiệt lượng tỏa ra khi 27 g Al phản ứng vừa đủ là:</p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q18" value="A"> A. 425,5 kJ</label>
-                    <label class="option-label"><input type="radio" name="q18" value="B"> B. 851 kJ</label>
-                    <label class="option-label"><input type="radio" name="q18" value="C"> C. 212,8 kJ</label>
-                    <label class="option-label"><input type="radio" name="q18" value="D"> D. 1702 kJ</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="C">
-                <div class="question">Câu 19. Đốt cháy 1 mol C₈H₁₈ (Octane – thành phần chính của xăng), nhiệt lượng dùng để vận hành động cơ ô tô, xe máy theo phương trình:</div>
-                <div class="formula">C₈H₁₈ + O₂ → CO₂ + H₂O, ΔH = -5470 kJ/mol</div>
-                <p>Nhiệt lượng giải phóng khi đốt 0,7 kg octan là:</p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q19" value="A"> A. 3350 kJ</label>
-                    <label class="option-label"><input type="radio" name="q19" value="B"> B. 5470 kJ</label>
-                    <label class="option-label"><input type="radio" name="q19" value="C"> C. 33.550 kJ</label>
-                    <label class="option-label"><input type="radio" name="q19" value="D"> D. 7.350 kJ</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="A">
-                <div class="question">Câu 20. Đốt cháy C (Carbon - than đá), nhiệt lượng khai thác trong nhà máy nhiệt điện than để phát điện theo phương trình:</div>
-                <div class="formula">C + O₂ → CO₂, ΔH = -393,5 kJ/mol</div>
-                <p>Nếu đốt 1 tấn than, nhiệt lượng tỏa ra gần bằng:</p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q20" value="A"> A. 3,28 × 10⁷ kJ</label>
-                    <label class="option-label"><input type="radio" name="q20" value="B"> B. 2,36 × 10⁷ kJ</label>
-                    <label class="option-label"><input type="radio" name="q20" value="C"> C. 7,87 × 10⁶ kJ</label>
-                    <label class="option-label"><input type="radio" name="q20" value="D"> D. 1,97 × 10⁷ kJ</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="A">
-                <div class="question">Câu 23. Nhiệt phân KClO₃ (Potassium chlorate - trong diêm, pháo), tạo ra khí O₂ hỗ trợ quá trình cháy theo phương trình:</div>
-                <div class="formula">2KClO₃ → 2KCl + 3O₂, ΔH = +89 kJ/mol</div>
-                <p>Tổng nhiệt lượng cần cung cấp khi phân hủy 2 mol KClO₃ là:</p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q23" value="A"> A. +89 kJ</label>
-                    <label class="option-label"><input type="radio" name="q23" value="B"> B. +44,5 kJ</label>
-                    <label class="option-label"><input type="radio" name="q23" value="C"> C. +178 kJ</label>
-                    <label class="option-label"><input type="radio" name="q23" value="D"> D. +267 kJ</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="A">
-                <div class="question">Câu 24. Đốt cháy 1 mol C₄H₁₀ (Butane – thành phần chính của gas hóa lỏng), dùng trong bình gas mini, bật lửa gas theo phương trình:</div>
-                <div class="formula">2C₄H₁₀ + 13O₂ → 8CO₂ + 10H₂O, ΔH = -5750 kJ</div>
-                <p>Nhiệt lượng tỏa ra khi đốt 58 g C₄H₁₀ là:</p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q24" value="A"> A. 2875 kJ</label>
-                    <label class="option-label"><input type="radio" name="q24" value="B"> B. 5750 kJ</label>
-                    <label class="option-label"><input type="radio" name="q24" value="C"> C. 11500 kJ</label>
-                    <label class="option-label"><input type="radio" name="q24" value="D"> D. 1437,5 kJ</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="A">
-                <div class="question">Câu 25. Động cơ xe máy đốt cháy 50 g C₈H₁₈ (Octane – xăng), nhiệt lượng chuyển hóa thành công cơ học theo phương trình:</div>
-                <div class="formula">C₈H₁₈ + O₂ → CO₂ + H₂O, ΔH = -5470 kJ/mol</div>
-                <p>Nhiệt lượng tỏa ra gần bằng:</p>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q25" value="A"> A. 2395 kJ</label>
-                    <label class="option-label"><input type="radio" name="q25" value="B"> B. 5470 kJ</label>
-                    <label class="option-label"><input type="radio" name="q25" value="C"> C. 12.000 kJ</label>
-                    <label class="option-label"><input type="radio" name="q25" value="D"> D. -2000 kJ</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="B">
-                <div class="question">Câu 26: Tính biến thiên entropy của quá trình nén làm lạnh 10 mol khí CO₂ từ nhiệt độ 300 K xuống 250 K? Biết Cp(CO₂) = 80,2 J/(mol.K).</div>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q26" value="A"> A. -45,19 J/K.</label>
-                    <label class="option-label"><input type="radio" name="q26" value="B"> B. -146,2 J/K.</label>
-                    <label class="option-label"><input type="radio" name="q26" value="C"> C. -451,93 J/K.</label>
-                    <label class="option-label"><input type="radio" name="q26" value="D"> D. -123,6 J/K.</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="A">
-                <div class="question">Câu 27: Tính biến thiên entropy của quá trình hàn cắt 81 g Al từ nhiệt độ 300 K lên 900 K? Biết Cp(Al) = 52,5 J/(mol.K).</div>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q27" value="A"> A. 173,03 J/K.</label>
-                    <label class="option-label"><input type="radio" name="q27" value="B"> B. 346,06 J/K.</label>
-                    <label class="option-label"><input type="radio" name="q27" value="C"> C. -226,62 J/K.</label>
-                    <label class="option-label"><input type="radio" name="q27" value="D"> D. 123,6 J/K.</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="C">
-                <div class="question">Câu 28: HI được tổng hợp theo phản ứng: H₂ + I₂ = 2HI. Biết entropy tiêu chuẩn của H₂, I₂, HI lần lượt là 130,59; 116,7; 206,3 J/(mol.K). Biến thiên entropy của phản ứng trên có giá trị là?</div>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q28" value="A"> A. -165,31 J/K.</label>
-                    <label class="option-label"><input type="radio" name="q28" value="B"> B. 40,99 J/K.</label>
-                    <label class="option-label"><input type="radio" name="q28" value="C"> C. 165,31 J/K.</label>
-                    <label class="option-label"><input type="radio" name="q28" value="D"> D. - 40,99 J/K.</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="A">
-                <div class="question">Câu 29: Cho phản ứng: 4Fe + 3O₂ → 2Fe₂O₃. Biết S°₂₉₈ lần lượt là 27,3; 205; 87,4 J/(mol.K). Biến thiên entropy của quá trình là:</div>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q29" value="A"> A. -549,4 J/K</label>
-                    <label class="option-label"><input type="radio" name="q29" value="B"> B. 549,4 J/K</label>
-                    <label class="option-label"><input type="radio" name="q29" value="C"> C. 649,4 J/K.</label>
-                    <label class="option-label"><input type="radio" name="q29" value="D"> D. -649,4 J/K.</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="B">
-                <div class="question">Câu 30: Tính ΔS ở 25°C của phản ứng: SO₂₍ₖ₎ + ½O₂₍ₖ₎ = SO₃₍ₖ₎. Cho biết entropy tiêu chuẩn ở 25°C của các chất SO₂₍ₖ₎, O₂₍ₖ₎ và SO₃₍ₖ₎ lần lượt bằng: 248 J/(mol.K), 205 J/(mol.K) và 257 J/(mol.K).</div>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q30" value="A"> A. 196 J/K.</label>
-                    <label class="option-label"><input type="radio" name="q30" value="B"> B. -93,5 J/K.</label>
-                    <label class="option-label"><input type="radio" name="q30" value="C"> C. -196 J/K.</label>
-                    <label class="option-label"><input type="radio" name="q30" value="D"> D. 93,5 J/K.</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="B">
-                <div class="question">Câu 31. Cơ sở khoa học của sự cháy là gì?</div>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q31" value="A"> A. Sự oxi hóa – khử diễn ra chậm, không tỏa nhiệt</label>
-                    <label class="option-label"><input type="radio" name="q31" value="B"> B. Quá trình oxi hóa – khử diễn ra nhanh, tỏa nhiệt và phát sáng</label>
-                    <label class="option-label"><input type="radio" name="q31" value="C"> C. Sự phân hủy các hợp chất hữu cơ không cần oxi</label>
-                    <label class="option-label"><input type="radio" name="q31" value="D"> D. Quá trình bay hơi của nhiên liệu trong không khí</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="A">
-                <div class="question">Câu 32. Ba yếu tố cơ bản cấu thành nên “tam giác cháy” là:</div>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q32" value="A"> A. Nhiên liệu, nhiệt độ mồi, chất oxi hóa (thường là oxi trong không khí)</label>
-                    <label class="option-label"><input type="radio" name="q32" value="B"> B. Nhiên liệu, dung môi, nước</label>
-                    <label class="option-label"><input type="radio" name="q32" value="C"> C. Điện, không khí, ánh sáng</label>
-                    <label class="option-label"><input type="radio" name="q32" value="D"> D. Áp suất, thể tích, thời gian</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="B">
-                <div class="question">Câu 33. Trong các nhà máy nhiệt điện, khí cacbonic (CO₂) được sử dụng để chữa cháy buồng máy phát điện chủ yếu vì:</div>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q33" value="A"> A. Khí cacbonic phản ứng hóa học với nhiên liệu để ngăn cháy</label>
-                    <label class="option-label"><input type="radio" name="q33" value="B"> B. Giảm nồng độ oxi trong không khí xuống dưới giới hạn cháy, dập tắt phản ứng oxi hóa - khử</label>
-                    <label class="option-label"><input type="radio" name="q33" value="C"> C. Tăng nhiệt độ để nhiên liệu cháy hết</label>
-                    <label class="option-label"><input type="radio" name="q33" value="D"> D. Trung hòa khí độc sinh ra trong quá trình cháy</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="A">
-                <div class="question">Câu 34. Trong các trung tâm dữ liệu của ngành công nghệ thông tin, hệ thống chữa cháy bằng khí sạch như HFC-227ea hoặc Novec 1230 được lựa chọn vì:</div>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q34" value="A"> A. Không để lại cặn, không làm hỏng thiết bị điện tử, và có khả năng ức chế gốc tự do trong phản ứng cháy</label>
-                    <label class="option-label"><input type="radio" name="q34" value="B"> B. Tạo nhiều bọt để che phủ toàn bộ thiết bị</label>
-                    <label class="option-label"><input type="radio" name="q34" value="C"> C. Có thể thay thế hoàn toàn nước trong mọi trường hợp</label>
-                    <label class="option-label"><input type="radio" name="q34" value="D"> D. Tăng hiệu suất làm việc của hệ thống làm mát</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="A">
-                <div class="question">Câu 35. Nguyên nhân chính gây nguy cơ cháy nổ trong ngành cơ khí khi hàn cắt kim loại là:</div>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q35" value="A"> A. Tia lửa hàn bắn vào các chất dễ bay hơi, hơi dung môi hoặc vật liệu dễ cháy</label>
-                    <label class="option-label"><input type="radio" name="q35" value="B"> B. Kim loại nóng chảy bị đông cứng nhanh</label>
-                    <label class="option-label"><input type="radio" name="q35" value="C"> C. Hệ thống điện yếu gây tia lửa yếu</label>
-                    <label class="option-label"><input type="radio" name="q35" value="D"> D. Nhiệt độ hàn không đủ cao để đốt cháy</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="A">
-                <div class="question">Câu 36. Trong hàn hồ quang, khí nitơ hoặc argon được cấp vào vùng hàn với mục đích:</div>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q36" value="A"> A. Ngăn oxi trong không khí tiếp xúc với kim loại nóng chảy, tránh phản ứng oxi hóa gây cháy và giảm chất lượng mối hàn</label>
-                    <label class="option-label"><input type="radio" name="q36" value="B"> B. Làm tăng nhiệt độ hồ quang</label>
-                    <label class="option-label"><input type="radio" name="q36" value="C"> C. Dập tắt toàn bộ ngọn lửa hồ quang</label>
-                    <label class="option-label"><input type="radio" name="q36" value="D"> D. Tạo thêm tia lửa để làm sáng vùng hàn</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="A">
-                <div class="question">Câu 37. Trong ngành sản xuất ô tô, các hệ thống chữa cháy lắp đặt trong khoang động cơ của xe đua thường dùng khí sạch (Novec 1230 hoặc HFC-227ea) vì:</div>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q37" value="A"> A. Có khả năng làm nguội nhanh, không gây ăn mòn, không phá hủy thiết bị điện tử và ức chế gốc tự do trong phản ứng cháy</label>
-                    <label class="option-label"><input type="radio" name="q37" value="B"> B. Giá thành rẻ hơn các loại bọt chữa cháy</label>
-                    <label class="option-label"><input type="radio" name="q37" value="C"> C. Có thể tạo khói dày đặc để ngăn cháy lan</label>
-                    <label class="option-label"><input type="radio" name="q37" value="D"> D. Thường dùng để thay thế nhiên liệu</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="A">
-                <div class="question">Câu 38. Tại các bãi đỗ xe ngầm, nguy cơ cháy lớn đến từ xăng dầu rò rỉ. Biện pháp hóa học phòng cháy được sử dụng phổ biến nhất là:</div>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q38" value="A"> A. Phun bọt foam tạo lớp màng phủ lên bề mặt xăng dầu, cách ly với oxi và ngăn bay hơi</label>
-                    <label class="option-label"><input type="radio" name="q38" value="B"> B. Phun nước áp lực cao vào toàn bộ bãi xe</label>
-                    <label class="option-label"><input type="radio" name="q38" value="C"> C. Dùng khí cacbonic để làm loãng toàn bộ không khí</label>
-                    <label class="option-label"><input type="radio" name="q38" value="D"> D. Rải bột amoni trên toàn bộ sàn</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="A">
-                <div class="question">Câu 39. Trong động cơ ô tô, phụ gia chống kích nổ sớm như metyl tert-butyl ete (MTBE) được thêm vào xăng để:</div>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q39" value="A"> A. Nâng cao chỉ số octan, làm tăng khả năng chống cháy nổ sớm trong buồng đốt, giúp động cơ vận hành an toàn</label>
-                    <label class="option-label"><input type="radio" name="q39" value="B"> B. Làm xăng bay hơi nhanh hơn để tăng công suất</label>
-                    <label class="option-label"><input type="radio" name="q39" value="C"> C. Trung hòa khí thải độc hại sinh ra</label>
-                    <label class="option-label"><input type="radio" name="q39" value="D"> D. Làm giảm điểm sôi của xăng</label>
-                </div>
-            </div>
-
-            <div class="quiz-card" data-correct="A">
-                <div class="question">Câu 40. Hiện tượng nổ bụi trong các nhà máy chế biến nông sản hoặc silo chứa ngũ cốc xảy ra khi:</div>
-                <div class="options-group">
-                    <label class="option-label"><input type="radio" name="q40" value="A"> A. Nồng độ bụi trong không khí nằm trong giới hạn cháy nổ và có nguồn nhiệt hoặc tia lửa kích thích</label>
-                    <label class="option-label"><input type="radio" name="q40" value="B"> B. Bụi tích tụ nhiều nhưng không có oxi</label>
-                    <label class="option-label"><input type="radio" name="q40" value="C"> C. Có gió mạnh thổi qua silo</label>
-                    <label class="option-label"><input type="radio" name="q40" value="D"> D. Ngũ cốc bị ẩm mốc</label>
-                </div>
-            </div>
-
-            <div class="action-area">
-                <button type="button" class="btn" onclick="checkQuiz()">Kiểm Tra Đáp Án</button>
-            </div>
-        </form>
-    </div>
+    </main>
 
     <script>
-        function checkQuiz() {
-            const cards = document.querySelectorAll('.quiz-card');
-            let score = 0;
-            let totalQuestions = cards.length;
+        // Full Dataset directly inside JS
+        const dataset = {
+            metal: {
+                title: "I. PHẦN KIM LOẠI",
+                questions: [
+                    { q: "Tính chất vật lý chung nào của kim loại được giải thích chủ yếu bởi sự di chuyển tự do của các electron trong mạng tinh thể?", a: ["Tính dẫn điện và dẫn nhiệt", "Tính dẻo", "Ánh kim", "Nhiệt độ nóng chảy cao"], c: 0 },
+                    { q: "Trong quá trình sản xuất gang bằng lò cao, đá vôi (CaCO3) được nạp vào lò cùng quặng sắt và than cốc với mục đích chính là gì?", a: ["Cung cấp thêm nhiệt cho lò", "Làm chất khử oxit sắt", "Tạo xỉ để loại bỏ tạp chất", "Hòa tan cacbon vào sắt lỏng"], c: 2 },
+                    { q: "Theo tài liệu, thép cacbon thấp (dùng làm kết cấu xây dựng, tấm lá dập nguội) có hàm lượng cacbon trong khoảng nào?", a: ["≤ 0,25%", "0,30 ÷ 0,50%", "0,55 ÷ 0,65%", "≥ 0,70%"], c: 0 },
+                    { q: "Hợp kim đồng thau (Brass) là hợp kim của đồng (Cu) với nguyên tố hợp kim chính nào?", a: ["Kẽm (Zn)", "Thiếc (Sn)", "Nhôm (Al)", "Niken (Ni)"], c: 0 },
+                    { q: "Sắt (Fe) có tính chất vật lý đặc biệt nào mà hầu hết các kim loại khác không có?", a: ["Tính sắt - từ (bị nam châm hút)", "Có màu trắng bạc và ánh kim", "Khả năng dẫn điện tốt", "Rất cứng và có nhiệt độ nóng chảy rất cao"], c: 0 },
+                    { q: "Hợp kim nhôm đúc (Cast Alloys) phổ biến nhất, như Silumin, sử dụng nguyên tố hợp kim chính nào để cải thiện đáng kể độ chảy loãng (tính đúc)?", a: ["Đồng (Cu)", "Magie (Mg)", "Silic (Si)", "Kẽm (Zn)"], c: 2 },
+                    { q: "Hợp kim kẽm đúc (Die Casting) phổ biến, được biết đến với tên gọi Zamak, là hợp kim của Kẽm (Zink) với các nguyên tố chính nào sau đây?", a: ["Nhôm (Al), Magie (Mg) và Đồng", "Titan (Ti) và Đồng (Cu)", "Thiếc (Sn) và Chì (Pb)", "Niken (Ni) và Sắt (Fe)"], c: 0 },
+                    { q: "Để tạo ra vật liệu bán dẫn Silic kiểu n (negative), người ta pha tạp chất là nguyên tố thuộc nhóm nào (có mấy electron hóa trị)?", a: ["Nhóm IIIA (như Bo, Nhôm) - 3 electron hóa trị", "Nhóm VA (như Photpho, Asen) - 5 electron hóa trị", "Nhóm IVA (như Gecmani) - 4 electron hóa trị", "Nhóm VIIA (như Flo) - 7 electron hóa trị"], c: 1 },
+                    { q: "Để tạo ra vật liệu bán dẫn Silic kiểu p (positive), người ta pha tạp chất là nguyên tố nào sau đây?", a: ["Photpho (P)", "Asen (As)", "Bo (B)", "Antimon (Sb)"], c: 2 },
+                    { q: "Hợp kim Đồng-Niken (Cupronickel), ví dụ hợp kim Menchio, nổi bật với đặc tính nào?", a: ["Độ bền cơ học cao nhất trong các hợp kim đồng", "Khả năng dẫn điện tốt nhất", "Rất bền với nước biển và chống bám bẩn sinh học", "Hệ số ma sát thấp và chống mài mòn tốt"], c: 2 },
+                    { q: "Một kỹ sư cần chế tạo các chi tiết máy chịu tải trọng tĩnh và va đập cao (ví dụ: trục, bánh răng), đồng thời cần có cơ tính tổng hợp tốt. Theo tài liệu, loại thép cacbon nào là phù hợp nhất?", a: ["Thép cacbon thấp (≤ 0,25% C)", "Thép cacbon trung bình (0,30 ÷ 0,50% C)", "Thép cacbon tương đối cao (0,55 ÷ 0,65% C)", "Thép cacbon cao (≥ 0,70% C)"], c: 1 },
+                    { q: "Tại sao người ta có thể sử dụng các thùng (xitec) bằng nhôm để vận chuyển axit nitric (HNO3) đặc và nguội?", a: ["Vì nhôm là kim loại rất trơ, không phản ứng với mọi axit", "Vì nhôm tạo ra khí H2 ngăn cản phản ứng tiếp diễn", "Vì nhôm bị thụ động hóa trong axit HNO3 đặc, nguội", "Vì nhôm chỉ phản ứng với dung dịch kiềm, không phản ứng với axit"], c: 2 },
+                    { q: "Một nhà sản xuất cần làm dây dẫn điện. Họ có hai lựa chọn đồng: Đồng ETP và Đồng OFHC. Nếu quá trình sản xuất yêu cầu gia công ở nhiệt độ 500°C trong môi trường có khí Hydro (H2), họ nên chọn loại nào để tránh nứt vỡ vật liệu?", a: ["Đồng ETP, vì oxy giúp tăng độ bền khi nóng", "Đồng OFHC, vì không chứa oxy nên không nhạy cảm với hydro", "Loại nào cũng được, vì hydro không ảnh hưởng đến đồng", "Đồng ETP, vì oxy ngăn hydro khuếch tán vào trong"], c: 1 },
+                    { q: "Một công ty sản xuất đồ chơi mô hình (xe hơi) cần đúc các chi tiết vỏ xe rất mỏng, có độ phức tạp cao và yêu cầu độ chính xác kích thước tốt. Họ nên ưu tiên sử dụng hợp kim nào?", a: ["Thép cacbon cao", "Hợp kim Kẽm (Zamak)", "Hợp kim Nhôm-Magie (nhóm 5xxx)", "Hợp kim Kẽm-Titan (tấm kiến trúc)"], c: 1 },
+                    { q: "Cấu kiện bán dẫn cơ bản nào được tạo thành bằng cách ghép một lớp bán dẫn kiểu p và một lớp kiểu n (mặt tiếp giáp p-n), có chức năng chính là chuyển dòng điện xoay chiều thành một chiều?", a: ["Pin mặt trời", "Bộ chỉnh lưu (Điot bán dẫn)", "Tranzito (Transistor)", "Vi mạch tổ hợp (IC)"], c: 1 },
+                    { q: "Đâu là nhược điểm lớn nhất của thép cacbon so với thép hợp kim, đặc biệt khi chế tạo các chi tiết máy có kích thước (tiết diện) lớn?", a: ["Giá thành rẻ và dễ kiếm", "Tính công nghệ (đúc, cán, hàn) tốt", "Độ thấm tôi thấp", "Có cơ tính tổng hợp nhất định"], c: 2 },
+                    { q: "Tại sao hợp kim Nhôm-Kẽm thường được dùng cho khung máy bay, trong khi hợp kim Nhôm-Magie lại phổ biến trong đóng tàu?", a: ["Hợp kim Nhôm-Kẽm rẻ hơn hợp kim Nhôm-Magie", "Hợp kim Nhôm-Kẽm là hợp kim bền nhất, còn nhóm 5xxx có khả năng chống ăn mòn nước biển tốt", "Hợp kim Nhôm-Kẽm dễ hàn hơn hợp kim Nhôm-Magie", "Hợp kim Nhôm-Kẽm dẫn điện tốt hơn hợp kim Nhôm-Magie"], c: 1 },
+                    { q: "So với Đồng thau (Cu-Zn), hợp kim Đồng-Niken (Cu-Ni) có ưu điểm vượt trội nào khiến nó trở thành vật liệu ưu tiên cho các hệ thống đường ống dẫn nước biển trên tàu?", a: ["Có màu vàng sáng giống vàng, mang tính thẩm mỹ cao", "Dễ đúc và gia công hơn", "Khả năng chống ăn mòn nước biển và chống bám bẩn sinh học (hà, rêu)", "Cứng và bền ngang ngửa thép"], c: 2 },
+                    { q: "Sự khác biệt cơ bản trong cơ chế dẫn điện của chất bán dẫn Silic kiểu n và kiểu p là gì?", a: ["Kiểu n dẫn điện bằng ion dương, kiểu p dẫn điện bằng ion âm", "Kiểu n dẫn điện bằng 'lỗ khuyết dương', kiểu p dẫn điện bằng 'electron tự do'", "Kiểu n dẫn điện bằng 'electron tự do' (dư), kiểu p dẫn điện bằng 'lỗ khuyết dương' (thiếu electron)", "Cả hai đều dẫn điện bằng electron tự do, nhưng kiểu n dẫn điện tốt hơn"], c: 2 },
+                    { q: "Tại sao Sắt (Fe) có lẫn tạp chất lại dễ bị rỉ sét (ăn mòn) nghiêm trọng trong không khí ẩm, trong khi Nhôm (Al) lại được coi là rất bền và chống ăn mòn tốt trong cùng điều kiện?", a: ["Vì Nhôm là kim loại kém hoạt động hơn Sắt", "Vì lớp rỉ sắt (oxit sắt) xốp và giòn, không bảo vệ được kim loại bên trong, còn lớp oxit nhôm (Al2O3) mỏng, cứng, ổn định và bám chặt, bảo vệ kim loại bên dưới", "Vì Sắt là kim loại nặng, Nhôm là kim loại nhẹ", "Vì Sắt bị ăn mòn bởi CO2 trong không khí, còn Nhôm không phản ứng với CO2"], c: 1 }
+                ]
+            },
+            nonmetal: {
+                title: "II. PHẦN PHI KIM",
+                questions: [
+                    { q: "Theo tài liệu, phương pháp chính để sản xuất oxygene ở quy mô lớn trong công nghiệp là gì?", a: ["Điện phân nước.", "Chưng cất phân đoạn không khí lỏng.", "Nhiệt phân các hợp chất giàu oxi như KMnO4.", "Lọc và nén trực tiếp không khí từ khí quyển."], c: 1 },
+                    { q: "Sau khi lọc qua cát, nước dùng trong sinh hoạt được sát trùng bằng các tác nhân nào sau đây?", a: ["Phèn nhôm.", "Dung dịch KMnO4 và axit sulfuric.", "Cl2, O3, hoặc tia tử ngoại.", "Than hoạt tính và vôi sống (CaO)."], c: 2 },
+                    { q: "Dung dịch Hidro peoxit (H2O2) nồng độ 30% có tên gọi thương mại là gì?", a: ["Nước đá khô.", "Pehidrol.", "Oleum.", "Nước Javen."], c: 1 },
+                    { q: "Dạng thù hình nào của cacbon được mô tả trong tài liệu là 'cứng nhất trong tất cả các chất'?", a: ["Than chì.", "Kim cương.", "Than cốc.", "Cacbon vô định hình."], c: 1 },
+                    { q: "Khí Cacbon mono oxit (CO) gây độc cho con người chủ yếu bằng cơ chế nào?", a: ["Phá hủy tế bào thần kinh trung ương.", "Gây bỏng và tổn thương niêm mạc phổi.", "Kết hợp bền vững với hemoglobin, cản trở vận chuyển oxy.", "Làm tăng đột ngột nồng độ CO2 trong máu."], c: 2 },
+                    { q: "Cacbon đioxit (CO2) ở trạng thái rắn, màu trắng giống như tuyết được gọi là gì?", a: ["Nước đá khô (hoặc tuyết cacbonic).", "Thạch anh.", "Oleum.", "Pehidrol."], c: 0 },
+                    { q: "Ứng dụng quan trọng nhất của lưu huỳnh (Sulfur) là gì?", a: ["Sản xuất lốp xe (lưu hóa cao su).", "Làm phụ gia cho dầu nhớt chịu cực áp.", "Chế tạo thuốc súng đen và thuốc pháo.", "Dùng làm dầu cắt gọt trong gia công kim loại."], c: 0 },
+                    { q: "Hỗn hợp của axit sunfuric tinh khiết hòa tan khí SO3 được gọi là gì?", a: ["Hỗn hợp đồng sôi.", "Axit sunfuric loãng.", "Oleum (axit sunfuric bốc khói).", "Pehidrol."], c: 2 },
+                    { q: "Dựa vào thông tin trong tài liệu, ứng dụng nào sau đây tạo ra nhiệt độ cao nhất dùng trong việc hàn và cắt kim loại?", a: ["Đèn xì hidro-oxi.", "Đèn xì axetilen-oxi.", "Đốt cháy than cốc trong lò cao.", "Đốt cháy khí CO trong không khí."], c: 1 },
+                    { q: "H2O2 được dùng để phục hồi các bức tranh cổ bị đen (do chì trắng chuyển thành PbS) dựa trên phản ứng nào?", a: ["H2O2 khử PbS (đen) thành Pb (kim loại).", "H2O2 oxi hóa PbS (đen) thành PbSO4 (trắng).", "H2O2 hòa tan lớp PbS (đen) như một axit.", "H2O2 phân hủy tạo O2, thổi bay lớp PbS (đen)."], c: 1 },
+                    { q: "Nguyên tắc của phương pháp dùng đồng vị C để xác định tuổi của sinh vật cổ xưa là gì?", a: ["Nồng độ 14C trong khí quyển không đổi và 14C không bị phân hủy.", "Sinh vật ngừng đồng hóa C khi chết và lượng 14C giảm dần do phân hủy phóng xạ.", "Sinh vật chỉ hấp thụ 14C sau khi chúng đã chết.", "14C là đồng vị bền, chỉ có trong các mẫu vật cổ xưa."], c: 1 },
+                    { q: "Nhờ đặc điểm cấu trúc nào mà than chì (graphite) được dùng làm chất bôi trơn?", a: ["Có cấu trúc mạng lưới nguyên tử 3D rất cứng.", "Có khả năng dẫn điện và dẫn nhiệt tốt.", "Có cấu trúc lớp, liên kết giữa các lớp yếu (lực Van der Waals) nên rất mềm và trơn.", "Có khả năng hấp phụ mạnh các chất khí."], c: 2 },
+                    { q: "Vai trò chính của thiết bị chuyển hóa có xúc tác (Pt, Pd) lắp trong ống xả ô tô là gì?", a: ["Tăng hiệu suất đốt cháy nhiên liệu trong động cơ.", "Hấp phụ các kim loại nặng như chì để bảo vệ môi trường.", "Chuyển hóa các khí độc (CO, NO) thành các khí không độc hại (CO2, N2)", "Làm nguội khí thải trước khi thải ra không khí."], c: 2 },
+                    { q: "'Nước đá khô' (CO2 rắn) được dùng để bảo quản và vận chuyển đồ mau hỏng vì lý do chính nào?", a: ["Vì CO2 rắn rất nặng, tạo áp suất nén lên thực phẩm.", "Khi bay hơi (thăng hoa), CO2 hấp thụ nhiệt lượng lớn, làm lạnh môi trường xung quanh xuống nhiệt độ rất thấp.", "Vì CO2 không duy trì sự sống, giúp tiêu diệt vi khuẩn.", "Vì CO2 tan tốt trong nước, tạo môi trường axit nhẹ bảo quản."], c: 1 },
+                    { q: "Thao tác nào sau đây là đúng và an toàn khi pha loãng axit sunfuric đặc?", a: ["Đổ từ từ nước vào axit và khuấy đều.", "Đổ nhanh nước vào axit để hòa tan ngay lập tức.", "Đổ từ từ axit vào nước và khuấy đều.", "Đổ nhanh axit vào nước và đậy nắp ngay."], c: 2 },
+                    { q: "Trong ứng dụng 'tẩy gỉ kim loại', axit sunfuric loãng, nóng có vai trò gì?", a: ["Oxi hóa bề mặt kim loại để tạo lớp bảo vệ.", "Hòa tan và loại bỏ lớp gỉ (oxit sắt) bám trên bề mặt thép.", "Tạo ra các cầu nối đisunfua làm bền lớp gỉ.", "Làm khô và hút ẩm bề mặt kim loại trước khi mạ."], c: 1 },
+                    { q: "Nguyên nhân cơ bản nào giải thích tại sao kim cương (rất cứng) và than chì (rất mềm) có tính chất vật lý trái ngược nhau dù cùng cấu tạo từ nguyên tố cacbon?", a: ["Do kim cương chứa đồng vị 12C, còn than chì chứa đồng vị 13C.", "Do kim cương được khai thác tự nhiên, còn than chì là nhân tạo.", "Do sự khác biệt về kiến trúc tinh thể (cách sắp xếp và liên kết của các nguyên tử cacbon).", "Do kim cương trong suốt không màu, còn than chì màu xám đen."], c: 2 },
+                    { q: "Điều gì làm cho 'than hoạt tính' có khả năng hấp phụ rất lớn, được dùng trong mặt nạ phòng độc (trừ CO) và lọc chất bẩn?", a: ["Do than hoạt tính có diện tích bề mặt rất phát triển (rất xốp).", "Do than hoạt tính là dạng tinh thể hoàn hảo của than chì.", "Do than hoạt tính có tính khử mạnh hơn kim cương.", "Do than hoạt tính chỉ được điều chế từ than muội."], c: 0 },
+                    { q: "'Hiệu ứng nhà kính' xảy ra chủ yếu do CO2 trong khí quyển:", a: ["Ngăn cản bức xạ nhiệt từ Mặt trời chiếu xuống Trái Đất.", "Hấp thụ bức xạ nhiệt (tia hồng ngoại) từ Mặt Đất phát ra và bức xạ ngược trở lại.", "Phản ứng hóa học với oxy và hơi nước, sinh ra nhiệt.", "Làm tăng nhiệt độ nóng chảy của băng ở hai cực."], c: 1 },
+                    { q: "Nguyên nhân chính dẫn đến sự gia tăng của hiện tượng 'mưa axit' (nước mưa có pH < 5,6) là gì?", a: ["Sự gia tăng khí CO2 trong khí quyển do hô hấp của sinh vật.", "Khí SO2 từ núi lửa và khí NO từ sấm sét trong tự nhiên.", "Hoạt động của con người (công nghiệp, giao thông) làm tăng mạnh oxit của lưu huỳnh (SO2) và nitơ (NOx) trong khí quyển.", "Sự phân hủy của các vật liệu hữu cơ bị thối rữa giải phóng H2S."], c: 2
+                ]
+            },
+            polymer: {
+                title: "III. PHẦN VẬT LIỆU POLYME",
+                questions: [
+                    { q: "Thành phần hóa học chính cấu tạo nên cao su thiên nhiên là gì?", a: ["Polyisoprene", "Polyethylene", "Polychloroprene", "Polystyrene"], c: 0 },
+                    { q: "Loại sợi cellulose tự nhiên nào phổ biến nhất, chứa trên 90% cellulose tinh khiết và được ứng dụng rộng rãi trong ngành dệt may?", a: ["Sợi đay", "Sợi lanh", "Sợi bông (Cotton)", "Sợi gai"], c: 2 },
+                    { q: "Vật liệu composite (vật liệu tổ hợp) được cấu tạo từ ít nhất hai thành phần chính là gì?", a: ["Vật liệu nền và vật liệu cốt (gia cường)", "Nhựa nhiệt dẻo và nhựa nhiệt rắn", "Kim loại và gốm", "Polyme và dung môi"], c: 0 },
+                    { q: "Trong cấu trúc của vật liệu composite, thành phần nào đóng vai trò 'bao bọc', liên kết và truyền tải ứng suất?", a: ["Vật liệu cốt", "Vật liệu nền (Matrix)", "Sợi carbon", "Hạt gia cường"], c: 1 },
+                    { q: "Nhựa Polyethylene (PE) được tổng hợp từ monomer nào sau đây?", a: ["Propylene (C3H6)", "Vinyl chloride (C2H3Cl)", "Styrene (C8H8)", "Ethylene (C2H4)"], c: 3 },
+                    { q: "Dựa trên mật độ, nhựa PE thường được phân loại thành các nhóm chính nào?", a: ["PE cứng và PE mềm", "LDPE (mật độ thấp), MDPE (mật độ trung bình), HDPE (mật độ cao)", "PE nhiệt dẻo và PE nhiệt rắn", "PE trong suốt và PE đục"], c: 1 },
+                    { q: "Loại sợi nhân tạo nào được sản xuất bằng cách tái tạo cellulose từ bột gỗ (thường gọi là Rayon)?", a: ["Nylon", "Polyester", "Viscose", "Acrylic"], c: 2 },
+                    { q: "Đặc điểm nổi bật nhất về tính chất hóa học của nhựa PE là gì?", a: ["Dễ tan trong nước", "Dẫn điện rất tốt", "Không thấm nước và chịu được tác động của hóa chất, axit", "Dễ bị thủy phân trong môi trường kiềm"], c: 2 },
+                    { q: "Vải lanh (Linen - nguồn gốc từ cellulose) lại được ưa chuộng để may quần áo mùa hè do?", a: ["Vải có khả năng giữ nhiệt tốt giúp cơ thể ấm áp.", "Vải có khả năng dẫn nhiệt và thấm hút vượt trội, tạo cảm giác mát lạnh.", "Vải không thấm nước, giúp tránh mưa.", "Vải có bề mặt bóng loáng phản xạ ánh sáng mặt trời."], c: 1 },
+                    { q: "Trong lĩnh vực cấp thoát nước, tại sao ống nhựa HDPE lại được sử dụng thay thế cho ống kim loại truyền thống?", a: ["Vì HDPE cứng hơn kim loại.", "Vì HDPE có khả năng chịu nhiệt độ cao trên 200 độ C.", "Vì HDPE có độ bền hóa học cao, không bị rỉ sét và ăn mòn bởi môi trường.", "Vì HDPE có khả năng tự phân hủy sinh học trong đất."], c: 2 },
+                    { q: "Túi ni lông dùng để gói hàng hoặc đựng thực phẩm hàng ngày thường được làm từ nhựa LDPE (PE mật độ thấp) do:", a: ["LDPE rất cứng và chịu va đập mạnh.", "LDPE mềm dẻo, linh hoạt và dễ gia công thành màng mỏng.", "LDPE chịu được nhiệt độ đun nấu cao.", "LDPE có khả năng dẫn điện tốt."], c: 1 },
+                    { q: "Vật liệu Composite cốt sợi thủy tinh (GFRP) là lựa chọn hàng đầu để đóng thân vỏ tàu thuyền do?", a: ["Vật liệu nhẹ hơn nước nên tự nổi được.", "Vật liệu có khả năng kháng ăn mòn tuyệt vời đối với nước biển và môi trường khắc nghiệt.", "Vật liệu rẻ hơn gỗ rất nhiều.", "Vật liệu có thể trong suốt để nhìn thấy đáy biển."], c: 1 },
+                    { q: "Trong ngành hàng không vũ trụ, Composite cốt sợi Carbon (CFRP) được dùng làm vỏ máy bay (như Boeing 787) thay cho nhôm chủ yếu vì lý do gì?", a: ["Vì nó có tỷ lệ độ bền/trọng lượng rất cao, giúp giảm nhẹ máy bay và tiết kiệm nhiên liệu.", "Vì nó dẫn điện tốt hơn nhôm để chống sét.", "Vì nó dễ sơn màu hơn nhôm.", "Vì nó có thể tái chế dễ dàng 100%."], c: 0 },
+                    { q: "Một kỹ sư muốn chọn vật liệu làm gioăng chống nước cho cửa kính tòa nhà cao tầng. Cao su thiên nhiên đã lưu hóa là một lựa chọn phù hợp do?", a: ["Độ cứng rất cao như kim loại để chịu lực.", "Có khả năng dẫn điện tốt để chống sét.", "Có tính đàn hồi, bền nhiệt và không thấm nước.", "Dễ dàng phân hủy ngay khi gặp nước mưa."], c: 2 },
+                    { q: "Composite nền gốm (CMCs) được ứng dụng làm đĩa phanh cho các siêu xe thể thao thay vì dùng gốm nguyên khối do?", a: ["Gốm nguyên khối quá đắt.", "CMCs khắc phục được nhược điểm giòn của gốm, tăng độ bền dai và chịu nhiệt cực tốt khi phanh gấp.", "CMCs mềm hơn, giúp phanh êm ái hơn.", "CMCs có màu sắc đẹp hơn để trang trí bánh xe."], c: 1 },
+                    { q: "Các bồn chứa hóa chất trong công nghiệp thường được làm từ nhựa HDPE hoặc Composite mà không dùng nhựa LDPE do?", a: ["LDPE quá đắt đỏ.", "HDPE và Composite có độ cứng, độ bền cơ học và khả năng kháng hóa chất tốt hơn LDPE.", "LDPE bị hòa tan trong nước.", "HDPE trong suốt giúp nhìn thấy mức chất lỏng bên trong."], c: 1 },
+                    { q: "Phân tích vai trò của mạng lưới liên kết Hydro trong cấu trúc của Cellulose đối với tính chất vật lý của nó: Tại sao Cellulose không tan trong nước dù có nhiều nhóm thân nước (-OH)?", a: ["Do khối lượng phân tử của cellulose quá nhỏ.", "Do các liên kết hydro nội và liên phân tử quá mạnh, ngăn cản nước xâm nhập và hydrat hóa chuỗi.", "Do cellulose có lớp vỏ sáp bảo vệ bên ngoài.", "Do cellulose là một polyme ion hóa mạnh."], c: 1 },
+                    { q: "Dựa trên cấu trúc phân tử của LDPE và HDPE hãy xác định tại sao HDPE thích hợp làm ống dẫn chịu lực trong khi LDPE chỉ thích hợp làm túi nilon?", a: ["HDPE có cấu trúc mạch nhánh dài làm tăng độ dẻo, trong khi LDPE mạch thẳng nên cứng.", "HDPE có cấu trúc mạch thẳng, sắp xếp chặt chẽ (mật độ cao) tạo độ cứng và bền; LDPE có mạch nhánh ngăn cản sự sắp xếp khít nên mềm và xốp hơn.", "HDPE chứa các liên kết ngang hóa học còn LDPE thì không.", "HDPE là nhựa nhiệt rắn còn LDPE là nhựa nhiệt dẻo."], c: 1 },
+                    { q: "Khi một chi tiết composite chịu tải trọng, sự phân phối lực diễn ra như thế nào giữa nền và cốt?", a: ["Vật liệu nền chịu toàn bộ lực, vật liệu cốt chỉ để trang trí.", "Vật liệu cốt chịu toàn bộ lực, vật liệu nền không có tác dụng chịu lực.", "Vật liệu nền truyền tải ứng suất sang vật liệu cốt, vật liệu cốt chịu tải chính và ngăn cản sự biến dạng.", "Cả hai chịu lực độc lập và không liên quan đến nhau."], c: 2 },
+                    { q: "Ưu điểm của vật liệu Composite nền kim loại (MMCs) với hợp kim kim loại thông thường trong ứng dụng động cơ ô tô là gì?", a: ["MMCs rẻ hơn và dễ chế tạo hơn.", "MMCs duy trì được độ bền và độ cứng tốt hơn ở nhiệt độ cao, đồng thời chống mài mòn tốt hơn hợp kim nền đơn thuần.", "MMCs có độ dẻo cao hơn, dễ uốn cong khi va chạm.", "MMCs cách nhiệt hoàn toàn, không cho nhiệt thoát ra ngoài."], c: 1 },
+                    { q: "Trong quá trình lưu hóa cao su, nguyên tố nào đóng vai trò quan trọng để tạo ra các cầu nối liên kết ngang giữa các chuỗi polyisoprene?", a: ["Carbon (C)", "Lưu huỳnh (S)", "Oxy (O)", "Nitơ (N)"], c: 1 },
+                    { q: "Nếu bạn để một cục cao su thô (chưa lưu hóa) ngoài trời nắng nóng 40 độ C, hiện tượng gì có khả năng xảy ra nhất?", a: ["Cao su trở nên rất cứng và giòn.", "Cao su bị chảy mềm và trở nên dính.", "Cao su tăng tính đàn hồi và nảy tốt hơn.", "Không có hiện tượng gì thay đổi."], c: 1 },
+                    { q: "Tại sao việc tạo ra các cầu nối sulfide (S-S) trong quá trình lưu hóa lại giúp cao su có tính đàn hồi cao (khôi phục hình dạng sau khi kéo)?", a: ["Cầu nối S-S làm cho các chuỗi polymer cứng lại hoàn toàn như nhựa.", "Cầu nối S-S ngăn các chuỗi polymer trượt lên nhau vĩnh viễn, cho phép cấu trúc gập khúc kéo vật liệu về hình dạng cũ.", "Cầu nối S-S phản ứng với không khí tạo ra lực đẩy tĩnh điện.", "Cầu nối S-S làm tan chảy các mắt xích cis-1,4 để tái cấu trúc."], c: 1 ]
+                ]
+            }
+        };
 
-            cards.forEach(card => {
-                const correctAnswer = card.getAttribute('data-correct');
-                const radioGroup = card.querySelectorAll('input[type="radio"]');
-                let selectedAnswer = null;
+        let currentActiveTab = 'metal';
+        let userProgressScore = 0;
 
-                card.querySelectorAll('.option-label').forEach(label => {
-                    label.classList.remove('correct-answer', 'wrong-answer');
-                });
-
-                radioGroup.forEach(radio => {
-                    if (radio.checked) {
-                        selectedAnswer = radio.value;
-                    }
-                });
-
-                radioGroup.forEach(radio => {
-                    const label = radio.parentElement;
-                    if (radio.value === correctAnswer) {
-                        label.classList.add('correct-answer');
-                    }
-                    if (selectedAnswer && selectedAnswer === radio.value && selectedAnswer !== correctAnswer) {
-                        label.classList.add('wrong-answer');
-                    }
-                });
-
-                if (selectedAnswer === correctAnswer) {
-                    score++;
+        function switchTab(tabKey) {
+            currentActiveTab = tabKey;
+            
+            // UI tabs switching styling
+            ['metal', 'nonmetal', 'polymer'].forEach(key => {
+                const btn = document.getElementById(`tab-${key}`);
+                if(key === tabKey) {
+                    btn.className = "px-4 py-2 rounded-lg font-medium transition bg-white text-blue-600 shadow";
+                } else {
+                    btn.className = "px-4 py-2 rounded-lg font-medium transition bg-blue-700 text-white hover:bg-blue-800";
                 }
             });
 
-            const resultBox = document.getElementById('result-box');
-            const scoreText = document.getElementById('score-text');
-            const percentage = Math.round((score / totalQuestions) * 100);
-
-            scoreText.innerHTML = `Bạn trả lời đúng <strong>${score}/${totalQuestions}</strong> câu. Đạt tỉ lệ chính xác <strong>${percentage}%</strong>.`;
-            resultBox.style.display = 'block';
-
-            window.scrollTo({top: 0, behavior: 'smooth'});
+            userProgressScore = 0;
+            document.getElementById('score-counter').innerText = userProgressScore;
+            renderQuizView();
         }
+
+        function renderQuizView() {
+            const activeData = dataset[currentActiveTab];
+            document.getElementById('current-topic-title').innerText = activeData.title;
+            document.getElementById('total-counter').innerText = activeData.questions.length;
+            
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+
+            activeData.questions.forEach((item, index) => {
+                const qCard = document.createElement('div');
+                qCard.className = "bg-white p-6 rounded-2xl shadow-xs space-y-4 border border-gray-100";
+                qCard.id = `q-card-${index}`;
+
+                qCard.innerHTML = `
+                    <p class="font-semibold text-gray-900 leading-relaxed text-base">
+                        <span class="inline-block bg-blue-100 text-blue-700 text-xs px-2.5 py-1 rounded-md font-bold mr-2">Câu ${index + 1}</span>
+                        ${item.q}
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="options-block-${index}">
+                        ${item.a.map((option, opIdx) => `
+                            <button onclick="checkUserChoice(${index}, ${opIdx})" id="opt-${index}-${opIdx}" class="w-full text-left p-3.5 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-gray-50 font-medium transition text-sm cursor-pointer">
+                                <span class="inline-block w-6 h-6 text-center text-xs font-bold leading-6 rounded-full bg-gray-100 text-gray-500 mr-2 uppercase">${String.fromCharCode(65 + opIdx)}</span> ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(qCard);
+            });
+        }
+
+        function checkUserChoice(qIdx, selectedOpIdx) {
+            const questionData = dataset[currentActiveTab].questions[qIdx];
+            const correctIdx = questionData.c;
+            
+            // Lock option buttons interaction
+            const block = document.getElementById(`options-block-${qIdx}`);
+            const buttons = block.getElementsByTagName('button');
+            for(let btn of buttons) {
+                btn.disabled = true;
+                btn.classList.remove('hover:border-blue-300', 'hover:bg-gray-50', 'cursor-pointer');
+            }
+
+            const chosenBtn = document.getElementById(`opt-${qIdx}-${selectedOpIdx}`);
+            const correctBtn = document.getElementById(`opt-${qIdx}-${correctIdx}`);
+
+            if (selectedOpIdx === correctIdx) {
+                chosenBtn.className += " correct-answer text-green-800 font-semibold border-2 shadow-xs";
+                userProgressScore++;
+                document.getElementById('score-counter').innerText = userProgressScore;
+            } else {
+                chosenBtn.className += " wrong-answer text-red-800 border-2";
+                correctBtn.className += " correct-answer text-green-800 font-semibold border-2 shadow-inner animate-pulse";
+            }
+        }
+
+        // Initialize quiz view on load
+        window.onload = () => { renderQuizView(); };
     </script>
 </body>
 </html>
