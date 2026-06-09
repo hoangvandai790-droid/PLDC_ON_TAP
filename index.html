@@ -3,533 +3,404 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ôn Tập Chương 3: Điện Hóa Học</title>
+    <title>Ứng Dụng Ôn Tập Trắc Nghiệm Hóa Học</title>
     <style>
         :root {
-            --primary-color: #4f46e5;
-            --primary-hover: #4338ca;
-            --bg-color: #f8fafc;
+            --primary-color: #4a6fa5;
+            --secondary-color: #16a085;
+            --bg-color: #f4f7f6;
             --card-bg: #ffffff;
-            --text-color: #1e293b;
-            --correct-color: #10b981;
-            --incorrect-color: #ef4444;
-            --border-color: #e2e8f0;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --text-color: #333;
+            --correct-color: #2ecc71;
+            --wrong-color: #e74c3c;
         }
 
         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.6;
+            margin: 0;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .container {
             max-width: 800px;
-            margin: 0 auto;
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            width: 100%;
         }
 
         header {
             text-align: center;
             margin-bottom: 30px;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 20px;
-        }
-
-        header h1 {
-            color: var(--primary-color);
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        header p {
-            color: #64748b;
-            font-size: 16px;
-        }
-
-        .quiz-form {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .question-card {
-            background: #fff;
-            border: 1px solid var(--border-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
             padding: 20px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        .question-card.correct-card {
-            border-left: 5px solid var(--correct-color);
-            background-color: #f0fdf4;
+        .quiz-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
         }
 
-        .question-card.incorrect-card {
-            border-left: 5px solid var(--incorrect-color);
-            background-color: #fef2f2;
+        .quiz-card:hover {
+            transform: translateY(-2px);
         }
 
-        .question-text {
+        .question-title {
             font-weight: 600;
+            font-size: 1.1rem;
             margin-bottom: 15px;
-            font-size: 16px;
+            color: #2c3e50;
         }
 
-        .options-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+        .options-list {
+            list-style: none;
+            padding: 0;
         }
 
-        .option-label {
-            display: flex;
-            align-items: center;
-            padding: 10px 15px;
-            border: 1px solid var(--border-color);
+        .option-item {
+            margin-bottom: 10px;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
             border-radius: 6px;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
         }
 
-        .option-label:hover {
-            background-color: #f1f5f9;
+        .option-item:hover {
+            background-color: #f0f4f8;
+            border-color: var(--primary-color);
         }
 
-        .option-label input {
-            margin-right: 12px;
+        .option-item input[type="radio"] {
+            margin-right: 15px;
             transform: scale(1.2);
-            accent-color: var(--primary-color);
         }
 
-        /* Thể hiện màu đáp án sau khi nộp bài */
-        .option-label.correct {
-            background-color: #d1fae5 !important;
+        /* Classes for results rendering */
+        .option-item.correct {
+            background-color: #d4edda !important;
             border-color: var(--correct-color) !important;
-            color: #065f46;
+            color: #155724;
             font-weight: bold;
         }
 
-        .option-label.incorrect {
-            background-color: #fee2e2 !important;
-            border-color: var(--incorrect-color) !important;
-            color: #991b1b;
+        .option-item.wrong {
+            background-color: #f8d7da !important;
+            border-color: var(--wrong-color) !important;
+            color: #721c24;
         }
 
         .btn-submit {
+            display: block;
+            width: 100%;
             background-color: var(--primary-color);
             color: white;
-            padding: 14px 20px;
             border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: bold;
+            padding: 15px;
+            font-size: 1.2rem;
+            border-radius: 8px;
             cursor: pointer;
+            font-weight: bold;
             transition: background-color 0.2s;
-            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         .btn-submit:hover {
-            background-color: var(--primary-hover);
+            background-color: #365880;
         }
 
-        #result-box {
+        #result-panel {
             display: none;
-            background: #e0f2fe;
-            border: 1px solid #bae6fd;
+            background-color: #fff;
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 10px;
             text-align: center;
-            margin-bottom: 25px;
-            font-size: 18px;
-            color: #0369a1;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--secondary-color);
         }
 
-        .explanation {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #475569;
-            font-style: italic;
-            display: none;
+        .sub-chem {
+            font-size: 0.8em;
+            vertical-align: sub;
         }
-
-        sub, sup {
-            font-size: 75%;
-            line-height: 0;
-            position: relative;
-            vertical-align: baseline;
+        .super-chem {
+            font-size: 0.8em;
+            vertical-align: super;
         }
-        sup { top: -0.5em; }
-        sub { bottom: -0.25em; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <h1>CÂU HỎI VÀ BÀI TẬP TRẮC NGHIỆM</h1>
-        <p>CHƯƠNG 3: ĐIỆN HÓA HỌC</p>
+        <h1>HỆ THỐNG ÔN TẬP TRẮC NGHIỆM</h1>
+        <p>Nội dung: Điện hóa học - Nhiệt động lực học - Sự cháy</p>
     </header>
 
-    <div id="result-box"></div>
-
-    <form id="quiz-form" class="quiz-form" onsubmit="submitQuiz(event)">
-        <div id="questions-container"></div>
-        <button type="submit" class="btn-submit">Nộp bài & Kiểm tra kết quả</button>
+    <form id="quiz-form">
+        <div id="quiz-container"></div>
+        <button type="button" class="btn-submit" onclick="checkAnswers()">Nộp Bài & Xem Kết Quả</button>
     </form>
+
+    <div id="result-panel">
+        <h2>Kết Quả Của Bạn</h2>
+        <p id="score-text" style="font-size: 1.5rem; font-weight: bold; color: var(--secondary-color);"></p>
+        <p>Các đáp án đúng đã được tô <span style="color: var(--correct-color); font-weight: bold;">Xanh lá</span>. Các câu chọn sai sẽ có màu <span style="color: var(--wrong-color); font-weight: bold;">Đỏ</span>.</p>
+    </div>
 </div>
 
 <script>
+    // Dữ liệu câu hỏi được trích xuất chính xác từ hình ảnh bài tập của bạn
     const quizData = [
         {
             id: 1,
             question: "Khi nhúng thanh kim loại vào dung dịch muối (dung môi là nước) chứa ion của nó, giữa bề mặt thanh kim loại và dung dịch sẽ xuất hiện:",
-            options: ["Một phản ứng hóa học.", "Một lớp điện kép.", "Một lượng kết tủa.", "Một chất khí bay lên."],
-            correct: 1
+            options: {
+                A: "Một phản ứng hóa học",
+                B: "Một lớp điện kép",
+                C: "Một lượng kết tủa",
+                D: "Một chất khí bay lên"
+            },
+            correct: "B"
         },
         {
             id: 2,
-            question: "Trong thực tế, để xác định thế điện cực chuẩn của điện cực Zn/ZnSO<sub>4</sub>, người ta tạo một pin gồm điện cực Zn/ZnSO<sub>4</sub> và:",
-            options: ["Điện cực loại I.", "Điện cực loại II.", "Điện cực loại III.", "Điện cực chuẩn hydrogen."],
-            correct: 3
+            question: "Thế điện cực chuẩn của điện cực hydrogen được quy ước bằng bao nhiêu?",
+            options: {
+                A: "1 V",
+                B: "0 V",
+                C: "0,5 V",
+                D: "2 V"
+            },
+            correct: "B"
         },
         {
             id: 3,
-            question: "Thế điện cực chuẩn của điện cực hydrogen được quy ước:",
-            options: ["1 V.", "0 V.", "0,5 V.", "2 V."],
-            correct: 1
+            question: "Trong pin điện hóa, chọn câu trả lời đúng:",
+            options: {
+                A: "Anot là cực âm.",
+                B: "Catot là điện cực xảy ra quá trình oxy hóa.",
+                C: "Anot là điện cực tại đó xảy ra quá trình khử.",
+                D: "Catot là cực âm."
+            },
+            correct: "A"
         },
         {
             id: 4,
-            question: "Người ta đo được thế điện cực chuẩn của pin: (-)Pt/H<sub>2</sub>(1 atm), H<sup>+</sup>(1 M) // Cu<sup>2+</sup>(1 M)/Cu (+) là 0,34 V. Vậy giá trị E°<sub>Cu<sup>2+</sup>/Cu</sub> là:",
-            options: ["0,00 V.", "0,10 V.", "0,34 V.", "-0,34 V."],
-            correct: 2
+            question: "Trong pin Cu - Zn, quá trình khử xảy ra ở điện cực là:",
+            options: {
+                A: "Zn - 2e → Zn<span class='super-chem'>2+</span>",
+                B: "Cu<span class='super-chem'>2+</span> + 2e → Cu",
+                C: "Zn → Zn<span class='super-chem'>2+</span> + 2e",
+                D: "Cu → Cu<span class='super-chem'>2+</span> + 2e"
+            },
+            correct: "B"
         },
         {
             id: 5,
-            question: "Trong pin, chọn câu trả lời đúng?",
-            options: ["Anot là cực âm.", "Catot là điện cực xảy ra quá trình oxy hóa.", "Anot là điện cực tại đó xảy ra quá trình khử.", "Catot là cực âm."],
-            correct: 0
+            question: "Khi pin Daniel - Jacobi hoạt động, điện cực kẽm (Zn) sẽ bị:",
+            options: {
+                A: "Không thay đổi",
+                B: "Được phủ thêm lớp kim loại",
+                C: "Nhận electron",
+                D: "Mòn dần"
+            },
+            correct: "D"
         },
         {
             id: 6,
-            question: "Trong pin Cu - Zn, quá trình khử trong pin là:",
-            options: ["Zn - 2e → Zn<sup>2+</sup>.", "Cu<sup>2+</sup> + 2e → Cu.", "Zn → Zn<sup>2+</sup> + 2e.", "Cu → Cu<sup>2+</sup> + 2e."],
-            correct: 1
+            question: "Vai trò chính của cầu muối trong cấu tạo của pin điện hóa là:",
+            options: {
+                A: "Lưu thông dung dịch",
+                B: "Vận chuyển electron trực tiếp",
+                C: "Đóng kín mạch điện",
+                D: "Xúc tác cho phản ứng trong pin"
+            },
+            correct: "C"
         },
         {
             id: 7,
-            question: "Khi pin Daniel - Jacobi hoạt động, điện cực kẽm sẽ:",
-            options: ["Không thay đổi.", "Được phủ thêm lớp kim loại.", "Nhận electron.", "Mòn dần."],
-            correct: 3
+            question: "Cho sơ đồ pin: (-) Fe/Fe<span class='super-chem'>2+</span> // Cu<span class='super-chem'>2+</span>/Cu (+). Phương trình phản ứng xảy ra khi pin hoạt động là:",
+            options: {
+                A: "Fe + Cu → Fe<span class='super-chem'>2+</span> + Cu<span class='super-chem'>2+</span>",
+                B: "Fe<span class='super-chem'>2+</span> + Cu → Fe + Cu<span class='super-chem'>2+</span>",
+                C: "Fe + Cu<span class='super-chem'>2+</span> → Fe<span class='super-chem'>2+</span> + Cu",
+                D: "Fe<span class='super-chem'>2+</span> + Cu<span class='super-chem'>2+</span> → Fe + Cu"
+            },
+            correct: "C"
         },
         {
             id: 8,
-            question: "Trong quá trình hoạt động của pin Zn - Cu:",
-            options: ["Khối lượng điện cực Cu tăng.", "Khối lượng điện cực Zn tăng.", "Nồng độ ion Zn<sup>2+</sup> giảm.", "Nồng độ ion Cu<sup>2+</sup> tăng."],
-            correct: 0
+            question: "Quá trình đẳng tích là quá trình nhiệt động diễn ra khi:",
+            options: {
+                A: "Áp suất không đổi",
+                B: "Thể tích không đổi",
+                C: "Nhiệt độ không đổi",
+                D: "Hệ không trao đổi nhiệt với môi trường"
+            },
+            correct: "B"
         },
         {
             id: 9,
-            question: "Vai trò của cầu muối trong pin là:",
-            options: ["Lưu thông dung dịch.", "Vận chuyển electron.", "Đóng kín mạch điện.", "Xúc tác cho phản ứng trong pin."],
-            correct: 2
+            question: "Quá trình đẳng áp là quá trình nhiệt động diễn ra khi:",
+            options: {
+                A: "Áp suất không đổi",
+                B: "Thể tích không đổi",
+                C: "Nhiệt độ không đổi",
+                D: "Hệ không trao đổi nhiệt với môi trường"
+            },
+            correct: "A"
         },
         {
             id: 10,
-            question: "Khi pin Cu - Zn hoạt động thì nồng độ của:",
-            options: ["Cu<sup>2+</sup> giữ nguyên, Zn<sup>2+</sup> tăng.", "Cu<sup>2+</sup> tăng, Zn<sup>2+</sup> giảm.", "Cu<sup>2+</sup> tăng, Zn<sup>2+</sup> tăng.", "Cu<sup>2+</sup> giảm, Zn<sup>2+</sup> tăng."],
-            correct: 3
+            question: "Hàm Enthalpy (H) trong nhiệt động học được định nghĩa bằng biểu thức nào?",
+            options: {
+                A: "H = U - PV",
+                B: "H = U + PV",
+                C: "H = Q - A",
+                D: "H = ΔU + ΔnRT"
+            },
+            correct: "B"
         },
         {
             id: 11,
-            question: "Biết E°<sub>Ag<sup>+</sup>/Ag</sub> = +0,8 V; E°<sub>Fe<sup>3+</sup>/Fe<sup>2+</sup></sub> = 0,77 V. Vậy nhận định nào sau đây đúng?",
-            options: ["Ion Fe<sup>2+</sup> bị oxy hóa bởi Ag<sup>+</sup>.", "Ion Fe<sup>3+</sup> oxy hóa được Ag.", "Ion Fe<sup>2+</sup> oxy hóa được Ag.", "Ion Ag<sup>+</sup> bị khử bởi ion Fe<sup>3+</sup>."],
-            correct: 0
+            question: "Phản ứng hóa học tỏa nhiệt là phản ứng có giá trị biến thiên Enthalpy thỏa mãn:",
+            options: {
+                A: "ΔH > 0",
+                B: "ΔH < 0",
+                C: "ΔU > 0",
+                D: "ΔU = 0"
+            },
+            correct: "B"
         },
         {
             id: 12,
-            question: "Nhúng thanh kim loại lead (Pb) vào dung dịch lead nitrate Pb(NO<sub>3</sub>)<sub>2</sub>. Phương trình Nernst tính thế điện cực của điện cực trên ở 25°C là:",
-            options: [
-                "E<sub>Pb<sup>2+</sup>/Pb</sub> = E°<sub>Pb<sup>2+</sup>/Pb</sub> + (0,059/2) ln[Pb<sup>2+</sup>].",
-                "E<sub>Pb<sup>2+</sup>/Pb</sub> = E°<sub>Pb<sup>2+</sup>/Pb</sub> - (0,059/2) lg[Pb<sup>2+</sup>].",
-                "E<sub>Pb<sup>2+</sup>/Pb</sub> = E°<sub>Pb<sup>2+</sup>/Pb</sub> - (0,059/2) ln[Pb<sup>2+</sup>].",
-                "E<sub>Pb<sup>2+</sup>/Pb</sub> = E°<sub>Pb<sup>2+</sup>/Pb</sub> + (0,059/2) lg[Pb<sup>2+</sup>]."
-            ],
-            correct: 3
+            question: "Phản ứng hóa học thu nhiệt là phản ứng có đặc điểm:",
+            options: {
+                A: "ΔH > 0",
+                B: "ΔH < 0",
+                C: "ΔU < 0",
+                D: "ΔH = 0"
+            },
+            correct: "A"
         },
         {
             id: 13,
-            question: "Thế điện cực của điện cực: Cu trong dung dịch CuSO<sub>4</sub> 0,01 M có giá trị bằng bao nhiêu? Biết: E°<sub>Cu<sup>2+</sup>/Cu</sub> = 0,34 V.",
-            options: ["0,399 V.", "0,34 V.", "0,281 V.", "-0,369 V."],
-            correct: 2
+            question: "Đâu là sự khác biệt cơ bản giữa 'Pin điện' (sơ cấp) và 'Acquy' (thứ cấp)?",
+            options: {
+                A: "Pin có sức điện động cao hơn hẳn acquy",
+                B: "Pin sử dụng chất điện li dạng rắn, còn acquy sử dụng dạng lỏng",
+                C: "Pin là nguồn sơ cấp không thể phục hồi, còn acquy là nguồn thứ cấp có thể nạp lại nhiều lần để tái sử dụng",
+                D: "Pin chỉ dùng cho thiết bị nhỏ, acquy chỉ dùng cho ô tô"
+            },
+            correct: "C"
         },
         {
             id: 14,
-            question: "Cho sơ đồ pin: (-) Fe/Fe<sup>2+</sup> // Cu<sup>2+</sup>/Cu (+) phương trình phản ứng xảy ra khi pin hoạt động là:",
-            options: [
-                "Fe + Cu → Fe<sup>2+</sup> + Cu<sup>2+</sup>.",
-                "Fe<sup>2+</sup> + Cu → Fe + Cu<sup>2+</sup>.",
-                "Fe + Cu<sup>2+</sup> → Fe<sup>2+</sup> + Cu.",
-                "Fe<sup>2+</sup> + Cu<sup>2+</sup> → Fe + Cu."
-            ],
-            correct: 2
+            question: "Cơ sở khoa học của sự cháy là gì?",
+            options: {
+                A: "Sự oxi hóa – khử diễn ra chậm, không tỏa nhiệt",
+                B: "Quá trình oxi hóa – khử diễn ra nhanh, tỏa nhiệt mạnh và phát sáng",
+                C: "Sự phân hủy các hợp chất hữu cơ phức tạp không cần sự tham gia của oxi",
+                D: "Quá trình bay hơi cơ học của nhiên liệu trong không khí"
+            },
+            correct: "B"
         },
         {
             id: 15,
-            question: "Cho pin gồm 2 điện cực: Cu trong dung dịch CuSO<sub>4</sub> 0,01 M và Fe trong dung dịch FeSO<sub>4</sub> 1M. Biết: E°<sub>Cu<sup>2+</sup>/Cu</sub> = 0,34 V; E°<sub>Fe<sup>2+</sup>/Fe</sub> = -0,44 V. Phương trình phản ứng khi pin hoạt động là:",
-            options: [
-                "Fe<sup>2+</sup> + Cu<sup>2+</sup> → Fe + Cu.",
-                "Fe + Cu → Fe<sup>2+</sup> + Cu<sup>2+</sup>.",
-                "Fe<sup>2+</sup> + Cu → Fe + Cu<sup>2+</sup>.",
-                "Fe + Cu<sup>2+</sup> → Fe<sup>2+</sup> + Cu."
-            ],
-            correct: 3
-        },
-        {
-            id: 16,
-            question: "Cho pin tiêu chuẩn tạo bởi hai điện cực Pb và Sn có thể điện cực chuẩn lần lượt là E°<sub>Pb<sup>2+</sup>/Pb</sub> = -0,126 V; E°<sub>Sn<sup>2+</sup>/Sn</sub> = -0,14 V. Sơ đồ pin có dạng:",
-            options: [
-                "(-)Sn/Sn<sup>2+</sup> // Pb<sup>2+</sup>/Pb(+).",
-                "(+)Sn/Sn<sup>2+</sup> // Pb<sup>2+</sup>/Pb(-).",
-                "(-)Pb/Pb<sup>2+</sup> // Sn<sup>2+</sup>/Sn(+).",
-                "(-)Sn/Sn<sup>2+</sup> // Pb/Pb<sup>2+</sup> (+)."
-            ],
-            correct: 0
-        },
-        {
-            id: 17,
-            question: "Cho pin gồm 2 điện cực: Cu trong dung dịch CuSO<sub>4</sub> 0,01 M và Fe trong dung dịch FeSO<sub>4</sub> 1 M. Biết E°<sub>Cu<sup>2+</sup>/Cu</sub> = 0,34 V; E°<sub>Fe<sup>2+</sup>/Fe</sub> = -0,44 V. Sơ đồ pin có dạng:",
-            options: [
-                "(-) Fe/Fe<sup>2+</sup> // Cu/Cu<sup>2+</sup> (+).",
-                "(-) Cu/Cu<sup>2+</sup> // Fe<sup>2+</sup>/Fe (+).",
-                "(-) Fe<sup>2+</sup>/Fe // Cu<sup>2+</sup>/Cu (+).",
-                "(-) Fe/Fe<sup>2+</sup> // Cu<sup>2+</sup>/Cu (+)."
-            ],
-            correct: 3
-        },
-        {
-            id: 18,
-            question: "Cho pin tiêu chuẩn tạo bởi hai điện cực Pb và Sn có thể điện cực tiêu chuẩn là E°<sub>Pb<sup>2+</sup>/Pb</sub> = -0,126 V; E°<sub>Sn<sup>2+</sup>/Sn</sub> = -0,14 V. Sức điện động của pin có giá trị là:",
-            options: ["-0,14 V.", "+0,014 V.", "+0,226 V.", "-0,226 V."],
-            correct: 1
-        },
-        {
-            id: 19,
-            question: "Cho pin: (-)Mg/Mg<sup>2+</sup> (x M) // Zn<sup>2+</sup> (1 M)/Zn (+). Có sức điện động là +1,669 V. Biết E°<sub>Mg<sup>2+</sup>/Mg</sub> = -2,37 V; E°<sub>Zn<sup>2+</sup>/Zn</sub> = -0,76 V. Giá trị của x là:",
-            options: ["0,2.", "1,0.", "0,1.", "0,01."],
-            correct: 3
-        },
-        {
-            id: 20,
-            question: "Cho các bán phản ứng:<br>MnO<sub>4</sub><sup>-</sup> + 5e + 8H<sup>+</sup> = Mn<sup>2+</sup> + 4H<sub>2</sub>O (E° = 1,51 V)<br>MnO<sub>2</sub> + 2e + 4H<sup>+</sup> = Mn<sup>2+</sup> + 2H<sub>2</sub>O (E° = 1,23 V)<br>Xác định thế khử tiêu chuẩn của phản ứng: MnO<sub>4</sub><sup>-</sup> + 3e + 4H<sup>+</sup> = MnO<sub>2</sub> + 2H<sub>2</sub>O",
-            options: ["1,697 V.", "-1,697 V.", "+0,280 V.", "-0,280 V."],
-            correct: 0
-        },
-        {
-            id: 21,
-            question: "Khi hoạt động, một pin điện hóa xảy ra phản ứng sau:<br>2Al + 3Cu<sup>2+</sup> = 2Al<sup>3+</sup> + 3Cu<br>Vậy sơ đồ pin điện hóa ứng với phản ứng trên là:",
-            options: [
-                "(-) Al/Al<sup>3+</sup> // Cu<sup>2+</sup>/Cu (+).",
-                "(-) Al<sup>3+</sup>/Al // Cu<sup>2+</sup>/Cu(+).",
-                "(-) Al/Al<sup>3+</sup> // Cu/Cu<sup>2+</sup> (+).",
-                "(-) Cu/Cu<sup>2+</sup> // Al<sup>3+</sup>/Al(-)."
-            ],
-            correct: 0
-        },
-        {
-            id: 22,
-            question: "Cho pin gồm 2 điện cực: Cu trong dung dịch CuSO<sub>4</sub> 0,01 M và Fe trong dung dịch FeSO<sub>4</sub> 0,01 M. Biết thế điện cực tiêu chuẩn của điện cực Cu và Fe lần lượt là E°<sub>Cu<sup>2+</sup>/Cu</sub> = 0,34 V và E°<sub>Fe<sup>2+</sup>/Fe</sub> = -0,44 V. Sức điện động của pin có giá trị là:",
-            options: ["0,78 V.", "-0,721 V.", "1,02 V.", "-0,78 V."],
-            correct: 0
-        },
-        {
-            id: 23,
-            question: "Cho pin tiêu chuẩn tạo bởi hai điện cực Pb và Zn có thể điện cực lần lượt là E°<sub>Pb<sup>2+</sup>/Pb</sub> = -0,126 V; E°<sub>Zn<sup>2+</sup>/Zn</sub> = -0,76 V. Sức điện động chuẩn của pin có giá trị là:",
-            options: ["0,226 V.", "-0,014 V.", "+0,634 V.", "-0,226 V."],
-            correct: 2
-        },
-        {
-            id: 24,
-            question: "Sức điện động chuẩn của pin Cu - Zn là 1,10 V. Năng lượng tự do chuẩn của phản ứng oxy hóa - khử khi pin hoạt động là:",
-            options: ["-212 kJ.", "212 kJ.", "121 kJ.", "-121 kJ."],
-            correct: 0
-        },
-        {
-            id: 25,
-            question: "Cho phản ứng 2Fe<sup>3+</sup> + 2I<sup>-</sup> → 2Fe<sup>2+</sup> + I<sub>2</sub>. Biết E°<sub>Fe<sup>3+</sup>/Fe<sup>2+</sup></sub> = 0,77 V và E°<sub>I<sub>2</sub>/2I<sup>-</sup></sub> = 0,54 V. Hằng số cân bằng của phản ứng trên có giá trị là:",
-            options: ["3,9.10<sup>8</sup>.", "9.10<sup>7</sup>.", "3,9.10<sup>7</sup>.", "4,9.10<sup>7</sup>."],
-            correct: 2
-        },
-        {
-            id: 26,
-            question: "Sự phá hủy kim loại hoặc hợp kim do tác dụng hóa học của môi trường xung quanh gọi là:",
-            options: ["Sự ăn mòn hóa học.", "Sự ăn mòn kim loại.", "Sự ăn mòn điện hóa.", "Sự khử kim loại."],
-            correct: 1
-        },
-        {
-            id: 27,
-            question: "Nếu vật làm bằng hợp kim Fe - Zn bị ăn mòn điện hóa thì trong quá trình ăn mòn:",
-            options: [
-                "Zn đóng vai trò catot và bị oxy hóa.",
-                "Fe đóng vai trò anot và bị oxy hóa.",
-                "Zn đóng vai trò anot và bị oxy hóa.",
-                "Fe đóng vai trò catot và ion H<sup>+</sup> bị oxy hóa."
-            ],
-            correct: 2
-        },
-        {
-            id: 28,
-            question: "Một vật làm bằng Fe tráng Sn (sắt tây), trên bề mặt vết sây sát tới lớp Fe. Khi vật này tiếp xúc với không khí ẩm thì:",
-            options: ["Fe bị oxy hóa.", "Zn bị oxy hóa.", "Fe bị khử.", "Sn bị khử."],
-            correct: 0
-        },
-        {
-            id: 29,
-            question: "Để bảo vệ những vật bằng Fe khỏi bị ăn mòn, người ta có thể dùng phương pháp bảo vệ bề mặt. Vậy người ta đã:",
-            options: ["Gắn thêm trên thanh Fe một miếng Mg.", "Tạo vật liệu inox.", "Sơn lên vật liệu.", "Gắn thêm trên thanh Fe một miếng C."],
-            correct: 2
-        },
-        {
-            id: 30,
-            question: "Fe không bị ăn mòn điện hóa khi tiếp xúc với kim loại nào sau đây trong không khí ẩm?",
-            options: ["Sn.", "Zn.", "Ni.", "Pb."],
-            correct: 1
-        },
-        {
-            id: 31,
-            question: "Đâu là sự khác biệt cơ bản giữa \"Pin điện\" và \"Acquy\"?",
-            options: [
-                "Pin có sức điện động cao hơn acquy.",
-                "Pin sử dụng chất điện li dạng rắn, còn acquy sử dụng dạng lỏng.",
-                "Pin là nguồn sơ cấp không thể phục hồi, còn acquy là nguồn thứ cấp có thể nạp lại nhiều lần.",
-                "Pin chỉ dùng cho thiết bị nhỏ, acquy chỉ dùng cho ô tô."
-            ],
-            correct: 2
-        },
-        {
-            id: 32,
-            question: "Theo sơ đồ, điện cực trong pin Leclanché (pin con thỏ) được làm từ những chất nào?",
-            options: ["Kẽm (Zinc) và Chì (Lead).", "Than chì (Graphite) và Mangan dioxit (MnO<sub>2</sub>).", "Kẽm (Zinc) và Than chì (Graphite).", "Niken (Nickel) và Cadmi (Cadmium)."],
-            correct: 2
-        },
-        {
-            id: 33,
-            question: "Chất điện giải được sử dụng trong Pin alkaline (pin kiềm) là gì?",
-            options: ["Amoni clorua (NH<sub>4</sub>Cl).", "Axit sunfuric (H<sub>2</sub>SO<sub>4</sub>).", "Kali hidroxit (Potassium hydroxide - KOH).", "Liti mangan oxit (LiMn<sub>2</sub>O<sub>4</sub>)."],
-            correct: 2
-        },
-        {
-            id: 34,
-            question: "Trong quá trình phóng điện của acquy chì (acquy acid), nồng độ của dung dịch H<sub>2</sub>SO<sub>4</sub> thay đổi như thế nào?",
-            options: ["Tăng lên.", "Giảm xuống.", "Không thay đổi.", "Ban đầu tăng sau đó giảm."],
-            correct: 1
-        },
-        {
-            id: 35,
-            question: "Một trong những ưu điểm vượt trội của pin sạc lithium được đề cập trong tài liệu là gì?",
-            options: ["Giá thành sản xuất rẻ.", "Có thể hoạt động ở nhiệt độ rất cao.", "Mật độ năng lượng cao và khả năng sạc lại tốt.", "Tuyệt đối an toàn, không bao giờ chảy dung dịch."],
-            correct: 2
-        },
-        {
-            id: 36,
-            question: "Vật liệu nào được dùng làm cực dương trong acquy chì (acquy acid)?",
-            options: ["Chì (Pb) xốp.", "Hợp kim chì và antimon.", "Chì sunfat (PbSO<sub>4</sub>).", "Chì dioxit (PbO<sub>2</sub>)."],
-            correct: 3
-        },
-        {
-            id: 37,
-            question: "Một acquy chì đơn lẻ cung cấp một điện áp khoảng bao nhiêu?",
-            options: ["1,5 V.", "12 V.", "4 V.", "2 V."],
-            correct: 3
-        },
-        {
-            id: 38,
-            question: "Vật liệu nào được sử dụng để thay thế LiCoO<sub>2</sub> độc hại trong pin lithium hiện đại?",
-            options: ["Hợp chất Niken - Cadmi.", "Hợp chất Liti mangan oxit (LiMn<sub>2</sub>O<sub>4</sub>).", "Kali hidroxit (KOH).", "Chì dioxit (PbO<sub>2</sub>)."],
-            correct: 1
-        },
-        {
-            id: 39,
-            question: "Trong quá trình sạc điện cho acquy chì, phản ứng nào xảy ra ở cực âm?",
-            options: ["PbSO<sub>4</sub> biến thành PbO<sub>2</sub>.", "PbSO<sub>4</sub> biến thành Pb xốp.", "Pb biến thành PbSO<sub>4</sub>.", "H<sub>2</sub>SO<sub>4</sub> bị điện phân thành H<sub>2</sub> và SO<sub>4</sub><sup>2-</sup>."],
-            correct: 1
-        },
-        {
-            id: 40,
-            question: "Hai loại acquy kiềm phổ biến được đề cập trong tài liệu là gì?",
-            options: ["Sắt - Niken và Cadmi - Niken.", "Chì - Kẽm và Chì - Niken.", "Liti - Mangan và Sắt - Kẽm.", "Cadmi - Sắt và Liti - Niken."],
-            correct: 0
+            question: "Ba yếu tố cơ bản cấu thành nên 'tam giác cháy' bao gồm:",
+            options: {
+                A: "Nhiên liệu, nhiệt độ mồi, chất oxi hóa (thường là oxi trong không khí)",
+                B: "Nhiên liệu, dung môi, nước",
+                C: "Điện năng, không khí, ánh sáng mặt trời",
+                D: "Áp suất, thể tích, thời gian phản ứng"
+            },
+            correct: "A"
         }
     ];
 
-    const labels = ["A", "B", "C", "D"];
-
+    // Hàm hiển thị danh sách câu hỏi lên giao diện web
     function renderQuiz() {
-        const container = document.getElementById('questions-container');
-        container.innerHTML = quizData.map((q, qIdx) => `
-            <div class="question-card" id="q-card-${qIdx}">
-                <div class="question-text">Câu ${q.id}: ${q.question}</div>
-                <div class="options-container">
-                    ${q.options.map((opt, oIdx) => `
-                        <label class="option-label" id="label-${qIdx}-${oIdx}">
-                            <input type="radio" name="question-${qIdx}" value="${oIdx}" required>
-                            <span>${labels[oIdx]}. ${opt}</span>
-                        </label>
+        const container = document.getElementById('quiz-container');
+        container.innerHTML = quizData.map((q, index) => `
+            <div class="quiz-card" id="question-${q.id}">
+                <div class="question-title">Câu ${index + 1}: ${q.question}</div>
+                <ul class="options-list">
+                    ${Object.entries(q.options).map(([key, value]) => `
+                        <li class="option-item" onclick="selectOption(this)">
+                            <input type="radio" name="q-${q.id}" value="${key}" id="q-${q.id}-${key}">
+                            <label for="q-${q.id}-${key}"><strong>${key}.</strong> ${value}</label>
+                        </li>
                     `).join('')}
-                </div>
+                </ul>
             </div>
         `).join('');
     }
 
-    function submitQuiz(event) {
-        event.preventDefault();
-        let score = 0;
+    // Tự động chọn radio khi nhấn vào cả vùng thẻ li nhằm tăng trải nghiệm di động
+    function selectOption(element) {
+        const radio = element.querySelector('input[type="radio"]');
+        if (radio) {
+            radio.checked = true;
+        }
+    }
 
-        quizData.forEach((q, qIdx) => {
-            const selected = document.querySelector(`input[name="question-${qIdx}"]:checked`);
-            const card = document.getElementById(`q-card-${qIdx}`);
-            
-            // Reset các class cũ
-            card.classList.remove('correct-card', 'incorrect-card');
-            for(let i=0; i<4; i++) {
-                document.getElementById(`label-${qIdx}-${i}`).classList.remove('correct', 'incorrect');
-            }
+    // Hàm chấm điểm bài làm và hiển thị đáp án trực quan
+    function checkAnswers() {
+        let correctCount = 0;
 
-            const correctIdx = q.correct;
-            document.getElementById(`label-${qIdx}-${correctIdx}`).classList.add('correct');
+        quizData.forEach(q => {
+            const selectedRadio = document.querySelector(`input[name="q-${q.id}"]:checked`);
+            const card = document.getElementById(`question-${q.id}`);
+            const items = card.querySelectorAll('.option-item');
 
-            if (selected) {
-                const userAns = parseInt(selected.value);
-                if (userAns === correctIdx) {
-                    score++;
-                    card.classList.add('correct-card');
+            // Reset định dạng cũ nếu có
+            items.forEach(item => item.classList.remove('correct', 'wrong'));
+
+            // Đánh dấu đáp án đúng thực tế của câu hỏi
+            items.forEach(item => {
+                const radio = item.querySelector('input[type="radio"]');
+                if (radio.value === q.correct) {
+                    item.classList.add('correct');
+                }
+            });
+
+            // Nếu người dùng có chọn đáp án
+            if (selectedRadio) {
+                if (selectedRadio.value === q.correct) {
+                    correctCount++;
                 } else {
-                    document.getElementById(`label-${qIdx}-${userAns}`).classList.add('incorrect');
-                    card.classList.add('incorrect-card');
+                    // Nếu chọn sai, tô đỏ đáp án mà người dùng đã chọn
+                    selectedRadio.closest('.option-item').classList.add('wrong');
                 }
             }
         });
 
-        const resultBox = document.getElementById('result-box');
-        resultBox.style.display = 'block';
-        resultBox.innerHTML = `<strong>Kết quả của bạn:</strong> ${score}/${quizData.length} câu chính xác (${((score/quizData.length)*100).toFixed(1)}%).`;
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Hiển thị bảng tổng kết điểm số
+        const resultPanel = document.getElementById('result-panel');
+        const scoreText = document.getElementById('score-text');
+        
+        scoreText.innerText = `Bạn làm đúng ${correctCount} / ${quizData.length} câu! (${((correctCount/quizData.length)*10).toFixed(2)} điểm)`;
+        resultPanel.style.display = 'block';
+        
+        // Cuộn trang xuống phần kết quả một cách mượt mà
+        resultPanel.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Khởi chạy sinh câu hỏi tự động
-    renderQuiz();
+    // Chạy hàm render ngay khi trang web tải xong
+    window.onload = renderQuiz;
 </script>
 
 </body>
